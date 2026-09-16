@@ -61,6 +61,9 @@ interface SendBody {
   amount_target:     number;
   // Optional: sent on retry after ToS/KYC to bypass Bridge list-endpoint eventual consistency
   existing_customer_id?: string;
+  // Módulo 3 — Sistema de Referidos: waId (or hash) of the referrer, captured from
+  // ?ref= by app/enviar/page.tsx (lib/referral.ts) and stored in localStorage — no DB.
+  referral_code?:    string;
 }
 
 const SEPA_SET = new Set(["DE","FR","ES","IT","NL","PT","BE","AT","IE","FI","GR","CY","EE","LV","LT","LU","MT","SK","SI","HR","SE","DK","NO","PL","CZ","HU","RO","BG","CH","IS","LI","AD","MC","SM","XK","VA"]);
@@ -87,7 +90,7 @@ export async function POST(req: NextRequest): Promise<Response> {
     recipient_name, recipient_country,
     clabe, iban, bic, pix_key, routing_number, account_number,
     sort_code, bank_code, document_number,
-    amount_target, existing_customer_id,
+    amount_target, existing_customer_id, referral_code,
   } = body;
 
   if (!sender_name || !sender_email || !source_currency || !recipient_name || !recipient_country || !amount_target) {
@@ -308,12 +311,14 @@ export async function POST(req: NextRequest): Promise<Response> {
       }
     }
 
-    // 7. Build fee quote
+    // 7. Build fee quote — Módulo 3: a valid referral code waives OmniPay's 0.6% service
+    // fee for this one transaction (first-transaction incentive for the referred sender).
     const quote = await buildDynamicQuote({
       amount:  amountUSD,
       country,
       email:   sender_email.toLowerCase(),
       type:    "p2p",
+      waiveServiceFee: !!referral_code,
     });
 
     // 8. Create Virtual Account for sender (fiat → USDC → liq addr → recipient's bank)
@@ -378,6 +383,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       senderEmail:        sender_email.toLowerCase(),
       trackUrl:           `${appUrl}/api/bridge/track?order_id=${orderId}`,
       senderLocale,
+      ...(referral_code ? { referralCode: referral_code } : {}),
     });
 
     const di = va.source_deposit_instructions;

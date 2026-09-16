@@ -19,6 +19,10 @@ import { updateOrder, getOrderAsync, createOrder } from "@/lib/order-state";
 import { sendAdminWhatsApp, sendEmailNotification } from "@/lib/notify";
 import { buildReceiptURL }                      from "@/lib/link";
 import { emailStrings }                         from "@/lib/email-i18n";
+import { sendWhatsAppMessage }                  from "@/lib/whatsapp";
+import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
+import { getPendingTransfer }                   from "@/lib/wa-identity";
+import { getCountry }                           from "@/constants/countries";
 
 // Node.js runtime required — redis package uses Node TCP sockets (incompatible with Edge)
 export const runtime = "nodejs";
@@ -239,6 +243,30 @@ export async function POST(req: NextRequest): Promise<Response> {
         (email ? `Email: ${email}\n` : "") +
         `Cuenta permanentemente cerrada.`,
       );
+    } else if ((status === "active" || status === "approved") && email) {
+      // Módulo 2 — proactive WhatsApp confirmation once Bridge approves a customer that
+      // came from the WhatsApp bot's KYC link. Only fires if we have a pending transfer
+      // for this email (set in app/api/whatsapp/webhook/route.ts when the kyc_needed
+      // message was sent) — silently no-ops for customers that didn't come from WhatsApp,
+      // or if the 30-min pending window already expired.
+      try {
+        const pending = await getPendingTransfer(email);
+        if (pending) {
+          const locale = (pending.locale as WaLocale) ?? "en";
+          const t = await getWaTranslator(locale);
+          const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
+          const destCurrency = getCountry(pending.country)?.currency ?? pending.country;
+          const link = `${appUrl}/enviar?email=${encodeURIComponent(email)}&currency=${pending.currency}&country=${pending.country}&amount=${pending.amount}`;
+          await sendWhatsAppMessage(pending.waId, t("kyc_approved_notification", {
+            amount:   pending.amount,
+            currency: pending.currency,
+            country:  destCurrency,
+            link,
+          }));
+        }
+      } catch (e) {
+        console.error("[bridge/webhook] WhatsApp approval notification failed:", (e as Error).message);
+      }
     }
   }
 
@@ -310,5 +338,17 @@ export async function handleCompletion(orderId: string, data: Record<string, unk
   if (order?.recipientEmail && order.recipientEmail !== order.senderEmail) {
     const eTrecipient = emailStrings(order.recipientLocale);
     await sendEmailNotification(order.recipientEmail, eTrecipient.completed_subject, buildCompletionHtml(eTrecipient, "recipient"));
+  }
+
+  // Módulo 3 — referral code IS the referrer's waId (see lib/referral.ts) — direct lookup,
+  // no referral table. Fires once, when the REFERRED sender's transfer completes.
+  if (order?.referralCode) {
+    try {
+      const referrerLocale = localeFromPhone(order.referralCode);
+      const tw = await getWaTranslator(referrerLocale);
+      await sendWhatsAppMessage(order.referralCode, tw("referral_reward"));
+    } catch (e) {
+      console.error("[bridge/webhook] Referral reward notification failed:", (e as Error).message);
+    }
   }
 }

@@ -1136,5 +1136,65 @@
     "completed_title": "Malipo yamepokelewa",
     "completed_body": "Alchemy Pay imethibitisha malipo yako. Tutamjulisha mpokeaji mara fedha zitakapofika.",
     "track_button": "Fuatilia uhamisho huu"
+  },
+  "calculator": {
+    "title": "Linganisha kabla ya kutuma",
+    "subtitle": "Ona kwa usahihi ni kiasi gani zaidi familia yako inapokea kwa OmniPay",
+    "amount_label": "Kiasi",
+    "currency_label": "Sarafu",
+    "destination_label": "Mahali pa kupokea",
+    "loading": "Inapata kiwango cha moja kwa moja…",
+    "error": "Imeshindwa kupata bei. Jaribu tena.",
+    "savings_badge": "Mpokeaji wako anapata +{amount} zaidi kwa OmniPay",
+    "omnipay_label": "OmniPay",
+    "competitor_label": "Wastani wa soko",
+    "omnipay_fee_label": "Jumla ya ada: {fee}",
+    "competitor_spread_label": "Tofauti iliyofichika inayokadiriwa: 3.2%",
+    "disclaimer": "Makadirio kwa kiwango cha moja kwa moja cha benki. Kiasi cha mwisho hupangwa wakati wa amana."
+  },
+  "whatsapp": {
+    "greeting": "👋 Habari! Mimi ni msaidizi wa OmniPay.\n\nUnataka kutuma kiasi gani na kwenda nchi gani?\n\nAndika kitu kama:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Spain*\n\n_(Mazungumzo haya yataisha muda wake baada ya dakika 5 kwa usalama wako)_",
+    "parse_error": "Hmm, sikuelewa vizuri 🤔\n\nAndika kiasi na nchi hivi:\n*200 USD Mexico*",
+    "ask_email": "Ili kuendelea, barua pepe yako ni ipi? Tunaitumia kuthibitisha akaunti yako na mtoa huduma wetu wa malipo aliyesajiliwa.",
+    "invalid_email": "Hiyo haionekani kama barua pepe halali. Jaribu tena (mfano: jina@email.com)",
+    "kyc_needed": "Ili kukamilisha uhamisho wako wa kwanza unahitaji kuthibitisha utambulisho wako (dakika 2). Fungua kiungo hiki: {link}",
+    "quote_ready": "✅ Imehakikishwa: mpokeaji wako atapata {recipient_amount} {recipient_currency} (kiwango: {rate} {recipient_currency} kwa {from_currency} moja).\n\nKamilisha uhamisho wako hapa: {link}\n\n_OmniPay haihifadhi data yako yoyote._",
+    "kyc_approved_notification": "🎉 Akaunti yako ya OmniPay imeidhinishwa! Sasa unaweza kukamilisha uhamisho wa {amount} {currency} kwenda {country}.\n\nEndelea hapa: {link}",
+    "link_ready": "Endelea na uhamisho wako hapa: {link}",
+    "referral_reward": "🎁 Asante kwa kualika rafiki! Uhamisho wako unaofuata wa OmniPay utakuwa na ada ya huduma ya $0."
+  },
+  "kyc": {
+    "title": "Thibitisha utambulisho wako",
+    "subtitle": "Hii inachukua takriban dakika 2. OmniPay hutumia Bridge na Persona, watoa huduma wa uthibitisho wa utambulisho waliosajiliwa — hatuoni wala kuhifadhi hati zako.",
+    "loading": "Inapakia uthibitisho…",
+    "error": "Imeshindwa kuanzisha uthibitisho. Jaribu tena kutoka WhatsApp.",
+    "missing_params": "Kiungo hiki hakijakamilika. Omba kipya kutoka WhatsApp."
+  },
+  "serviciosMx": {
+    "title": "Lipa bili ya huduma Mexico",
+    "subtitle": "Lipa CFE, Telmex au Izzi kutoka nje ya nchi — weka amana kwa USD, tunalipa kwa MXN kupitia SPEI.",
+    "provider_label": "Kampuni",
+    "reference_label": "Marejeleo / nambari ya akaunti",
+    "amount_label": "Kiasi cha kulipa (MXN)",
+    "quote_btn": "Pata bei",
+    "quoting": "Inapata bei…",
+    "unavailable": "Huduma hii bado haipatikani — inasubiri uthibitisho wa mwisho na mtoa huduma wetu wa benki.",
+    "error": "Imeshindwa kupata bei. Jaribu tena.",
+    "deposit_title": "Maagizo ya amana",
+    "deposit_note": "Weka kiasi halisi cha USD kilicho hapa chini. Tutakujulisha malipo yatakapofika {provider}.",
+    "pay_btn": "Nimeshaweka amana",
+    "status_pending": "Inasubiri amana yako…",
+    "status_processing": "Inachakata…",
+    "status_completed": "Malipo yamekamilika!",
+    "status_failed": "Hitilafu imetokea. Wasiliana na msaada."
+  },
+  "pruebaExpress": {
+    "title": "Jaribu OmniPay kwa $10",
+    "subtitle": "Jionee mwenyewe jinsi uwasilishaji wa SPEI kwenda Mexico ulivyo haraka — bila ahadi kubwa, $10 tu.",
+    "cta": "Tuma $10 sasa",
+    "share_title": "Shiriki OmniPay",
+    "share_whatsapp": "Shiriki kwenye WhatsApp",
+    "share_facebook": "Shiriki kwenye Facebook",
+    "footnote": "Kiwango na kasi sawa na uhamisho wowote — hii ni njia tu yenye hatari ndogo ya kujaribu."
   }
 }

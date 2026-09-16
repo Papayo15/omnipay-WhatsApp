@@ -1136,5 +1136,65 @@
     "completed_title": "支払いを受け付けました",
     "completed_body": "Alchemy Payがお支払いを確認しました。資金が届き次第、受取人にお知らせします。",
     "track_button": "この送金を追跡"
+  },
+  "calculator": {
+    "title": "送る前に比較しよう",
+    "subtitle": "OmniPayでご家族が何ペソ多く受け取れるか確認できます",
+    "amount_label": "金額",
+    "currency_label": "通貨",
+    "destination_label": "送金先",
+    "loading": "リアルタイムレートを取得中…",
+    "error": "見積もりを取得できませんでした。再試行してください。",
+    "savings_badge": "OmniPayなら受取人が+{amount}多く受け取れます",
+    "omnipay_label": "OmniPay",
+    "competitor_label": "市場平均",
+    "omnipay_fee_label": "合計手数料：{fee}",
+    "competitor_spread_label": "推定隠れスプレッド：3.2%",
+    "disclaimer": "ライブ銀行間レートによる見積もり。最終金額は入金時に確定します。"
+  },
+  "whatsapp": {
+    "greeting": "👋 こんにちは！OmniPayアシスタントです。\n\nいくら、どの国に送金しますか？\n\n例えばこう書いてください：\n• *200 USD メキシコ*\n• *500 CAD コロンビア*\n• *1000 EUR スペイン*\n\n_(このチャットはセキュリティのため5分で期限切れになります)_",
+    "parse_error": "うまく理解できませんでした🤔\n\n金額と国をこう書いてください：\n*200 USD メキシコ*",
+    "ask_email": "続けるには、メールアドレスを教えてください。規制対象の決済プロバイダーでアカウントを確認するために使用します。",
+    "invalid_email": "有効なメールアドレスではないようです。もう一度お試しください（例：name@email.com）",
+    "kyc_needed": "最初の送金を完了するには本人確認が必要です（2分）。このリンクを開いてください：{link}",
+    "quote_ready": "✅ 保証：受取人は{recipient_amount} {recipient_currency}を受け取ります（レート：{from_currency}あたり{rate} {recipient_currency}）。\n\nここで送金を完了してください：{link}\n\n_OmniPayはあなたのデータを保存しません。_",
+    "kyc_approved_notification": "🎉 OmniPayアカウントが承認されました！{amount} {currency}を{country}へ送金を完了できます。\n\nこちらから続ける：{link}",
+    "link_ready": "こちらから送金を続けてください：{link}",
+    "referral_reward": "🎁 友達を招待していただきありがとうございます！次回のOmniPay送金はサービス手数料が$0になります。"
+  },
+  "kyc": {
+    "title": "本人確認を行ってください",
+    "subtitle": "所要時間は約2分です。OmniPayは規制対象の本人確認プロバイダーであるBridgeとPersonaを使用しており、お客様の書類を確認・保存することはありません。",
+    "loading": "確認を読み込み中…",
+    "error": "確認を開始できませんでした。WhatsAppから再試行してください。",
+    "missing_params": "このリンクは不完全です。WhatsAppから新しいリンクをリクエストしてください。"
+  },
+  "serviciosMx": {
+    "title": "メキシコの公共料金を支払う",
+    "subtitle": "海外からCFE、Telmex、Izzi料金を支払えます — USDで入金、SPEI経由でMXNに換金します。",
+    "provider_label": "会社",
+    "reference_label": "参照番号 / アカウント番号",
+    "amount_label": "支払金額（MXN）",
+    "quote_btn": "見積もりを取得",
+    "quoting": "見積もり中…",
+    "unavailable": "このサービスはまだ利用できません — 銀行プロバイダーとの最終検証待ちです。",
+    "error": "見積もりを取得できませんでした。再試行してください。",
+    "deposit_title": "入金手順",
+    "deposit_note": "以下のUSD金額を正確に入金してください。{provider}への支払いが完了したらお知らせします。",
+    "pay_btn": "入金しました",
+    "status_pending": "入金を待っています…",
+    "status_processing": "処理中…",
+    "status_completed": "支払い完了！",
+    "status_failed": "問題が発生しました。サポートにお問い合わせください。"
+  },
+  "pruebaExpress": {
+    "title": "10ドルでOmniPayを試す",
+    "subtitle": "メキシコへのSPEI送金がどれだけ速いか、ご自身で確認してください — 大きなコミットメントは不要、わずか10ドルです。",
+    "cta": "今すぐ10ドルを送る",
+    "share_title": "OmniPayをシェア",
+    "share_whatsapp": "WhatsAppでシェア",
+    "share_facebook": "Facebookでシェア",
+    "footnote": "通常の送金と同じレートと速度です — これは低リスクで試せる方法です。"
   }
 }

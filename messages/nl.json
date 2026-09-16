@@ -1136,5 +1136,65 @@
     "completed_title": "Betaling ontvangen",
     "completed_body": "Alchemy Pay heeft uw betaling bevestigd. We laten de ontvanger weten zodra het geld binnenkomt.",
     "track_button": "Deze overboeking volgen"
+  },
+  "calculator": {
+    "title": "Vergelijk voordat je verstuurt",
+    "subtitle": "Zie precies hoeveel meer je familie ontvangt met OmniPay",
+    "amount_label": "Bedrag",
+    "currency_label": "Valuta",
+    "destination_label": "Bestemming",
+    "loading": "Live koers ophalen…",
+    "error": "Kon offerte niet ophalen. Probeer opnieuw.",
+    "savings_badge": "Je ontvanger krijgt +{amount} meer met OmniPay",
+    "omnipay_label": "OmniPay",
+    "competitor_label": "Marktgemiddelde",
+    "omnipay_fee_label": "Totale kosten: {fee}",
+    "competitor_spread_label": "Geschatte verborgen marge: 3,2%",
+    "disclaimer": "Schatting op basis van live interbancaire koers. Eindbedrag vastgesteld bij storting."
+  },
+  "whatsapp": {
+    "greeting": "👋 Hoi! Ik ben de OmniPay-assistent.\n\nHoeveel wil je versturen en naar welk land?\n\nSchrijf bijvoorbeeld:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Spanje*\n\n_(Deze chat verloopt over 5 minuten voor je veiligheid)_",
+    "parse_error": "Hmm, dat begreep ik niet helemaal 🤔\n\nSchrijf het bedrag en land zo:\n*200 USD Mexico*",
+    "ask_email": "Om door te gaan, wat is je e-mailadres? We gebruiken het om je account te verifiëren bij onze gereguleerde betalingsprovider.",
+    "invalid_email": "Dat lijkt geen geldig e-mailadres. Probeer opnieuw (voorbeeld: naam@email.com)",
+    "kyc_needed": "Om je eerste overboeking te voltooien moet je je identiteit verifiëren (2 minuten). Open deze link: {link}",
+    "quote_ready": "✅ Gegarandeerd: je ontvanger krijgt {recipient_amount} {recipient_currency} (koers: {rate} {recipient_currency} per {from_currency}).\n\nVoltooi je overboeking hier: {link}\n\n_OmniPay slaat geen van je gegevens op._",
+    "kyc_approved_notification": "🎉 Je OmniPay-account is goedgekeurd! Je kunt nu je overboeking van {amount} {currency} naar {country} voltooien.\n\nGa hier verder: {link}",
+    "link_ready": "Ga hier verder met je overboeking: {link}",
+    "referral_reward": "🎁 Bedankt voor het uitnodigen van een vriend! Je volgende OmniPay-overboeking heeft $0 servicekosten."
+  },
+  "kyc": {
+    "title": "Verifieer je identiteit",
+    "subtitle": "Dit duurt ongeveer 2 minuten. OmniPay gebruikt Bridge en Persona, gereguleerde aanbieders van identiteitsverificatie — we zien of bewaren je documenten nooit.",
+    "loading": "Verificatie laden…",
+    "error": "Kon verificatie niet starten. Probeer opnieuw vanuit WhatsApp.",
+    "missing_params": "Deze link is onvolledig. Vraag een nieuwe aan via WhatsApp."
+  },
+  "serviciosMx": {
+    "title": "Betaal een rekening in Mexico",
+    "subtitle": "Betaal CFE, Telmex of Izzi vanuit het buitenland — stort in USD, wij verrekenen in MXN via SPEI.",
+    "provider_label": "Bedrijf",
+    "reference_label": "Referentie / rekeningnummer",
+    "amount_label": "Te betalen bedrag (MXN)",
+    "quote_btn": "Offerte aanvragen",
+    "quoting": "Offerte ophalen…",
+    "unavailable": "Deze dienst is nog niet beschikbaar — in afwachting van definitieve validatie met onze bankaanbieder.",
+    "error": "Kon geen offerte ophalen. Probeer opnieuw.",
+    "deposit_title": "Stortingsinstructies",
+    "deposit_note": "Stort precies het onderstaande USD-bedrag. We laten het je weten zodra de betaling bij {provider} aankomt.",
+    "pay_btn": "Ik heb de storting gedaan",
+    "status_pending": "Wachten op je storting…",
+    "status_processing": "Verwerken…",
+    "status_completed": "Betaling voltooid!",
+    "status_failed": "Er ging iets mis. Neem contact op met support."
+  },
+  "pruebaExpress": {
+    "title": "Probeer OmniPay met $10",
+    "subtitle": "Zie zelf hoe snel SPEI-levering naar Mexico is — geen grote verplichting, gewoon $10.",
+    "cta": "Stuur nu $10",
+    "share_title": "Deel OmniPay",
+    "share_whatsapp": "Delen via WhatsApp",
+    "share_facebook": "Delen op Facebook",
+    "footnote": "Zelfde tarief en snelheid als elke overboeking — dit is gewoon een risicoarme manier om het te proberen."
   }
 }

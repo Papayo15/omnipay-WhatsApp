@@ -99,8 +99,12 @@ export async function buildDynamicQuote(params: {
   country: string;
   email:   string;
   type:    "p2p" | "b2b";
+  // Módulo 3 — Sistema de Referidos: when set, OMNIPAY_SERVICE_PCT is waived (0%) for this
+  // one quote. Caller (app/api/bridge/send/route.ts) only passes true when a valid
+  // ?ref= code traveled with the request — additive, existing callers are unaffected.
+  waiveServiceFee?: boolean;
 }): Promise<FeeQuote> {
-  const { amount, country, email, type } = params;
+  const { amount, country, email, type, waiveServiceFee } = params;
 
   if (type !== "b2b" && !NATIVE_RAILS[country.toUpperCase()]) {
     throw new Error(`Country ${country} is not supported by Bridge. Only 41 corridors available.`);
@@ -118,7 +122,7 @@ export async function buildDynamicQuote(params: {
   } catch { /* network error — assume new customer */ }
 
   const provider: QuoteProvider = type === "b2b" ? "b2b" : "bridge";
-  return _buildQuote(amount, provider, type, isNew);
+  return _buildQuote(amount, provider, type, isNew, waiveServiceFee);
 }
 
 // ── SPEI corridor — fixed MXN fee from real Bridge transaction ───────────────
@@ -158,8 +162,9 @@ function _buildQuote(
   provider: QuoteProvider,
   type:     "p2p" | "b2b",
   isNew:    boolean,
+  waiveServiceFee = false,
 ): FeeQuote {
-  const flat = type === "b2b" ? OMNIPAY_FLAT_B2B : OMNIPAY_FLAT_P2P;
+  const flat = waiveServiceFee ? 0 : (type === "b2b" ? OMNIPAY_FLAT_B2B : OMNIPAY_FLAT_P2P);
   const kyc  = isNew ? (type === "b2b" ? KYB_FEE_B2B : KYC_FEE_P2P) : 0;
 
   let providerCostTotal: number;
@@ -178,7 +183,7 @@ function _buildQuote(
     providerCostTotal = bridgeOnramp + bridgeOfframp;
   }
 
-  const omnipayService = parseFloat(
+  const omnipayService = waiveServiceFee ? 0 : parseFloat(
     Math.max(amount * OMNIPAY_SERVICE_PCT, omniPayMinFee(amount)).toFixed(2)
   );
   const omnipayRev = parseFloat((omnipayService + flat).toFixed(2));

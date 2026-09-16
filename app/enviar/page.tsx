@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Zap, ArrowLeft, Send, Copy, Check, AlertCircle, Loader2, CheckCircle } from "lucide-react";
 import { SEPA_COUNTRIES } from "@/lib/wise-accounts";
+import { saveReferralCode, getReferralCode, clearReferralCode } from "@/lib/referral";
 
 type Step = "form" | "sending" | "tos" | "kyc" | "instructions" | "receipt" | "error";
 
@@ -75,6 +76,13 @@ export default function EnviarPage() {
   const router       = useRouter();
   const searchParams = useSearchParams();
 
+  // Módulo 3 — captura ?ref=CODE al llegar y lo guarda en localStorage (30 días).
+  // Puramente aditivo: si no viene el param, no hace nada.
+  useEffect(() => {
+    const ref = searchParams.get("ref");
+    if (ref) saveReferralCode(ref);
+  }, [searchParams]);
+
   const [step, setStep] = useState<Step>("form");
   const [error, setError] = useState("");
   const [copied, setCopied] = useState<string | null>(null);
@@ -82,18 +90,21 @@ export default function EnviarPage() {
   const [autoRetryFromTos, setAutoRetryFromTos] = useState(false);
 
   // Datos del emisor
+  // Prefill desde query params (?email=&currency=&country=&amount=) — usado por el bot de
+  // WhatsApp (Módulo 2) y por /prueba-express (Módulo 5) para llegar con el formulario listo.
+  // Puramente aditivo: si no vienen params, el comportamiento es idéntico al de antes.
   const [senderName, setSenderName]       = useState("");
-  const [senderEmail, setSenderEmail]     = useState("");
-  const [senderCurrency, setSenderCurrency] = useState("USD");
+  const [senderEmail, setSenderEmail]     = useState(() => searchParams.get("email") ?? "");
+  const [senderCurrency, setSenderCurrency] = useState(() => searchParams.get("currency")?.toUpperCase() || "USD");
 
   // Datos del receptor — solo nombre y banco (sin KYC)
   const [recipientName, setRecipientName]       = useState("");
-  const [recipientCountry, setRecipientCountry] = useState("MX");
+  const [recipientCountry, setRecipientCountry] = useState(() => searchParams.get("country")?.toUpperCase() || "MX");
   const [accountField, setAccountField]         = useState("");
   const [routingField, setRoutingField]         = useState("");
   const [sortCodeField, setSortCodeField]       = useState("");
   const [bicField, setBicField]                 = useState("");
-  const [amountTarget, setAmountTarget]         = useState("");
+  const [amountTarget, setAmountTarget]         = useState(() => searchParams.get("amount") ?? "");
 
   // Post-submit state
   const [tosUrl, setTosUrl]               = useState("");
@@ -185,6 +196,7 @@ export default function EnviarPage() {
   const quoteReady     = !!feeQuote && !feeLoading && !quoteBelowMin;
 
   const buildBody = useCallback(() => {
+    const referralCode = getReferralCode();
     const base: Record<string, unknown> = {
       sender_name:       senderName.trim(),
       sender_email:      senderEmail.trim().toLowerCase(),
@@ -193,6 +205,7 @@ export default function EnviarPage() {
       recipient_country: recipientCountry,
       amount_target:     parseFloat(amountTarget),
       redirect_uri:      `${window.location.origin}/enviar?kyc_done=1`,
+      ...(referralCode ? { referral_code: referralCode } : {}),
     };
     // Pass existing customer ID on retries so the route skips Bridge's eventually-consistent
     // email lookup — prevents a duplicate customer creation that re-triggers the ToS gate.
@@ -498,7 +511,7 @@ export default function EnviarPage() {
         if (!res.ok || !active) return;
         const d = await res.json() as { status?: string };
         if (!active) return;
-        if (d.status === "COMPLETED") { setSandboxDone(true); setStep("receipt"); return; }
+        if (d.status === "COMPLETED") { setSandboxDone(true); setStep("receipt"); clearReferralCode(); return; }
       } catch { /* silent — retry next tick */ }
       if (active) timer = setTimeout(poll, 10_000);
     };
@@ -663,7 +676,7 @@ export default function EnviarPage() {
     try {
       const res  = await fetch(`/api/bridge/sandbox/advance?order_id=${orderId}`);
       const data = await res.json() as { ok?: boolean; error?: string };
-      if (data.ok) { setSandboxDone(true); setStep("receipt"); }
+      if (data.ok) { setSandboxDone(true); setStep("receipt"); clearReferralCode(); }
       else setError(data.error ?? "Error sandbox");
     } finally {
       setSandboxAdvancing(false);

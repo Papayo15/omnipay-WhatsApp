@@ -1135,5 +1135,65 @@
     "completed_title": "An karɓi biyan kuɗi",
     "completed_body": "Alchemy Pay ta tabbatar da biyan ka. Za mu sanar da mai karɓa da zarar kuɗin sun isa.",
     "track_button": "Bibiyi wannan canja wuri"
+  },
+  "calculator": {
+    "title": "Kwatanta kafin ka aika",
+    "subtitle": "Duba daidai yadda iyalinka zai karɓa fiye da haka tare da OmniPay",
+    "amount_label": "Adadi",
+    "currency_label": "Kuɗi",
+    "destination_label": "Wurin da za a kai",
+    "loading": "Ana samun ainihin farashi…",
+    "error": "An kasa samun farashin. Sake gwadawa.",
+    "savings_badge": "Wanda za a biya zai karɓi +{amount} fiye da haka tare da OmniPay",
+    "omnipay_label": "OmniPay",
+    "competitor_label": "Matsakaicin kasuwa",
+    "omnipay_fee_label": "Jimlar kuɗin sabis: {fee}",
+    "competitor_spread_label": "Kiyasin ɓoyayyen bambanci: 3.2%",
+    "disclaimer": "Ƙiyasi bisa ainihin farashin bankuna. Ana ƙayyade adadin ƙarshe lokacin ajiya."
+  },
+  "whatsapp": {
+    "greeting": "👋 Sannu! Ni ne mataimakin OmniPay.\n\nNawa kake son aikawa kuma zuwa wace ƙasa?\n\nRubuta kamar haka:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Spain*\n\n_(Wannan tattaunawar za ta ƙare a cikin mintuna 5 don tsaronka)_",
+    "parse_error": "Hmm, ban gane sosai ba 🤔\n\nRubuta adadi da ƙasar kamar haka:\n*200 USD Mexico*",
+    "ask_email": "Don ci gaba, menene imel ɗinka? Muna amfani da shi don tabbatar da asusunka tare da mai ba da hidimar biyan kuɗi da aka tsara.",
+    "invalid_email": "Wannan bai yi kama da ingantaccen imel ba. Sake gwadawa (misali: suna@email.com)",
+    "kyc_needed": "Don kammala canja wurin ka na farko, kana buƙatar tabbatar da asalinka (mintuna 2). Buɗe wannan hanyar haɗi: {link}",
+    "quote_ready": "✅ Tabbatacce: wanda za a biya zai karɓi {recipient_amount} {recipient_currency} (farashi: {rate} {recipient_currency} akan {from_currency} ɗaya).\n\nKammala canja wurin ka a nan: {link}\n\n_OmniPay baya adana kowanne bayaninka._",
+    "kyc_approved_notification": "🎉 An amince da asusun OmniPay naka! Yanzu za ka iya kammala canja wurin {amount} {currency} zuwa {country}.\n\nCi gaba a nan: {link}",
+    "link_ready": "Ci gaba da canja wurin ka a nan: {link}",
+    "referral_reward": "🎁 Na gode da gayyatar aboki! Canja wurin OmniPay na gaba zai kasance da kuɗin sabis $0."
+  },
+  "kyc": {
+    "title": "Tabbatar da ainihin ka",
+    "subtitle": "Wannan yana ɗaukar kimanin mintuna 2. OmniPay yana amfani da Bridge da Persona, masu ba da tabbatar da ainihi da aka tsara — ba mu taɓa ganin ko adana takardunku ba.",
+    "loading": "Ana loda tabbatarwa…",
+    "error": "Ba a iya fara tabbatarwa ba. Sake gwadawa daga WhatsApp.",
+    "missing_params": "Wannan hanyar haɗi bata cika ba. Nemi sabuwa daga WhatsApp."
+  },
+  "serviciosMx": {
+    "title": "Biya kudin sabis a Mexico",
+    "subtitle": "Biya CFE, Telmex ko Izzi daga waje — ajiye a USD, muna biya a MXN ta hanyar SPEI.",
+    "provider_label": "Kamfani",
+    "reference_label": "Lambar tunani / lambar asusu",
+    "amount_label": "Adadin da za a biya (MXN)",
+    "quote_btn": "Samo farashi",
+    "quoting": "Ana samo farashi…",
+    "unavailable": "Wannan sabis ba a samu ba tukuna — ana jiran tabbatarwa ta ƙarshe da mai bayar da banki.",
+    "error": "An kasa samun farashin. Sake gwadawa.",
+    "deposit_title": "Umarnin ajiya",
+    "deposit_note": "Ajiye ainihin adadin USD da ke ƙasa. Za mu sanar da ku lokacin da biyan kuɗi ya isa {provider}.",
+    "pay_btn": "Na yi ajiyar",
+    "status_pending": "Ana jiran ajiyarka…",
+    "status_processing": "Ana sarrafawa…",
+    "status_completed": "An kammala biyan kuɗi!",
+    "status_failed": "Wani abu ya faru ba daidai ba. Tuntuɓi tallafi."
+  },
+  "pruebaExpress": {
+    "title": "Gwada OmniPay da $10",
+    "subtitle": "Ka gani da kanka yadda isar da SPEI zuwa Mexico take da sauri — babu babban alkawari, dala 10 kawai.",
+    "cta": "Aika $10 yanzu",
+    "share_title": "Raba OmniPay",
+    "share_whatsapp": "Raba akan WhatsApp",
+    "share_facebook": "Raba akan Facebook",
+    "footnote": "Farashi da sauri iri ɗaya da kowane canja wuri — wannan hanya ce mai ƙarancin haɗari kawai don gwada ta."
   }
 }

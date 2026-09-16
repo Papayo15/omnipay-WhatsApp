@@ -1136,5 +1136,65 @@
     "completed_title": "Đã nhận thanh toán",
     "completed_body": "Alchemy Pay đã xác nhận thanh toán của bạn. Chúng tôi sẽ thông báo cho người nhận khi tiền đến.",
     "track_button": "Theo dõi giao dịch này"
+  },
+  "calculator": {
+    "title": "So sánh trước khi gửi",
+    "subtitle": "Xem chính xác gia đình bạn nhận thêm bao nhiêu với OmniPay",
+    "amount_label": "Số tiền",
+    "currency_label": "Loại tiền",
+    "destination_label": "Điểm đến",
+    "loading": "Đang lấy tỷ giá trực tiếp…",
+    "error": "Không thể lấy báo giá. Vui lòng thử lại.",
+    "savings_badge": "Người nhận của bạn nhận thêm +{amount} với OmniPay",
+    "omnipay_label": "OmniPay",
+    "competitor_label": "Trung bình thị trường",
+    "omnipay_fee_label": "Tổng phí: {fee}",
+    "competitor_spread_label": "Chênh lệch ẩn ước tính: 3,2%",
+    "disclaimer": "Ước tính theo tỷ giá liên ngân hàng trực tiếp. Số tiền cuối cùng được chốt khi gửi."
+  },
+  "whatsapp": {
+    "greeting": "👋 Xin chào! Tôi là trợ lý OmniPay.\n\nBạn muốn gửi bao nhiêu và đến quốc gia nào?\n\nHãy viết như thế này:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Tây Ban Nha*\n\n_(Cuộc trò chuyện này hết hạn sau 5 phút vì lý do bảo mật)_",
+    "parse_error": "Hừm, tôi chưa hiểu rõ 🤔\n\nHãy viết số tiền và quốc gia như sau:\n*200 USD Mexico*",
+    "ask_email": "Để tiếp tục, email của bạn là gì? Chúng tôi dùng nó để xác minh tài khoản của bạn với nhà cung cấp thanh toán được quản lý của chúng tôi.",
+    "invalid_email": "Đây có vẻ không phải là email hợp lệ. Hãy thử lại (ví dụ: ten@email.com)",
+    "kyc_needed": "Để hoàn tất lần chuyển tiền đầu tiên, bạn cần xác minh danh tính (2 phút). Mở liên kết này: {link}",
+    "quote_ready": "✅ Đảm bảo: người nhận của bạn sẽ nhận {recipient_amount} {recipient_currency} (tỷ giá: {rate} {recipient_currency} mỗi {from_currency}).\n\nHoàn tất chuyển tiền tại đây: {link}\n\n_OmniPay không lưu trữ bất kỳ dữ liệu nào của bạn._",
+    "kyc_approved_notification": "🎉 Tài khoản OmniPay của bạn đã được phê duyệt! Bây giờ bạn có thể hoàn tất chuyển {amount} {currency} đến {country}.\n\nTiếp tục tại đây: {link}",
+    "link_ready": "Tiếp tục chuyển tiền của bạn tại đây: {link}",
+    "referral_reward": "🎁 Cảm ơn bạn đã mời một người bạn! Lần chuyển tiền OmniPay tiếp theo của bạn sẽ có phí dịch vụ $0."
+  },
+  "kyc": {
+    "title": "Xác minh danh tính của bạn",
+    "subtitle": "Việc này mất khoảng 2 phút. OmniPay sử dụng Bridge và Persona, các nhà cung cấp xác minh danh tính được quản lý — chúng tôi không bao giờ xem hoặc lưu trữ tài liệu của bạn.",
+    "loading": "Đang tải xác minh…",
+    "error": "Không thể bắt đầu xác minh. Vui lòng thử lại từ WhatsApp.",
+    "missing_params": "Liên kết này chưa đầy đủ. Vui lòng yêu cầu liên kết mới từ WhatsApp."
+  },
+  "serviciosMx": {
+    "title": "Thanh toán hóa đơn dịch vụ ở Mexico",
+    "subtitle": "Thanh toán CFE, Telmex hoặc Izzi từ nước ngoài — nạp tiền bằng USD, chúng tôi thanh toán bằng MXN qua SPEI.",
+    "provider_label": "Công ty",
+    "reference_label": "Mã tham chiếu / số tài khoản",
+    "amount_label": "Số tiền cần thanh toán (MXN)",
+    "quote_btn": "Nhận báo giá",
+    "quoting": "Đang lấy báo giá…",
+    "unavailable": "Dịch vụ này chưa khả dụng — đang chờ xác minh cuối cùng với nhà cung cấp ngân hàng của chúng tôi.",
+    "error": "Không thể lấy báo giá. Vui lòng thử lại.",
+    "deposit_title": "Hướng dẫn nạp tiền",
+    "deposit_note": "Nạp chính xác số tiền USD bên dưới. Chúng tôi sẽ thông báo khi khoản thanh toán đến {provider}.",
+    "pay_btn": "Tôi đã nạp tiền",
+    "status_pending": "Đang chờ khoản nạp của bạn…",
+    "status_processing": "Đang xử lý…",
+    "status_completed": "Thanh toán hoàn tất!",
+    "status_failed": "Đã xảy ra sự cố. Vui lòng liên hệ hỗ trợ."
+  },
+  "pruebaExpress": {
+    "title": "Dùng thử OmniPay với $10",
+    "subtitle": "Tự mình xem tốc độ giao dịch SPEI đến Mexico nhanh như thế nào — không cần cam kết lớn, chỉ $10.",
+    "cta": "Gửi $10 ngay",
+    "share_title": "Chia sẻ OmniPay",
+    "share_whatsapp": "Chia sẻ trên WhatsApp",
+    "share_facebook": "Chia sẻ trên Facebook",
+    "footnote": "Cùng tỷ giá và tốc độ như bất kỳ giao dịch nào — đây chỉ là cách ít rủi ro để dùng thử."
   }
 }

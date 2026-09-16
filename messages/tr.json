@@ -1136,5 +1136,65 @@
     "completed_title": "Ödeme alındı",
     "completed_body": "Alchemy Pay ödemeni onayladı. Fonlar ulaştığında alıcıyı bilgilendireceğiz.",
     "track_button": "Bu transferi takip et"
+  },
+  "calculator": {
+    "title": "Göndermeden önce karşılaştırın",
+    "subtitle": "Ailenizin OmniPay ile ne kadar daha fazla aldığını tam olarak görün",
+    "amount_label": "Tutar",
+    "currency_label": "Para birimi",
+    "destination_label": "Hedef ülke",
+    "loading": "Canlı kur alınıyor…",
+    "error": "Teklif alınamadı. Tekrar deneyin.",
+    "savings_badge": "Alıcınız OmniPay ile {amount} daha fazla alır",
+    "omnipay_label": "OmniPay",
+    "competitor_label": "Piyasa ortalaması",
+    "omnipay_fee_label": "Toplam ücret: {fee}",
+    "competitor_spread_label": "Tahmini gizli marj: %3,2",
+    "disclaimer": "Canlı bankalararası kura göre tahmin. Kesin tutar yatırma anında belirlenir."
+  },
+  "whatsapp": {
+    "greeting": "👋 Merhaba! Ben OmniPay asistanıyım.\n\nNe kadar göndermek istiyorsunuz ve hangi ülkeye?\n\nŞöyle yazın:\n• *200 USD Meksika*\n• *500 CAD Kolombiya*\n• *1000 EUR İspanya*\n\n_(Bu sohbet güvenliğiniz için 5 dakika içinde sona erer)_",
+    "parse_error": "Hmm, tam anlayamadım 🤔\n\nTutarı ve ülkeyi şöyle yazın:\n*200 USD Meksika*",
+    "ask_email": "Devam etmek için e-postanız nedir? Düzenlenmiş ödeme sağlayıcımızda hesabınızı doğrulamak için kullanıyoruz.",
+    "invalid_email": "Bu geçerli bir e-posta gibi görünmüyor. Tekrar deneyin (örnek: isim@email.com)",
+    "kyc_needed": "İlk transferinizi tamamlamak için kimliğinizi doğrulamanız gerekiyor (2 dakika). Bu bağlantıyı açın: {link}",
+    "quote_ready": "✅ Garanti: alıcınız {recipient_amount} {recipient_currency} alır (kur: {from_currency} başına {rate} {recipient_currency}).\n\nTransferinizi burada tamamlayın: {link}\n\n_OmniPay verilerinizi saklamaz._",
+    "kyc_approved_notification": "🎉 OmniPay hesabınız onaylandı! Artık {country} ülkesine {amount} {currency} transferinizi tamamlayabilirsiniz.\n\nBurada devam edin: {link}",
+    "link_ready": "Transferinize buradan devam edin: {link}",
+    "referral_reward": "🎁 Bir arkadaşınızı davet ettiğiniz için teşekkürler! Bir sonraki OmniPay transferinizde $0 hizmet ücreti olacak."
+  },
+  "kyc": {
+    "title": "Kimliğinizi doğrulayın",
+    "subtitle": "Bu yaklaşık 2 dakika sürer. OmniPay, düzenlenmiş kimlik doğrulama sağlayıcıları Bridge ve Persona'yı kullanır — belgelerinizi asla görmeyiz veya saklamayız.",
+    "loading": "Doğrulama yükleniyor…",
+    "error": "Doğrulama başlatılamadı. WhatsApp'tan tekrar deneyin.",
+    "missing_params": "Bu bağlantı eksik. WhatsApp'tan yeni bir bağlantı isteyin."
+  },
+  "serviciosMx": {
+    "title": "Meksika'da bir fatura ödeyin",
+    "subtitle": "CFE, Telmex veya Izzi faturalarını yurt dışından ödeyin — USD yatırın, SPEI ile MXN olarak ödüyoruz.",
+    "provider_label": "Şirket",
+    "reference_label": "Referans / hesap numarası",
+    "amount_label": "Ödenecek tutar (MXN)",
+    "quote_btn": "Teklif al",
+    "quoting": "Teklif alınıyor…",
+    "unavailable": "Bu hizmet henüz kullanılamıyor — banka sağlayıcımızla nihai doğrulama bekleniyor.",
+    "error": "Teklif alınamadı. Tekrar deneyin.",
+    "deposit_title": "Yatırma talimatları",
+    "deposit_note": "Aşağıdaki tam USD tutarını yatırın. Ödeme {provider} adresine ulaştığında sizi bilgilendireceğiz.",
+    "pay_btn": "Yatırma işlemini yaptım",
+    "status_pending": "Yatırmanız bekleniyor…",
+    "status_processing": "İşleniyor…",
+    "status_completed": "Ödeme tamamlandı!",
+    "status_failed": "Bir şeyler ters gitti. Destek ile iletişime geçin."
+  },
+  "pruebaExpress": {
+    "title": "OmniPay'i 10 $ ile deneyin",
+    "subtitle": "Meksika'ya SPEI teslimatının ne kadar hızlı olduğunu kendiniz görün — büyük bir taahhüt yok, sadece 10 $.",
+    "cta": "Şimdi 10 $ gönder",
+    "share_title": "OmniPay'i paylaş",
+    "share_whatsapp": "WhatsApp'ta paylaş",
+    "share_facebook": "Facebook'ta paylaş",
+    "footnote": "Herhangi bir transferle aynı kur ve hız — bu sadece düşük riskli bir deneme yöntemi."
   }
 }

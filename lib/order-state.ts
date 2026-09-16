@@ -26,7 +26,7 @@ export type OrderStatus =
   | "COMPLETED"            // Payout exitoso
   | "FAILED";              // Error irrecuperable (se emitió refund si aplica)
 
-export type OrderType = "p2p" | "b2b-bridge" | "b2b-stripe";
+export type OrderType = "p2p" | "b2b-bridge" | "b2b-stripe" | "service"; // "service" = Módulo 4 (condicional)
 
 export interface OrderRecord {
   orderId:            string;
@@ -56,6 +56,7 @@ export interface OrderRecord {
   trackUrl?:          string;
   senderLocale?:      string;   // BCP-47 locale of the sender (for email i18n)
   recipientLocale?:   string;   // BCP-47 locale of the recipient (for email i18n)
+  referralCode?:      string;   // Módulo 3 — waId of the referrer, if this order came via ?ref=
 }
 
 // ── Almacén: in-memory (L1) + Redis (L2 para persistencia cross-instancia) ────

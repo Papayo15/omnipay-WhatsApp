@@ -1136,5 +1136,65 @@
     "completed_title": "Paiement reçu",
     "completed_body": "Alchemy Pay a confirmé votre paiement. Nous informerons le destinataire dès que les fonds arriveront.",
     "track_button": "Suivre ce virement"
+  },
+  "calculator": {
+    "title": "Comparez avant d'envoyer",
+    "subtitle": "Voyez exactement combien de plus votre famille reçoit avec OmniPay",
+    "amount_label": "Montant",
+    "currency_label": "Devise",
+    "destination_label": "Destination",
+    "loading": "Récupération du taux en direct…",
+    "error": "Impossible d'obtenir la cotation. Réessayez.",
+    "savings_badge": "Votre bénéficiaire reçoit {amount} de plus avec OmniPay",
+    "omnipay_label": "OmniPay",
+    "competitor_label": "Moyenne du marché",
+    "omnipay_fee_label": "Frais totaux : {fee}",
+    "competitor_spread_label": "Marge cachée estimée : 3,2 %",
+    "disclaimer": "Estimation au taux interbancaire en direct. Montant final fixé au moment du dépôt."
+  },
+  "whatsapp": {
+    "greeting": "👋 Bonjour ! Je suis l'assistant OmniPay.\n\nCombien voulez-vous envoyer et vers quel pays ?\n\nÉcrivez par exemple :\n• *200 USD Mexique*\n• *500 CAD Colombie*\n• *1000 EUR Espagne*\n\n_(Cette conversation expire dans 5 minutes pour votre sécurité)_",
+    "parse_error": "Hmm, je n'ai pas bien compris 🤔\n\nÉcrivez le montant et le pays ainsi :\n*200 USD Mexique*",
+    "ask_email": "Pour continuer, quel est votre e-mail ? Nous l'utilisons pour vérifier votre compte auprès de notre prestataire de paiement réglementé.",
+    "invalid_email": "Cela ne ressemble pas à un e-mail valide. Réessayez (exemple : nom@email.com)",
+    "kyc_needed": "Pour compléter votre premier envoi, vous devez vérifier votre identité (2 minutes). Ouvrez ce lien : {link}",
+    "quote_ready": "✅ Garanti : votre bénéficiaire reçoit {recipient_amount} {recipient_currency} (taux : {rate} {recipient_currency} par {from_currency}).\n\nTerminez votre envoi ici : {link}\n\n_OmniPay ne stocke aucune de vos données._",
+    "kyc_approved_notification": "🎉 Votre compte OmniPay a été approuvé ! Vous pouvez maintenant compléter votre envoi de {amount} {currency} vers {country}.\n\nContinuez ici : {link}",
+    "link_ready": "Continuez votre envoi ici : {link}",
+    "referral_reward": "🎁 Merci d'avoir invité un ami ! Votre prochain envoi OmniPay aura des frais de service de 0 $."
+  },
+  "kyc": {
+    "title": "Vérifiez votre identité",
+    "subtitle": "Cela prend environ 2 minutes. OmniPay utilise Bridge et Persona, prestataires réglementés de vérification d'identité — nous ne voyons ni ne stockons jamais vos documents.",
+    "loading": "Chargement de la vérification…",
+    "error": "Impossible de démarrer la vérification. Réessayez depuis WhatsApp.",
+    "missing_params": "Ce lien est incomplet. Demandez-en un nouveau depuis WhatsApp."
+  },
+  "serviciosMx": {
+    "title": "Payez une facture de service au Mexique",
+    "subtitle": "Payez CFE, Telmex ou Izzi depuis l'étranger — déposez en USD, nous réglons en MXN via SPEI.",
+    "provider_label": "Entreprise",
+    "reference_label": "Référence / numéro de compte",
+    "amount_label": "Montant à payer (MXN)",
+    "quote_btn": "Obtenir une cotation",
+    "quoting": "Cotation en cours…",
+    "unavailable": "Ce service n'est pas encore disponible — en attente de validation finale avec notre fournisseur bancaire.",
+    "error": "Impossible d'obtenir une cotation. Réessayez.",
+    "deposit_title": "Instructions de dépôt",
+    "deposit_note": "Déposez exactement le montant en USD ci-dessous. Nous vous informerons une fois le paiement arrivé chez {provider}.",
+    "pay_btn": "J'ai effectué le dépôt",
+    "status_pending": "En attente de votre dépôt…",
+    "status_processing": "Traitement en cours…",
+    "status_completed": "Paiement terminé !",
+    "status_failed": "Un problème est survenu. Contactez le support."
+  },
+  "pruebaExpress": {
+    "title": "Essayez OmniPay avec 10 $",
+    "subtitle": "Constatez par vous-même la rapidité de livraison SPEI vers le Mexique — sans grand engagement, juste 10 $.",
+    "cta": "Envoyer 10 $ maintenant",
+    "share_title": "Partagez OmniPay",
+    "share_whatsapp": "Partager sur WhatsApp",
+    "share_facebook": "Partager sur Facebook",
+    "footnote": "Même taux et même vitesse que n'importe quel envoi — c'est juste un moyen à faible risque de l'essayer."
   }
 }

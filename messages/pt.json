@@ -1135,5 +1135,65 @@
     "completed_title": "Pagamento recebido",
     "completed_body": "A Alchemy Pay confirmou seu pagamento. Avisaremos o destinatário assim que os fundos chegarem.",
     "track_button": "Acompanhar esta transferência"
+  },
+  "calculator": {
+    "title": "Compare antes de enviar",
+    "subtitle": "Veja exatamente quantos pesos a mais sua família recebe com a OmniPay",
+    "amount_label": "Valor",
+    "currency_label": "Moeda",
+    "destination_label": "Destino",
+    "loading": "Consultando taxa ao vivo…",
+    "error": "Não foi possível obter a cotação. Tente novamente.",
+    "savings_badge": "Seu destinatário recebe +{amount} a mais com a OmniPay",
+    "omnipay_label": "OmniPay",
+    "competitor_label": "Média do mercado",
+    "omnipay_fee_label": "Taxa total: {fee}",
+    "competitor_spread_label": "Spread oculto estimado: 3,2%",
+    "disclaimer": "Estimativa com taxa interbancária ao vivo. Valor final travado no momento do depósito."
+  },
+  "whatsapp": {
+    "greeting": "👋 Olá! Sou o assistente da OmniPay.\n\nQuanto você quer enviar e para qual país?\n\nEscreva algo como:\n• *200 USD México*\n• *500 CAD Colômbia*\n• *1000 EUR Espanha*\n\n_(Este chat expira em 5 minutos por segurança)_",
+    "parse_error": "Hmm, não entendi bem 🤔\n\nEscreva o valor e o país assim:\n*200 USD México*",
+    "ask_email": "Para continuar, qual é o seu e-mail? Usamos para verificar sua conta com nosso provedor de pagamentos regulado.",
+    "invalid_email": "Isso não parece um e-mail válido. Tente novamente (exemplo: nome@email.com)",
+    "kyc_needed": "Para concluir seu primeiro envio você precisa verificar sua identidade (2 minutos). Abra este link: {link}",
+    "quote_ready": "✅ Garantido: seu destinatário recebe {recipient_amount} {recipient_currency} (taxa: {rate} {recipient_currency} por {from_currency}).\n\nFinalize seu envio aqui: {link}\n\n_A OmniPay não armazena nenhum dos seus dados._",
+    "kyc_approved_notification": "🎉 Sua conta OmniPay foi aprovada! Agora você pode concluir seu envio de {amount} {currency} para {country}.\n\nContinue aqui: {link}",
+    "link_ready": "Continue seu envio aqui: {link}",
+    "referral_reward": "🎁 Obrigado por convidar um amigo! Seu próximo envio na OmniPay terá $0 de taxa de serviço."
+  },
+  "kyc": {
+    "title": "Verifique sua identidade",
+    "subtitle": "Isso leva cerca de 2 minutos. A OmniPay usa Bridge e Persona, provedores regulados de verificação de identidade — nunca vemos ou armazenamos seus documentos.",
+    "loading": "Carregando verificação…",
+    "error": "Não foi possível iniciar a verificação. Tente novamente pelo WhatsApp.",
+    "missing_params": "Este link está incompleto. Solicite um novo pelo WhatsApp."
+  },
+  "serviciosMx": {
+    "title": "Pague uma conta de serviço no México",
+    "subtitle": "Pague CFE, Telmex ou Izzi do exterior — deposite em USD, liquidamos em MXN via SPEI.",
+    "provider_label": "Empresa",
+    "reference_label": "Referência / número de conta",
+    "amount_label": "Valor a pagar (MXN)",
+    "quote_btn": "Obter cotação",
+    "quoting": "Cotando…",
+    "unavailable": "Este serviço ainda não está disponível — pendente de validação final com nosso provedor bancário.",
+    "error": "Não foi possível obter a cotação. Tente novamente.",
+    "deposit_title": "Instruções de depósito",
+    "deposit_note": "Deposite exatamente o valor em USD abaixo. Avisaremos quando o pagamento chegar à {provider}.",
+    "pay_btn": "Já fiz o depósito",
+    "status_pending": "Aguardando seu depósito…",
+    "status_processing": "Processando…",
+    "status_completed": "Pagamento concluído!",
+    "status_failed": "Algo deu errado. Entre em contato com o suporte."
+  },
+  "pruebaExpress": {
+    "title": "Experimente a OmniPay com $10",
+    "subtitle": "Veja você mesmo quão rápida é a entrega via SPEI para o México — sem compromisso grande, apenas $10.",
+    "cta": "Enviar $10 agora",
+    "share_title": "Compartilhe a OmniPay",
+    "share_whatsapp": "Compartilhar no WhatsApp",
+    "share_facebook": "Compartilhar no Facebook",
+    "footnote": "Mesma taxa e velocidade de qualquer envio — esta é só uma forma de baixo risco de testar."
   }
 }

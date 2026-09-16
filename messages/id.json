@@ -1136,5 +1136,65 @@
     "completed_title": "Pembayaran diterima",
     "completed_body": "Alchemy Pay telah mengonfirmasi pembayaran Anda. Kami akan memberi tahu penerima begitu dana tiba.",
     "track_button": "Lacak transfer ini"
+  },
+  "calculator": {
+    "title": "Bandingkan sebelum mengirim",
+    "subtitle": "Lihat persis berapa lebih banyak yang diterima keluarga Anda dengan OmniPay",
+    "amount_label": "Jumlah",
+    "currency_label": "Mata uang",
+    "destination_label": "Tujuan",
+    "loading": "Mengambil kurs langsung…",
+    "error": "Gagal mendapatkan penawaran. Coba lagi.",
+    "savings_badge": "Penerima Anda mendapat +{amount} lebih banyak dengan OmniPay",
+    "omnipay_label": "OmniPay",
+    "competitor_label": "Rata-rata pasar",
+    "omnipay_fee_label": "Total biaya: {fee}",
+    "competitor_spread_label": "Estimasi selisih tersembunyi: 3,2%",
+    "disclaimer": "Estimasi berdasarkan kurs antar bank langsung. Jumlah akhir ditetapkan saat setoran."
+  },
+  "whatsapp": {
+    "greeting": "👋 Hai! Saya asisten OmniPay.\n\nBerapa yang ingin Anda kirim dan ke negara mana?\n\nTulis seperti ini:\n• *200 USD Meksiko*\n• *500 CAD Kolombia*\n• *1000 EUR Spanyol*\n\n_(Obrolan ini kedaluwarsa dalam 5 menit demi keamanan Anda)_",
+    "parse_error": "Hmm, saya kurang mengerti 🤔\n\nTulis jumlah dan negara seperti ini:\n*200 USD Meksiko*",
+    "ask_email": "Untuk melanjutkan, apa email Anda? Kami menggunakannya untuk memverifikasi akun Anda dengan penyedia pembayaran kami yang teregulasi.",
+    "invalid_email": "Itu sepertinya bukan email yang valid. Coba lagi (contoh: nama@email.com)",
+    "kyc_needed": "Untuk menyelesaikan transfer pertama Anda, Anda perlu memverifikasi identitas (2 menit). Buka tautan ini: {link}",
+    "quote_ready": "✅ Dijamin: penerima Anda mendapat {recipient_amount} {recipient_currency} (kurs: {rate} {recipient_currency} per {from_currency}).\n\nSelesaikan transfer Anda di sini: {link}\n\n_OmniPay tidak menyimpan data Anda._",
+    "kyc_approved_notification": "🎉 Akun OmniPay Anda telah disetujui! Anda sekarang dapat menyelesaikan transfer {amount} {currency} ke {country}.\n\nLanjutkan di sini: {link}",
+    "link_ready": "Lanjutkan transfer Anda di sini: {link}",
+    "referral_reward": "🎁 Terima kasih sudah mengundang teman! Transfer OmniPay Anda berikutnya akan memiliki biaya layanan $0."
+  },
+  "kyc": {
+    "title": "Verifikasi identitas Anda",
+    "subtitle": "Ini memakan waktu sekitar 2 menit. OmniPay menggunakan Bridge dan Persona, penyedia verifikasi identitas yang teregulasi — kami tidak pernah melihat atau menyimpan dokumen Anda.",
+    "loading": "Memuat verifikasi…",
+    "error": "Tidak dapat memulai verifikasi. Coba lagi dari WhatsApp.",
+    "missing_params": "Tautan ini tidak lengkap. Minta tautan baru dari WhatsApp."
+  },
+  "serviciosMx": {
+    "title": "Bayar tagihan layanan di Meksiko",
+    "subtitle": "Bayar CFE, Telmex, atau Izzi dari luar negeri — setor dalam USD, kami selesaikan dalam MXN via SPEI.",
+    "provider_label": "Perusahaan",
+    "reference_label": "Referensi / nomor akun",
+    "amount_label": "Jumlah yang harus dibayar (MXN)",
+    "quote_btn": "Dapatkan penawaran",
+    "quoting": "Mendapatkan penawaran…",
+    "unavailable": "Layanan ini belum tersedia — menunggu validasi akhir dengan penyedia perbankan kami.",
+    "error": "Gagal mendapatkan penawaran. Coba lagi.",
+    "deposit_title": "Instruksi setoran",
+    "deposit_note": "Setor tepat jumlah USD di bawah ini. Kami akan memberi tahu Anda setelah pembayaran sampai ke {provider}.",
+    "pay_btn": "Saya sudah melakukan setoran",
+    "status_pending": "Menunggu setoran Anda…",
+    "status_processing": "Memproses…",
+    "status_completed": "Pembayaran selesai!",
+    "status_failed": "Terjadi kesalahan. Hubungi dukungan."
+  },
+  "pruebaExpress": {
+    "title": "Coba OmniPay dengan $10",
+    "subtitle": "Lihat sendiri betapa cepatnya pengiriman SPEI ke Meksiko — tanpa komitmen besar, cukup $10.",
+    "cta": "Kirim $10 sekarang",
+    "share_title": "Bagikan OmniPay",
+    "share_whatsapp": "Bagikan di WhatsApp",
+    "share_facebook": "Bagikan di Facebook",
+    "footnote": "Kurs dan kecepatan yang sama seperti transfer lainnya — ini hanya cara berisiko rendah untuk mencobanya."
   }
 }

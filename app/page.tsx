@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Zap } from "lucide-react";
 import { TrustBanner } from "@/components/TrustBanner";
 import { FaqAccordion } from "@/components/FaqAccordion";
+import { CurrencyCalculator } from "@/components/currency-calculator";
 
 export default function Home() {
   const tl = useTranslations("landing");
@@ -153,6 +154,8 @@ export default function Home() {
       <p className="text-slate-500 text-[11px] text-center mt-4 max-w-md">
         {tl("landing_subtitle")}
       </p>
+
+      <CurrencyCalculator />
 
       <div className="w-full max-w-md mt-8">
         <TrustBanner variant="footer" />

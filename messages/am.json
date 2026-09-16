@@ -1136,5 +1136,65 @@
     "completed_title": "ክፍያ ደርሷል",
     "completed_body": "Alchemy Pay ክፍያዎን አረጋግጧል። ገንዘቡ ሲደርስ ተቀባዩን እናሳውቃለን።",
     "track_button": "ይህን ዝውውር ይከታተሉ"
+  },
+  "calculator": {
+    "title": "ከመላክዎ በፊት ያወዳድሩ",
+    "subtitle": "ቤተሰብዎ በOmniPay ምን ያህል ተጨማሪ እንደሚቀበል በትክክል ይመልከቱ",
+    "amount_label": "መጠን",
+    "currency_label": "ገንዘብ",
+    "destination_label": "መድረሻ",
+    "loading": "የቀጥታ ተመን በማምጣት ላይ…",
+    "error": "ዋጋ ማግኘት አልተቻለም። እንደገና ይሞክሩ።",
+    "savings_badge": "ተቀባይዎ በOmniPay +{amount} ተጨማሪ ያገኛል",
+    "omnipay_label": "OmniPay",
+    "competitor_label": "የገበያ አማካይ",
+    "omnipay_fee_label": "ጠቅላላ ክፍያ፦ {fee}",
+    "competitor_spread_label": "የተገመተ የተደበቀ ልዩነት፦ 3.2%",
+    "disclaimer": "በቀጥታ የባንኮች መካከል ተመን ላይ የተመሠረተ ግምት። የመጨረሻ መጠን በተቀማጭ ጊዜ ይወሰናል።"
+  },
+  "whatsapp": {
+    "greeting": "👋 ሰላም! እኔ የOmniPay ረዳት ነኝ።\n\nምን ያህል መላክ ይፈልጋሉ እና ወደ የትኛው ሀገር?\n\nእንደዚህ ይጻፉ:\n• *200 USD ሜክሲኮ*\n• *500 CAD ኮሎምቢያ*\n• *1000 EUR ስፔን*\n\n_(ይህ ውይይት ለደህንነትዎ በ5 ደቂቃ ውስጥ ያበቃል)_",
+    "parse_error": "ልረዳው አልቻልኩም 🤔\n\nመጠኑን እና ሀገር እንደዚህ ይጻፉ:\n*200 USD ሜክሲኮ*",
+    "ask_email": "ለመቀጠል ኢሜይልዎ ምንድን ነው? ይህንን በተቆጣጣሪ ክፍያ አቅራቢያችን ዘንድ መለያዎን ለማረጋገጥ እንጠቀማለን።",
+    "invalid_email": "ይህ ትክክለኛ ኢሜይል አይመስልም። እንደገና ይሞክሩ (ምሳሌ: name@email.com)",
+    "kyc_needed": "የመጀመሪያ ዝውውርዎን ለማጠናቀቅ ማንነትዎን ማረጋገጥ ያስፈልግዎታል (2 ደቂቃ)። ይህን አገናኝ ይክፈቱ: {link}",
+    "quote_ready": "✅ ዋስትና ተሰጥቶታል፦ ተቀባይዎ {recipient_amount} {recipient_currency} ያገኛል (ተመን፦ {rate} {recipient_currency} በ{from_currency})።\n\nዝውውርዎን እዚህ ያጠናቅቁ፦ {link}\n\n_OmniPay ምንም አይነት የእርስዎን መረጃ አያከማችም።_",
+    "kyc_approved_notification": "🎉 የOmniPay መለያዎ ጸድቋል! አሁን የ{amount} {currency} ዝውውርዎን ወደ {country} ማጠናቀቅ ይችላሉ።\n\nእዚህ ይቀጥሉ፦ {link}",
+    "link_ready": "ዝውውርዎን እዚህ ይቀጥሉ፦ {link}",
+    "referral_reward": "🎁 ጓደኛ ስለጋበዙ እናመሰግናለን! የሚቀጥለው የOmniPay ዝውውርዎ $0 የአገልግሎት ክፍያ ይኖረዋል።"
+  },
+  "kyc": {
+    "title": "ማንነትዎን ያረጋግጡ",
+    "subtitle": "ይህ ወደ 2 ደቂቃ ይወስዳል። OmniPay የተቆጣጣሪ የማንነት ማረጋገጫ አቅራቢዎችን Bridge እና Persona ይጠቀማል — የእርስዎን ሰነዶች በጭራሽ አናይም ወይም አናከማችም።",
+    "loading": "ማረጋገጫ በመጫን ላይ…",
+    "error": "ማረጋገጫ መጀመር አልተቻለም። ከWhatsApp እንደገና ይሞክሩ።",
+    "missing_params": "ይህ አገናኝ ያልተሟላ ነው። ከWhatsApp አዲስ ይጠይቁ።"
+  },
+  "serviciosMx": {
+    "title": "በሜክሲኮ የአገልግሎት ክፍያ ይክፈሉ",
+    "subtitle": "ከውጭ CFE፣ Telmex ወይም Izzi ይክፈሉ — በUSD ያስገቡ፣ በSPEI በኩል በMXN እንክፍላለን።",
+    "provider_label": "ኩባንያ",
+    "reference_label": "ማጣቀሻ / የመለያ ቁጥር",
+    "amount_label": "የሚከፈል መጠን (MXN)",
+    "quote_btn": "ዋጋ ያግኙ",
+    "quoting": "ዋጋ በማግኘት ላይ…",
+    "unavailable": "ይህ አገልግሎት እስካሁን አይገኝም — ከባንክ አቅራቢያችን ጋር የመጨረሻ ማረጋገጫ በመጠባበቅ ላይ።",
+    "error": "ዋጋ ማግኘት አልተቻለም። እንደገና ይሞክሩ።",
+    "deposit_title": "የተቀማጭ መመሪያዎች",
+    "deposit_note": "ከታች ያለውን ትክክለኛ የUSD መጠን ያስገቡ። ክፍያው ወደ {provider} ሲደርስ እናሳውቅዎታለን።",
+    "pay_btn": "አስገብቻለሁ",
+    "status_pending": "የእርስዎን ተቀማጭ በመጠባበቅ ላይ…",
+    "status_processing": "በማካሄድ ላይ…",
+    "status_completed": "ክፍያ ተጠናቋል!",
+    "status_failed": "የሆነ ችግር ተፈጥሯል። ድጋፍን ያግኙ።"
+  },
+  "pruebaExpress": {
+    "title": "OmniPayን በ$10 ይሞክሩ",
+    "subtitle": "ወደ ሜክሲኮ የSPEI ማድረስ ምን ያህል ፈጣን እንደሆነ በራስዎ ይመልከቱ — ትልቅ ቁርጠኝነት አያስፈልግም፣ $10 ብቻ።",
+    "cta": "አሁን $10 ይላኩ",
+    "share_title": "OmniPayን ያጋሩ",
+    "share_whatsapp": "በWhatsApp ያጋሩ",
+    "share_facebook": "በFacebook ያጋሩ",
+    "footnote": "እንደ ማንኛውም ዝውውር ተመሳሳይ ተመን እና ፍጥነት — ይህ ዝቅተኛ አደጋ ያለው መንገድ ለመሞከር ብቻ ነው።"
   }
 }

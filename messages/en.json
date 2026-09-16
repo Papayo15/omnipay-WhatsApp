@@ -1134,5 +1134,65 @@
     "completed_title": "Payment received",
     "completed_body": "Alchemy Pay confirmed your payment. We'll notify the recipient once funds arrive.",
     "track_button": "Track this transfer"
+  },
+  "calculator": {
+    "title": "Compare before you send",
+    "subtitle": "See exactly how many more pesos your family receives with OmniPay",
+    "amount_label": "Amount",
+    "currency_label": "Currency",
+    "destination_label": "Destination",
+    "loading": "Fetching live rate…",
+    "error": "Could not fetch quote. Try again.",
+    "savings_badge": "Your recipient gets +{amount} more with OmniPay",
+    "omnipay_label": "OmniPay",
+    "competitor_label": "Market average",
+    "omnipay_fee_label": "Total fee: {fee}",
+    "competitor_spread_label": "Estimated hidden spread: 3.2%",
+    "disclaimer": "Estimate based on live interbank rate. Final amount locked at deposit time."
+  },
+  "whatsapp": {
+    "greeting": "👋 Hi! I'm the OmniPay assistant.\n\nHow much do you want to send and to which country?\n\nTry something like:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Spain*\n\n_(This chat expires in 5 minutes for your security)_",
+    "parse_error": "Hmm, I didn't quite get that 🤔\n\nWrite the amount and country like this:\n*200 USD Mexico*",
+    "ask_email": "To continue, what's your email? We use it to verify your account with our regulated payment provider.",
+    "invalid_email": "That doesn't look like a valid email. Try again (example: name@email.com)",
+    "kyc_needed": "To complete your first transfer you need to verify your identity (2 minutes). Open this link: {link}",
+    "quote_ready": "✅ Guaranteed: your recipient gets {recipient_amount} {recipient_currency} (rate: {rate} {recipient_currency} per {from_currency}).\n\nFinish your transfer here: {link}\n\n_OmniPay doesn't store any of your data._",
+    "kyc_approved_notification": "🎉 Your OmniPay account was approved! You can now complete your transfer of {amount} {currency} to {country}.\n\nContinue here: {link}",
+    "link_ready": "Continue your transfer here: {link}",
+    "referral_reward": "🎁 Thanks for inviting a friend! Your next OmniPay transfer has $0 service fee."
+  },
+  "kyc": {
+    "title": "Verify your identity",
+    "subtitle": "This takes about 2 minutes. OmniPay uses Bridge and Persona, regulated identity verification providers — we never see or store your documents.",
+    "loading": "Loading verification…",
+    "error": "Could not start verification. Please try again from WhatsApp.",
+    "missing_params": "This link is incomplete. Please request a new one from WhatsApp."
+  },
+  "serviciosMx": {
+    "title": "Pay a Mexico service bill",
+    "subtitle": "Pay CFE, Telmex or Izzi from abroad — deposit in USD, we settle in MXN via SPEI.",
+    "provider_label": "Company",
+    "reference_label": "Reference / account number",
+    "amount_label": "Amount to pay (MXN)",
+    "quote_btn": "Get quote",
+    "quoting": "Getting quote…",
+    "unavailable": "This service isn't available yet — pending final validation with our banking provider.",
+    "error": "Could not get a quote. Please try again.",
+    "deposit_title": "Deposit instructions",
+    "deposit_note": "Deposit the exact USD amount below. We'll notify you once the payment reaches {provider}.",
+    "pay_btn": "I've made the deposit",
+    "status_pending": "Waiting for your deposit…",
+    "status_processing": "Processing…",
+    "status_completed": "Payment completed!",
+    "status_failed": "Something went wrong. Contact support."
+  },
+  "pruebaExpress": {
+    "title": "Try OmniPay with $10",
+    "subtitle": "See for yourself how fast SPEI delivery to Mexico is — no big commitment, just $10.",
+    "cta": "Send $10 now",
+    "share_title": "Share OmniPay",
+    "share_whatsapp": "Share on WhatsApp",
+    "share_facebook": "Share on Facebook",
+    "footnote": "Same rates and speed as any transfer — this is just a low-risk way to try it."
   }
 }
