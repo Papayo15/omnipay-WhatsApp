@@ -4,19 +4,31 @@
 // Costo: $0 — conversaciones donde el usuario escribe primero son gratuitas (ventana 24h)
 // Sin Twilio — solo fetch() a la Graph API de Meta
 //
-// Regla de Oro: CERO PII almacenado sin cifrar. El número de teléfono se hashea con
-// SHA-256; el único dato adicional persistido (Módulo 2) es un puntero cifrado
-// teléfono↔email en Redis (lib/wa-identity.ts) para no volver a pedir el email — Bridge
-// sigue siendo la única fuente de verdad del estado KYC (ver providers/bridge/customers.ts).
+// Regla de Oro: CERO PII almacenado sin cifrar, y CERO datos bancarios almacenados EN
+// ABSOLUTO — ni cifrados. El único dato adicional persistido (Módulo 2) es un puntero
+// cifrado teléfono↔email en Redis (lib/wa-identity.ts) para no volver a pedir el email;
+// Bridge sigue siendo la única fuente de verdad del estado KYC. Los datos del destinatario
+// (nombre, CLABE/IBAN/cuenta) viajan solo dentro de la conversación (sesión Redis de 10 min,
+// TTL corto, se borra al terminar) y en el link final a /enviar — nunca se guardan más allá
+// de eso, ni siquiera para "destinatarios frecuentes".
 //
-// Módulo 2 — flujo conversacional + KYC embebido:
-//   1. Usuario pide un envío ("200 USD México") → parseamos monto/moneda/país (igual que antes)
+// Módulo 2/3 — flujo conversacional + KYC + recolección de destinatario + confirmación:
+//   1. "200 USD México" → parseamos monto/moneda/país
 //   2. Si no conocemos su email (primera vez) → lo pedimos una sola vez
-//   3. Consultamos Bridge (findCustomerByEmail) — si no tiene KYC aprobado, mandamos el link
-//      a /kyc (Persona embebido vía Bridge, sin reimplementar KYC)
-//   4. Si ya está aprobado → cotización garantizada (misma fórmula que /api/bridge/fx-quote)
-//      + link a /enviar precargado para terminar el envío
-//   5. Cuando Bridge aprueba el KYC (webhook customer.approved) le avisamos por WhatsApp
+//   3. Bridge (findCustomerByEmail) — si no tiene KYC aprobado, link a /kyc (Persona, sin
+//      reimplementar KYC)
+//   4. Si ya está aprobado → pedimos nombre del destinatario y su cuenta bancaria (formato
+//      según el país — CLABE/IBAN/routing+account/sort code+account/PIX)
+//   5. Validamos con lib/wa-validation.ts (checksums reales: CLABE módulo 10, IBAN módulo 97,
+//      ABA routing módulo 10) — si falla, pedimos corregir
+//   6. Mostramos un resumen enmascarado y pedimos confirmación explícita (SI/CANCELAR)
+//   7. Al confirmar: entregamos un link a /enviar con TODO precargado — el depósito real
+//      solo se dispara ahí, en la web ya probada en producción, nunca directo desde el chat
+//      (mismo patrón que usa Félix Pago: "envía un link seguro para completar el pago" —
+//      un número de WhatsApp comprometido, ej. por SIM-swap, no basta para mover dinero real)
+//   8. Cuando Bridge aprueba el KYC (webhook customer.approved) avisamos por WhatsApp
+//      — ver app/api/bridge/webhook/route.ts
+//   9. Al completarse un envío con código de referido, notificamos al referidor
 //      — ver app/api/bridge/webhook/route.ts
 //
 // Todo el texto sale de messages/*.json (namespace "whatsapp") en los 19 idiomas soportados,
@@ -25,19 +37,24 @@ export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
 import { getRedis }                  from "@/lib/redis";
-import { createHash }                from "crypto";
 import { sendWhatsAppMessage }       from "@/lib/whatsapp";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
 import { getEmailForPhone, setEmailForPhone, setPendingTransfer, hashPhone } from "@/lib/wa-identity";
 import { findCustomerByEmail }       from "@/providers/bridge/customers";
 import { getCountry }                from "@/constants/countries";
+import {
+  validateAccountDetails, parseAccountInput, accountPromptKey, maskedAccountSummary,
+  type AccountDetails,
+} from "@/lib/wa-validation";
 
 const APP_URL  = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
 
-// ── Session TTL: 5 min — long enough for the conversation ────────────────────
-const SESSION_TTL = 5 * 60; // seconds
+// ── Session TTL: 10 min — hay más pasos ahora (nombre + cuenta + confirmación) ───
+const SESSION_TTL = 10 * 60; // seconds
 
-type WaStep = 1 | 3; // 1 = need amount+country, 3 = need email (only for unknown numbers)
+type WaStep = 1 | 3 | 5 | 6 | 7;
+// 1 = need amount+country · 3 = need email · 5 = need recipient name
+// 6 = need account details · 7 = awaiting SI/CANCELAR confirmation
 
 interface WaSession {
   step:      WaStep;
@@ -45,6 +62,11 @@ interface WaSession {
   currency?: string;
   country?:  string;
   locale?:   WaLocale;
+  email?:    string;
+  recipientName?: string;
+  account?:  AccountDetails;
+  recipientGets?: number;
+  recipientCurrency?: string;
 }
 
 async function getSession(waId: string): Promise<WaSession | null> {
@@ -124,9 +146,48 @@ function isValidEmail(s: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.trim());
 }
 
-// ── KYC + quote step (shared by the "known number" and "just gave email" paths) ──
+// Fetches a guaranteed-rate quote — same engine as /api/bridge/fx-quote (lib/bridge-fees.ts).
+// Two-pass refine (approx → exact), same pattern as components/currency-calculator.tsx.
+async function fetchQuote(currency: string, country: string, amount: number): Promise<{ recipientGets: number; recipientCurrency: string; rate: number } | null> {
+  const destCurrency = getCountry(country)?.currency ?? "MXN";
+  try {
+    const qs1 = new URLSearchParams({ from: currency, to: destCurrency, amount: String(amount), country });
+    const r1 = await fetch(`${APP_URL}/api/bridge/fx-quote?${qs1}`);
+    if (!r1.ok) return null;
+    const q1 = await r1.json() as { fx_rate: number };
 
-async function sendKycOrQuote(
+    const approxTarget = parseFloat((amount * q1.fx_rate).toFixed(2));
+    const qs2 = new URLSearchParams({ from: currency, to: destCurrency, amount: String(approxTarget), country });
+    const r2 = await fetch(`${APP_URL}/api/bridge/fx-quote?${qs2}`);
+    const q2 = r2.ok ? await r2.json() as { fx_rate: number; recipient_gets: number } : { fx_rate: q1.fx_rate, recipient_gets: approxTarget };
+    return { recipientGets: q2.recipient_gets, recipientCurrency: destCurrency, rate: q2.fx_rate };
+  } catch {
+    return null;
+  }
+}
+
+// Construye el link final a /enviar con TODO precargado (email, monto, destinatario y
+// cuenta ya validados) — el depósito real solo se dispara ahí, nunca desde el chat.
+function buildEnviarLink(params: {
+  email: string; currency: string; country: string; amount: string;
+  recipientName: string; account: AccountDetails;
+}): string {
+  const qs = new URLSearchParams({
+    email: params.email, currency: params.currency, country: params.country,
+    amount: params.amount, recipient_name: params.recipientName,
+  });
+  const cc = params.country.toUpperCase();
+  if (cc === "MX") qs.set("account", params.account.clabe ?? "");
+  else if (cc === "US") { qs.set("routing", params.account.routing_number ?? ""); qs.set("account", params.account.account_number ?? ""); }
+  else if (cc === "GB") { qs.set("sortCode", params.account.sort_code ?? ""); qs.set("account", params.account.account_number ?? ""); }
+  else if (params.account.iban) { qs.set("account", params.account.iban); if (params.account.bic) qs.set("bic", params.account.bic); }
+  else if (params.account.pix_key) qs.set("account", params.account.pix_key);
+  else { qs.set("account", params.account.account_number ?? ""); if (params.account.bic) qs.set("bic", params.account.bic); }
+  return `${APP_URL}/enviar?${qs.toString()}`;
+}
+
+// ── KYC gate — pide email/verifica Bridge, arranca la recolección de destinatario ──
+async function startKycOrCollection(
   waId: string, locale: WaLocale, t: Awaited<ReturnType<typeof getWaTranslator>>,
   amount: number, currency: string, country: string, email: string,
 ): Promise<void> {
@@ -138,37 +199,25 @@ async function sendKycOrQuote(
     const kycLink = `${APP_URL}/kyc?email=${encodeURIComponent(email)}&wa=${hashPhone(waId)}&locale=${locale}`;
     await setPendingTransfer(email, { waId, locale, amount, currency, country });
     await sendWhatsAppMessage(waId, t("kyc_needed", { link: kycLink }));
+    await clearSession(waId);
     return;
   }
 
-  // Guaranteed-rate quote — same engine as /api/bridge/fx-quote (lib/bridge-fees.ts),
-  // no parallel fee formula. Two-pass refine (approx → exact) same as components/currency-calculator.tsx.
-  const destCurrency = getCountry(country)?.currency ?? "MXN";
-  const enviarLink = (targetAmount: string) =>
-    `${APP_URL}/enviar?email=${encodeURIComponent(email)}&currency=${currency}&country=${country}&amount=${targetAmount}`;
+  const quote = await fetchQuote(currency, country, amount);
+  await setSession(waId, {
+    step: 5, amount, currency, country, locale, email,
+    recipientGets: quote?.recipientGets, recipientCurrency: quote?.recipientCurrency,
+  });
 
-  try {
-    const qs1 = new URLSearchParams({ from: currency, to: destCurrency, amount: String(amount), country });
-    const r1 = await fetch(`${APP_URL}/api/bridge/fx-quote?${qs1}`);
-    if (!r1.ok) { await sendWhatsAppMessage(waId, t("link_ready", { link: enviarLink(String(amount)) })); return; }
-    const q1 = await r1.json() as { fx_rate: number };
-
-    const approxTarget = parseFloat((amount * q1.fx_rate).toFixed(2));
-    const qs2 = new URLSearchParams({ from: currency, to: destCurrency, amount: String(approxTarget), country });
-    const r2 = await fetch(`${APP_URL}/api/bridge/fx-quote?${qs2}`);
-    const q2 = r2.ok ? await r2.json() as { fx_rate: number; recipient_gets: number } : q1 as unknown as { fx_rate: number; recipient_gets: number };
-    const recipientGets = q2.recipient_gets ?? approxTarget;
-
-    await sendWhatsAppMessage(waId, t("quote_ready", {
-      recipient_amount:   recipientGets.toLocaleString("en-US"),
-      recipient_currency: destCurrency,
-      rate:                q2.fx_rate,
+  if (quote) {
+    await sendWhatsAppMessage(waId, t("quote_ready_precheck", {
+      recipient_amount:   quote.recipientGets.toLocaleString("en-US"),
+      recipient_currency: quote.recipientCurrency,
+      rate:                quote.rate,
       from_currency:       currency,
-      link:                enviarLink(String(recipientGets)),
     }));
-  } catch {
-    await sendWhatsAppMessage(waId, t("link_ready", { link: enviarLink(String(amount)) }));
   }
+  await sendWhatsAppMessage(waId, t("ask_recipient_name"));
 }
 
 // ── GET — Meta webhook verification ──────────────────────────────────────────
@@ -215,7 +264,60 @@ export async function POST(req: NextRequest): Promise<Response> {
   const locale = session?.locale ?? localeFromPhone(waId);
   const t = await getWaTranslator(locale);
 
-  // ── Step 3: we're waiting for their email ─────────────────────────────────
+  // ── Step 7: esperando SI / CANCELAR ───────────────────────────────────────
+  if (session?.step === 7 && session.account && session.recipientName && session.email
+      && session.amount && session.currency && session.country) {
+    const answer = text.trim().toLowerCase();
+    if (answer === "si" || answer === "sí") {
+      const link = buildEnviarLink({
+        email: session.email, currency: session.currency, country: session.country,
+        amount: String(session.recipientGets ?? session.amount),
+        recipientName: session.recipientName, account: session.account,
+      });
+      await sendWhatsAppMessage(waId, t("confirmed_link", { link }));
+      await clearSession(waId);
+    } else if (answer === "cancelar" || answer === "cancel") {
+      await sendWhatsAppMessage(waId, t("cancelled"));
+      await clearSession(waId);
+    } else {
+      await sendWhatsAppMessage(waId, t("confirm_retry"));
+    }
+    return NextResponse.json({ ok: true });
+  }
+
+  // ── Step 6: esperando los datos de cuenta del destinatario ────────────────
+  if (session?.step === 6 && session.recipientName && session.country
+      && session.amount && session.currency && session.email) {
+    const parsed = parseAccountInput(session.country, text);
+    const result = validateAccountDetails(session.country, parsed);
+    if (!result.isValid) {
+      await sendWhatsAppMessage(waId, t(`validation_${result.errorKey ?? "generic"}`));
+      return NextResponse.json({ ok: true });
+    }
+    const summary = maskedAccountSummary(session.country, parsed);
+    await setSession(waId, { ...session, step: 7, account: parsed });
+    await sendWhatsAppMessage(waId, t("confirm_summary", {
+      name:     session.recipientName,
+      account:  summary,
+      amount:   (session.recipientGets ?? session.amount).toLocaleString("en-US"),
+      currency: session.recipientCurrency ?? session.currency,
+    }));
+    return NextResponse.json({ ok: true });
+  }
+
+  // ── Step 5: esperando el nombre del destinatario ──────────────────────────
+  if (session?.step === 5 && session.amount && session.currency && session.country && session.email) {
+    const name = text.trim();
+    if (name.length < 2) {
+      await sendWhatsAppMessage(waId, t("invalid_name"));
+      return NextResponse.json({ ok: true });
+    }
+    await setSession(waId, { ...session, step: 6, recipientName: name });
+    await sendWhatsAppMessage(waId, t(accountPromptKey(session.country)));
+    return NextResponse.json({ ok: true });
+  }
+
+  // ── Step 3: esperando el email ─────────────────────────────────────────────
   if (session?.step === 3 && session.amount && session.currency && session.country) {
     if (!isValidEmail(text)) {
       await sendWhatsAppMessage(waId, t("invalid_email"));
@@ -223,17 +325,16 @@ export async function POST(req: NextRequest): Promise<Response> {
     }
     const email = text.trim().toLowerCase();
     await setEmailForPhone(waId, email, locale);
-    await clearSession(waId);
-    await sendKycOrQuote(waId, locale, t, session.amount, session.currency, session.country, email);
+    await startKycOrCollection(waId, locale, t, session.amount, session.currency, session.country, email);
     return NextResponse.json({ ok: true });
   }
 
-  // ── Step 1 (default): any message → try to parse "amount + country" ──────
+  // ── Step 1 (default): cualquier mensaje → intentar parsear "monto + país" ─
   const parsed = parseAmount(text);
 
   if (!parsed) {
-    // First contact → full greeting with examples. Already greeted once and still
-    // couldn't parse → shorter "didn't understand" nudge instead of repeating it.
+    // Primer contacto → saludo completo con ejemplos. Ya saludado y sigue sin
+    // parsear → mensaje corto de "no entendí" en vez de repetir todo.
     await setSession(waId, { step: 1, locale });
     await sendWhatsAppMessage(waId, session ? t("parse_error") : t("greeting"));
     return NextResponse.json({ ok: true });
@@ -243,13 +344,13 @@ export async function POST(req: NextRequest): Promise<Response> {
   const identity = await getEmailForPhone(waId);
 
   if (identity) {
-    // Returning user — skip email + KYC re-check delay, straight to quote/link.
-    await clearSession(waId);
-    await sendKycOrQuote(waId, (identity.locale as WaLocale) ?? locale, await getWaTranslator((identity.locale as WaLocale) ?? locale), amount, currency, country, identity.email);
+    // Usuario recurrente — nos saltamos pedir el email de nuevo.
+    const identityLocale = (identity.locale as WaLocale) ?? locale;
+    await startKycOrCollection(waId, identityLocale, await getWaTranslator(identityLocale), amount, currency, country, identity.email);
     return NextResponse.json({ ok: true });
   }
 
-  // First time we see this number — ask for email once.
+  // Primera vez que vemos este número — pedimos el email una sola vez.
   await setSession(waId, { step: 3, amount, currency, country, locale });
   await sendWhatsAppMessage(waId, t("ask_email"));
   return NextResponse.json({ ok: true });

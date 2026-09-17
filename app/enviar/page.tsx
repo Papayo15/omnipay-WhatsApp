@@ -99,12 +99,15 @@ export default function EnviarPage() {
   const [senderCurrency, setSenderCurrency] = useState(() => searchParams.get("currency")?.toUpperCase() || "USD");
 
   // Datos del receptor — solo nombre y banco (sin KYC)
-  const [recipientName, setRecipientName]       = useState("");
+  // account/routing/sortCode/bic también precargables (?account=&routing=&sortCode=&bic=) —
+  // el bot de WhatsApp (Módulo 2) ya validó el formato (lib/wa-validation.ts) antes de armar
+  // este link, pero el usuario SIEMPRE confirma aquí antes de que se mueva dinero real.
+  const [recipientName, setRecipientName]       = useState(() => searchParams.get("recipient_name") ?? "");
   const [recipientCountry, setRecipientCountry] = useState(() => searchParams.get("country")?.toUpperCase() || "MX");
-  const [accountField, setAccountField]         = useState("");
-  const [routingField, setRoutingField]         = useState("");
-  const [sortCodeField, setSortCodeField]       = useState("");
-  const [bicField, setBicField]                 = useState("");
+  const [accountField, setAccountField]         = useState(() => searchParams.get("account") ?? "");
+  const [routingField, setRoutingField]         = useState(() => searchParams.get("routing") ?? "");
+  const [sortCodeField, setSortCodeField]       = useState(() => searchParams.get("sortCode") ?? "");
+  const [bicField, setBicField]                 = useState(() => searchParams.get("bic") ?? "");
   const [amountTarget, setAmountTarget]         = useState(() => searchParams.get("amount") ?? "");
 
   // Post-submit state
