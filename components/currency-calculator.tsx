@@ -11,16 +11,15 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { COUNTRIES } from "@/constants/countries";
 
-// Únicamente los corredores que Bridge soporta de forma nativa (ver providers/bridge/liquidation.ts
-// → NATIVE_RAILS). El resto de COUNTRIES existe para otros flujos (Wise/B2B) y no aplica aquí.
+// Alcance actual: solo los corredores P2P/B2B que YA corren en vivo por Bridge —
+// MXN, USD, COP y zona EUR. El resto de NATIVE_RAILS (BR, GB, etc.) se habilita en la
+// calculadora cuando entre Conduit (mediados de octubre) como riel adicional.
 const SUPPORTED_DEST_CODES = [
-  "US", "MX", "BR", "CO", "GB",
+  "MX", "US", "CO",
   "DE", "FR", "ES", "IT", "NL", "PT", "BE", "AT", "IE", "FI",
-  "GR", "SK", "SI", "HR",
-  "SE", "DK", "NO", "PL", "CZ", "HU", "RO", "BG", "CH",
 ];
 
-const SOURCE_CURRENCIES = ["USD", "EUR", "GBP", "CAD"] as const;
+const SOURCE_CURRENCIES = ["USD", "EUR"] as const;
 
 // Spread oculto promedio estimado de la competencia (remesadoras tradicionales) sobre
 // la tasa interbancaria — usado solo para la comparación visual, no afecta ningún cobro real.
