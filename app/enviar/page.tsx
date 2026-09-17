@@ -201,6 +201,9 @@ export default function EnviarPage() {
 
   const buildBody = useCallback(() => {
     const referralCode = getReferralCode();
+    // Módulo 2 — si el link vino del bot de WhatsApp (?channel=whatsapp), el motor de fees
+    // absorbe internamente el costo de la sesión de Meta sin cambiar lo que paga el cliente.
+    const channel = searchParams.get("channel") === "whatsapp" ? "whatsapp" : "web";
     const base: Record<string, unknown> = {
       sender_name:       senderName.trim(),
       sender_email:      senderEmail.trim().toLowerCase(),
@@ -209,6 +212,7 @@ export default function EnviarPage() {
       recipient_country: recipientCountry,
       amount_target:     parseFloat(amountTarget),
       redirect_uri:      `${window.location.origin}/enviar?kyc_done=1`,
+      channel,
       ...(referralCode ? { referral_code: referralCode } : {}),
     };
     // Pass existing customer ID on retries so the route skips Bridge's eventually-consistent

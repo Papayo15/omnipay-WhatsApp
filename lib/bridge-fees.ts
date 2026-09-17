@@ -48,6 +48,13 @@ export function omniPayMinFee(amount: number): number {
 export const KYC_FEE_P2P = 0.00;
 export const KYB_FEE_B2B = 0.00;
 
+// Costo de la ventana de conversación de WhatsApp Cloud API (Meta) — ~$0.02 USD / ~$0.40 MXN
+// por sesión de 24h, una vez agotada la cuota gratuita mensual. OmniPay absorbe este costo:
+// el cliente paga exactamente lo mismo que por /enviar directo — total_sender_pays NO cambia.
+// Solo se refleja en omnipay_net_revenue (para que el negocio sepa el margen real que le
+// queda en órdenes que vienen del canal WhatsApp).
+export const WHATSAPP_SESSION_COST_USD = 0.02;
+
 // Wise B2B costs (transfer fee + FX spread, conservative estimate covering most corridors)
 // CAD→MXN ~0.79% · CAD→USD ~0.31% · CAD→EUR ~0.41% · worst case ~1.2%
 // We quote 0.80% — slightly over most corridors, under worst case
@@ -69,7 +76,9 @@ export interface FeeQuote {
   // OmniPay
   omnipay_service:     number;
   omnipay_flat:        number;
-  omnipay_net_revenue: number;
+  omnipay_net_revenue: number;  // margen que le queda a OmniPay — ya neto del costo de sesión WhatsApp, si aplica
+  // Costo de sesión de WhatsApp (Meta), absorbido — nunca afecta total_sender_pays
+  whatsapp_session_cost?: number;
   // KYC
   kyc_surcharge:       number;
   is_new_customer:     boolean;
@@ -84,12 +93,13 @@ export function calcStaticQuote(
   country: string,
   type:    "p2p" | "b2b",
   isNew:   boolean = true,
+  channel: "web" | "whatsapp" = "web",
 ): FeeQuote {
   if (type !== "b2b" && !NATIVE_RAILS[country.toUpperCase()]) {
     throw new Error(`Country ${country} is not supported by Bridge. Only 41 corridors available.`);
   }
   const provider: QuoteProvider = type === "b2b" ? "b2b" : "bridge";
-  return _buildQuote(amount, provider, type, isNew);
+  return _buildQuote(amount, provider, type, isNew, undefined, channel);
 }
 
 // ── Dynamic quote (Opción A) — checks Bridge for existing KYC ────────────────
@@ -103,8 +113,11 @@ export async function buildDynamicQuote(params: {
   // one quote. Caller (app/api/bridge/send/route.ts) only passes true when a valid
   // ?ref= code traveled with the request — additive, existing callers are unaffected.
   waiveServiceFee?: boolean;
+  // "whatsapp" when the order originated from the WhatsApp bot flow — absorbs Meta's
+  // ~$0.02 USD conversation-window cost internally (never affects total_sender_pays).
+  channel?: "web" | "whatsapp";
 }): Promise<FeeQuote> {
-  const { amount, country, email, type, waiveServiceFee } = params;
+  const { amount, country, email, type, waiveServiceFee, channel = "web" } = params;
 
   if (type !== "b2b" && !NATIVE_RAILS[country.toUpperCase()]) {
     throw new Error(`Country ${country} is not supported by Bridge. Only 41 corridors available.`);
@@ -122,7 +135,7 @@ export async function buildDynamicQuote(params: {
   } catch { /* network error — assume new customer */ }
 
   const provider: QuoteProvider = type === "b2b" ? "b2b" : "bridge";
-  return _buildQuote(amount, provider, type, isNew, waiveServiceFee);
+  return _buildQuote(amount, provider, type, isNew, waiveServiceFee, channel);
 }
 
 // ── SPEI corridor — fixed MXN fee from real Bridge transaction ───────────────
@@ -163,6 +176,7 @@ function _buildQuote(
   type:     "p2p" | "b2b",
   isNew:    boolean,
   waiveServiceFee = false,
+  channel:  "web" | "whatsapp" = "web",
 ): FeeQuote {
   const flat = waiveServiceFee ? 0 : (type === "b2b" ? OMNIPAY_FLAT_B2B : OMNIPAY_FLAT_P2P);
   const kyc  = isNew ? (type === "b2b" ? KYB_FEE_B2B : KYC_FEE_P2P) : 0;
@@ -186,8 +200,14 @@ function _buildQuote(
   const omnipayService = waiveServiceFee ? 0 : parseFloat(
     Math.max(amount * OMNIPAY_SERVICE_PCT, omniPayMinFee(amount)).toFixed(2)
   );
+  // omnipayRev (bruto) es lo que se le cobra al cliente — nunca cambia por canal.
   const omnipayRev = parseFloat((omnipayService + flat).toFixed(2));
   const total      = parseFloat((amount + providerCostTotal + omnipayRev + kyc).toFixed(2));
+
+  // Costo de sesión de WhatsApp — absorbido por OmniPay, nunca por el cliente. Se resta
+  // SOLO del margen neto reportado (omnipay_net_revenue), jamás de total_sender_pays.
+  const whatsappCost = channel === "whatsapp" ? WHATSAPP_SESSION_COST_USD : 0;
+  const omnipayNetAfterCosts = parseFloat((omnipayRev - whatsappCost).toFixed(2));
 
   return {
     amount_principal:    amount,
@@ -199,7 +219,8 @@ function _buildQuote(
     provider_cost_total: parseFloat(providerCostTotal.toFixed(2)),
     omnipay_service:     omnipayService,
     omnipay_flat:        flat,
-    omnipay_net_revenue: omnipayRev,
+    omnipay_net_revenue: omnipayNetAfterCosts,
+    whatsapp_session_cost: channel === "whatsapp" ? whatsappCost : undefined,
     kyc_surcharge:       kyc,
     is_new_customer:     isNew,
     total_sender_pays:   total,

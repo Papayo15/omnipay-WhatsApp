@@ -64,6 +64,9 @@ interface SendBody {
   // Módulo 3 — Sistema de Referidos: waId (or hash) of the referrer, captured from
   // ?ref= by app/enviar/page.tsx (lib/referral.ts) and stored in localStorage — no DB.
   referral_code?:    string;
+  // Módulo 2 — "whatsapp" cuando el envío viene del bot (?channel= en el link generado
+  // por app/api/whatsapp/webhook/route.ts) — absorbe el costo de sesión de Meta internamente.
+  channel?:          "web" | "whatsapp";
 }
 
 const SEPA_SET = new Set(["DE","FR","ES","IT","NL","PT","BE","AT","IE","FI","GR","CY","EE","LV","LT","LU","MT","SK","SI","HR","SE","DK","NO","PL","CZ","HU","RO","BG","CH","IS","LI","AD","MC","SM","XK","VA"]);
@@ -90,7 +93,7 @@ export async function POST(req: NextRequest): Promise<Response> {
     recipient_name, recipient_country,
     clabe, iban, bic, pix_key, routing_number, account_number,
     sort_code, bank_code, document_number,
-    amount_target, existing_customer_id, referral_code,
+    amount_target, existing_customer_id, referral_code, channel,
   } = body;
 
   if (!sender_name || !sender_email || !source_currency || !recipient_name || !recipient_country || !amount_target) {
@@ -319,6 +322,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       email:   sender_email.toLowerCase(),
       type:    "p2p",
       waiveServiceFee: !!referral_code,
+      channel: channel === "whatsapp" ? "whatsapp" : "web",
     });
 
     // 8. Create Virtual Account for sender (fiat → USDC → liq addr → recipient's bank)
