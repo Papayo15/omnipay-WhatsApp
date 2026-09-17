@@ -751,7 +751,7 @@
     "fee_sender_deposits": "Absender zahlt ca.",
     "fee_note": "Ungefährer Betrag — der tatsächliche Wechselkurs kann zum Zeitpunkt der Einzahlung leicht variieren.",
     "sender_currency_label": "In welcher Währung zahlt der Absender ein?",
-    "receipt_emails_sent": "Bestätigungs-E-Mails an Absender und Empfänger gesendet",
+    "receipt_emails_sent": "Bestätigungs-E-Mail an den Absender gesendet",
     "receipt_view": "Vollständigen Beleg anzeigen",
     "receipt_share": "Beleg teilen",
     "track_title": "Überweisungsstatus",
@@ -1149,8 +1149,10 @@
     "omnipay_label": "OmniPay",
     "competitor_label": "Marktdurchschnitt",
     "omnipay_fee_label": "Gesamtgebühr: {fee}",
-    "competitor_spread_label": "Geschätzte versteckte Marge: 3,2 %",
-    "disclaimer": "Schätzung zum Live-Interbanken-Kurs. Endbetrag wird bei Einzahlung fixiert."
+    "competitor_spread_label": "Versteckte Marge (3,2 %) + Versandgebühr ({fee})",
+    "disclaimer": "Schätzung zum Live-Interbanken-Kurs. Endbetrag wird bei Einzahlung fixiert.",
+    "annual_savings_note": "Sie sparen ~{amount} USD pro Jahr bei monatlicher Sendung",
+    "p2p_only_label": "Für persönliche Überweisungen"
   },
   "whatsapp": {
     "greeting": "👋 Hallo! Ich bin der OmniPay-Assistent.\n\nWie viel möchten Sie senden und in welches Land?\n\nSchreiben Sie zum Beispiel:\n• *200 USD Mexiko*\n• *500 CAD Kolumbien*\n• *1000 EUR Spanien*\n\n_(Dieser Chat läuft aus Sicherheitsgründen in 5 Minuten ab)_",

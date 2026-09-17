@@ -751,7 +751,7 @@
     "fee_sender_deposits": "Người gửi nạp khoảng",
     "fee_note": "Số tiền ước tính — tỷ giá hối đoái thực tế có thể thay đổi nhỏ tại thời điểm nạp tiền.",
     "sender_currency_label": "Người gửi sẽ nạp bằng loại tiền nào?",
-    "receipt_emails_sent": "Email xác nhận đã gửi đến người gửi và người nhận",
+    "receipt_emails_sent": "Email xác nhận đã gửi cho người gửi",
     "receipt_view": "Xem biên lai đầy đủ",
     "receipt_share": "Chia sẻ biên lai",
     "track_title": "Trạng thái chuyển tiền",
@@ -1149,8 +1149,10 @@
     "omnipay_label": "OmniPay",
     "competitor_label": "Trung bình thị trường",
     "omnipay_fee_label": "Tổng phí: {fee}",
-    "competitor_spread_label": "Chênh lệch ẩn ước tính: 3,2%",
-    "disclaimer": "Ước tính theo tỷ giá liên ngân hàng trực tiếp. Số tiền cuối cùng được chốt khi gửi."
+    "competitor_spread_label": "Chênh lệch ẩn (3,2%) + phí gửi ({fee})",
+    "disclaimer": "Ước tính theo tỷ giá liên ngân hàng trực tiếp. Số tiền cuối cùng được chốt khi gửi.",
+    "annual_savings_note": "Bạn tiết kiệm ~{amount} USD mỗi năm khi gửi 1 lần/tháng",
+    "p2p_only_label": "Dành cho chuyển tiền cá nhân"
   },
   "whatsapp": {
     "greeting": "👋 Xin chào! Tôi là trợ lý OmniPay.\n\nBạn muốn gửi bao nhiêu và đến quốc gia nào?\n\nHãy viết như thế này:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Tây Ban Nha*\n\n_(Cuộc trò chuyện này hết hạn sau 5 phút vì lý do bảo mật)_",

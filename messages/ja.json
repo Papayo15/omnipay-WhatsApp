@@ -751,7 +751,7 @@
     "fee_sender_deposits": "送金者の入金額（概算）",
     "fee_note": "概算金額 — 実際の為替レートは入金時に若干変動する場合があります。",
     "sender_currency_label": "送金者はどの通貨で入金しますか？",
-    "receipt_emails_sent": "送信者と受取人に確認メールを送信しました",
+    "receipt_emails_sent": "確認メールを送信者に送信しました",
     "receipt_view": "全体の領収書を表示",
     "receipt_share": "領収書を共有",
     "track_title": "送金ステータス",
@@ -1149,8 +1149,10 @@
     "omnipay_label": "OmniPay",
     "competitor_label": "市場平均",
     "omnipay_fee_label": "合計手数料：{fee}",
-    "competitor_spread_label": "推定隠れスプレッド：3.2%",
-    "disclaimer": "ライブ銀行間レートによる見積もり。最終金額は入金時に確定します。"
+    "competitor_spread_label": "隠れたスプレッド（3.2%）+ 送金手数料（{fee}）",
+    "disclaimer": "ライブ銀行間レートによる見積もり。最終金額は入金時に確定します。",
+    "annual_savings_note": "月1回送金で年間約{amount} USDの節約",
+    "p2p_only_label": "個人送金向け"
   },
   "whatsapp": {
     "greeting": "👋 こんにちは！OmniPayアシスタントです。\n\nいくら、どの国に送金しますか？\n\n例えばこう書いてください：\n• *200 USD メキシコ*\n• *500 CAD コロンビア*\n• *1000 EUR スペイン*\n\n_(このチャットはセキュリティのため5分で期限切れになります)_",

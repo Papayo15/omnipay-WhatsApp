@@ -751,7 +751,7 @@
     "fee_sender_deposits": "ላኪው ያስቀምጣል (ግምታዊ)",
     "fee_note": "የግምት መጠን — ትክክለኛው የምንዛሪ ተመን በተቀማጭ ጊዜ ትንሽ ሊለያይ ይችላል.",
     "sender_currency_label": "ላኪው በምን ምንዛሬ ያስቀምጣል?",
-    "receipt_emails_sent": "የማረጋገጫ ኢሜሎች ለላኪ እና ለተቀባዩ ተልከዋል",
+    "receipt_emails_sent": "የማረጋገጫ ኢሜይል ለላኪው ተልኳል",
     "receipt_view": "ሙሉ ደረሰኝ ይመልከቱ",
     "receipt_share": "ደረሰኝ ያጋሩ",
     "track_title": "የዝውውር ሁኔታ",
@@ -1149,8 +1149,10 @@
     "omnipay_label": "OmniPay",
     "competitor_label": "የገበያ አማካይ",
     "omnipay_fee_label": "ጠቅላላ ክፍያ፦ {fee}",
-    "competitor_spread_label": "የተገመተ የተደበቀ ልዩነት፦ 3.2%",
-    "disclaimer": "በቀጥታ የባንኮች መካከል ተመን ላይ የተመሠረተ ግምት። የመጨረሻ መጠን በተቀማጭ ጊዜ ይወሰናል።"
+    "competitor_spread_label": "የተደበቀ ልዩነት (3.2%) + የመላኪያ ክፍያ ({fee})",
+    "disclaimer": "በቀጥታ የባንኮች መካከል ተመን ላይ የተመሠረተ ግምት። የመጨረሻ መጠን በተቀማጭ ጊዜ ይወሰናል።",
+    "annual_savings_note": "በወር አንድ ጊዜ በመላክ በዓመት ~{amount} USD ይቆጥባሉ",
+    "p2p_only_label": "ለግል ዝውውሮች"
   },
   "whatsapp": {
     "greeting": "👋 ሰላም! እኔ የOmniPay ረዳት ነኝ።\n\nምን ያህል መላክ ይፈልጋሉ እና ወደ የትኛው ሀገር?\n\nእንደዚህ ይጻፉ:\n• *200 USD ሜክሲኮ*\n• *500 CAD ኮሎምቢያ*\n• *1000 EUR ስፔን*\n\n_(ይህ ውይይት ለደህንነትዎ በ5 ደቂቃ ውስጥ ያበቃል)_",

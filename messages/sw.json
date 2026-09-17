@@ -751,7 +751,7 @@
     "fee_sender_deposits": "Mtumaji anaweka takriban",
     "fee_note": "Kiasi cha takriban — kiwango cha ubadilishaji halisi kinaweza kutofautiana kidogo wakati wa amana.",
     "sender_currency_label": "Mtumiaji ataingiza kwa sarafu gani?",
-    "receipt_emails_sent": "Barua pepe za uthibitisho zimetumwa kwa mtumaji na mpokeaji",
+    "receipt_emails_sent": "Barua pepe ya uthibitisho imetumwa kwa mtumaji",
     "receipt_view": "Tazama risiti kamili",
     "receipt_share": "Shiriki risiti",
     "track_title": "Hali ya uhamishaji",
@@ -1149,8 +1149,10 @@
     "omnipay_label": "OmniPay",
     "competitor_label": "Wastani wa soko",
     "omnipay_fee_label": "Jumla ya ada: {fee}",
-    "competitor_spread_label": "Tofauti iliyofichika inayokadiriwa: 3.2%",
-    "disclaimer": "Makadirio kwa kiwango cha moja kwa moja cha benki. Kiasi cha mwisho hupangwa wakati wa amana."
+    "competitor_spread_label": "Tofauti iliyofichika (3.2%) + ada ya kutuma ({fee})",
+    "disclaimer": "Makadirio kwa kiwango cha moja kwa moja cha benki. Kiasi cha mwisho hupangwa wakati wa amana.",
+    "annual_savings_note": "Unaokoa ~{amount} USD kwa mwaka ukituma mara moja kwa mwezi",
+    "p2p_only_label": "Kwa uhamisho wa kibinafsi"
   },
   "whatsapp": {
     "greeting": "👋 Habari! Mimi ni msaidizi wa OmniPay.\n\nUnataka kutuma kiasi gani na kwenda nchi gani?\n\nAndika kitu kama:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Spain*\n\n_(Mazungumzo haya yataisha muda wake baada ya dakika 5 kwa usalama wako)_",

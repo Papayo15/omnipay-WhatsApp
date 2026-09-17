@@ -751,7 +751,7 @@
     "fee_sender_deposits": "송금자 입금 예상액",
     "fee_note": "대략적인 금액 — 실제 환율은 입금 시 약간 변동될 수 있습니다.",
     "sender_currency_label": "송금자는 어떤 통화로 입금하나요?",
-    "receipt_emails_sent": "발신자 및 수신자에게 확인 이메일이 전송되었습니다",
+    "receipt_emails_sent": "확인 이메일이 발신자에게 전송되었습니다",
     "receipt_view": "전체 영수증 보기",
     "receipt_share": "영수증 공유",
     "track_title": "이체 상태",
@@ -1149,8 +1149,10 @@
     "omnipay_label": "OmniPay",
     "competitor_label": "시장 평균",
     "omnipay_fee_label": "총 수수료: {fee}",
-    "competitor_spread_label": "추정 숨겨진 스프레드: 3.2%",
-    "disclaimer": "실시간 은행 간 환율 기준 추정치입니다. 최종 금액은 입금 시 확정됩니다."
+    "competitor_spread_label": "숨겨진 스프레드(3.2%) + 배송 수수료({fee})",
+    "disclaimer": "실시간 은행 간 환율 기준 추정치입니다. 최종 금액은 입금 시 확정됩니다.",
+    "annual_savings_note": "월 1회 송금 시 연간 약 {amount} USD 절약",
+    "p2p_only_label": "개인 송금용"
   },
   "whatsapp": {
     "greeting": "👋 안녕하세요! OmniPay 어시스턴트입니다.\n\n얼마를 어느 나라로 보내고 싶으신가요?\n\n예시처럼 작성해 주세요:\n• *200 USD 멕시코*\n• *500 CAD 콜롬비아*\n• *1000 EUR 스페인*\n\n_(보안을 위해 이 채팅은 5분 후 만료됩니다)_",

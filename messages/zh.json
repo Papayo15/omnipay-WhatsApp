@@ -751,7 +751,7 @@
     "fee_sender_deposits": "汇款方存入约",
     "fee_note": "金额为估算值 — 实际汇率可能在存款时略有变动。",
     "sender_currency_label": "汇款人以哪种货币存款？",
-    "receipt_emails_sent": "确认邮件已发送给发送方和接收方",
+    "receipt_emails_sent": "确认邮件已发送给发件人",
     "receipt_view": "查看完整收据",
     "receipt_share": "分享收据",
     "track_title": "转账状态",
@@ -1149,8 +1149,10 @@
     "omnipay_label": "OmniPay",
     "competitor_label": "市场平均水平",
     "omnipay_fee_label": "总费用：{fee}",
-    "competitor_spread_label": "预估隐藏点差：3.2%",
-    "disclaimer": "基于实时银行间汇率的估算。最终金额在存款时确定。"
+    "competitor_spread_label": "隐藏点差（3.2%）+ 汇款手续费（{fee}）",
+    "disclaimer": "基于实时银行间汇率的估算。最终金额在存款时确定。",
+    "annual_savings_note": "每月汇款一次，每年可节省约{amount}美元",
+    "p2p_only_label": "适用于个人汇款"
   },
   "whatsapp": {
     "greeting": "👋 你好！我是OmniPay助手。\n\n您想汇多少钱到哪个国家？\n\n请这样写：\n• *200 USD 墨西哥*\n• *500 CAD 哥伦比亚*\n• *1000 EUR 西班牙*\n\n_(为了您的安全，此聊天将在5分钟后过期)_",

@@ -26,6 +26,13 @@ const SOURCE_CURRENCIES = ["USD", "EUR", "GBP", "CAD"] as const;
 // la tasa interbancaria — usado solo para la comparación visual, no afecta ningún cobro real.
 const COMPETITOR_SPREAD_PCT = 0.032;
 
+// Tarifa fija promedio que cobran remesadoras tradicionales (ej. Western Union, MoneyGram)
+// además del spread oculto — equivalente aproximado por moneda origen (no requiere otra
+// llamada a la API; son valores de referencia de mercado, no cobros reales de OmniPay).
+const COMPETITOR_FIXED_FEE: Record<string, number> = {
+  USD: 3.99, EUR: 3.69, GBP: 3.19, CAD: 5.49,
+};
+
 interface FxQuoteResponse {
   from_currency:   string;
   target_currency: string;
@@ -51,8 +58,9 @@ export function CurrencyCalculator() {
   const destCountryInfo = COUNTRIES.find((c) => c.code === destCountry);
   const destCurrency    = destCountryInfo?.currency ?? "MXN";
 
-  // Misma estrategia de debounce que app/enviar/page.tsx: monto en moneda origen
-  // se convierte a un estimado en moneda destino para pedir la cotización exacta.
+  // Fetch en dos pasadas, SIEMPRE dentro de la misma llamada (no depende de estado de
+  // un render anterior) — evita que la primera cotización de cualquier visitante salga
+  // mal calculada por tratar el monto origen como si ya fuera monto destino.
   useEffect(() => {
     const val = parseFloat(amount);
     if (!val || val <= 0) { setQuote(null); return; }
@@ -61,21 +69,21 @@ export function CurrencyCalculator() {
       setLoading(true);
       setError(false);
       try {
-        // El endpoint espera `amount` en la moneda destino (recipient_gets). Pedimos
-        // primero una cotización aproximada 1:1 y luego reconvertimos si hace falta;
-        // en la práctica /api/bridge/fx-quote acepta amount en target currency, así que
-        // convertimos el monto origen a un estimado destino usando fx_rate de la respuesta previa,
-        // o —en la primera carga— usamos el monto tal cual como aproximación inicial.
-        const approxTarget = quote ? val * quote.fx_rate : val;
-        const qs = new URLSearchParams({
-          from:    sourceCurrency,
-          to:      destCurrency,
-          amount:  String(approxTarget.toFixed(2)),
-          country: destCountry,
+        const qs1 = new URLSearchParams({
+          from: sourceCurrency, to: destCurrency, amount: String(val), country: destCountry,
         });
-        const res = await fetch(`/api/bridge/fx-quote?${qs}`);
-        if (res.ok) setQuote(await res.json());
-        else { setQuote(null); setError(true); }
+        const r1 = await fetch(`/api/bridge/fx-quote?${qs1}`);
+        if (!r1.ok) { setQuote(null); setError(true); return; }
+        const q1 = await r1.json() as FxQuoteResponse;
+
+        // Segunda pasada: ahora sí con el monto destino aproximado correctamente
+        // usando la tasa real que acabamos de recibir.
+        const approxTarget = parseFloat((val * q1.fx_rate).toFixed(2));
+        const qs2 = new URLSearchParams({
+          from: sourceCurrency, to: destCurrency, amount: String(approxTarget), country: destCountry,
+        });
+        const r2 = await fetch(`/api/bridge/fx-quote?${qs2}`);
+        setQuote(r2.ok ? await r2.json() as FxQuoteResponse : q1);
       } catch {
         setQuote(null);
         setError(true);
@@ -84,25 +92,38 @@ export function CurrencyCalculator() {
       }
     }, 500);
     return () => { if (debounce.current) clearTimeout(debounce.current); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [amount, sourceCurrency, destCountry, destCurrency]);
 
-  // Competencia: misma tasa interbancaria (fx_rate) pero con spread oculto de 3.2%
-  // aplicado sobre el monto que el emisor deposita (sender_deposits real de OmniPay).
+  // Competencia: misma tasa interbancaria real, pero un remesador tradicional cobra
+  // una tarifa fija visible ADEMÁS de esconder su margen en un peor tipo de cambio.
+  // Restamos la tarifa fija del monto (en moneda origen) antes de aplicar el spread.
+  const fixedFee = COMPETITOR_FIXED_FEE[sourceCurrency] ?? COMPETITOR_FIXED_FEE.USD;
   const competitorGets = quote
-    ? parseFloat((quote.sender_deposits * quote.fx_rate * (1 - COMPETITOR_SPREAD_PCT)).toFixed(2))
+    ? parseFloat((Math.max(quote.sender_deposits - fixedFee, 0) * quote.fx_rate * (1 - COMPETITOR_SPREAD_PCT)).toFixed(2))
     : null;
 
+  // Diferencial SIEMPRE en moneda destino — nunca en la moneda de origen (USD/EUR/GBP/CAD).
   const savings = quote && competitorGets !== null
     ? parseFloat((quote.recipient_gets - competitorGets).toFixed(2))
+    : null;
+
+  // Nota de ahorro anual (enviando 1 vez al mes), convertida de vuelta a USD para que
+  // sea comparable sin importar el corredor — esta sí en USD, a propósito, por pedido.
+  const annualSavingsUsd = savings && quote
+    ? parseFloat(((savings / quote.fx_rate) * 12).toFixed(0))
     : null;
 
   const fmt = (n: number, currency: string) =>
     new Intl.NumberFormat("es-MX", { style: "currency", currency }).format(n);
 
   return (
-    <section className="w-full max-w-md mx-auto bg-[#111827] border border-[#1f2937] rounded-2xl p-5 mt-8">
-      <h2 className="text-white font-bold text-lg mb-1">{t("title")}</h2>
+    <section className="w-full max-w-md mx-auto bg-[#111827] border border-[#1f2937] rounded-2xl p-5">
+      <div className="flex items-center justify-between mb-1">
+        <h2 className="text-white font-bold text-lg">{t("title")}</h2>
+        <span className="text-emerald-400 text-[10px] font-bold uppercase tracking-wide bg-emerald-500/10 px-2 py-0.5 rounded-full">
+          {t("p2p_only_label")}
+        </span>
+      </div>
       <p className="text-slate-400 text-sm mb-4">{t("subtitle")}</p>
 
       <div className="flex gap-2 mb-3">
@@ -162,11 +183,18 @@ export function CurrencyCalculator() {
             <div className="bg-[#0f172a] rounded-xl p-3 border border-[#1f2937]">
               <p className="text-slate-400 text-xs font-bold uppercase mb-1">{t("competitor_label")}</p>
               <p className="text-white font-bold text-lg">{fmt(competitorGets, destCurrency)}</p>
-              <p className="text-slate-500 text-xs mt-1">{t("competitor_spread_label")}</p>
+              <p className="text-slate-500 text-xs mt-1">
+                {t("competitor_spread_label", { fee: fmt(fixedFee, sourceCurrency) })}
+              </p>
             </div>
           </div>
 
           <p className="text-slate-600 text-[11px] mt-3 text-center">{t("disclaimer")}</p>
+          {annualSavingsUsd !== null && annualSavingsUsd > 0 && (
+            <p className="text-emerald-500/80 text-[11px] mt-1 text-center font-medium">
+              {t("annual_savings_note", { amount: `$${annualSavingsUsd}+` })}
+            </p>
+          )}
         </>
       )}
     </section>

@@ -750,7 +750,7 @@
     "fee_sender_deposits": "O remetente deposita aprox.",
     "fee_note": "Valor aproximado — a taxa de câmbio real pode variar ligeiramente no momento do depósito.",
     "sender_currency_label": "Em qual moeda o remetente depositará?",
-    "receipt_emails_sent": "E-mails de confirmação enviados ao remetente e destinatário",
+    "receipt_emails_sent": "E-mail de confirmação enviado ao remetente",
     "receipt_view": "Ver comprovante completo",
     "receipt_share": "Compartilhar comprovante",
     "track_title": "Status da transferência",
@@ -1148,8 +1148,10 @@
     "omnipay_label": "OmniPay",
     "competitor_label": "Média do mercado",
     "omnipay_fee_label": "Taxa total: {fee}",
-    "competitor_spread_label": "Spread oculto estimado: 3,2%",
-    "disclaimer": "Estimativa com taxa interbancária ao vivo. Valor final travado no momento do depósito."
+    "competitor_spread_label": "Spread oculto (3,2%) + taxa de envio ({fee})",
+    "disclaimer": "Estimativa com taxa interbancária ao vivo. Valor final travado no momento do depósito.",
+    "annual_savings_note": "Você economiza ~{amount} USD por ano enviando 1 vez por mês",
+    "p2p_only_label": "Para envios pessoais"
   },
   "whatsapp": {
     "greeting": "👋 Olá! Sou o assistente da OmniPay.\n\nQuanto você quer enviar e para qual país?\n\nEscreva algo como:\n• *200 USD México*\n• *500 CAD Colômbia*\n• *1000 EUR Espanha*\n\n_(Este chat expira em 5 minutos por segurança)_",

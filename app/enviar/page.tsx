@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Zap, ArrowLeft, Send, Copy, Check, AlertCircle, Loader2, CheckCircle } from "lucide-react";
 import { SEPA_COUNTRIES } from "@/lib/wise-accounts";
 import { saveReferralCode, getReferralCode, clearReferralCode } from "@/lib/referral";
+import Calculator from "@/components/Calculator";
 
 type Step = "form" | "sending" | "tos" | "kyc" | "instructions" | "receipt" | "error";
 
@@ -715,6 +716,13 @@ export default function EnviarPage() {
           <Zap className="w-5 h-5 text-[#00C9C8]" />
           <span className="text-white font-bold">OmniPay</span>
         </div>
+
+        {/* Simulador — mismo Calculator compartido con /b2b, canal P2P (Bridge) */}
+        {step === "form" && (
+          <div className="mb-6">
+            <Calculator visibleChannels={["bridge"]} />
+          </div>
+        )}
 
         {/* Macro step bar — visible desde el inicio */}
         {step !== "error" && (

@@ -751,7 +751,7 @@
     "fee_sender_deposits": "Il mittente deposita ca.",
     "fee_note": "Importo approssimativo — il tasso di cambio reale può variare leggermente al momento del deposito.",
     "sender_currency_label": "In quale valuta depositerà il mittente?",
-    "receipt_emails_sent": "Email di conferma inviate a mittente e destinatario",
+    "receipt_emails_sent": "Email di conferma inviata al mittente",
     "receipt_view": "Visualizza ricevuta completa",
     "receipt_share": "Condividi ricevuta",
     "track_title": "Stato del bonifico",
@@ -1149,8 +1149,10 @@
     "omnipay_label": "OmniPay",
     "competitor_label": "Media di mercato",
     "omnipay_fee_label": "Commissione totale: {fee}",
-    "competitor_spread_label": "Spread nascosto stimato: 3,2%",
-    "disclaimer": "Stima al tasso interbancario live. Importo finale fissato al momento del deposito."
+    "competitor_spread_label": "Spread nascosto (3,2%) + commissione di invio ({fee})",
+    "disclaimer": "Stima al tasso interbancario live. Importo finale fissato al momento del deposito.",
+    "annual_savings_note": "Risparmi ~{amount} USD all'anno inviando 1 volta al mese",
+    "p2p_only_label": "Per invii personali"
   },
   "whatsapp": {
     "greeting": "👋 Ciao! Sono l'assistente OmniPay.\n\nQuanto vuoi inviare e verso quale paese?\n\nScrivi qualcosa come:\n• *200 USD Messico*\n• *500 CAD Colombia*\n• *1000 EUR Spagna*\n\n_(Questa chat scade tra 5 minuti per sicurezza)_",

@@ -751,7 +751,7 @@
     "fee_sender_deposits": "Afzender stort ca.",
     "fee_note": "Geschat bedrag — de werkelijke wisselkoers kan licht variëren op het moment van storting.",
     "sender_currency_label": "In welke valuta zal de afzender storten?",
-    "receipt_emails_sent": "Bevestigingsmails verzonden naar afzender en ontvanger",
+    "receipt_emails_sent": "Bevestigingsmail verzonden naar de afzender",
     "receipt_view": "Volledig ontvangstbewijs bekijken",
     "receipt_share": "Ontvangstbewijs delen",
     "track_title": "Overboekingsstatus",
@@ -1149,8 +1149,10 @@
     "omnipay_label": "OmniPay",
     "competitor_label": "Marktgemiddelde",
     "omnipay_fee_label": "Totale kosten: {fee}",
-    "competitor_spread_label": "Geschatte verborgen marge: 3,2%",
-    "disclaimer": "Schatting op basis van live interbancaire koers. Eindbedrag vastgesteld bij storting."
+    "competitor_spread_label": "Verborgen marge (3,2%) + verzendkosten ({fee})",
+    "disclaimer": "Schatting op basis van live interbancaire koers. Eindbedrag vastgesteld bij storting.",
+    "annual_savings_note": "Je bespaart ~{amount} USD per jaar bij 1x per maand versturen",
+    "p2p_only_label": "Voor persoonlijke overboekingen"
   },
   "whatsapp": {
     "greeting": "👋 Hoi! Ik ben de OmniPay-assistent.\n\nHoeveel wil je versturen en naar welk land?\n\nSchrijf bijvoorbeeld:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Spanje*\n\n_(Deze chat verloopt over 5 minuten voor je veiligheid)_",

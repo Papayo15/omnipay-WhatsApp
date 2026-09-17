@@ -750,7 +750,7 @@
     "fee_sender_deposits": "Mai aiko yana saka kusan",
     "fee_note": "Kuɗin kiyasi — kuɗin canjin kuɗi na gaske na iya bambanta kaɗan a lokacin ajiya.",
     "sender_currency_label": "Da wane kuɗin mai aiko zai saka?",
-    "receipt_emails_sent": "An aika imeloci na tabbatarwa ga mai aika da mai karɓa",
+    "receipt_emails_sent": "An aika imel na tabbatarwa ga mai aikawa",
     "receipt_view": "Duba takardar karɓar cikakke",
     "receipt_share": "Raba takardar karɓar",
     "track_title": "Yanayin canja wuri",
@@ -1148,8 +1148,10 @@
     "omnipay_label": "OmniPay",
     "competitor_label": "Matsakaicin kasuwa",
     "omnipay_fee_label": "Jimlar kuɗin sabis: {fee}",
-    "competitor_spread_label": "Kiyasin ɓoyayyen bambanci: 3.2%",
-    "disclaimer": "Ƙiyasi bisa ainihin farashin bankuna. Ana ƙayyade adadin ƙarshe lokacin ajiya."
+    "competitor_spread_label": "Ɓoyayyen bambanci (3.2%) + kuɗin turawa ({fee})",
+    "disclaimer": "Ƙiyasi bisa ainihin farashin bankuna. Ana ƙayyade adadin ƙarshe lokacin ajiya.",
+    "annual_savings_note": "Kana ajiyar ~{amount} USD a shekara ta hanyar aikawa sau ɗaya a wata",
+    "p2p_only_label": "Don canja wurin kai tsaye"
   },
   "whatsapp": {
     "greeting": "👋 Sannu! Ni ne mataimakin OmniPay.\n\nNawa kake son aikawa kuma zuwa wace ƙasa?\n\nRubuta kamar haka:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Spain*\n\n_(Wannan tattaunawar za ta ƙare a cikin mintuna 5 don tsaronka)_",

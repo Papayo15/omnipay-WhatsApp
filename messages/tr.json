@@ -751,7 +751,7 @@
     "fee_sender_deposits": "Gönderen yaklaşık yatırır",
     "fee_note": "Yaklaşık tutar — gerçek döviz kuru depozito anında hafifçe değişebilir.",
     "sender_currency_label": "Gönderen hangi para biriminde yatıracak?",
-    "receipt_emails_sent": "Gönderici ve alıcıya onay e-postaları gönderildi",
+    "receipt_emails_sent": "Onay e-postası gönderene iletildi",
     "receipt_view": "Makbuzu görüntüle",
     "receipt_share": "Makbuzu paylaş",
     "track_title": "Transfer durumu",
@@ -1149,8 +1149,10 @@
     "omnipay_label": "OmniPay",
     "competitor_label": "Piyasa ortalaması",
     "omnipay_fee_label": "Toplam ücret: {fee}",
-    "competitor_spread_label": "Tahmini gizli marj: %3,2",
-    "disclaimer": "Canlı bankalararası kura göre tahmin. Kesin tutar yatırma anında belirlenir."
+    "competitor_spread_label": "Gizli marj (%3,2) + gönderim ücreti ({fee})",
+    "disclaimer": "Canlı bankalararası kura göre tahmin. Kesin tutar yatırma anında belirlenir.",
+    "annual_savings_note": "Ayda bir gönderiyle yılda ~{amount} USD tasarruf edersiniz",
+    "p2p_only_label": "Kişisel transferler için"
   },
   "whatsapp": {
     "greeting": "👋 Merhaba! Ben OmniPay asistanıyım.\n\nNe kadar göndermek istiyorsunuz ve hangi ülkeye?\n\nŞöyle yazın:\n• *200 USD Meksika*\n• *500 CAD Kolombiya*\n• *1000 EUR İspanya*\n\n_(Bu sohbet güvenliğiniz için 5 dakika içinde sona erer)_",

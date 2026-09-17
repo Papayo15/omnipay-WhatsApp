@@ -39,6 +39,11 @@ const OMNIPAY_MIN        = 0.99;   // updated 2026-07-29
 const KYC_P2P            = 0.00;   // absorbed as acquisition cost
 const KYB_B2B            = 0.00;  // absorbed as acquisition cost (same as KYC P2P)
 
+// Comparativa de mercado — remesadoras tradicionales cubren su margen con un spread
+// oculto sobre la tasa interbancaria en vez de una comisión visible. Solo aplica
+// cuando SÍ hay conversión de moneda real (srcCurrency !== destCurrency).
+const COMPETITOR_SPREAD_PCT = 0.032;
+
 // Countries with native Bridge bank rails
 const BRIDGE_CODES = new Set([
   "US","MX","BR","CO","GB",
@@ -191,6 +196,18 @@ export default function Calculator({ visibleChannels, rateNotes }: CalcProps = {
     }
   }, [channel, amount, destCurrency, fxRate, isNew]);
 
+  // Comparativa de mercado — mismo monto principal, pero un competidor que cobra vía
+  // spread oculto en vez de comisión transparente entrega menos. Solo tiene sentido
+  // cuando hay conversión real de moneda (si src===dest no hay spread que ocultar).
+  const principal = parseFloat(amount || "0");
+  const hasRealConversion = !!fxRate && srcCurrency !== destCurrency && principal > 0;
+  const competitorGets = hasRealConversion
+    ? parseFloat((principal * (fxRate as number) * (1 - COMPETITOR_SPREAD_PCT)).toFixed(2))
+    : null;
+  const omnipaySavings = hasRealConversion && quote?.recipientAmount
+    ? parseFloat((quote.recipientAmount - (competitorGets ?? 0)).toFixed(2))
+    : null;
+
   return (
     <div className="w-full max-w-md mx-auto rounded-2xl bg-slate-900 border border-slate-700 overflow-hidden">
       {/* Header */}
@@ -259,6 +276,18 @@ export default function Calculator({ visibleChannels, rateNotes }: CalcProps = {
         )}
 
         {/* KYB toggle removed — OmniPay absorbs KYB cost for all B2B channels */}
+
+        {/* Badge de ahorro vs. mercado */}
+        {omnipaySavings !== null && omnipaySavings > 0 && (
+          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl px-4 py-3 text-center">
+            <p className="text-emerald-400 font-extrabold text-base leading-tight">
+              Tu destinatario recibe +{fmt(omnipaySavings, destCurrency)} más con OmniPay
+            </p>
+            <p className="text-slate-500 text-[10px] mt-1">
+              vs. spread oculto promedio de remesadoras tradicionales (~3.2%)
+            </p>
+          </div>
+        )}
 
         {/* Fee breakdown */}
         {quote && (
