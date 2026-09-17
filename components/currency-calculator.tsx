@@ -119,8 +119,8 @@ export function CurrencyCalculator() {
     <section className="w-full max-w-md mx-auto bg-[#111827] border border-[#1f2937] rounded-2xl p-5">
       <div className="flex items-center justify-between mb-1">
         <h2 className="text-white font-bold text-lg">{t("title")}</h2>
-        <span className="text-emerald-400 text-[10px] font-bold uppercase tracking-wide bg-emerald-500/10 px-2 py-0.5 rounded-full">
-          {t("p2p_only_label")}
+        <span className="text-emerald-400 text-[10px] font-bold uppercase tracking-wide bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded-full whitespace-nowrap">
+          👤 {t("p2p_only_label")}
         </span>
       </div>
       <p className="text-slate-400 text-sm mb-4">{t("subtitle")}</p>
@@ -188,7 +188,9 @@ export function CurrencyCalculator() {
             </div>
           </div>
 
-          <p className="text-slate-600 text-[11px] mt-3 text-center">{t("disclaimer")}</p>
+          <p className="text-slate-600 text-[11px] mt-3 text-center">
+            {t("disclaimer")} · {t("p2p_only_label")}
+          </p>
           {annualSavingsUsd !== null && annualSavingsUsd > 0 && (
             <p className="text-emerald-500/80 text-[11px] mt-1 text-center font-medium">
               {t("annual_savings_note", { amount: `$${annualSavingsUsd}+` })}
