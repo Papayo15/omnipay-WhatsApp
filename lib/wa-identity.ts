@@ -102,14 +102,15 @@ export async function getPhoneForEmail(email: string): Promise<string | null> {
 
 // Pending transfer context — set right when the bot sends a KYC link (Módulo 2), so that
 // when Bridge later fires customer.updated.status_transitioned (status=approved), the
-// webhook can message the right WhatsApp number with the SPECIFIC amount/country they were
-// trying to send, instead of a generic "you're verified" text. Una verificación de Persona
-// real (subir ID + selfie) puede tardar 45-50 minutos sin ser nada anormal — un TTL de
-// 30 min lo cortaba a medias y el usuario se quedaba sin ningún aviso (ni texto libre ni
-// plantilla, porque este registro ya no existía). 3 horas da margen de sobra para
-// cualquier KYC lento real, y sigue muy por debajo de la ventana de 24h de WhatsApp, así
-// que el aviso casi siempre sale como texto libre, no como plantilla.
-const PENDING_TTL = 3 * 60 * 60; // 3 horas
+// webhook can message the right WhatsApp number with the SPECIFIC amount/país que estaba
+// enviando, en vez de un aviso genérico. Se estira hasta 23:59 — el máximo posible sin
+// pasarse de la ventana real de servicio de WhatsApp (24h, ver isWithinMessageWindow) —
+// para exprimir al máximo el texto libre gratis: mientras este registro y la ventana de
+// 24h sigan vivos al mismo tiempo, el aviso sale como texto libre; la plantilla aprobada
+// solo entra si de verdad se cierra la ventana. Antes estaba en 30 min, lo cual cortaba
+// a la mitad un KYC real de Persona (ID + selfie), que puede tardar 45-50 min sin ser nada
+// raro — el aviso se perdía por completo (ni texto libre ni plantilla).
+const PENDING_TTL = 23 * 3600 + 59 * 60; // 23h 59min
 
 export interface PendingTransfer {
   waId:     string;
