@@ -1206,7 +1206,9 @@
     "label_sort_code": "Bankleitzahl (Sort Code)",
     "label_clabe": "CLABE",
     "label_pix": "PIX-Schlüssel",
-    "confirmed_deposit_footer": "{recipient_name} erhält {recipient_amount} {recipient_currency}. Sobald deine Einzahlung bestätigt ist, melden wir uns hier.\n\n_OmniPay speichert deine Bankdaten nicht._"
+    "confirmed_deposit_footer": "{recipient_name} erhält {recipient_amount} {recipient_currency}. Sobald deine Einzahlung bestätigt ist, melden wir uns hier.\n\n_OmniPay speichert deine Bankdaten nicht._",
+    "currency_not_supported_source": "Wir können für diese Überweisung noch keine Einzahlungen in {currency} annehmen. Versuche es erneut mit USD, EUR, GBP, MXN oder BRL.",
+    "deposit_error": "Beim Erstellen deiner Einzahlungsanweisungen ist etwas schiefgelaufen. Antworte gleich noch einmal mit *JA*, oder fang neu an."
   },
   "kyc": {
     "title": "Verifizieren Sie Ihre Identität",

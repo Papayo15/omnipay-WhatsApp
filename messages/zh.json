@@ -1206,7 +1206,9 @@
     "label_sort_code": "Sort Code",
     "label_clabe": "CLABE",
     "label_pix": "PIX密钥",
-    "confirmed_deposit_footer": "{recipient_name} 将收到 {recipient_amount} {recipient_currency}。存款确认后，我们会在这里通知你。\n\n_OmniPay 不会存储你的银行信息。_"
+    "confirmed_deposit_footer": "{recipient_name} 将收到 {recipient_amount} {recipient_currency}。存款确认后，我们会在这里通知你。\n\n_OmniPay 不会存储你的银行信息。_",
+    "currency_not_supported_source": "此次转账暂不支持 {currency} 存款。请改用 USD、EUR、GBP、MXN 或 BRL 重试。",
+    "deposit_error": "生成存款说明时出了点问题。请稍后再回复“是”，或者重新开始。"
   },
   "kyc": {
     "title": "验证您的身份",

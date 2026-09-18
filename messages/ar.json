@@ -1206,7 +1206,9 @@
     "label_sort_code": "Sort Code",
     "label_clabe": "CLABE",
     "label_pix": "مفتاح PIX",
-    "confirmed_deposit_footer": "سيستلم {recipient_name} مبلغ {recipient_amount} {recipient_currency}. بمجرد تأكيد إيداعك، سنخبرك هنا.\n\n_لا يقوم OmniPay بتخزين بياناتك المصرفية._"
+    "confirmed_deposit_footer": "سيستلم {recipient_name} مبلغ {recipient_amount} {recipient_currency}. بمجرد تأكيد إيداعك، سنخبرك هنا.\n\n_لا يقوم OmniPay بتخزين بياناتك المصرفية._",
+    "currency_not_supported_source": "لا يمكننا حالياً قبول الإيداع بعملة {currency} لهذا التحويل. جرّب مرة أخرى بعملة USD أو EUR أو GBP أو MXN أو BRL.",
+    "deposit_error": "حدث خطأ أثناء إنشاء تعليمات الإيداع الخاصة بك. أرسل *نعم* مرة أخرى بعد قليل، أو ابدأ من جديد."
   },
   "kyc": {
     "title": "تحقق من هويتك",

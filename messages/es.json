@@ -1189,7 +1189,9 @@
     "label_sort_code": "Sort Code",
     "label_clabe": "CLABE",
     "label_pix": "Código PIX",
-    "confirmed_deposit_footer": "{recipient_name} recibirá {recipient_amount} {recipient_currency}. En cuanto confirmemos tu depósito, te avisamos por aquí.\n\n_OmniPay no almacena tus datos bancarios._"
+    "confirmed_deposit_footer": "{recipient_name} recibirá {recipient_amount} {recipient_currency}. En cuanto confirmemos tu depósito, te avisamos por aquí.\n\n_OmniPay no almacena tus datos bancarios._",
+    "currency_not_supported_source": "Todavía no podemos recibir depósitos en {currency} para este envío. Intenta de nuevo en USD, EUR, GBP, MXN o BRL.",
+    "deposit_error": "Algo salió mal generando tus instrucciones de depósito. Responde *SI* de nuevo en un momento, o empieza de nuevo."
   },
   "kyc": {
     "title": "Verifica tu identidad",

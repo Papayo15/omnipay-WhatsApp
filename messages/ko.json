@@ -1206,7 +1206,9 @@
     "label_sort_code": "Sort Code",
     "label_clabe": "CLABE",
     "label_pix": "PIX 키",
-    "confirmed_deposit_footer": "{recipient_name}님이 {recipient_amount} {recipient_currency}를 받게 됩니다. 입금이 확인되는 대로 여기로 알려드릴게요.\n\n_OmniPay는 은행 정보를 저장하지 않습니다._"
+    "confirmed_deposit_footer": "{recipient_name}님이 {recipient_amount} {recipient_currency}를 받게 됩니다. 입금이 확인되는 대로 여기로 알려드릴게요.\n\n_OmniPay는 은행 정보를 저장하지 않습니다._",
+    "currency_not_supported_source": "이 송금에서는 아직 {currency} 입금을 받을 수 없습니다. USD, EUR, GBP, MXN, BRL 중 하나로 다시 시도해 주세요.",
+    "deposit_error": "입금 안내를 만드는 중 문제가 발생했습니다. 잠시 후 다시 *예*라고 답하거나 처음부터 다시 시작해 주세요."
   },
   "kyc": {
     "title": "신원을 확인하세요",

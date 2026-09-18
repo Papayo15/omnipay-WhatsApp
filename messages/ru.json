@@ -1206,7 +1206,9 @@
     "label_sort_code": "Sort Code",
     "label_clabe": "CLABE",
     "label_pix": "Ключ PIX",
-    "confirmed_deposit_footer": "{recipient_name} получит {recipient_amount} {recipient_currency}. Как только депозит подтвердится, мы сообщим тебе здесь.\n\n_OmniPay не хранит твои банковские данные._"
+    "confirmed_deposit_footer": "{recipient_name} получит {recipient_amount} {recipient_currency}. Как только депозит подтвердится, мы сообщим тебе здесь.\n\n_OmniPay не хранит твои банковские данные._",
+    "currency_not_supported_source": "Мы пока не можем принимать депозиты в {currency} для этого перевода. Попробуй снова в USD, EUR, GBP, MXN или BRL.",
+    "deposit_error": "Что-то пошло не так при создании инструкций для депозита. Напиши *ДА* ещё раз через минуту, либо начни заново."
   },
   "kyc": {
     "title": "Подтвердите свою личность",

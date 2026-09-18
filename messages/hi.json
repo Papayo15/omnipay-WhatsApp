@@ -1206,7 +1206,9 @@
     "label_sort_code": "सॉर्ट कोड",
     "label_clabe": "CLABE",
     "label_pix": "PIX कुंजी",
-    "confirmed_deposit_footer": "{recipient_name} को {recipient_amount} {recipient_currency} मिलेगा। आपकी जमा राशि की पुष्टि होते ही हम आपको यहीं बताएंगे।\n\n_OmniPay आपकी बैंक जानकारी सुरक्षित नहीं रखता।_"
+    "confirmed_deposit_footer": "{recipient_name} को {recipient_amount} {recipient_currency} मिलेगा। आपकी जमा राशि की पुष्टि होते ही हम आपको यहीं बताएंगे।\n\n_OmniPay आपकी बैंक जानकारी सुरक्षित नहीं रखता।_",
+    "currency_not_supported_source": "इस ट्रांसफ़र के लिए हम अभी {currency} में जमा स्वीकार नहीं कर सकते। कृपया USD, EUR, GBP, MXN या BRL में फिर से कोशिश करें।",
+    "deposit_error": "आपकी जमा निर्देश बनाने में कुछ गड़बड़ हो गई। कृपया थोड़ी देर में फिर से *हाँ* लिखें, या फिर से शुरू करें।"
   },
   "kyc": {
     "title": "अपनी पहचान सत्यापित करें",

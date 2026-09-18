@@ -45,8 +45,8 @@ import {
   accountPromptKey, maskedAccountSummary,
 } from "@/lib/wa-validation";
 import {
-  getSession, setSession, clearSession, buildEnviarLink, beginRecipientCollection,
-  requestDepositInstructions,
+  getSession, setSession, clearSession, beginRecipientCollection,
+  requestDepositInstructions, isSupportedSourceCurrency,
 } from "@/lib/wa-flow";
 
 const APP_URL  = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
@@ -216,6 +216,11 @@ export async function POST(req: NextRequest): Promise<Response> {
       && session.amount && session.currency && session.country) {
     const answer = text.trim().toLowerCase();
     if (answer === "si" || answer === "sí") {
+      if (!isSupportedSourceCurrency(session.currency)) {
+        await sendWhatsAppMessage(waId, t("currency_not_supported_source", { currency: session.currency }));
+        await clearSession(waId);
+        return NextResponse.json({ ok: true });
+      }
       const di = await requestDepositInstructions({
         email: session.email, sourceCurrency: session.currency, recipientName: session.recipientName,
         country: session.country, amountTarget: session.recipientGets ?? session.amount,
@@ -243,14 +248,9 @@ export async function POST(req: NextRequest): Promise<Response> {
         ];
         await sendWhatsAppMessage(waId, lines.join("\n"));
       } else {
-        // Fallback: moneda de origen no soportada por /api/bridge/send, o Bridge devolvió
-        // needs_kyc/needs_tos inesperado — mandamos el link precargado a /enviar como antes.
-        const link = buildEnviarLink({
-          email: session.email, currency: session.currency, country: session.country,
-          amount: String(session.recipientGets ?? session.amount),
-          recipientName: session.recipientName, account: session.account,
-        });
-        await sendWhatsAppMessage(waId, t("confirmed_link", { link }));
+        // /api/bridge/send falló (Bridge caído, needs_kyc/needs_tos inesperado, etc.) —
+        // sin link de respaldo: se le pide reintentar el SI en vez de mandarlo a la web.
+        await sendWhatsAppMessage(waId, t("deposit_error"));
       }
       await clearSession(waId);
     } else if (answer === "cancelar" || answer === "cancel") {

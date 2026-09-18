@@ -105,6 +105,10 @@ export function buildEnviarLink(params: {
 // Fuentes soportadas por /api/bridge/send — mismo set que SendBody["source_currency"] ahí.
 const SUPPORTED_SOURCE_CURRENCIES = new Set(["usd", "eur", "gbp", "mxn", "brl"]);
 
+export function isSupportedSourceCurrency(currency: string): boolean {
+  return SUPPORTED_SOURCE_CURRENCIES.has(currency.toLowerCase());
+}
+
 export interface DepositInstructions {
   rail: string; currency: string;
   bank_name?: string | null; beneficiary_name?: string | null;

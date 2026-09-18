@@ -1206,7 +1206,9 @@
     "label_sort_code": "Sort Code",
     "label_clabe": "CLABE",
     "label_pix": "Clé PIX",
-    "confirmed_deposit_footer": "{recipient_name} recevra {recipient_amount} {recipient_currency}. Dès que ton dépôt est confirmé, on te prévient ici.\n\n_OmniPay ne conserve aucune de tes données bancaires._"
+    "confirmed_deposit_footer": "{recipient_name} recevra {recipient_amount} {recipient_currency}. Dès que ton dépôt est confirmé, on te prévient ici.\n\n_OmniPay ne conserve aucune de tes données bancaires._",
+    "currency_not_supported_source": "Nous ne pouvons pas encore accepter de dépôts en {currency} pour ce transfert. Réessaie en USD, EUR, GBP, MXN ou BRL.",
+    "deposit_error": "Un problème est survenu lors de la génération de tes instructions de dépôt. Réponds à nouveau *OUI* dans un instant, ou recommence."
   },
   "kyc": {
     "title": "Vérifiez votre identité",
