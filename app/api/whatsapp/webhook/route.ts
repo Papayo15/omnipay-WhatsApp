@@ -43,8 +43,8 @@ import { getEmailForPhone, setEmailForPhone, setPendingTransfer, hashPhone } fro
 import { findCustomerByEmail }       from "@/providers/bridge/customers";
 import { getCountry }                from "@/constants/countries";
 import {
-  validateAccountDetails, parseAccountInput, accountPromptKey, maskedAccountSummary,
-  type AccountDetails,
+  validateAccountDetails, parseAccountField, mergeSecondAccountField, secondAccountPromptKey,
+  accountPromptKey, maskedAccountSummary, type AccountDetails,
 } from "@/lib/wa-validation";
 
 const APP_URL  = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
@@ -52,9 +52,21 @@ const APP_URL  = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
 // ── Session TTL: 10 min — hay más pasos ahora (nombre + cuenta + confirmación) ───
 const SESSION_TTL = 10 * 60; // seconds
 
-type WaStep = 1 | 3 | 5 | 6 | 7;
+type WaStep = 1 | 3 | 5 | 6 | 65 | 7;
 // 1 = need amount+country · 3 = need email · 5 = need recipient name
-// 6 = need account details · 7 = awaiting SI/CANCELAR confirmation
+// 6 = need account field #1 (routing/sort code/CLABE/IBAN/PIX/account — depends on country)
+// 65 = need account field #2 (only US routing→account, GB sort code→account — two-field countries)
+// 7 = awaiting SI/CANCELAR confirmation
+
+// Países de UN solo dato de cuenta (MX: CLABE · CO: cuenta · BR: PIX).
+// Todo lo demás — US (routing→cuenta), GB (sort code→cuenta), zona SEPA (IBAN→BIC,
+// Bridge lo exige), y el catch-all genérico SWIFT+cuenta para el resto del mundo vía
+// Conduit — pide DOS datos, uno a la vez en dos mensajes (nunca "los dos separados por
+// un espacio").
+const SINGLE_FIELD_COUNTRIES = new Set(["MX", "CO", "BR"]);
+function isTwoFieldCountry(country: string): boolean {
+  return !SINGLE_FIELD_COUNTRIES.has(country.toUpperCase());
+}
 
 interface WaSession {
   step:      WaStep;
@@ -64,7 +76,7 @@ interface WaSession {
   locale?:   WaLocale;
   email?:    string;
   recipientName?: string;
-  account?:  AccountDetails;
+  account?:  AccountDetails;       // se completa progresivamente en países de dos campos
   recipientGets?: number;
   recipientCurrency?: string;
 }
@@ -286,10 +298,40 @@ export async function POST(req: NextRequest): Promise<Response> {
     return NextResponse.json({ ok: true });
   }
 
-  // ── Step 6: esperando los datos de cuenta del destinatario ────────────────
+  // ── Step 6.5: esperando el SEGUNDO dato de cuenta (US/GB/SEPA/genérico) ───
+  if (session?.step === 65 && session.recipientName && session.country && session.account
+      && session.amount && session.currency && session.email) {
+    const merged = mergeSecondAccountField(session.country, session.account, text);
+    const result = validateAccountDetails(session.country, merged);
+    if (!result.isValid) {
+      await sendWhatsAppMessage(waId, t(`validation_${result.errorKey ?? "generic"}`));
+      return NextResponse.json({ ok: true });
+    }
+    const summary = maskedAccountSummary(session.country, merged);
+    await setSession(waId, { ...session, step: 7, account: merged });
+    await sendWhatsAppMessage(waId, t("confirm_summary", {
+      name:     session.recipientName,
+      account:  summary,
+      amount:   (session.recipientGets ?? session.amount).toLocaleString("en-US"),
+      currency: session.recipientCurrency ?? session.currency,
+    }));
+    return NextResponse.json({ ok: true });
+  }
+
+  // ── Step 6: esperando el primer (o único) dato de cuenta del destinatario ──
   if (session?.step === 6 && session.recipientName && session.country
       && session.amount && session.currency && session.email) {
-    const parsed = parseAccountInput(session.country, text);
+    const parsed = parseAccountField(session.country, text);
+
+    // Países de dos datos (US/GB, y el resto del mundo vía Conduit): pedimos el
+    // segundo dato por separado — nunca juntos en un mensaje.
+    if (isTwoFieldCountry(session.country)) {
+      await setSession(waId, { ...session, step: 65, account: parsed });
+      await sendWhatsAppMessage(waId, t(secondAccountPromptKey(session.country)));
+      return NextResponse.json({ ok: true });
+    }
+
+    // Países de un solo dato: se valida completo de una vez.
     const result = validateAccountDetails(session.country, parsed);
     if (!result.isValid) {
       await sendWhatsAppMessage(waId, t(`validation_${result.errorKey ?? "generic"}`));

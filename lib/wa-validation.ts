@@ -6,9 +6,24 @@
 //
 // Cobertura actual = corredores ya en vivo por Bridge (ver providers/bridge/liquidation.ts
 // → NATIVE_RAILS): MX (SPEI/CLABE), US (ACH/routing+account), GB (Faster Payments/sort code),
-// zona SEPA (IBAN), BR (PIX — sin checksum público, solo formato), CO (cuenta — solo formato).
-// Todo lo demás (resto de los 41 corredores) usa el validador genérico SWIFT/BIC + formato de
-// cuenta, listo para cuando Conduit habilite esos rieles (mediados de octubre).
+// zona SEPA (IBAN+BIC — Bridge lo exige), BR (PIX — sin checksum público), CO (Bre-B —
+// sin formato único documentado por Bridge, teléfono/cédula/email/cuenta).
+//
+// Conduit (verificado contra su documentación real en docs.conduit.financial, no solo el
+// código local en lib/conduit/, que va a medias): sus rieles reales de payout son
+// crypto/fedwire/rtp/fednow/ach/swift/sepa/faster_payments/chaps — para ach/sepa/fps los
+// campos son los mismos que Bridge (routingNumber+accountNumber, iban+bic, sortCode+
+// accountNumber), así que los validadores de abajo sirven tal cual, sin código aparte.
+// El riel "swift" SÍ es real (transferencia internacional genérica) — cubre el resto de
+// los ~80 países que Conduit ya soporta en KYB (LatAm, África, Europa, según
+// docs.conduit.financial/kyb/map) y que se habilitan a partir del 15 de octubre. La rama
+// genérica de abajo (SWIFT/BIC + cuenta) corresponde exactamente a ese riel "swift" —
+// no es un placeholder inventado. Aun así, Conduit expone un endpoint dinámico
+// (GET /payouts/requirements?purpose=X&rail=Y&recipientType=individual, con validadores
+// "aba" e "iban" ya confirmados ahí) para el listado EXACTO de campos por país — cuando
+// se integre Conduit de verdad, ese endpoint debe ser la fuente de verdad final, no esta
+// validación local. Conduit no lista Bre-B/Colombia como riel propio; ese corredor seguiría
+// dependiendo de Bridge.
 
 export interface AccountDetails {
   recipient_name?: string;
@@ -79,11 +94,18 @@ export function validateUkAccount(sortCode: string, accountNumber: string): Vali
   return { isValid: true };
 }
 
-// ── Genérico — resto de corredores (preparado para Conduit): formato SWIFT/BIC
-// (8 u 11 caracteres) + número de cuenta no vacío. Sin checksum matemático disponible. ──
-export function validateGenericSwift(bic: string, accountNumber: string): ValidationResult {
+// ── BIC/SWIFT — formato (8 u 11 caracteres). Sin checksum matemático disponible. ──
+export function validateBic(bic: string): ValidationResult {
   const clean = (bic ?? "").toUpperCase().replace(/\s/g, "");
   if (!/^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/.test(clean)) return { isValid: false, errorKey: "bic_format" };
+  return { isValid: true };
+}
+
+// ── Genérico — resto de corredores (preparado para Conduit): SWIFT/BIC + número de
+// cuenta no vacío. ─────────────────────────────────────────────────────────────
+export function validateGenericSwift(bic: string, accountNumber: string): ValidationResult {
+  const r = validateBic(bic);
+  if (!r.isValid) return r;
   if (!accountNumber || accountNumber.trim().length < 4) return { isValid: false, errorKey: "account_format" };
   return { isValid: true };
 }
@@ -102,44 +124,82 @@ export function validateAccountDetails(country: string, details: AccountDetails)
     return { isValid: true };
   }
   if (cc === "GB") return validateUkAccount(details.sort_code ?? "", details.account_number ?? "");
-  if (SEPA.has(cc)) return validateIban(details.iban ?? "");
+  if (SEPA.has(cc)) {
+    // Bridge exige BIC para SEPA (providers/bridge/liquidation.ts: "iban.bic: required by
+    // Bridge API") — a diferencia de la regla general europea (IBAN solo desde 2016), aquí
+    // sí es obligatorio o el depósito real fallaría en Bridge más adelante.
+    if (!details.iban || !details.bic) return { isValid: false, errorKey: "missing_fields" };
+    const ibanResult = validateIban(details.iban);
+    if (!ibanResult.isValid) return ibanResult;
+    return validateBic(details.bic);
+  }
   if (cc === "BR") {
     // PIX key: CPF/CNPJ/email/teléfono/clave aleatoria — sin checksum único posible, solo no-vacío.
     if (!details.pix_key || details.pix_key.trim().length < 5) return { isValid: false, errorKey: "pix_format" };
     return { isValid: true };
   }
   if (cc === "CO") {
-    if (!details.account_number || onlyDigits(details.account_number).length < 6) return { isValid: false, errorKey: "account_format" };
+    // Bridge usa el sistema Bre-B de Colombia (account_type: "bre_b", campo bre_b_key) —
+    // Bridge no documenta un formato único: puede ser teléfono, cédula, email o clave
+    // aleatoria (mismo patrón que PIX en Brasil). Solo validamos que no esté vacío.
+    if (!details.account_number || details.account_number.trim().length < 5) return { isValid: false, errorKey: "account_format" };
     return { isValid: true };
   }
   // Resto del mundo (Conduit, próximamente) — validador genérico SWIFT/BIC.
   return validateGenericSwift(details.bic ?? "", details.account_number ?? "");
 }
 
-// Parsea lo que el usuario escribió en un solo mensaje de WhatsApp (separado por espacios)
-// según el formato esperado por el país destino. No valida — solo estructura los campos
-// para que validateAccountDetails() los revise después.
-export function parseAccountInput(country: string, text: string): AccountDetails {
-  const cc = country.toUpperCase();
-  const tokens = text.trim().split(/\s+/);
-  const SEPA = new Set(["DE","FR","ES","IT","NL","PT","BE","AT","IE","FI","GR","CY","EE","LV","LT","LU","MT","SK","SI","HR","SE","DK","NO","PL","CZ","HU","RO","BG","CH","IS","LI"]);
+// Un solo dato por mensaje (no "los dos separados por un espacio") — más natural en un
+// chat. Países de un solo dato (MX/CO/BR/SEPA/genérico): un mensaje. Países de dos datos
+// (US: routing→account · GB: sort code→account): dos mensajes, uno a la vez — ver
+// TWO_FIELD_COUNTRIES en el webhook y parseAccountField()/mergeAccountField() aquí.
+const SEPA_SET = new Set(["DE","FR","ES","IT","NL","PT","BE","AT","IE","FI","GR","CY","EE","LV","LT","LU","MT","SK","SI","HR","SE","DK","NO","PL","CZ","HU","RO","BG","CH","IS","LI"]);
 
-  if (cc === "MX") return { clabe: tokens[0] ?? "" };
-  if (cc === "US") return { routing_number: tokens[0] ?? "", account_number: tokens[1] ?? "" };
-  if (cc === "GB") return { sort_code: tokens[0] ?? "", account_number: tokens[1] ?? "" };
-  if (SEPA.has(cc)) return { iban: tokens[0] ?? "", bic: tokens[1] };
-  if (cc === "BR") return { pix_key: text.trim() };
-  if (cc === "CO") return { account_number: tokens[0] ?? "" };
-  return { bic: tokens[0] ?? "", account_number: tokens[1] ?? "" };
+// Primer (y a veces único) dato que se pide para un país.
+export function parseAccountField(country: string, text: string): AccountDetails {
+  const cc = country.toUpperCase();
+  const value = text.trim();
+
+  if (cc === "MX") return { clabe: value };
+  if (cc === "US") return { routing_number: value };
+  if (cc === "GB") return { sort_code: value };
+  if (SEPA_SET.has(cc)) return { iban: value };
+  if (cc === "BR") return { pix_key: value };
+  if (cc === "CO") return { account_number: value };
+  return { bic: value };
+}
+
+// Segundo dato — se combina con lo que ya se guardó en la sesión. Para SEPA el segundo
+// dato es el BIC (obligatorio para Bridge); para todo lo demás (US/GB/genérico) es el
+// número de cuenta.
+export function mergeSecondAccountField(country: string, existing: AccountDetails, text: string): AccountDetails {
+  const cc = country.toUpperCase();
+  if (SEPA_SET.has(cc)) return { ...existing, bic: text.trim() };
+  return { ...existing, account_number: text.trim() };
+}
+
+// Clave de traducción para pedir el SEGUNDO dato — depende del país (BIC para SEPA,
+// "Account Number" para el resto).
+export function secondAccountPromptKey(country: string): string {
+  const cc = country.toUpperCase();
+  if (SEPA_SET.has(cc)) return "ask_bic";
+  return "ask_account_number";
+}
+
+// Compatibilidad hacia atrás — ya no se usa para pedir, pero validateAccountDetails()
+// sigue esperando el objeto AccountDetails completo con todos los campos ya juntados.
+export function parseAccountInput(country: string, text: string): AccountDetails {
+  return parseAccountField(country, text);
 }
 
 // Qué le pedimos al usuario según el país — usado para elegir la clave de traducción correcta.
+// Para países de dos datos, esto es SOLO el primer campo (el segundo usa "ask_account_number").
 export function accountPromptKey(country: string): string {
   const cc = country.toUpperCase();
-  const SEPA = new Set(["DE","FR","ES","IT","NL","PT","BE","AT","IE","FI","GR","CY","EE","LV","LT","LU","MT","SK","SI","HR","SE","DK","NO","PL","CZ","HU","RO","BG","CH","IS","LI"]);
+  const SEPA = SEPA_SET;
   if (cc === "MX") return "ask_account_mx";
-  if (cc === "US") return "ask_account_us";
-  if (cc === "GB") return "ask_account_gb";
+  if (cc === "US") return "ask_routing_number";
+  if (cc === "GB") return "ask_sort_code";
   if (SEPA.has(cc)) return "ask_account_sepa";
   if (cc === "BR") return "ask_account_br";
   if (cc === "CO") return "ask_account_co";
@@ -153,7 +213,7 @@ export function maskedAccountSummary(country: string, details: AccountDetails): 
   if (cc === "MX") return `CLABE ${maskAccount(details.clabe ?? "")}`;
   if (cc === "US") return `Routing ${details.routing_number ?? ""} · Cuenta ${maskAccount(details.account_number ?? "")}`;
   if (cc === "GB") return `Sort code ${details.sort_code ?? ""} · Cuenta ${maskAccount(details.account_number ?? "")}`;
-  if (SEPA.has(cc)) return `IBAN ${maskAccount(details.iban ?? "")}`;
+  if (SEPA.has(cc)) return `IBAN ${maskAccount(details.iban ?? "")} · BIC ${details.bic ?? ""}`;
   if (cc === "BR") return `PIX ${maskAccount(details.pix_key ?? "")}`;
   if (cc === "CO") return `Cuenta ${maskAccount(details.account_number ?? "")}`;
   return `${details.bic ?? ""} · Cuenta ${maskAccount(details.account_number ?? "")}`;
