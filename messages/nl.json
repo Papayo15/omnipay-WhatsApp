@@ -1219,7 +1219,7 @@
     "status_no_order": "Ik heb geen recente overboeking voor je gevonden. Stuur je ordernummer (begint met *OP-*), of start een nieuwe overboeking door een bedrag en land te schrijven.",
     "status_not_found": "Ik kon geen overboeking vinden met dat ordernummer. Controleer het en probeer opnieuw.",
     "status_error": "Er ging iets mis bij het opzoeken van je overboekingsstatus. Probeer het zo opnieuw.",
-    "compare_usage": "📊 Om te vergelijken, schrijf zo:\n\"comparar [bedrag] [valuta] [land]\" (bijv. comparar 200 USD Mexico)\n\nIk laat je zien hoeveel meer je ontvanger krijgt met OmniPay vs. de traditionele bank.",
+    "compare_usage": "📊 Om te vergelijken, schrijf zo:\n\"comparar [bedrag] [valuta die je verstuurt] [land van de ontvanger]\" (bijv. comparar 200 USD Mexico → je stuurt 200 USD, je ontvanger zit in Mexico)\n\nIk laat je zien hoeveel meer je ontvanger krijgt met OmniPay vs. een traditionele geldtransferdienst.",
     "compare_error": "Ik kon nu geen vergelijking maken. Probeer het zo opnieuw.",
     "compare_reply": "🔎 Vergelijking voor het versturen van {amount} {currency} naar {country_name} ({country_code}):\n\n⚡ Met OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Traditionele geldtransferdienst (schatting): {competitor_amount} {recipient_currency}\n\n💰 Je ontvanger krijgt bij ons +{savings} {recipient_currency} extra.\n\n----------------------------------\nWat wil je nu doen?\n👉 Antwoord met *JA* om deze {amount} {currency} nu te versturen.\n👉 Of schrijf een andere vergelijking (bijv. comparar 500 USD Colombia) of \"1\" voor het menu.",
     "compare_hint": "🔎 Wil je eerst alleen vergelijken? Schrijf: *comparar 200 USD Mexico*",

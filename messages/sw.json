@@ -1219,7 +1219,7 @@
     "status_no_order": "Sina uhamisho wa hivi karibuni uliosajiliwa kwa ajili yako. Tuma namba yako ya oda (inaanza na *OP-*), au anzisha uhamisho mpya kwa kuandika kiasi na nchi.",
     "status_not_found": "Sikupata uhamisho wowote na namba hiyo ya oda. Ikague tena na ujaribu tena.",
     "status_error": "Kuna hitilafu wakati wa kukagua hali ya uhamisho wako. Tafadhali jaribu tena baada ya muda.",
-    "compare_usage": "📊 Kulinganisha, andika hivi:\n\"comparar [kiasi] [sarafu] [nchi]\" (mfano: comparar 200 USD Mexico)\n\nNitakuonyesha ni kiasi gani zaidi mpokeaji wako anapata kwa OmniPay ikilinganishwa na benki ya kawaida.",
+    "compare_usage": "📊 Kulinganisha, andika hivi:\n\"comparar [kiasi] [sarafu unayotuma] [nchi ya mpokeaji]\" (mfano: comparar 200 USD Mexico → unatuma USD 200, mpokeaji wako yuko Mexico)\n\nNitakuonyesha ni kiasi gani zaidi mpokeaji wako anapata kwa OmniPay ikilinganishwa na kampuni ya kawaida ya kutuma pesa.",
     "compare_error": "Sikuweza kutengeneza ulinganisho kwa sasa. Tafadhali jaribu tena baada ya muda.",
     "compare_reply": "🔎 Ulinganisho wa kutuma {amount} {currency} kwenda {country_name} ({country_code}):\n\n⚡ Kwa OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Kampuni ya kawaida ya kutuma pesa (makadirio): {competitor_amount} {recipient_currency}\n\n💰 Mpokeaji wako anapata +{savings} {recipient_currency} zaidi kwetu.\n\n----------------------------------\nUnataka kufanya nini sasa?\n👉 Jibu *NDIYO* kutuma {amount} {currency} hii sasa.\n👉 Au andika ulinganisho mwingine (mfano: comparar 500 USD Colombia) au \"1\" kwa menyu.",
     "compare_hint": "🔎 Unataka tu kulinganisha kabla ya kuamua? Andika: *comparar 200 USD Mexico*",

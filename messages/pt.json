@@ -1218,7 +1218,7 @@
     "status_no_order": "Não encontrei nenhum envio recente registrado para você. Envie seu número de pedido (começa com *OP-*), ou inicie um novo envio escrevendo um valor e país.",
     "status_not_found": "Não encontrei nenhum envio com esse número de pedido. Confira e tente de novo.",
     "status_error": "Algo deu errado ao consultar o status do seu envio. Tente novamente em instantes.",
-    "compare_usage": "📊 Para comparar, escreva assim:\n\"comparar [valor] [moeda] [país]\" (ex: comparar 200 USD México)\n\nMostro quanto a mais seu destinatário recebe com a OmniPay em comparação com o banco tradicional.",
+    "compare_usage": "📊 Para comparar, escreva assim:\n\"comparar [valor] [moeda que você envia] [país do destinatário]\" (ex: comparar 200 USD México → você envia 200 USD, seu destinatário está no México)\n\nMostro quanto a mais seu destinatário recebe com a OmniPay em comparação com uma remessa tradicional.",
     "compare_error": "Não consegui gerar a comparação agora. Tente novamente em instantes.",
     "compare_reply": "🔎 Comparativo para enviar {amount} {currency} para {country_name} ({country_code}):\n\n⚡ Com a OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Remessa tradicional (estimativa): {competitor_amount} {recipient_currency}\n\n💰 Seu destinatário recebe +{savings} {recipient_currency} a mais com a gente.\n\n----------------------------------\nO que você quer fazer agora?\n👉 Responda *SIM* para enviar esses {amount} {currency} agora.\n👉 Ou escreva outra cotação (ex: comparar 500 USD Colômbia) ou \"1\" para o menu.",
     "compare_hint": "🔎 Só quer comparar antes de decidir? Escreva: *comparar 200 USD México*",

@@ -1219,7 +1219,7 @@
     "status_no_order": "最近の送金記録が見つかりませんでした。注文番号（*OP-*で始まります）を送るか、金額と国を書いて新しい送金を始めてください。",
     "status_not_found": "その注文番号の送金が見つかりませんでした。確認してもう一度お試しください。",
     "status_error": "送金状況の確認中に問題が発生しました。少ししてからもう一度お試しください。",
-    "compare_usage": "📊 比較するには、このように書いてください：\n「comparar [金額] [通貨] [国]」（例：comparar 200 USD メキシコ）\n\nOmniPayと従来の銀行を比べて、受取人がどれだけ多く受け取れるかをお見せします。",
+    "compare_usage": "📊 比較するには、このように書いてください：\n「comparar [金額] [送金する通貨] [受取人の国]」（例：comparar 200 USD メキシコ → 200 USDを送金し、受取人はメキシコにいます）\n\nOmniPayと従来の送金会社を比べて、受取人がどれだけ多く受け取れるかをお見せします。",
     "compare_error": "今は比較を作成できませんでした。少ししてからもう一度お試しください。",
     "compare_reply": "🔎 {amount} {currency} を {country_name}（{country_code}）に送る場合の比較：\n\n⚡ OmniPayの場合：{omnipay_amount} {recipient_currency}\n🐌 従来の送金会社（概算）：{competitor_amount} {recipient_currency}\n\n💰 当社なら受取人は +{savings} {recipient_currency} 多く受け取れます。\n\n----------------------------------\n次にどうしますか？\n👉 この {amount} {currency} を今すぐ送るには「はい」と返信してください。\n👉 または他の比較を書く（例：comparar 500 USD コロンビア）か、メニューに戻るには「1」と書いてください。",
     "compare_hint": "🔎 決める前にまず比較したいだけですか？ 書いてください: *comparar 200 USD メキシコ*",

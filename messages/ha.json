@@ -1218,7 +1218,7 @@
     "status_no_order": "Ba ni da wani canja wuri na kwanan nan da aka yi rajista maka. Aika lambar oda (tana farawa da *OP-*), ko fara sabon canja wuri ta rubuta adadi da ƙasa.",
     "status_not_found": "Ban sami wani canja wuri da wannan lambar oda ba. Sake dubawa ka gwada.",
     "status_error": "Wani abu ya faru ba daidai ba wajen bincika matsayin canja wurinka. Sake gwadawa bayan ɗan lokaci.",
-    "compare_usage": "📊 Don kwatanta, rubuta kamar haka:\n\"comparar [adadi] [kuɗi] [ƙasa]\" (misali: comparar 200 USD Mexico)\n\nZan nuna maka nawa mai karɓarka zai samu ƙari da OmniPay idan aka kwatanta da banki na gargajiya.",
+    "compare_usage": "📊 Don kwatanta, rubuta kamar haka:\n\"comparar [adadi] [kuɗin da kake aikawa] [ƙasar mai karɓa]\" (misali: comparar 200 USD Mexico → kana aika USD 200, mai karɓarka yana Mexico)\n\nZan nuna maka nawa mai karɓarka zai samu ƙari da OmniPay idan aka kwatanta da kamfanin canja wurin kuɗi na gargajiya.",
     "compare_error": "Ban iya samar da kwatance a yanzu ba. Sake gwadawa bayan ɗan lokaci.",
     "compare_reply": "🔎 Kwatance don aika {amount} {currency} zuwa {country_name} ({country_code}):\n\n⚡ Da OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Kamfanin canja wurin kuɗi na gargajiya (ƙiyasi): {competitor_amount} {recipient_currency}\n\n💰 Mai karɓarka yana samun +{savings} {recipient_currency} ƙari tare da mu.\n\n----------------------------------\nMe kake son yi yanzu?\n👉 Amsa da *I* don aika wannan {amount} {currency} yanzu.\n👉 Ko rubuta wani kwatance (misali: comparar 500 USD Colombia) ko \"1\" don menu.",
     "compare_hint": "🔎 Kana son kwatanta kawai kafin ka yanke shawara? Rubuta: *comparar 200 USD Mexico*",

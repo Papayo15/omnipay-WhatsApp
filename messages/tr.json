@@ -1219,7 +1219,7 @@
     "status_no_order": "Senin için kayıtlı yakın zamanda bir transfer bulamadım. Sipariş numaranı gönder (*OP-* ile başlar), ya da bir tutar ve ülke yazarak yeni bir transfer başlat.",
     "status_not_found": "Bu sipariş numarasıyla bir transfer bulamadım. Kontrol edip tekrar dene.",
     "status_error": "Transfer durumunu kontrol ederken bir sorun oluştu. Lütfen biraz sonra tekrar dene.",
-    "compare_usage": "📊 Karşılaştırmak için şöyle yaz:\n\"comparar [tutar] [para birimi] [ülke]\" (örn: comparar 200 USD Meksika)\n\nAlıcının OmniPay ile geleneksel bankacılığa göre ne kadar daha fazla aldığını göstereyim.",
+    "compare_usage": "📊 Karşılaştırmak için şöyle yaz:\n\"comparar [tutar] [gönderdiğin para birimi] [alıcının ülkesi]\" (örn: comparar 200 USD Meksika → 200 USD gönderiyorsun, alıcın Meksika'da)\n\nAlıcının OmniPay ile geleneksel bir para transfer şirketine göre ne kadar daha fazla aldığını göstereyim.",
     "compare_error": "Şu anda karşılaştırma oluşturamadım. Lütfen biraz sonra tekrar dene.",
     "compare_reply": "🔎 {amount} {currency} tutarını {country_name} ({country_code}) ülkesine gönderme karşılaştırması:\n\n⚡ OmniPay ile: {omnipay_amount} {recipient_currency}\n🐌 Geleneksel para transfer şirketi (tahmini): {competitor_amount} {recipient_currency}\n\n💰 Alıcın bizimle +{savings} {recipient_currency} fazladan alıyor.\n\n----------------------------------\nŞimdi ne yapmak istersin?\n👉 Bu {amount} {currency} tutarını şimdi göndermek için *EVET* yaz.\n👉 Ya da başka bir karşılaştırma yaz (örn: comparar 500 USD Kolombiya) veya menü için \"1\" yaz.",
     "compare_hint": "🔎 Karar vermeden önce sadece karşılaştırmak mı istiyorsun? Yaz: *comparar 200 USD Meksika*",

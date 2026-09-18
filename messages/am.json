@@ -1219,7 +1219,7 @@
     "status_no_order": "የቅርብ ጊዜ ዝውውር ለእርስዎ አላገኘሁም። የትዕዛዝ ቁጥርዎን ይላኩ (በ *OP-* ይጀምራል)፣ ወይም መጠን እና ሀገር በመጻፍ አዲስ ዝውውር ይጀምሩ።",
     "status_not_found": "በዚያ የትዕዛዝ ቁጥር ምንም ዝውውር አላገኘሁም። እንደገና ያረጋግጡ እና ይሞክሩ።",
     "status_error": "የዝውውርዎን ሁኔታ በማጣራት ላይ ችግር ተከስቷል። እባክዎ ከጥቂት ጊዜ በኋላ እንደገና ይሞክሩ።",
-    "compare_usage": "📊 ለማወዳደር፣ እንደዚህ ይጻፉ:\n\"comparar [መጠን] [ገንዘብ] [ሀገር]\" (ለምሳሌ: comparar 200 USD ሜክሲኮ)\n\nከባህላዊ ባንክ ጋር ሲነጻጸር ተቀባይዎ በOmniPay ምን ያህል ተጨማሪ እንደሚያገኝ አሳይዎታለሁ።",
+    "compare_usage": "📊 ለማወዳደር፣ እንደዚህ ይጻፉ:\n\"comparar [መጠን] [የሚልኩት ገንዘብ] [የተቀባይ ሀገር]\" (ለምሳሌ: comparar 200 USD ሜክሲኮ → 200 USD እየላኩ ነው፣ ተቀባይዎ ሜክሲኮ ውስጥ ነው)\n\nከባህላዊ የገንዘብ መላኪያ ኩባንያ ጋር ሲነጻጸር ተቀባይዎ በOmniPay ምን ያህል ተጨማሪ እንደሚያገኝ አሳይዎታለሁ።",
     "compare_error": "አሁን ንጽጽር ማዘጋጀት አልቻልኩም። እባክዎ ከጥቂት ጊዜ በኋላ እንደገና ይሞክሩ።",
     "compare_reply": "🔎 {amount} {currency} ወደ {country_name} ({country_code}) ለመላክ ንጽጽር:\n\n⚡ በOmniPay: {omnipay_amount} {recipient_currency}\n🐌 ባህላዊ የገንዘብ መላኪያ (ግምት): {competitor_amount} {recipient_currency}\n\n💰 ተቀባይዎ ከእኛ ጋር +{savings} {recipient_currency} ተጨማሪ ያገኛል።\n\n----------------------------------\nአሁን ምን ማድረግ ይፈልጋሉ?\n👉 ይህን {amount} {currency} አሁን ለመላክ *አዎ* ብለው ይመልሱ።\n👉 ወይም ሌላ ንጽጽር ይጻፉ (ለምሳሌ: comparar 500 USD ኮሎምቢያ) ወይም ለምናሌ \"1\" ይጻፉ።",
     "compare_hint": "🔎 ከመወሰንዎ በፊት ማወዳደር ብቻ ይፈልጋሉ? ይጻፉ: *comparar 200 USD ሜክሲኮ*",

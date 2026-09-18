@@ -1219,7 +1219,7 @@
     "status_no_order": "Tôi không có giao dịch gần đây nào của bạn. Gửi số đơn hàng (bắt đầu bằng *OP-*), hoặc bắt đầu giao dịch mới bằng cách nhập số tiền và quốc gia.",
     "status_not_found": "Tôi không tìm thấy giao dịch nào với số đơn hàng đó. Kiểm tra lại và thử lại.",
     "status_error": "Đã có lỗi khi kiểm tra trạng thái giao dịch của bạn. Vui lòng thử lại sau một chút.",
-    "compare_usage": "📊 Để so sánh, viết thế này:\n\"comparar [số tiền] [tiền tệ] [quốc gia]\" (vd: comparar 200 USD Mexico)\n\nTôi sẽ cho bạn thấy người nhận của bạn nhận được nhiều hơn bao nhiêu với OmniPay so với ngân hàng truyền thống.",
+    "compare_usage": "📊 Để so sánh, viết thế này:\n\"comparar [số tiền] [loại tiền bạn gửi] [quốc gia của người nhận]\" (vd: comparar 200 USD Mexico → bạn gửi 200 USD, người nhận ở Mexico)\n\nTôi sẽ cho bạn thấy người nhận của bạn nhận được nhiều hơn bao nhiêu với OmniPay so với dịch vụ chuyển tiền truyền thống.",
     "compare_error": "Tôi không thể tạo so sánh lúc này. Vui lòng thử lại sau một chút.",
     "compare_reply": "🔎 So sánh khi gửi {amount} {currency} đến {country_name} ({country_code}):\n\n⚡ Với OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Dịch vụ chuyển tiền truyền thống (ước tính): {competitor_amount} {recipient_currency}\n\n💰 Người nhận của bạn nhận thêm +{savings} {recipient_currency} khi dùng chúng tôi.\n\n----------------------------------\nBạn muốn làm gì bây giờ?\n👉 Trả lời *CÓ* để gửi {amount} {currency} này ngay bây giờ.\n👉 Hoặc viết một báo giá khác (vd: comparar 500 USD Colombia) hoặc \"1\" để vào menu.",
     "compare_hint": "🔎 Chỉ muốn so sánh trước khi quyết định? Viết: *comparar 200 USD Mexico*",
