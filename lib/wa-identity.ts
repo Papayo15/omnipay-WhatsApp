@@ -135,3 +135,34 @@ export async function getPendingTransfer(email: string): Promise<PendingTransfer
     return null;
   }
 }
+
+// ── Ventana de servicio de WhatsApp (texto libre vs. plantilla) ──────────────────
+// Meta: "cuando un usuario te escribe, arranca una ventana de servicio de 24 horas.
+// Si te vuelve a escribir antes de que expire, la ventana se reinicia a 24 horas
+// completas. Mientras esté abierta, puedes mandar texto libre; una vez cerrada, solo
+// plantillas aprobadas." (Meta Business Docs — Conversation windows; confirmado por
+// búsqueda, no asumido). Guardamos el timestamp real del último mensaje — no una
+// base de datos de usuarios (Supabase/Postgres), sino el mismo tipo de puntero corto
+// en Redis que ya usa este archivo para teléfono↔email, con TTL de limpieza de 48h
+// (el doble de la ventana, solo para no dejar basura si Redis nunca expira algo).
+const MESSAGE_WINDOW_MS = 24 * 60 * 60 * 1000;
+const LAST_MESSAGE_TTL_SECONDS = 48 * 3600;
+
+export async function recordLastMessage(waId: string): Promise<void> {
+  try {
+    const redis = await getRedis();
+    await redis.set(`wa:lastmsg:${hashPhone(waId)}`, String(Date.now()), { EX: LAST_MESSAGE_TTL_SECONDS });
+  } catch { /* non-critical — peor caso: usamos plantilla cuando texto libre habría bastado */ }
+}
+
+export async function isWithinMessageWindow(waId: string): Promise<boolean> {
+  try {
+    const redis = await getRedis();
+    const raw = await redis.get(`wa:lastmsg:${hashPhone(waId)}`);
+    if (!raw) return false;
+    const lastMessageAt = Number(raw);
+    return Date.now() - lastMessageAt < MESSAGE_WINDOW_MS;
+  } catch {
+    return false; // conservador: si no podemos confirmarlo, usamos plantilla (nunca falla)
+  }
+}

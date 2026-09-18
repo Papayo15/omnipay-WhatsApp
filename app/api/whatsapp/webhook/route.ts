@@ -39,7 +39,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getRedis }                  from "@/lib/redis";
 import { sendWhatsAppMessage }       from "@/lib/whatsapp";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
-import { getEmailForPhone, setEmailForPhone, setPendingTransfer, hashPhone } from "@/lib/wa-identity";
+import { getEmailForPhone, setEmailForPhone, setPendingTransfer, hashPhone, recordLastMessage } from "@/lib/wa-identity";
 import { findCustomerByEmail }       from "@/providers/bridge/customers";
 import { getCountry }                from "@/constants/countries";
 import {
@@ -295,6 +295,11 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   const text = String(((msg.text as Record<string,string>)?.body ?? "")).trim();
   if (!text || !waId) return NextResponse.json({ ok: true });
+
+  // Cada mensaje real del usuario reinicia la ventana de servicio de 24h (lib/wa-identity.ts)
+  // — así los avisos proactivos (KYC aprobado, recompensa de referido) saben si pueden
+  // mandar texto libre o si ya toca usar la plantilla aprobada de Meta.
+  await recordLastMessage(waId);
 
   const session = await getSession(waId);
   const locale = session?.locale ?? localeFromPhone(waId);

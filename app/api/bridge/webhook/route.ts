@@ -19,9 +19,9 @@ import { updateOrder, getOrderAsync, createOrder } from "@/lib/order-state";
 import { sendAdminWhatsApp, sendEmailNotification } from "@/lib/notify";
 import { buildReceiptURL }                      from "@/lib/link";
 import { emailStrings }                         from "@/lib/email-i18n";
-import { sendWhatsAppTemplate, templateLanguageCode } from "@/lib/whatsapp";
-import { localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
-import { getPendingTransfer }                   from "@/lib/wa-identity";
+import { sendWhatsAppMessage, sendWhatsAppTemplate, templateLanguageCode } from "@/lib/whatsapp";
+import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
+import { getPendingTransfer, isWithinMessageWindow }        from "@/lib/wa-identity";
 import { getCountry }                           from "@/constants/countries";
 
 // Node.js runtime required — redis package uses Node TCP sockets (incompatible with Edge)
@@ -256,12 +256,21 @@ export async function POST(req: NextRequest): Promise<Response> {
           const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
           const destCurrency = getCountry(pending.country)?.currency ?? pending.country;
           const link = `${appUrl}/enviar?email=${encodeURIComponent(email)}&currency=${pending.currency}&country=${pending.country}&amount=${pending.amount}`;
-          // Business-initiated — Bridge fires this whenever it fires, possibly outside the
-          // 24h customer-service window, so this MUST go through the approved template
-          // (kyc_approved_notification), not free text (see lib/whatsapp.ts).
-          await sendWhatsAppTemplate(pending.waId, "kyc_approved_notification", templateLanguageCode(locale), [
-            String(pending.amount), pending.currency, destCurrency, link,
-          ]);
+          // Business-initiated — Bridge fires this whenever it fires. Si el usuario sigue
+          // dentro de su ventana de servicio de 24h (nos escribió hace poco, ej. aprobación
+          // en 5 min mientras seguía en el chat) mandamos texto libre normal — gratis, sin
+          // esperar aprobación de plantilla. Si ya pasaron las 24h, la plantilla aprobada
+          // (kyc_approved_notification) es obligatoria — texto libre fallaría en silencio.
+          if (await isWithinMessageWindow(pending.waId)) {
+            const t = await getWaTranslator(locale);
+            await sendWhatsAppMessage(pending.waId, t("kyc_approved_notification", {
+              amount: pending.amount, currency: pending.currency, country: destCurrency, link,
+            }));
+          } else {
+            await sendWhatsAppTemplate(pending.waId, "kyc_approved_notification", templateLanguageCode(locale), [
+              String(pending.amount), pending.currency, destCurrency, link,
+            ]);
+          }
         }
       } catch (e) {
         console.error("[bridge/webhook] WhatsApp approval notification failed:", (e as Error).message);
@@ -344,10 +353,14 @@ export async function handleCompletion(orderId: string, data: Record<string, unk
   if (order?.referralCode) {
     try {
       const referrerLocale = localeFromPhone(order.referralCode);
-      // Business-initiated, fires whenever the referred transfer completes — could be
-      // days after the referrer last messaged the bot, so this MUST go through the
-      // approved template too (see lib/whatsapp.ts).
-      await sendWhatsAppTemplate(order.referralCode, "referral_reward", templateLanguageCode(referrerLocale));
+      // Igual que el aviso de KYC arriba: texto libre si el referidor sigue dentro de su
+      // ventana de 24h, plantilla aprobada si no (la recompensa puede llegar días después).
+      if (await isWithinMessageWindow(order.referralCode)) {
+        const tw = await getWaTranslator(referrerLocale);
+        await sendWhatsAppMessage(order.referralCode, tw("referral_reward"));
+      } else {
+        await sendWhatsAppTemplate(order.referralCode, "referral_reward", templateLanguageCode(referrerLocale));
+      }
     } catch (e) {
       console.error("[bridge/webhook] Referral reward notification failed:", (e as Error).message);
     }
