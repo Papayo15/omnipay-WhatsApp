@@ -1208,7 +1208,9 @@
     "label_pix": "Ufunguo wa PIX",
     "confirmed_deposit_footer": "{recipient_name} atapokea {recipient_amount} {recipient_currency}. Mara tu tukithibitisha malipo yako, tutakujulisha hapa.\n\n_OmniPay haihifadhi taarifa zako za benki._",
     "currency_not_supported_source": "Bado hatuwezi kupokea malipo kwa {currency} kwa uhamisho huu. Jaribu tena kwa USD, EUR, GBP, MXN au BRL.",
-    "deposit_error": "Kuna hitilafu wakati wa kutengeneza maagizo yako ya malipo. Jibu tena *NDIYO* baada ya muda, au anza upya."
+    "deposit_error": "Kuna hitilafu wakati wa kutengeneza maagizo yako ya malipo. Jibu tena *NDIYO* baada ya muda, au anza upya.",
+    "confirmed_deposit_reusable": "💡 Hifadhi akaunti hii katika programu ya benki yako — ni yako milele. Unaweza kuitumia tena mara nyingi upendavyo kutuma pesa kwa {recipient_name} — fungua tu benki yako na ubadilishe kiasi, bila kuhitaji kuandika tena hapa.",
+    "greeting_reuse_hint": "💡 Umeshamtumia pesa mpokeaji huyu hapo awali? Hakuna haja ya kuandika tena — tumia akaunti ile ile kutoka programu ya benki yako."
   },
   "kyc": {
     "title": "Thibitisha utambulisho wako",

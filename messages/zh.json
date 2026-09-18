@@ -1208,7 +1208,9 @@
     "label_pix": "PIX密钥",
     "confirmed_deposit_footer": "{recipient_name} 将收到 {recipient_amount} {recipient_currency}。存款确认后，我们会在这里通知你。\n\n_OmniPay 不会存储你的银行信息。_",
     "currency_not_supported_source": "此次转账暂不支持 {currency} 存款。请改用 USD、EUR、GBP、MXN 或 BRL 重试。",
-    "deposit_error": "生成存款说明时出了点问题。请稍后再回复“是”，或者重新开始。"
+    "deposit_error": "生成存款说明时出了点问题。请稍后再回复“是”，或者重新开始。",
+    "confirmed_deposit_reusable": "💡 把这个账户保存到你的银行App里——它永久属于你。以后给{recipient_name}汇款可以随时重复使用，只需打开银行App修改金额，无需再来这里给我们发消息。",
+    "greeting_reuse_hint": "💡 之前给这个收款人汇过款？无需再联系我们——直接在银行App里使用同一个账户即可。"
   },
   "kyc": {
     "title": "验证您的身份",

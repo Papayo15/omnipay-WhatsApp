@@ -1208,7 +1208,9 @@
     "label_pix": "PIX-Schlüssel",
     "confirmed_deposit_footer": "{recipient_name} erhält {recipient_amount} {recipient_currency}. Sobald deine Einzahlung bestätigt ist, melden wir uns hier.\n\n_OmniPay speichert deine Bankdaten nicht._",
     "currency_not_supported_source": "Wir können für diese Überweisung noch keine Einzahlungen in {currency} annehmen. Versuche es erneut mit USD, EUR, GBP, MXN oder BRL.",
-    "deposit_error": "Beim Erstellen deiner Einzahlungsanweisungen ist etwas schiefgelaufen. Antworte gleich noch einmal mit *JA*, oder fang neu an."
+    "deposit_error": "Beim Erstellen deiner Einzahlungsanweisungen ist etwas schiefgelaufen. Antworte gleich noch einmal mit *JA*, oder fang neu an.",
+    "confirmed_deposit_reusable": "💡 Speichere dieses Konto in deiner Banking-App — es gehört dir dauerhaft. Du kannst es beliebig oft wiederverwenden, um an {recipient_name} zu senden — öffne einfach deine Banking-App und ändere den Betrag, ohne uns hier erneut zu schreiben.",
+    "greeting_reuse_hint": "💡 Schon einmal an diesen Empfänger gesendet? Du musst uns nicht erneut schreiben — nutze einfach dasselbe Konto in deiner Banking-App."
   },
   "kyc": {
     "title": "Verifizieren Sie Ihre Identität",

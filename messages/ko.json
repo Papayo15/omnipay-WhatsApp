@@ -1208,7 +1208,9 @@
     "label_pix": "PIX 키",
     "confirmed_deposit_footer": "{recipient_name}님이 {recipient_amount} {recipient_currency}를 받게 됩니다. 입금이 확인되는 대로 여기로 알려드릴게요.\n\n_OmniPay는 은행 정보를 저장하지 않습니다._",
     "currency_not_supported_source": "이 송금에서는 아직 {currency} 입금을 받을 수 없습니다. USD, EUR, GBP, MXN, BRL 중 하나로 다시 시도해 주세요.",
-    "deposit_error": "입금 안내를 만드는 중 문제가 발생했습니다. 잠시 후 다시 *예*라고 답하거나 처음부터 다시 시작해 주세요."
+    "deposit_error": "입금 안내를 만드는 중 문제가 발생했습니다. 잠시 후 다시 *예*라고 답하거나 처음부터 다시 시작해 주세요.",
+    "confirmed_deposit_reusable": "💡 이 계좌를 은행 앱에 저장하세요 — 영구적으로 사용할 수 있습니다. {recipient_name}님께 보낼 때 몇 번이든 다시 사용할 수 있어요 — 은행 앱을 열고 금액만 바꾸면 되며, 여기로 다시 메시지할 필요는 없습니다.",
+    "greeting_reuse_hint": "💡 이 수취인에게 예전에 보낸 적이 있나요? 다시 메시지할 필요 없어요 — 은행 앱에서 같은 계좌를 그대로 사용하세요."
   },
   "kyc": {
     "title": "신원을 확인하세요",

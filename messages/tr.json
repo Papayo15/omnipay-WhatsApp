@@ -1208,7 +1208,9 @@
     "label_pix": "PIX Anahtarı",
     "confirmed_deposit_footer": "{recipient_name} {recipient_amount} {recipient_currency} alacak. Ödemen onaylanır onaylanmaz buradan haber veririz.\n\n_OmniPay banka bilgilerini saklamaz._",
     "currency_not_supported_source": "Bu transfer için henüz {currency} cinsinden yatırım kabul edemiyoruz. USD, EUR, GBP, MXN veya BRL ile tekrar dene.",
-    "deposit_error": "Yatırım talimatların oluşturulurken bir sorun oluştu. Biraz sonra tekrar *EVET* yaz, ya da baştan başla."
+    "deposit_error": "Yatırım talimatların oluşturulurken bir sorun oluştu. Biraz sonra tekrar *EVET* yaz, ya da baştan başla.",
+    "confirmed_deposit_reusable": "💡 Bu hesabı bankacılık uygulamana kaydet — sonsuza kadar senin. {recipient_name}'e göndermek için istediğin kadar tekrar kullanabilirsin — bankana gir, tutarı değiştir, burada bize tekrar yazmana gerek yok.",
+    "greeting_reuse_hint": "💡 Bu alıcıya daha önce gönderdin mi? Bize tekrar yazmana gerek yok — bankacılık uygulamandan aynı hesabı kullan."
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",

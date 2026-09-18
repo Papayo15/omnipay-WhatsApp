@@ -253,6 +253,12 @@ export async function POST(req: NextRequest): Promise<Response> {
             recipient_amount: (session.recipientGets ?? session.amount).toLocaleString("en-US"),
             recipient_currency: session.recipientCurrency ?? session.currency,
           }),
+          "",
+          // Bridge no genera una ficha nueva cada vez — esta MISMA cuenta es estable para
+          // este destinatario (reutiliza la misma liquidation address/VA). El usuario no
+          // necesita volver a pasar por WhatsApp para sus próximos envíos a la misma
+          // persona: puede guardarla en su banca en línea y solo cambiar el monto ahí.
+          t("confirmed_deposit_reusable", { recipient_name: session.recipientName }),
         ];
         await sendWhatsAppMessage(waId, lines.join("\n"));
       } else {
@@ -351,7 +357,16 @@ export async function POST(req: NextRequest): Promise<Response> {
     // Primer contacto → saludo completo con ejemplos. Ya saludado y sigue sin
     // parsear → mensaje corto de "no entendí" en vez de repetir todo.
     await setSession(waId, { step: 1, locale });
-    await sendWhatsAppMessage(waId, session ? t("parse_error") : t("greeting"));
+    if (session) {
+      await sendWhatsAppMessage(waId, t("parse_error"));
+    } else {
+      // Solo a usuarios recurrentes (ya tienen KYC hecho alguna vez) les recordamos que
+      // no hace falta volver aquí para reenviar al mismo destinatario — un usuario
+      // totalmente nuevo todavía no tiene ningún destinatario que reutilizar.
+      const knownIdentity = await getEmailForPhone(waId);
+      const greetingText = knownIdentity ? `${t("greeting")}\n\n${t("greeting_reuse_hint")}` : t("greeting");
+      await sendWhatsAppMessage(waId, greetingText);
+    }
     return NextResponse.json({ ok: true });
   }
 

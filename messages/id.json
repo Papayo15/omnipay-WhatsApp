@@ -1208,7 +1208,9 @@
     "label_pix": "Kunci PIX",
     "confirmed_deposit_footer": "{recipient_name} akan menerima {recipient_amount} {recipient_currency}. Begitu setoranmu kami konfirmasi, kami kabari di sini.\n\n_OmniPay tidak menyimpan data bankmu._",
     "currency_not_supported_source": "Kami belum bisa menerima setoran dalam {currency} untuk transfer ini. Coba lagi dengan USD, EUR, GBP, MXN, atau BRL.",
-    "deposit_error": "Ada masalah saat membuat instruksi setoranmu. Balas *YA* lagi sebentar lagi, atau mulai ulang."
+    "deposit_error": "Ada masalah saat membuat instruksi setoranmu. Balas *YA* lagi sebentar lagi, atau mulai ulang.",
+    "confirmed_deposit_reusable": "💡 Simpan rekening ini di aplikasi bankmu — ini milikmu selamanya. Kamu bisa menggunakannya berkali-kali untuk mengirim ke {recipient_name} — cukup buka bankmu dan ubah jumlahnya, tanpa perlu chat kami di sini lagi.",
+    "greeting_reuse_hint": "💡 Sudah pernah kirim ke penerima ini sebelumnya? Tidak perlu chat kami lagi — gunakan saja rekening yang sama dari aplikasi bankmu."
   },
   "kyc": {
     "title": "Verifikasi identitas Anda",

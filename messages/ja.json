@@ -1208,7 +1208,9 @@
     "label_pix": "PIXキー",
     "confirmed_deposit_footer": "{recipient_name} は {recipient_amount} {recipient_currency} を受け取ります。入金が確認され次第、こちらでお知らせします。\n\n_OmniPayはあなたの銀行情報を保存しません。_",
     "currency_not_supported_source": "この送金では{currency}での入金にまだ対応していません。USD、EUR、GBP、MXN、BRLのいずれかで再度お試しください。",
-    "deposit_error": "入金案内の作成中に問題が発生しました。少ししてからもう一度「はい」と返信するか、最初からやり直してください。"
+    "deposit_error": "入金案内の作成中に問題が発生しました。少ししてからもう一度「はい」と返信するか、最初からやり直してください。",
+    "confirmed_deposit_reusable": "💡 この口座を銀行アプリに保存してください — ずっと使えます。{recipient_name} への送金に何度でも再利用できます。銀行アプリを開いて金額を変えるだけで、ここに再度メッセージする必要はありません。",
+    "greeting_reuse_hint": "💡 この受取人に以前送金したことがありますか？ 再度メッセージする必要はありません — 銀行アプリから同じ口座を使ってください。"
   },
   "kyc": {
     "title": "本人確認を行ってください",

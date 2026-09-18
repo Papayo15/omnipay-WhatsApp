@@ -1207,7 +1207,9 @@
     "label_pix": "Chave PIX",
     "confirmed_deposit_footer": "{recipient_name} vai receber {recipient_amount} {recipient_currency}. Assim que confirmarmos o seu depósito, avisamos por aqui.\n\n_A OmniPay não guarda seus dados bancários._",
     "currency_not_supported_source": "Ainda não podemos aceitar depósitos em {currency} para este envio. Tente novamente em USD, EUR, GBP, MXN ou BRL.",
-    "deposit_error": "Algo deu errado ao gerar suas instruções de depósito. Responda *SIM* de novo em instantes, ou comece de novo."
+    "deposit_error": "Algo deu errado ao gerar suas instruções de depósito. Responda *SIM* de novo em instantes, ou comece de novo.",
+    "confirmed_deposit_reusable": "💡 Salve esta conta no app do seu banco — ela é sua para sempre. Você pode reutilizá-la quantas vezes quiser para enviar a {recipient_name} — é só abrir seu banco e mudar o valor, sem precisar nos escrever aqui de novo.",
+    "greeting_reuse_hint": "💡 Já enviou para este destinatário antes? Não precisa nos escrever de novo — use a mesma conta pelo app do seu banco."
   },
   "kyc": {
     "title": "Verifique sua identidade",

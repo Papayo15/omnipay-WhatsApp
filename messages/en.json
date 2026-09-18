@@ -1206,7 +1206,9 @@
     "label_pix": "PIX Key",
     "confirmed_deposit_footer": "{recipient_name} will receive {recipient_amount} {recipient_currency}. As soon as we confirm your deposit, we'll message you here.\n\n_OmniPay doesn't store your bank details._",
     "currency_not_supported_source": "We can't yet accept deposits in {currency} for this transfer. Please try again in USD, EUR, GBP, MXN or BRL.",
-    "deposit_error": "Something went wrong generating your deposit instructions. Please reply *YES* again in a moment, or start over."
+    "deposit_error": "Something went wrong generating your deposit instructions. Please reply *YES* again in a moment, or start over.",
+    "confirmed_deposit_reusable": "💡 Save this account in your banking app — it's yours for good. You can reuse it as many times as you want to send to {recipient_name}, just open your bank app and change the amount, no need to message us here again.",
+    "greeting_reuse_hint": "💡 Already sent to this recipient before? No need to message us again — just use the same account from your banking app."
   },
   "kyc": {
     "title": "Verify your identity",

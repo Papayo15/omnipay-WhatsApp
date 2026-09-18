@@ -1208,7 +1208,9 @@
     "label_pix": "Chiave PIX",
     "confirmed_deposit_footer": "{recipient_name} riceverà {recipient_amount} {recipient_currency}. Appena confermiamo il tuo deposito, ti avviseremo qui.\n\n_OmniPay non conserva i tuoi dati bancari._",
     "currency_not_supported_source": "Per ora non possiamo accettare depositi in {currency} per questo invio. Riprova con USD, EUR, GBP, MXN o BRL.",
-    "deposit_error": "Si è verificato un problema nel generare le istruzioni di deposito. Rispondi di nuovo *SI* tra un momento, oppure ricomincia."
+    "deposit_error": "Si è verificato un problema nel generare le istruzioni di deposito. Rispondi di nuovo *SI* tra un momento, oppure ricomincia.",
+    "confirmed_deposit_reusable": "💡 Salva questo conto nella tua app bancaria — è tuo per sempre. Puoi riutilizzarlo quante volte vuoi per inviare a {recipient_name} — apri semplicemente la tua banca e cambia l'importo, senza bisogno di riscriverci qui.",
+    "greeting_reuse_hint": "💡 Hai già inviato a questo destinatario? Non serve riscriverci — usa lo stesso conto dalla tua app bancaria."
   },
   "kyc": {
     "title": "Verifica la tua identità",

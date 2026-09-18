@@ -1208,7 +1208,9 @@
     "label_pix": "PIX ቁልፍ",
     "confirmed_deposit_footer": "{recipient_name} {recipient_amount} {recipient_currency} ይቀበላል። ገቢዎ ከተረጋገጠ በኋላ እዚህ እናሳውቅዎታለን።\n\n_OmniPay የባንክ መረጃዎን አያከማችም።_",
     "currency_not_supported_source": "ለዚህ ዝውውር በ{currency} ገቢ መቀበል ገና አንችልም። እባክዎ በ USD, EUR, GBP, MXN ወይም BRL እንደገና ይሞክሩ።",
-    "deposit_error": "የገቢ መመሪያዎን በመፍጠር ላይ ችግር ተከስቷል። እባክዎ ከጥቂት ጊዜ በኋላ እንደገና *አዎ* ይላኩ፣ ወይም ከመጀመሪያው ይጀምሩ።"
+    "deposit_error": "የገቢ መመሪያዎን በመፍጠር ላይ ችግር ተከስቷል። እባክዎ ከጥቂት ጊዜ በኋላ እንደገና *አዎ* ይላኩ፣ ወይም ከመጀመሪያው ይጀምሩ።",
+    "confirmed_deposit_reusable": "💡 ይህን አካውንት በባንክ መተግበሪያዎ ያስቀምጡ — ለዘላለም የእርስዎ ነው። ለ{recipient_name} ለመላክ በፈለጉት ጊዜ ሁሉ እንደገና መጠቀም ይችላሉ — ባንክዎን ብቻ ይክፈቱ እና መጠኑን ይቀይሩ፣ እዚህ ደግመው መጻፍ አያስፈልግም።",
+    "greeting_reuse_hint": "💡 ከዚህ በፊት ለዚህ ተቀባይ ልከዋል? እዚህ ደግመው መጻፍ አያስፈልግም — ከባንክ መተግበሪያዎ ተመሳሳይ አካውንት ይጠቀሙ።"
   },
   "kyc": {
     "title": "ማንነትዎን ያረጋግጡ",
