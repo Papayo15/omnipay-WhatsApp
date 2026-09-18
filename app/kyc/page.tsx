@@ -17,25 +17,30 @@ function KycInner() {
   const [status, setStatus] = useState<"loading" | "error" | "missing">("loading");
 
   useEffect(() => {
-    const email  = params.get("email");
-    const wa     = params.get("wa") ?? "";
-    const locale = params.get("locale") ?? "en";
-    const done   = params.get("done");
+    const email   = params.get("email");
+    const wa      = params.get("wa") ?? "";
+    const locale  = params.get("locale") ?? "en";
+    const done    = params.get("done");
+    const tosDone = params.get("tos_done") ?? "";
 
     if (done) return; // returned from Persona — bot sends the confirmation via WhatsApp
 
     if (!email) { setStatus("missing"); return; }
 
-    const qs = new URLSearchParams({ email, wa, locale });
+    const qs = new URLSearchParams({ email, wa, locale, ...(tosDone ? { tos_done: tosDone } : {}) });
     fetch(`/api/whatsapp/kyc-link?${qs}`)
       .then(async (res) => {
         if (!res.ok) { setStatus("error"); return; }
-        const data = await res.json() as { needs_kyc: boolean; kyc_url?: string | null };
+        const data = await res.json() as { needs_tos: boolean; needs_kyc: boolean; tos_url?: string | null; kyc_url?: string | null };
         if (!data.needs_kyc) {
           // Already verified — nothing to do here, bot will message with next steps.
           return;
         }
-        if (data.kyc_url) window.location.replace(data.kyc_url);
+        // ToS primero para clientes nuevos en producción (Bridge lo exige antes del KYC,
+        // ver providers/bridge/customers.ts) — el link de ToS ya trae ?tos_done=1 para
+        // volver aquí y seguir directo a KYC.
+        const nextUrl = data.needs_tos ? data.tos_url : data.kyc_url;
+        if (nextUrl) window.location.replace(nextUrl);
         else setStatus("error");
       })
       .catch(() => setStatus("error"));
