@@ -1155,11 +1155,11 @@
     "p2p_only_label": "Pour les envois personnels"
   },
   "whatsapp": {
-    "greeting": "👋 Bonjour ! Je suis l'assistant OmniPay.\n\nCombien voulez-vous envoyer et vers quel pays ?\n\nÉcrivez par exemple :\n• *200 USD Mexique*\n• *500 CAD Colombie*\n• *1000 EUR Espagne*\n\n_(Cette conversation expire dans 5 minutes pour votre sécurité)_",
+    "greeting": "👋 Bonjour ! Je suis l'assistant OmniPay.\n\nCombien voulez-vous envoyer, vers quel pays, et quel est votre e-mail ? (on l'utilise pour vérifier ton compte, une seule fois)\n\nÉcrivez par exemple :\n• *200 USD Mexique juan@email.com*\n• *500 CAD Colombie juan@email.com*\n• *1000 EUR Espagne juan@email.com*\n\n_(Cette conversation expire dans 5 minutes pour votre sécurité)_",
     "parse_error": "Hmm, je n'ai pas bien compris 🤔\n\nÉcrivez le montant et le pays ainsi :\n*200 USD Mexique*",
     "ask_email": "Pour continuer, quel est votre e-mail ? Nous l'utilisons pour vérifier votre compte auprès de notre prestataire de paiement réglementé.",
     "invalid_email": "Cela ne ressemble pas à un e-mail valide. Réessayez (exemple : nom@email.com)",
-    "kyc_needed": "Pour compléter votre premier envoi, vous devez vérifier votre identité (2 minutes). Ouvrez ce lien : {link}",
+    "kyc_needed": "Pour compléter votre premier envoi, vous devez vérifier votre identité (2 minutes) — cela ne se fait qu'une seule fois, vos prochains envois ne le redemanderont pas. Ouvrez ce lien : {link}",
     "quote_ready": "✅ Garanti : votre bénéficiaire reçoit {recipient_amount} {recipient_currency} (taux : {rate} {recipient_currency} par {from_currency}).\n\nTerminez votre envoi ici : {link}\n\n_OmniPay ne stocke aucune de vos données._",
     "kyc_approved_notification": "🎉 Votre compte OmniPay a été approuvé ! Vous pouvez maintenant compléter votre envoi de {amount} {currency} vers {country}.\n\nContinuez ici : {link}. Merci d'avoir choisi OmniPay !",
     "link_ready": "Continuez votre envoi ici : {link}",

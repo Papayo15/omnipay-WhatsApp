@@ -1155,11 +1155,11 @@
     "p2p_only_label": "Kişisel transferler için"
   },
   "whatsapp": {
-    "greeting": "👋 Merhaba! Ben OmniPay asistanıyım.\n\nNe kadar göndermek istiyorsunuz ve hangi ülkeye?\n\nŞöyle yazın:\n• *200 USD Meksika*\n• *500 CAD Kolombiya*\n• *1000 EUR İspanya*\n\n_(Bu sohbet güvenliğiniz için 5 dakika içinde sona erer)_",
+    "greeting": "👋 Merhaba! Ben OmniPay asistanıyım.\n\nNe kadar göndermek istiyorsunuz, hangi ülkeye ve e-postanız nedir? (hesabınızı doğrulamak için kullanıyoruz, bu yalnızca bir kez yapılır)\n\nŞöyle yazın:\n• *200 USD Meksika juan@email.com*\n• *500 CAD Kolombiya juan@email.com*\n• *1000 EUR İspanya juan@email.com*\n\n_(Bu sohbet güvenliğiniz için 5 dakika içinde sona erer)_",
     "parse_error": "Hmm, tam anlayamadım 🤔\n\nTutarı ve ülkeyi şöyle yazın:\n*200 USD Meksika*",
     "ask_email": "Devam etmek için e-postanız nedir? Düzenlenmiş ödeme sağlayıcımızda hesabınızı doğrulamak için kullanıyoruz.",
     "invalid_email": "Bu geçerli bir e-posta gibi görünmüyor. Tekrar deneyin (örnek: isim@email.com)",
-    "kyc_needed": "İlk transferinizi tamamlamak için kimliğinizi doğrulamanız gerekiyor (2 dakika). Bu bağlantıyı açın: {link}",
+    "kyc_needed": "İlk transferinizi tamamlamak için kimliğinizi doğrulamanız gerekiyor (2 dakika) — bu yalnızca bir kez yapılır, sonraki transferlerinizde tekrar sorulmaz. Bu bağlantıyı açın: {link}",
     "quote_ready": "✅ Garanti: alıcınız {recipient_amount} {recipient_currency} alır (kur: {from_currency} başına {rate} {recipient_currency}).\n\nTransferinizi burada tamamlayın: {link}\n\n_OmniPay verilerinizi saklamaz._",
     "kyc_approved_notification": "🎉 OmniPay hesabınız onaylandı! Artık {country} ülkesine {amount} {currency} transferinizi tamamlayabilirsiniz.\n\nBurada devam edin: {link}. OmniPay'i seçtiğiniz için teşekkürler!",
     "link_ready": "Transferinize buradan devam edin: {link}",

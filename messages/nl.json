@@ -1155,11 +1155,11 @@
     "p2p_only_label": "Voor persoonlijke overboekingen"
   },
   "whatsapp": {
-    "greeting": "👋 Hoi! Ik ben de OmniPay-assistent.\n\nHoeveel wil je versturen en naar welk land?\n\nSchrijf bijvoorbeeld:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Spanje*\n\n_(Deze chat verloopt over 5 minuten voor je veiligheid)_",
+    "greeting": "👋 Hoi! Ik ben de OmniPay-assistent.\n\nHoeveel wil je versturen, naar welk land, en wat is je e-mailadres? (we gebruiken het om je account te verifiëren, dit gebeurt maar één keer)\n\nSchrijf bijvoorbeeld:\n• *200 USD Mexico juan@email.com*\n• *500 CAD Colombia juan@email.com*\n• *1000 EUR Spanje juan@email.com*\n\n_(Deze chat verloopt over 5 minuten voor je veiligheid)_",
     "parse_error": "Hmm, dat begreep ik niet helemaal 🤔\n\nSchrijf het bedrag en land zo:\n*200 USD Mexico*",
     "ask_email": "Om door te gaan, wat is je e-mailadres? We gebruiken het om je account te verifiëren bij onze gereguleerde betalingsprovider.",
     "invalid_email": "Dat lijkt geen geldig e-mailadres. Probeer opnieuw (voorbeeld: naam@email.com)",
-    "kyc_needed": "Om je eerste overboeking te voltooien moet je je identiteit verifiëren (2 minuten). Open deze link: {link}",
+    "kyc_needed": "Om je eerste overboeking te voltooien moet je je identiteit verifiëren (2 minuten) — dit gebeurt maar één keer, volgende overboekingen vragen er niet opnieuw naar. Open deze link: {link}",
     "quote_ready": "✅ Gegarandeerd: je ontvanger krijgt {recipient_amount} {recipient_currency} (koers: {rate} {recipient_currency} per {from_currency}).\n\nVoltooi je overboeking hier: {link}\n\n_OmniPay slaat geen van je gegevens op._",
     "kyc_approved_notification": "🎉 Je OmniPay-account is goedgekeurd! Je kunt nu je overboeking van {amount} {currency} naar {country} voltooien.\n\nGa hier verder: {link}. Bedankt dat je voor OmniPay hebt gekozen!",
     "link_ready": "Ga hier verder met je overboeking: {link}",

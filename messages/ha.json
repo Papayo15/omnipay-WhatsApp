@@ -1154,11 +1154,11 @@
     "p2p_only_label": "Don canja wurin kai tsaye"
   },
   "whatsapp": {
-    "greeting": "👋 Sannu! Ni ne mataimakin OmniPay.\n\nNawa kake son aikawa kuma zuwa wace ƙasa?\n\nRubuta kamar haka:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Spain*\n\n_(Wannan tattaunawar za ta ƙare a cikin mintuna 5 don tsaronka)_",
+    "greeting": "👋 Sannu! Ni ne mataimakin OmniPay.\n\nNawa kake son aikawa, zuwa wace ƙasa, kuma menene imel ɗinka? (muna amfani da shi don tabbatar da asusunka, ana yin wannan sau ɗaya kawai)\n\nRubuta kamar haka:\n• *200 USD Mexico juan@email.com*\n• *500 CAD Colombia juan@email.com*\n• *1000 EUR Spain juan@email.com*\n\n_(Wannan tattaunawar za ta ƙare a cikin mintuna 5 don tsaronka)_",
     "parse_error": "Hmm, ban gane sosai ba 🤔\n\nRubuta adadi da ƙasar kamar haka:\n*200 USD Mexico*",
     "ask_email": "Don ci gaba, menene imel ɗinka? Muna amfani da shi don tabbatar da asusunka tare da mai ba da hidimar biyan kuɗi da aka tsara.",
     "invalid_email": "Wannan bai yi kama da ingantaccen imel ba. Sake gwadawa (misali: suna@email.com)",
-    "kyc_needed": "Don kammala canja wurin ka na farko, kana buƙatar tabbatar da asalinka (mintuna 2). Buɗe wannan hanyar haɗi: {link}",
+    "kyc_needed": "Don kammala canja wurin ka na farko, kana buƙatar tabbatar da asalinka (mintuna 2) — ana yin wannan sau ɗaya kawai, canja wurin ka na gaba ba za a sake tambaya ba. Buɗe wannan hanyar haɗi: {link}",
     "quote_ready": "✅ Tabbatacce: wanda za a biya zai karɓi {recipient_amount} {recipient_currency} (farashi: {rate} {recipient_currency} akan {from_currency} ɗaya).\n\nKammala canja wurin ka a nan: {link}\n\n_OmniPay baya adana kowanne bayaninka._",
     "kyc_approved_notification": "🎉 An amince da asusun OmniPay naka! Yanzu za ka iya kammala canja wurin {amount} {currency} zuwa {country}.\n\nCi gaba a nan: {link}. Na gode da zaɓar OmniPay!",
     "link_ready": "Ci gaba da canja wurin ka a nan: {link}",

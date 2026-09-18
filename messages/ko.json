@@ -1155,11 +1155,11 @@
     "p2p_only_label": "개인 송금용"
   },
   "whatsapp": {
-    "greeting": "👋 안녕하세요! OmniPay 어시스턴트입니다.\n\n얼마를 어느 나라로 보내고 싶으신가요?\n\n예시처럼 작성해 주세요:\n• *200 USD 멕시코*\n• *500 CAD 콜롬비아*\n• *1000 EUR 스페인*\n\n_(보안을 위해 이 채팅은 5분 후 만료됩니다)_",
+    "greeting": "👋 안녕하세요! OmniPay 어시스턴트입니다.\n\n얼마를 어느 나라로 보내고 싶으신가요? 그리고 이메일은 무엇인가요? (계정 확인에 사용하며, 이는 한 번만 진행됩니다)\n\n예시처럼 작성해 주세요:\n• *200 USD 멕시코 juan@email.com*\n• *500 CAD 콜롬비아 juan@email.com*\n• *1000 EUR 스페인 juan@email.com*\n\n_(보안을 위해 이 채팅은 5분 후 만료됩니다)_",
     "parse_error": "음, 제대로 이해하지 못했어요 🤔\n\n금액과 국가를 이렇게 작성해 주세요:\n*200 USD 멕시코*",
     "ask_email": "계속하려면 이메일이 무엇인가요? 규제된 결제 제공업체에서 계정을 확인하는 데 사용됩니다.",
     "invalid_email": "유효한 이메일이 아닌 것 같아요. 다시 시도해 주세요 (예: name@email.com)",
-    "kyc_needed": "첫 송금을 완료하려면 신원 확인이 필요합니다 (2분). 이 링크를 열어주세요: {link}",
+    "kyc_needed": "첫 송금을 완료하려면 신원 확인이 필요합니다 (2분) — 이는 한 번만 진행되며, 다음 송금부터는 다시 묻지 않습니다. 이 링크를 열어주세요: {link}",
     "quote_ready": "✅ 보장: 수취인은 {recipient_amount} {recipient_currency}를 받습니다 (환율: {from_currency}당 {rate} {recipient_currency}).\n\n여기에서 송금을 완료하세요: {link}\n\n_OmniPay는 귀하의 데이터를 저장하지 않습니다._",
     "kyc_approved_notification": "🎉 OmniPay 계정이 승인되었습니다! 이제 {amount} {currency}를 {country}로 보내는 송금을 완료할 수 있습니다.\n\n여기에서 계속하세요: {link}. OmniPay를 선택해 주셔서 감사합니다!",
     "link_ready": "여기에서 송금을 계속하세요: {link}",

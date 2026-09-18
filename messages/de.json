@@ -1155,11 +1155,11 @@
     "p2p_only_label": "Für persönliche Überweisungen"
   },
   "whatsapp": {
-    "greeting": "👋 Hallo! Ich bin der OmniPay-Assistent.\n\nWie viel möchten Sie senden und in welches Land?\n\nSchreiben Sie zum Beispiel:\n• *200 USD Mexiko*\n• *500 CAD Kolumbien*\n• *1000 EUR Spanien*\n\n_(Dieser Chat läuft aus Sicherheitsgründen in 5 Minuten ab)_",
+    "greeting": "👋 Hallo! Ich bin der OmniPay-Assistent.\n\nWie viel möchten Sie senden, in welches Land, und wie lautet Ihre E-Mail? (wir nutzen sie zur Kontoverifizierung — das passiert nur einmal)\n\nSchreiben Sie zum Beispiel:\n• *200 USD Mexiko juan@email.com*\n• *500 CAD Kolumbien juan@email.com*\n• *1000 EUR Spanien juan@email.com*\n\n_(Dieser Chat läuft aus Sicherheitsgründen in 5 Minuten ab)_",
     "parse_error": "Hmm, das habe ich nicht ganz verstanden 🤔\n\nSchreiben Sie Betrag und Land so:\n*200 USD Mexiko*",
     "ask_email": "Um fortzufahren, wie lautet Ihre E-Mail-Adresse? Wir verwenden sie, um Ihr Konto bei unserem regulierten Zahlungsanbieter zu verifizieren.",
     "invalid_email": "Das sieht nicht nach einer gültigen E-Mail aus. Versuchen Sie es erneut (Beispiel: name@email.com)",
-    "kyc_needed": "Um Ihre erste Überweisung abzuschließen, müssen Sie Ihre Identität verifizieren (2 Minuten). Öffnen Sie diesen Link: {link}",
+    "kyc_needed": "Um Ihre erste Überweisung abzuschließen, müssen Sie Ihre Identität verifizieren (2 Minuten) — das passiert nur einmal, künftige Überweisungen fragen nicht erneut danach. Öffnen Sie diesen Link: {link}",
     "quote_ready": "✅ Garantiert: Ihr Empfänger erhält {recipient_amount} {recipient_currency} (Kurs: {rate} {recipient_currency} pro {from_currency}).\n\nSchließen Sie Ihre Überweisung hier ab: {link}\n\n_OmniPay speichert keine Ihrer Daten._",
     "kyc_approved_notification": "🎉 Ihr OmniPay-Konto wurde genehmigt! Sie können jetzt Ihre Überweisung von {amount} {currency} nach {country} abschließen.\n\nHier fortfahren: {link}. Danke, dass Sie sich für OmniPay entschieden haben!",
     "link_ready": "Setzen Sie Ihre Überweisung hier fort: {link}",

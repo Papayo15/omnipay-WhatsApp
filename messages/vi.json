@@ -1155,11 +1155,11 @@
     "p2p_only_label": "Dành cho chuyển tiền cá nhân"
   },
   "whatsapp": {
-    "greeting": "👋 Xin chào! Tôi là trợ lý OmniPay.\n\nBạn muốn gửi bao nhiêu và đến quốc gia nào?\n\nHãy viết như thế này:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Tây Ban Nha*\n\n_(Cuộc trò chuyện này hết hạn sau 5 phút vì lý do bảo mật)_",
+    "greeting": "👋 Xin chào! Tôi là trợ lý OmniPay.\n\nBạn muốn gửi bao nhiêu, đến quốc gia nào, và email của bạn là gì? (chúng tôi dùng để xác minh tài khoản, việc này chỉ làm một lần)\n\nHãy viết như thế này:\n• *200 USD Mexico juan@email.com*\n• *500 CAD Colombia juan@email.com*\n• *1000 EUR Tây Ban Nha juan@email.com*\n\n_(Cuộc trò chuyện này hết hạn sau 5 phút vì lý do bảo mật)_",
     "parse_error": "Hừm, tôi chưa hiểu rõ 🤔\n\nHãy viết số tiền và quốc gia như sau:\n*200 USD Mexico*",
     "ask_email": "Để tiếp tục, email của bạn là gì? Chúng tôi dùng nó để xác minh tài khoản của bạn với nhà cung cấp thanh toán được quản lý của chúng tôi.",
     "invalid_email": "Đây có vẻ không phải là email hợp lệ. Hãy thử lại (ví dụ: ten@email.com)",
-    "kyc_needed": "Để hoàn tất lần chuyển tiền đầu tiên, bạn cần xác minh danh tính (2 phút). Mở liên kết này: {link}",
+    "kyc_needed": "Để hoàn tất lần chuyển tiền đầu tiên, bạn cần xác minh danh tính (2 phút) — việc này chỉ làm một lần, các lần chuyển tiền sau sẽ không hỏi lại. Mở liên kết này: {link}",
     "quote_ready": "✅ Đảm bảo: người nhận của bạn sẽ nhận {recipient_amount} {recipient_currency} (tỷ giá: {rate} {recipient_currency} mỗi {from_currency}).\n\nHoàn tất chuyển tiền tại đây: {link}\n\n_OmniPay không lưu trữ bất kỳ dữ liệu nào của bạn._",
     "kyc_approved_notification": "🎉 Tài khoản OmniPay của bạn đã được phê duyệt! Bây giờ bạn có thể hoàn tất chuyển {amount} {currency} đến {country}.\n\nTiếp tục tại đây: {link}. Cảm ơn bạn đã chọn OmniPay!",
     "link_ready": "Tiếp tục chuyển tiền của bạn tại đây: {link}",

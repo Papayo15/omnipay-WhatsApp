@@ -134,6 +134,14 @@ function isValidEmail(s: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.trim());
 }
 
+// Módulo 2 — permite mandar el email en el MISMO primer mensaje ("200 USD México
+// juan@correo.com") para ahorrar una vuelta completa de ida y vuelta. Sigue funcionando
+// si el usuario lo manda aparte (fallback al step 3 de siempre).
+function extractEmail(text: string): string | null {
+  const m = text.match(/[^\s@]+@[^\s@]+\.[^\s@]+/);
+  return m ? m[0] : null;
+}
+
 // ── KYC gate — pide email/verifica Bridge, arranca la recolección de destinatario ──
 async function startKycOrCollection(
   waId: string, locale: WaLocale, t: Awaited<ReturnType<typeof getWaTranslator>>,
@@ -351,13 +359,24 @@ export async function POST(req: NextRequest): Promise<Response> {
   const identity = await getEmailForPhone(waId);
 
   if (identity) {
-    // Usuario recurrente — nos saltamos pedir el email de nuevo.
+    // Usuario recurrente — nos saltamos pedir el email de nuevo (ya está verificado en
+    // Bridge desde su primer envío; si mandó un email distinto en este mensaje lo
+    // ignoramos, la cuenta ya asociada a este teléfono manda).
     const identityLocale = (identity.locale as WaLocale) ?? locale;
     await startKycOrCollection(waId, identityLocale, await getWaTranslator(identityLocale), amount, currency, country, identity.email);
     return NextResponse.json({ ok: true });
   }
 
-  // Primera vez que vemos este número — pedimos el email una sola vez.
+  // Primera vez que vemos este número. Si el email ya vino en el mismo mensaje
+  // ("200 USD México juan@correo.com") nos ahorramos la vuelta de pedirlo aparte.
+  const email = extractEmail(text);
+  if (email && isValidEmail(email)) {
+    const cleanEmail = email.trim().toLowerCase();
+    await setEmailForPhone(waId, cleanEmail, locale);
+    await startKycOrCollection(waId, locale, t, amount, currency, country, cleanEmail);
+    return NextResponse.json({ ok: true });
+  }
+
   await setSession(waId, { step: 3, amount, currency, country, locale });
   await sendWhatsAppMessage(waId, t("ask_email"));
   return NextResponse.json({ ok: true });

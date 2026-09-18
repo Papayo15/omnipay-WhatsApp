@@ -1155,11 +1155,11 @@
     "p2p_only_label": "适用于个人汇款"
   },
   "whatsapp": {
-    "greeting": "👋 你好！我是OmniPay助手。\n\n您想汇多少钱到哪个国家？\n\n请这样写：\n• *200 USD 墨西哥*\n• *500 CAD 哥伦比亚*\n• *1000 EUR 西班牙*\n\n_(为了您的安全，此聊天将在5分钟后过期)_",
+    "greeting": "👋 你好！我是OmniPay助手。\n\n您想汇多少钱到哪个国家？您的邮箱是什么？（我们用它来验证您的账户，只需一次）\n\n请这样写：\n• *200 USD 墨西哥 juan@email.com*\n• *500 CAD 哥伦比亚 juan@email.com*\n• *1000 EUR 西班牙 juan@email.com*\n\n_(为了您的安全，此聊天将在5分钟后过期)_",
     "parse_error": "嗯，我没太明白🤔\n\n请这样写金额和国家：\n*200 USD 墨西哥*",
     "ask_email": "为了继续，您的电子邮件是什么？我们用它在我们受监管的支付提供商处验证您的账户。",
     "invalid_email": "这似乎不是有效的电子邮件。请重试（例如：name@email.com）",
-    "kyc_needed": "要完成您的首次汇款，您需要验证身份（2分钟）。请打开此链接：{link}",
+    "kyc_needed": "要完成您的首次汇款，您需要验证身份（2分钟）——这只需要一次，以后的汇款不会再询问。请打开此链接：{link}",
     "quote_ready": "✅ 保证：您的收款人将收到 {recipient_amount} {recipient_currency}（汇率：每{from_currency} {rate} {recipient_currency}）。\n\n请在此完成汇款：{link}\n\n_OmniPay不存储您的任何数据。_",
     "kyc_approved_notification": "🎉 您的OmniPay账户已获批准！您现在可以完成向{country}汇款{amount} {currency}。\n\n请在此继续：{link}. 感谢您选择OmniPay！",
     "link_ready": "请在此继续您的汇款：{link}",

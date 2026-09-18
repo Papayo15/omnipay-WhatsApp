@@ -1155,11 +1155,11 @@
     "p2p_only_label": "個人送金向け"
   },
   "whatsapp": {
-    "greeting": "👋 こんにちは！OmniPayアシスタントです。\n\nいくら、どの国に送金しますか？\n\n例えばこう書いてください：\n• *200 USD メキシコ*\n• *500 CAD コロンビア*\n• *1000 EUR スペイン*\n\n_(このチャットはセキュリティのため5分で期限切れになります)_",
+    "greeting": "👋 こんにちは！OmniPayアシスタントです。\n\nいくら、どの国に送金しますか？また、メールアドレスは何ですか？（アカウント確認に使用します。これは一度だけです）\n\n例えばこう書いてください：\n• *200 USD メキシコ juan@email.com*\n• *500 CAD コロンビア juan@email.com*\n• *1000 EUR スペイン juan@email.com*\n\n_(このチャットはセキュリティのため5分で期限切れになります)_",
     "parse_error": "うまく理解できませんでした🤔\n\n金額と国をこう書いてください：\n*200 USD メキシコ*",
     "ask_email": "続けるには、メールアドレスを教えてください。規制対象の決済プロバイダーでアカウントを確認するために使用します。",
     "invalid_email": "有効なメールアドレスではないようです。もう一度お試しください（例：name@email.com）",
-    "kyc_needed": "最初の送金を完了するには本人確認が必要です（2分）。このリンクを開いてください：{link}",
+    "kyc_needed": "最初の送金を完了するには本人確認が必要です（2分）。これは一度だけで、次回以降の送金では再度聞かれません。このリンクを開いてください：{link}",
     "quote_ready": "✅ 保証：受取人は{recipient_amount} {recipient_currency}を受け取ります（レート：{from_currency}あたり{rate} {recipient_currency}）。\n\nここで送金を完了してください：{link}\n\n_OmniPayはあなたのデータを保存しません。_",
     "kyc_approved_notification": "🎉 OmniPayアカウントが承認されました！{amount} {currency}を{country}へ送金を完了できます。\n\nこちらから続ける：{link}. OmniPayをお選びいただきありがとうございます！",
     "link_ready": "こちらから送金を続けてください：{link}",

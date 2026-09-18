@@ -1155,11 +1155,11 @@
     "p2p_only_label": "Untuk transfer pribadi"
   },
   "whatsapp": {
-    "greeting": "👋 Hai! Saya asisten OmniPay.\n\nBerapa yang ingin Anda kirim dan ke negara mana?\n\nTulis seperti ini:\n• *200 USD Meksiko*\n• *500 CAD Kolombia*\n• *1000 EUR Spanyol*\n\n_(Obrolan ini kedaluwarsa dalam 5 menit demi keamanan Anda)_",
+    "greeting": "👋 Hai! Saya asisten OmniPay.\n\nBerapa yang ingin Anda kirim, ke negara mana, dan apa email Anda? (kami gunakan untuk memverifikasi akun Anda, ini hanya dilakukan sekali)\n\nTulis seperti ini:\n• *200 USD Meksiko juan@email.com*\n• *500 CAD Kolombia juan@email.com*\n• *1000 EUR Spanyol juan@email.com*\n\n_(Obrolan ini kedaluwarsa dalam 5 menit demi keamanan Anda)_",
     "parse_error": "Hmm, saya kurang mengerti 🤔\n\nTulis jumlah dan negara seperti ini:\n*200 USD Meksiko*",
     "ask_email": "Untuk melanjutkan, apa email Anda? Kami menggunakannya untuk memverifikasi akun Anda dengan penyedia pembayaran kami yang teregulasi.",
     "invalid_email": "Itu sepertinya bukan email yang valid. Coba lagi (contoh: nama@email.com)",
-    "kyc_needed": "Untuk menyelesaikan transfer pertama Anda, Anda perlu memverifikasi identitas (2 menit). Buka tautan ini: {link}",
+    "kyc_needed": "Untuk menyelesaikan transfer pertama Anda, Anda perlu memverifikasi identitas (2 menit) — ini hanya dilakukan sekali, transfer berikutnya tidak akan menanyakannya lagi. Buka tautan ini: {link}",
     "quote_ready": "✅ Dijamin: penerima Anda mendapat {recipient_amount} {recipient_currency} (kurs: {rate} {recipient_currency} per {from_currency}).\n\nSelesaikan transfer Anda di sini: {link}\n\n_OmniPay tidak menyimpan data Anda._",
     "kyc_approved_notification": "🎉 Akun OmniPay Anda telah disetujui! Anda sekarang dapat menyelesaikan transfer {amount} {currency} ke {country}.\n\nLanjutkan di sini: {link}. Terima kasih telah memilih OmniPay!",
     "link_ready": "Lanjutkan transfer Anda di sini: {link}",

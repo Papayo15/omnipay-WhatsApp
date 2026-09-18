@@ -1153,11 +1153,11 @@
     "p2p_only_label": "For personal transfers"
   },
   "whatsapp": {
-    "greeting": "👋 Hi! I'm the OmniPay assistant.\n\nHow much do you want to send and to which country?\n\nTry something like:\n• *200 USD Mexico*\n• *500 CAD Colombia*\n• *1000 EUR Spain*\n\n_(This chat expires in 5 minutes for your security)_",
+    "greeting": "👋 Hi! I'm the OmniPay assistant.\n\nHow much do you want to send, to which country, and what's your email? (we use it to verify your account, so this only happens once)\n\nTry something like:\n• *200 USD Mexico juan@email.com*\n• *500 CAD Colombia juan@email.com*\n• *1000 EUR Spain juan@email.com*\n\n_(This chat expires in 5 minutes for your security)_",
     "parse_error": "Hmm, I didn't quite get that 🤔\n\nWrite the amount and country like this:\n*200 USD Mexico*",
     "ask_email": "To continue, what's your email? We use it to verify your account with our regulated payment provider.",
     "invalid_email": "That doesn't look like a valid email. Try again (example: name@email.com)",
-    "kyc_needed": "To complete your first transfer you need to verify your identity (2 minutes). Open this link: {link}",
+    "kyc_needed": "To complete your first transfer you need to verify your identity (2 minutes) — this is only done once, future transfers won't ask again. Open this link: {link}",
     "quote_ready": "✅ Guaranteed: your recipient gets {recipient_amount} {recipient_currency} (rate: {rate} {recipient_currency} per {from_currency}).\n\nFinish your transfer here: {link}\n\n_OmniPay doesn't store any of your data._",
     "kyc_approved_notification": "🎉 Your OmniPay account was approved! You can now complete your transfer of {amount} {currency} to {country}.\n\nContinue here: {link}. Thanks for choosing OmniPay!",
     "link_ready": "Continue your transfer here: {link}",
