@@ -228,25 +228,36 @@ export async function POST(req: NextRequest): Promise<Response> {
   // dimos (puntero corto en Redis, lib/wa-identity.ts); un número de orden explícito
   // (OP-...) siempre tiene prioridad.
   const STATUS_KEYWORDS = new Set(["estado", "status", "seguimiento", "track"]);
-  const ORDER_ID_REGEX = /^OP-\d{10,}-[a-z0-9]{4,10}$/i;
+  // Insensible a mayúsculas (flag "i") y no atado al formato exacto que generamos hoy
+  // (OP-{timestamp}-{random}) — con que empiece con "op-" basta, por si ese formato cambia.
+  const ORDER_ID_REGEX = /^op-[\w-]+$/i;
   const trimmed = text.trim();
   if (STATUS_KEYWORDS.has(trimmed.toLowerCase()) || ORDER_ID_REGEX.test(trimmed)) {
-    const orderId = ORDER_ID_REGEX.test(trimmed) ? trimmed : await getLastOrder(waId);
-    if (!orderId) {
-      await sendWhatsAppMessage(waId, t("status_no_order"));
-      return NextResponse.json({ ok: true });
+    try {
+      const orderId = ORDER_ID_REGEX.test(trimmed) ? trimmed : await getLastOrder(waId);
+      if (!orderId) {
+        await sendWhatsAppMessage(waId, t("status_no_order"));
+        return NextResponse.json({ ok: true });
+      }
+      const order = await getOrderAsync(orderId);
+      if (!order) {
+        await sendWhatsAppMessage(waId, t("status_not_found"));
+        return NextResponse.json({ ok: true });
+      }
+      await sendWhatsAppMessage(waId, t("status_reply", {
+        order_id: order.orderId,
+        status:   t(statusLabelKey(order.status)),
+        recipient: order.recipientName,
+        country:   order.destinationCountry,
+      }));
+    } catch (e) {
+      // getLastOrder/getOrderAsync ya atrapan sus propios errores de Redis y devuelven
+      // null (eso cae en status_no_order/status_not_found arriba) — este catch es la red
+      // de seguridad final para cualquier falla inesperada (ej. sendWhatsAppMessage), para
+      // que el chat nunca se quede sin respuesta.
+      console.error("[whatsapp/webhook] status command failed:", (e as Error).message);
+      await sendWhatsAppMessage(waId, t("status_error")).catch(() => {});
     }
-    const order = await getOrderAsync(orderId);
-    if (!order) {
-      await sendWhatsAppMessage(waId, t("status_not_found"));
-      return NextResponse.json({ ok: true });
-    }
-    await sendWhatsAppMessage(waId, t("status_reply", {
-      order_id: order.orderId,
-      status:   t(statusLabelKey(order.status)),
-      recipient: order.recipientName,
-      country:   order.destinationCountry,
-    }));
     return NextResponse.json({ ok: true });
   }
 

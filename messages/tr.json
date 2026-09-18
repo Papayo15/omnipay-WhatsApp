@@ -1217,7 +1217,8 @@
     "status_label_completed": "Tamamlandı ✅",
     "status_label_failed": "Başarısız ❌",
     "status_no_order": "Senin için kayıtlı yakın zamanda bir transfer bulamadım. Sipariş numaranı gönder (*OP-* ile başlar), ya da bir tutar ve ülke yazarak yeni bir transfer başlat.",
-    "status_not_found": "Bu sipariş numarasıyla bir transfer bulamadım. Kontrol edip tekrar dene."
+    "status_not_found": "Bu sipariş numarasıyla bir transfer bulamadım. Kontrol edip tekrar dene.",
+    "status_error": "Transfer durumunu kontrol ederken bir sorun oluştu. Lütfen biraz sonra tekrar dene."
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",

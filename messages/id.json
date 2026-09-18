@@ -1217,7 +1217,8 @@
     "status_label_completed": "Selesai ✅",
     "status_label_failed": "Gagal ❌",
     "status_no_order": "Saya tidak punya transfer terbaru yang tercatat untuk Anda. Kirim nomor pesanan Anda (diawali *OP-*), atau mulai transfer baru dengan menulis jumlah dan negara.",
-    "status_not_found": "Saya tidak menemukan transfer dengan nomor pesanan itu. Periksa lagi dan coba ulang."
+    "status_not_found": "Saya tidak menemukan transfer dengan nomor pesanan itu. Periksa lagi dan coba ulang.",
+    "status_error": "Terjadi kesalahan saat memeriksa status transfer Anda. Coba lagi sebentar lagi."
   },
   "kyc": {
     "title": "Verifikasi identitas Anda",

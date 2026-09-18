@@ -1217,7 +1217,8 @@
     "status_label_completed": "Completato ✅",
     "status_label_failed": "Fallito ❌",
     "status_no_order": "Non ho nessun invio recente registrato per te. Mandami il tuo numero d'ordine (inizia con *OP-*), oppure avvia un nuovo invio scrivendo importo e paese.",
-    "status_not_found": "Non ho trovato nessun invio con questo numero d'ordine. Ricontrollalo e riprova."
+    "status_not_found": "Non ho trovato nessun invio con questo numero d'ordine. Ricontrollalo e riprova.",
+    "status_error": "Si è verificato un problema nel controllare lo stato del tuo invio. Riprova tra un momento."
   },
   "kyc": {
     "title": "Verifica la tua identità",

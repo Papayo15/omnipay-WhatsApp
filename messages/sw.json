@@ -1217,7 +1217,8 @@
     "status_label_completed": "Imekamilika ✅",
     "status_label_failed": "Imeshindwa ❌",
     "status_no_order": "Sina uhamisho wa hivi karibuni uliosajiliwa kwa ajili yako. Tuma namba yako ya oda (inaanza na *OP-*), au anzisha uhamisho mpya kwa kuandika kiasi na nchi.",
-    "status_not_found": "Sikupata uhamisho wowote na namba hiyo ya oda. Ikague tena na ujaribu tena."
+    "status_not_found": "Sikupata uhamisho wowote na namba hiyo ya oda. Ikague tena na ujaribu tena.",
+    "status_error": "Kuna hitilafu wakati wa kukagua hali ya uhamisho wako. Tafadhali jaribu tena baada ya muda."
   },
   "kyc": {
     "title": "Thibitisha utambulisho wako",

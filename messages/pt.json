@@ -1216,7 +1216,8 @@
     "status_label_completed": "Concluído ✅",
     "status_label_failed": "Falhou ❌",
     "status_no_order": "Não encontrei nenhum envio recente registrado para você. Envie seu número de pedido (começa com *OP-*), ou inicie um novo envio escrevendo um valor e país.",
-    "status_not_found": "Não encontrei nenhum envio com esse número de pedido. Confira e tente de novo."
+    "status_not_found": "Não encontrei nenhum envio com esse número de pedido. Confira e tente de novo.",
+    "status_error": "Algo deu errado ao consultar o status do seu envio. Tente novamente em instantes."
   },
   "kyc": {
     "title": "Verifique sua identidade",

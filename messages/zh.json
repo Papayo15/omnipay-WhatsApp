@@ -1217,7 +1217,8 @@
     "status_label_completed": "已完成 ✅",
     "status_label_failed": "失败 ❌",
     "status_no_order": "没有找到您最近的汇款记录。请发送订单号（以*OP-*开头），或输入金额和国家开始新的汇款。",
-    "status_not_found": "未找到该订单号对应的汇款。请核实后重试。"
+    "status_not_found": "未找到该订单号对应的汇款。请核实后重试。",
+    "status_error": "查询汇款状态时出了点问题。请稍后再试。"
   },
   "kyc": {
     "title": "验证您的身份",

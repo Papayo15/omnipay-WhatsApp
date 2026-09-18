@@ -1217,7 +1217,8 @@
     "status_label_completed": "Terminé ✅",
     "status_label_failed": "Échoué ❌",
     "status_no_order": "Je n'ai aucun envoi récent enregistré pour toi. Envoie-moi ton numéro de commande (commence par *OP-*), ou démarre un nouvel envoi en écrivant un montant et un pays.",
-    "status_not_found": "Je n'ai trouvé aucun envoi avec ce numéro de commande. Vérifie-le et réessaie."
+    "status_not_found": "Je n'ai trouvé aucun envoi avec ce numéro de commande. Vérifie-le et réessaie.",
+    "status_error": "Un problème est survenu lors de la vérification du statut de ton envoi. Réessaie dans un instant."
   },
   "kyc": {
     "title": "Vérifiez votre identité",

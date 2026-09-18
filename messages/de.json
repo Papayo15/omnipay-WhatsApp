@@ -1217,7 +1217,8 @@
     "status_label_completed": "Abgeschlossen ✅",
     "status_label_failed": "Fehlgeschlagen ❌",
     "status_no_order": "Ich habe keine aktuelle Überweisung für dich gespeichert. Schick mir deine Bestellnummer (beginnt mit *OP-*), oder starte eine neue Überweisung mit Betrag und Land.",
-    "status_not_found": "Ich konnte keine Überweisung mit dieser Bestellnummer finden. Bitte überprüfe sie und versuche es erneut."
+    "status_not_found": "Ich konnte keine Überweisung mit dieser Bestellnummer finden. Bitte überprüfe sie und versuche es erneut.",
+    "status_error": "Beim Abrufen deines Überweisungsstatus ist etwas schiefgelaufen. Bitte versuche es gleich noch einmal."
   },
   "kyc": {
     "title": "Verifizieren Sie Ihre Identität",

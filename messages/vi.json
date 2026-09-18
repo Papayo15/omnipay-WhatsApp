@@ -1217,7 +1217,8 @@
     "status_label_completed": "Hoàn tất ✅",
     "status_label_failed": "Thất bại ❌",
     "status_no_order": "Tôi không có giao dịch gần đây nào của bạn. Gửi số đơn hàng (bắt đầu bằng *OP-*), hoặc bắt đầu giao dịch mới bằng cách nhập số tiền và quốc gia.",
-    "status_not_found": "Tôi không tìm thấy giao dịch nào với số đơn hàng đó. Kiểm tra lại và thử lại."
+    "status_not_found": "Tôi không tìm thấy giao dịch nào với số đơn hàng đó. Kiểm tra lại và thử lại.",
+    "status_error": "Đã có lỗi khi kiểm tra trạng thái giao dịch của bạn. Vui lòng thử lại sau một chút."
   },
   "kyc": {
     "title": "Xác minh danh tính của bạn",

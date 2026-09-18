@@ -1216,7 +1216,8 @@
     "status_label_completed": "An kammala ✅",
     "status_label_failed": "Ya kasa ❌",
     "status_no_order": "Ba ni da wani canja wuri na kwanan nan da aka yi rajista maka. Aika lambar oda (tana farawa da *OP-*), ko fara sabon canja wuri ta rubuta adadi da ƙasa.",
-    "status_not_found": "Ban sami wani canja wuri da wannan lambar oda ba. Sake dubawa ka gwada."
+    "status_not_found": "Ban sami wani canja wuri da wannan lambar oda ba. Sake dubawa ka gwada.",
+    "status_error": "Wani abu ya faru ba daidai ba wajen bincika matsayin canja wurinka. Sake gwadawa bayan ɗan lokaci."
   },
   "kyc": {
     "title": "Tabbatar da ainihin ka",

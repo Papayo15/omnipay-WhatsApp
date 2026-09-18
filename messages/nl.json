@@ -1217,7 +1217,8 @@
     "status_label_completed": "Voltooid ✅",
     "status_label_failed": "Mislukt ❌",
     "status_no_order": "Ik heb geen recente overboeking voor je gevonden. Stuur je ordernummer (begint met *OP-*), of start een nieuwe overboeking door een bedrag en land te schrijven.",
-    "status_not_found": "Ik kon geen overboeking vinden met dat ordernummer. Controleer het en probeer opnieuw."
+    "status_not_found": "Ik kon geen overboeking vinden met dat ordernummer. Controleer het en probeer opnieuw.",
+    "status_error": "Er ging iets mis bij het opzoeken van je overboekingsstatus. Probeer het zo opnieuw."
   },
   "kyc": {
     "title": "Verifieer je identiteit",

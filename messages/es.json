@@ -1200,7 +1200,8 @@
     "status_label_completed": "Completado ✅",
     "status_label_failed": "Falló ❌",
     "status_no_order": "No tengo un envío reciente registrado para ti. Mándame tu número de orden (empieza con *OP-*), o inicia un envío nuevo escribiendo un monto y país.",
-    "status_not_found": "No encontré ningún envío con ese número de orden. Revísalo bien y vuelve a intentar."
+    "status_not_found": "No encontré ningún envío con ese número de orden. Revísalo bien y vuelve a intentar.",
+    "status_error": "Algo salió mal consultando el estado de tu envío. Intenta de nuevo en un momento."
   },
   "kyc": {
     "title": "Verifica tu identidad",

@@ -1215,7 +1215,8 @@
     "status_label_completed": "Completed ✅",
     "status_label_failed": "Failed ❌",
     "status_no_order": "I don't have a recent transfer on file for you. Send your order number (starts with *OP-*), or start a new transfer by writing an amount and country.",
-    "status_not_found": "I couldn't find a transfer with that order number. Double-check it and try again."
+    "status_not_found": "I couldn't find a transfer with that order number. Double-check it and try again.",
+    "status_error": "Something went wrong checking your transfer status. Please try again in a moment."
   },
   "kyc": {
     "title": "Verify your identity",
