@@ -1210,7 +1210,14 @@
     "currency_not_supported_source": "Chúng tôi chưa thể nhận tiền gửi bằng {currency} cho giao dịch này. Hãy thử lại bằng USD, EUR, GBP, MXN hoặc BRL.",
     "deposit_error": "Đã có lỗi khi tạo hướng dẫn nạp tiền của bạn. Hãy trả lời *CÓ* lại sau một chút, hoặc bắt đầu lại.",
     "confirmed_deposit_reusable": "💡 Lưu tài khoản này trong ứng dụng ngân hàng của bạn — nó là của bạn mãi mãi. Bạn có thể dùng lại bao nhiêu lần tùy thích để gửi cho {recipient_name} — chỉ cần mở ngân hàng và đổi số tiền, không cần nhắn lại cho chúng tôi ở đây.",
-    "greeting_reuse_hint": "💡 Đã từng gửi cho người nhận này rồi? Không cần nhắn lại cho chúng tôi — chỉ cần dùng cùng tài khoản đó từ ứng dụng ngân hàng của bạn."
+    "greeting_reuse_hint": "💡 Đã từng gửi cho người nhận này rồi? Không cần nhắn lại cho chúng tôi — chỉ cần dùng cùng tài khoản đó từ ứng dụng ngân hàng của bạn.",
+    "status_reply": "📦 Trạng thái giao dịch của bạn ({order_id}):\n\n{status}\n\n👤 Người nhận: {recipient}\n🌍 Quốc gia: {country}",
+    "status_label_pending": "Đang chờ bạn nạp tiền",
+    "status_label_processing": "Đang xử lý",
+    "status_label_completed": "Hoàn tất ✅",
+    "status_label_failed": "Thất bại ❌",
+    "status_no_order": "Tôi không có giao dịch gần đây nào của bạn. Gửi số đơn hàng (bắt đầu bằng *OP-*), hoặc bắt đầu giao dịch mới bằng cách nhập số tiền và quốc gia.",
+    "status_not_found": "Tôi không tìm thấy giao dịch nào với số đơn hàng đó. Kiểm tra lại và thử lại."
   },
   "kyc": {
     "title": "Xác minh danh tính của bạn",

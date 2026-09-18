@@ -159,6 +159,27 @@ export async function recordLastMessage(waId: string): Promise<void> {
   } catch { /* non-critical — peor caso: usamos plantilla cuando texto libre habría bastado */ }
 }
 
+// ── Último order_id del usuario — para el comando "Estado" del bot ───────────
+// Puntero corto (no PII: solo el order_id que /api/bridge/send ya generó), mismo TTL
+// que lib/order-state.ts (48h) — no tiene caso recordarlo más tiempo que el propio pedido.
+const LAST_ORDER_TTL_SECONDS = 48 * 3600;
+
+export async function setLastOrder(waId: string, orderId: string): Promise<void> {
+  try {
+    const redis = await getRedis();
+    await redis.set(`wa:lastorder:${hashPhone(waId)}`, orderId, { EX: LAST_ORDER_TTL_SECONDS });
+  } catch { /* non-critical — peor caso: "Estado" sin ID no encuentra nada */ }
+}
+
+export async function getLastOrder(waId: string): Promise<string | null> {
+  try {
+    const redis = await getRedis();
+    return await redis.get(`wa:lastorder:${hashPhone(waId)}`);
+  } catch {
+    return null;
+  }
+}
+
 export async function isWithinMessageWindow(waId: string): Promise<boolean> {
   try {
     const redis = await getRedis();

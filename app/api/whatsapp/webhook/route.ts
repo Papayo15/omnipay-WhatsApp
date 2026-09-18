@@ -38,7 +38,10 @@ export const runtime = "nodejs";
 import { NextRequest, NextResponse } from "next/server";
 import { sendWhatsAppMessage }       from "@/lib/whatsapp";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
-import { getEmailForPhone, setEmailForPhone, setPendingTransfer, hashPhone, recordLastMessage } from "@/lib/wa-identity";
+import {
+  getEmailForPhone, setEmailForPhone, setPendingTransfer, hashPhone, recordLastMessage,
+  setLastOrder, getLastOrder,
+} from "@/lib/wa-identity";
 import { findCustomerByEmail }       from "@/providers/bridge/customers";
 import {
   validateAccountDetails, parseAccountField, mergeSecondAccountField, secondAccountPromptKey,
@@ -46,7 +49,7 @@ import {
 } from "@/lib/wa-validation";
 import {
   getSession, setSession, clearSession, beginRecipientCollection,
-  requestDepositInstructions, isSupportedSourceCurrency,
+  requestDepositInstructions, isSupportedSourceCurrency, getOrderAsync, statusLabelKey,
 } from "@/lib/wa-flow";
 
 const APP_URL  = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
@@ -219,6 +222,34 @@ export async function POST(req: NextRequest): Promise<Response> {
   const locale = session?.locale ?? localeFromPhone(waId);
   const t = await getWaTranslator(locale);
 
+  // ── Comando "Estado" — consulta de estado, disponible en cualquier momento (no
+  // depende del step de la sesión, y no la toca — si el usuario estaba a mitad de otro
+  // flujo puede seguir después). "Estado"/"Status" sin más usa el último order_id que le
+  // dimos (puntero corto en Redis, lib/wa-identity.ts); un número de orden explícito
+  // (OP-...) siempre tiene prioridad.
+  const STATUS_KEYWORDS = new Set(["estado", "status", "seguimiento", "track"]);
+  const ORDER_ID_REGEX = /^OP-\d{10,}-[a-z0-9]{4,10}$/i;
+  const trimmed = text.trim();
+  if (STATUS_KEYWORDS.has(trimmed.toLowerCase()) || ORDER_ID_REGEX.test(trimmed)) {
+    const orderId = ORDER_ID_REGEX.test(trimmed) ? trimmed : await getLastOrder(waId);
+    if (!orderId) {
+      await sendWhatsAppMessage(waId, t("status_no_order"));
+      return NextResponse.json({ ok: true });
+    }
+    const order = await getOrderAsync(orderId);
+    if (!order) {
+      await sendWhatsAppMessage(waId, t("status_not_found"));
+      return NextResponse.json({ ok: true });
+    }
+    await sendWhatsAppMessage(waId, t("status_reply", {
+      order_id: order.orderId,
+      status:   t(statusLabelKey(order.status)),
+      recipient: order.recipientName,
+      country:   order.destinationCountry,
+    }));
+    return NextResponse.json({ ok: true });
+  }
+
   // ── Step 7: esperando SI / CANCELAR ───────────────────────────────────────
   if (session?.step === 7 && session.account && session.recipientName && session.email
       && session.amount && session.currency && session.country) {
@@ -235,6 +266,7 @@ export async function POST(req: NextRequest): Promise<Response> {
         account: session.account,
       });
       if (di) {
+        await setLastOrder(waId, di.orderId);
         const lines = [
           t("confirmed_deposit_intro", { amount: di.amount_to_deposit, currency: di.currency, rail: di.rail }),
           "",

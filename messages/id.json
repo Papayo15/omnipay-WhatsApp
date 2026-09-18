@@ -1210,7 +1210,14 @@
     "currency_not_supported_source": "Kami belum bisa menerima setoran dalam {currency} untuk transfer ini. Coba lagi dengan USD, EUR, GBP, MXN, atau BRL.",
     "deposit_error": "Ada masalah saat membuat instruksi setoranmu. Balas *YA* lagi sebentar lagi, atau mulai ulang.",
     "confirmed_deposit_reusable": "💡 Simpan rekening ini di aplikasi bankmu — ini milikmu selamanya. Kamu bisa menggunakannya berkali-kali untuk mengirim ke {recipient_name} — cukup buka bankmu dan ubah jumlahnya, tanpa perlu chat kami di sini lagi.",
-    "greeting_reuse_hint": "💡 Sudah pernah kirim ke penerima ini sebelumnya? Tidak perlu chat kami lagi — gunakan saja rekening yang sama dari aplikasi bankmu."
+    "greeting_reuse_hint": "💡 Sudah pernah kirim ke penerima ini sebelumnya? Tidak perlu chat kami lagi — gunakan saja rekening yang sama dari aplikasi bankmu.",
+    "status_reply": "📦 Status transfer Anda ({order_id}):\n\n{status}\n\n👤 Penerima: {recipient}\n🌍 Negara: {country}",
+    "status_label_pending": "Menunggu setoran Anda",
+    "status_label_processing": "Sedang diproses",
+    "status_label_completed": "Selesai ✅",
+    "status_label_failed": "Gagal ❌",
+    "status_no_order": "Saya tidak punya transfer terbaru yang tercatat untuk Anda. Kirim nomor pesanan Anda (diawali *OP-*), atau mulai transfer baru dengan menulis jumlah dan negara.",
+    "status_not_found": "Saya tidak menemukan transfer dengan nomor pesanan itu. Periksa lagi dan coba ulang."
   },
   "kyc": {
     "title": "Verifikasi identitas Anda",

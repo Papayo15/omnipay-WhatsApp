@@ -1210,7 +1210,14 @@
     "currency_not_supported_source": "此次转账暂不支持 {currency} 存款。请改用 USD、EUR、GBP、MXN 或 BRL 重试。",
     "deposit_error": "生成存款说明时出了点问题。请稍后再回复“是”，或者重新开始。",
     "confirmed_deposit_reusable": "💡 把这个账户保存到你的银行App里——它永久属于你。以后给{recipient_name}汇款可以随时重复使用，只需打开银行App修改金额，无需再来这里给我们发消息。",
-    "greeting_reuse_hint": "💡 之前给这个收款人汇过款？无需再联系我们——直接在银行App里使用同一个账户即可。"
+    "greeting_reuse_hint": "💡 之前给这个收款人汇过款？无需再联系我们——直接在银行App里使用同一个账户即可。",
+    "status_reply": "📦 您的汇款状态（{order_id}）：\n\n{status}\n\n👤 收款人：{recipient}\n🌍 国家：{country}",
+    "status_label_pending": "等待您存款",
+    "status_label_processing": "处理中",
+    "status_label_completed": "已完成 ✅",
+    "status_label_failed": "失败 ❌",
+    "status_no_order": "没有找到您最近的汇款记录。请发送订单号（以*OP-*开头），或输入金额和国家开始新的汇款。",
+    "status_not_found": "未找到该订单号对应的汇款。请核实后重试。"
   },
   "kyc": {
     "title": "验证您的身份",

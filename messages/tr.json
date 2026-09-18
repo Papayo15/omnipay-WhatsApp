@@ -1210,7 +1210,14 @@
     "currency_not_supported_source": "Bu transfer için henüz {currency} cinsinden yatırım kabul edemiyoruz. USD, EUR, GBP, MXN veya BRL ile tekrar dene.",
     "deposit_error": "Yatırım talimatların oluşturulurken bir sorun oluştu. Biraz sonra tekrar *EVET* yaz, ya da baştan başla.",
     "confirmed_deposit_reusable": "💡 Bu hesabı bankacılık uygulamana kaydet — sonsuza kadar senin. {recipient_name}'e göndermek için istediğin kadar tekrar kullanabilirsin — bankana gir, tutarı değiştir, burada bize tekrar yazmana gerek yok.",
-    "greeting_reuse_hint": "💡 Bu alıcıya daha önce gönderdin mi? Bize tekrar yazmana gerek yok — bankacılık uygulamandan aynı hesabı kullan."
+    "greeting_reuse_hint": "💡 Bu alıcıya daha önce gönderdin mi? Bize tekrar yazmana gerek yok — bankacılık uygulamandan aynı hesabı kullan.",
+    "status_reply": "📦 Transferinin durumu ({order_id}):\n\n{status}\n\n👤 Alıcı: {recipient}\n🌍 Ülke: {country}",
+    "status_label_pending": "Yatırımını bekliyor",
+    "status_label_processing": "İşlemde",
+    "status_label_completed": "Tamamlandı ✅",
+    "status_label_failed": "Başarısız ❌",
+    "status_no_order": "Senin için kayıtlı yakın zamanda bir transfer bulamadım. Sipariş numaranı gönder (*OP-* ile başlar), ya da bir tutar ve ülke yazarak yeni bir transfer başlat.",
+    "status_not_found": "Bu sipariş numarasıyla bir transfer bulamadım. Kontrol edip tekrar dene."
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",

@@ -1210,7 +1210,14 @@
     "currency_not_supported_source": "We kunnen voor deze overboeking nog geen stortingen in {currency} accepteren. Probeer het opnieuw met USD, EUR, GBP, MXN of BRL.",
     "deposit_error": "Er ging iets mis bij het maken van je stortingsinstructies. Antwoord zo weer met *JA*, of begin opnieuw.",
     "confirmed_deposit_reusable": "💡 Sla deze rekening op in je bank-app — hij is voorgoed van jou. Je kunt hem zo vaak gebruiken als je wilt om geld naar {recipient_name} te sturen — open gewoon je bank-app en wijzig het bedrag, zonder ons hier opnieuw te hoeven schrijven.",
-    "greeting_reuse_hint": "💡 Al eerder naar deze ontvanger gestuurd? Je hoeft ons niet opnieuw te schrijven — gebruik gewoon dezelfde rekening via je bank-app."
+    "greeting_reuse_hint": "💡 Al eerder naar deze ontvanger gestuurd? Je hoeft ons niet opnieuw te schrijven — gebruik gewoon dezelfde rekening via je bank-app.",
+    "status_reply": "📦 Status van je overboeking ({order_id}):\n\n{status}\n\n👤 Ontvanger: {recipient}\n🌍 Land: {country}",
+    "status_label_pending": "Wacht op je storting",
+    "status_label_processing": "Bezig",
+    "status_label_completed": "Voltooid ✅",
+    "status_label_failed": "Mislukt ❌",
+    "status_no_order": "Ik heb geen recente overboeking voor je gevonden. Stuur je ordernummer (begint met *OP-*), of start een nieuwe overboeking door een bedrag en land te schrijven.",
+    "status_not_found": "Ik kon geen overboeking vinden met dat ordernummer. Controleer het en probeer opnieuw."
   },
   "kyc": {
     "title": "Verifieer je identiteit",

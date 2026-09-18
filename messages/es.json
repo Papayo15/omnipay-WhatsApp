@@ -1193,7 +1193,14 @@
     "currency_not_supported_source": "Todavía no podemos recibir depósitos en {currency} para este envío. Intenta de nuevo en USD, EUR, GBP, MXN o BRL.",
     "deposit_error": "Algo salió mal generando tus instrucciones de depósito. Responde *SI* de nuevo en un momento, o empieza de nuevo.",
     "confirmed_deposit_reusable": "💡 Guarda esta cuenta en tu app bancaria: es tuya para siempre. Puedes volver a usarla las veces que quieras para enviarle a {recipient_name} — solo entra a tu banco y cambia el monto, sin necesidad de escribirnos aquí de nuevo.",
-    "greeting_reuse_hint": "💡 ¿Ya le enviaste antes a este destinatario? No hace falta escribirnos de nuevo — usa la misma cuenta desde la app de tu banco."
+    "greeting_reuse_hint": "💡 ¿Ya le enviaste antes a este destinatario? No hace falta escribirnos de nuevo — usa la misma cuenta desde la app de tu banco.",
+    "status_reply": "📦 Estado de tu envío ({order_id}):\n\n{status}\n\n👤 Destinatario: {recipient}\n🌍 País: {country}",
+    "status_label_pending": "Esperando tu depósito",
+    "status_label_processing": "En proceso",
+    "status_label_completed": "Completado ✅",
+    "status_label_failed": "Falló ❌",
+    "status_no_order": "No tengo un envío reciente registrado para ti. Mándame tu número de orden (empieza con *OP-*), o inicia un envío nuevo escribiendo un monto y país.",
+    "status_not_found": "No encontré ningún envío con ese número de orden. Revísalo bien y vuelve a intentar."
   },
   "kyc": {
     "title": "Verifica tu identidad",

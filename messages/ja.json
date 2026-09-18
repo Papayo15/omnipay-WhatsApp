@@ -1210,7 +1210,14 @@
     "currency_not_supported_source": "この送金では{currency}での入金にまだ対応していません。USD、EUR、GBP、MXN、BRLのいずれかで再度お試しください。",
     "deposit_error": "入金案内の作成中に問題が発生しました。少ししてからもう一度「はい」と返信するか、最初からやり直してください。",
     "confirmed_deposit_reusable": "💡 この口座を銀行アプリに保存してください — ずっと使えます。{recipient_name} への送金に何度でも再利用できます。銀行アプリを開いて金額を変えるだけで、ここに再度メッセージする必要はありません。",
-    "greeting_reuse_hint": "💡 この受取人に以前送金したことがありますか？ 再度メッセージする必要はありません — 銀行アプリから同じ口座を使ってください。"
+    "greeting_reuse_hint": "💡 この受取人に以前送金したことがありますか？ 再度メッセージする必要はありません — 銀行アプリから同じ口座を使ってください。",
+    "status_reply": "📦 送金状況（{order_id}）：\n\n{status}\n\n👤 受取人：{recipient}\n🌍 国：{country}",
+    "status_label_pending": "入金待ちです",
+    "status_label_processing": "処理中です",
+    "status_label_completed": "完了しました ✅",
+    "status_label_failed": "失敗しました ❌",
+    "status_no_order": "最近の送金記録が見つかりませんでした。注文番号（*OP-*で始まります）を送るか、金額と国を書いて新しい送金を始めてください。",
+    "status_not_found": "その注文番号の送金が見つかりませんでした。確認してもう一度お試しください。"
   },
   "kyc": {
     "title": "本人確認を行ってください",

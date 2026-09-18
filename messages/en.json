@@ -1208,7 +1208,14 @@
     "currency_not_supported_source": "We can't yet accept deposits in {currency} for this transfer. Please try again in USD, EUR, GBP, MXN or BRL.",
     "deposit_error": "Something went wrong generating your deposit instructions. Please reply *YES* again in a moment, or start over.",
     "confirmed_deposit_reusable": "💡 Save this account in your banking app — it's yours for good. You can reuse it as many times as you want to send to {recipient_name}, just open your bank app and change the amount, no need to message us here again.",
-    "greeting_reuse_hint": "💡 Already sent to this recipient before? No need to message us again — just use the same account from your banking app."
+    "greeting_reuse_hint": "💡 Already sent to this recipient before? No need to message us again — just use the same account from your banking app.",
+    "status_reply": "📦 Status of your transfer ({order_id}):\n\n{status}\n\n👤 Recipient: {recipient}\n🌍 Country: {country}",
+    "status_label_pending": "Waiting for your deposit",
+    "status_label_processing": "In progress",
+    "status_label_completed": "Completed ✅",
+    "status_label_failed": "Failed ❌",
+    "status_no_order": "I don't have a recent transfer on file for you. Send your order number (starts with *OP-*), or start a new transfer by writing an amount and country.",
+    "status_not_found": "I couldn't find a transfer with that order number. Double-check it and try again."
   },
   "kyc": {
     "title": "Verify your identity",

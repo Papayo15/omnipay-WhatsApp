@@ -1209,7 +1209,14 @@
     "currency_not_supported_source": "Ba mu iya karɓar ajiya cikin {currency} don wannan canja wuri ba tukuna. Sake gwadawa da USD, EUR, GBP, MXN ko BRL.",
     "deposit_error": "Wani abu ya faru ba daidai ba wajen ƙirƙirar umarnin ajiyar ka. Sake amsawa da *I* bayan ɗan lokaci, ko fara sabo.",
     "confirmed_deposit_reusable": "💡 Ajiye wannan asusun a app ɗin bankinka — naka ne har abada. Za ka iya sake amfani da shi sau da yawa yadda kake so don aikawa ga {recipient_name} — kawai buɗe bankinka ka canza adadin, ba tare da bukatar sake rubuto mana a nan ba.",
-    "greeting_reuse_hint": "💡 Ka taɓa aikawa ga wannan mai karɓa a baya? Ba bukatar sake rubuto mana — kawai yi amfani da asusun nan daga app ɗin bankinka."
+    "greeting_reuse_hint": "💡 Ka taɓa aikawa ga wannan mai karɓa a baya? Ba bukatar sake rubuto mana — kawai yi amfani da asusun nan daga app ɗin bankinka.",
+    "status_reply": "📦 Matsayin canja wurin ka ({order_id}):\n\n{status}\n\n👤 Mai karɓa: {recipient}\n🌍 Ƙasa: {country}",
+    "status_label_pending": "Ana jiran ajiyar ka",
+    "status_label_processing": "Ana ci gaba",
+    "status_label_completed": "An kammala ✅",
+    "status_label_failed": "Ya kasa ❌",
+    "status_no_order": "Ba ni da wani canja wuri na kwanan nan da aka yi rajista maka. Aika lambar oda (tana farawa da *OP-*), ko fara sabon canja wuri ta rubuta adadi da ƙasa.",
+    "status_not_found": "Ban sami wani canja wuri da wannan lambar oda ba. Sake dubawa ka gwada."
   },
   "kyc": {
     "title": "Tabbatar da ainihin ka",

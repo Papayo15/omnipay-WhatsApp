@@ -1210,7 +1210,14 @@
     "currency_not_supported_source": "Bado hatuwezi kupokea malipo kwa {currency} kwa uhamisho huu. Jaribu tena kwa USD, EUR, GBP, MXN au BRL.",
     "deposit_error": "Kuna hitilafu wakati wa kutengeneza maagizo yako ya malipo. Jibu tena *NDIYO* baada ya muda, au anza upya.",
     "confirmed_deposit_reusable": "💡 Hifadhi akaunti hii katika programu ya benki yako — ni yako milele. Unaweza kuitumia tena mara nyingi upendavyo kutuma pesa kwa {recipient_name} — fungua tu benki yako na ubadilishe kiasi, bila kuhitaji kuandika tena hapa.",
-    "greeting_reuse_hint": "💡 Umeshamtumia pesa mpokeaji huyu hapo awali? Hakuna haja ya kuandika tena — tumia akaunti ile ile kutoka programu ya benki yako."
+    "greeting_reuse_hint": "💡 Umeshamtumia pesa mpokeaji huyu hapo awali? Hakuna haja ya kuandika tena — tumia akaunti ile ile kutoka programu ya benki yako.",
+    "status_reply": "📦 Hali ya uhamisho wako ({order_id}):\n\n{status}\n\n👤 Mpokeaji: {recipient}\n🌍 Nchi: {country}",
+    "status_label_pending": "Inasubiri malipo yako",
+    "status_label_processing": "Inaendelea",
+    "status_label_completed": "Imekamilika ✅",
+    "status_label_failed": "Imeshindwa ❌",
+    "status_no_order": "Sina uhamisho wa hivi karibuni uliosajiliwa kwa ajili yako. Tuma namba yako ya oda (inaanza na *OP-*), au anzisha uhamisho mpya kwa kuandika kiasi na nchi.",
+    "status_not_found": "Sikupata uhamisho wowote na namba hiyo ya oda. Ikague tena na ujaribu tena."
   },
   "kyc": {
     "title": "Thibitisha utambulisho wako",

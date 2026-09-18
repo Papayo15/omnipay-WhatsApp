@@ -12,6 +12,7 @@ import { getRedis }            from "@/lib/redis";
 import { sendWhatsAppMessage } from "@/lib/whatsapp";
 import { hashPhone }           from "@/lib/wa-identity";
 import { getCountry }          from "@/constants/countries";
+import { getOrderAsync, type OrderStatus } from "@/lib/order-state";
 import type { WaLocale }       from "@/lib/wa-i18n";
 import type { getWaTranslator } from "@/lib/wa-i18n";
 import type { AccountDetails } from "@/lib/wa-validation";
@@ -110,6 +111,7 @@ export function isSupportedSourceCurrency(currency: string): boolean {
 }
 
 export interface DepositInstructions {
+  orderId: string;
   rail: string; currency: string;
   bank_name?: string | null; beneficiary_name?: string | null;
   routing_number?: string | null; account_number?: string | null;
@@ -156,10 +158,11 @@ export async function requestDepositInstructions(params: {
       }),
     });
     if (!res.ok) return null;
-    const data = await res.json() as { needs_kyc?: boolean; needs_tos?: boolean; deposit_instructions?: Record<string, unknown> };
-    if (data.needs_kyc || data.needs_tos || !data.deposit_instructions) return null;
+    const data = await res.json() as { needs_kyc?: boolean; needs_tos?: boolean; order_id?: string; deposit_instructions?: Record<string, unknown> };
+    if (data.needs_kyc || data.needs_tos || !data.deposit_instructions || !data.order_id) return null;
     const di = data.deposit_instructions;
     return {
+      orderId: data.order_id,
       rail: String(di.rail ?? ""), currency: String(di.currency ?? sc.toUpperCase()),
       bank_name: (di.bank_name as string) ?? null, beneficiary_name: (di.beneficiary_name as string) ?? null,
       routing_number: (di.routing_number as string) ?? null, account_number: (di.account_number as string) ?? null,
@@ -198,3 +201,19 @@ export async function beginRecipientCollection(
   }
   await sendWhatsAppMessage(waId, t("ask_recipient_name"));
 }
+
+// ── Comando "Estado" — consulta de estado de envío (solo lectura, no crea nada nuevo) ──
+// Reusa lib/order-state.ts tal cual (Bridge/Redis siguen siendo la única fuente de
+// verdad); solo mapea el estado técnico a algo legible en 3 categorías simples, como
+// pidió el usuario: pendiente de depósito, en proceso, completado o fallido.
+export function statusLabelKey(status: OrderStatus): string {
+  switch (status) {
+    case "PENDING_PAYIN":       return "status_label_pending";
+    case "PROCESSING_ONCHAIN":
+    case "LIQUIDATING_FIAT":    return "status_label_processing";
+    case "COMPLETED":           return "status_label_completed";
+    case "FAILED":               return "status_label_failed";
+  }
+}
+
+export { getOrderAsync };

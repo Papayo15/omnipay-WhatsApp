@@ -1210,7 +1210,14 @@
     "currency_not_supported_source": "Per ora non possiamo accettare depositi in {currency} per questo invio. Riprova con USD, EUR, GBP, MXN o BRL.",
     "deposit_error": "Si è verificato un problema nel generare le istruzioni di deposito. Rispondi di nuovo *SI* tra un momento, oppure ricomincia.",
     "confirmed_deposit_reusable": "💡 Salva questo conto nella tua app bancaria — è tuo per sempre. Puoi riutilizzarlo quante volte vuoi per inviare a {recipient_name} — apri semplicemente la tua banca e cambia l'importo, senza bisogno di riscriverci qui.",
-    "greeting_reuse_hint": "💡 Hai già inviato a questo destinatario? Non serve riscriverci — usa lo stesso conto dalla tua app bancaria."
+    "greeting_reuse_hint": "💡 Hai già inviato a questo destinatario? Non serve riscriverci — usa lo stesso conto dalla tua app bancaria.",
+    "status_reply": "📦 Stato del tuo invio ({order_id}):\n\n{status}\n\n👤 Destinatario: {recipient}\n🌍 Paese: {country}",
+    "status_label_pending": "In attesa del tuo deposito",
+    "status_label_processing": "In corso",
+    "status_label_completed": "Completato ✅",
+    "status_label_failed": "Fallito ❌",
+    "status_no_order": "Non ho nessun invio recente registrato per te. Mandami il tuo numero d'ordine (inizia con *OP-*), oppure avvia un nuovo invio scrivendo importo e paese.",
+    "status_not_found": "Non ho trovato nessun invio con questo numero d'ordine. Ricontrollalo e riprova."
   },
   "kyc": {
     "title": "Verifica la tua identità",
