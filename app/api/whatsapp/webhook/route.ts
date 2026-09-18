@@ -52,6 +52,7 @@ import {
   requestDepositInstructions, isSupportedSourceCurrency, getOrderAsync, statusLabelKey,
 } from "@/lib/wa-flow";
 import { computeCompetitorGets } from "@/lib/competitor-compare";
+import { getCountry } from "@/constants/countries";
 
 const APP_URL  = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
 
@@ -297,8 +298,12 @@ export async function POST(req: NextRequest): Promise<Response> {
     }
     const competitorGets = computeCompetitorGets(cq.senderDeposits, cq.rate, currency.toUpperCase());
     const savings = parseFloat((cq.recipientGets - competitorGets).toFixed(2));
+    const countryCc = country.toUpperCase();
+    // Un solo mensaje fluido (antes salían dos seguidos y se sentía cortado): cifras +
+    // los dos caminos claros (SI para enviar esto mismo, u otra cotización / "1" al menú).
     await sendWhatsAppMessage(waId, t("compare_reply", {
       amount: String(amount), currency: currency.toUpperCase(),
+      country_name: getCountry(countryCc)?.name ?? countryCc, country_code: countryCc,
       omnipay_amount:    cq.recipientGets.toLocaleString("en-US"),
       competitor_amount: competitorGets.toLocaleString("en-US"),
       savings:           savings.toLocaleString("en-US"),
@@ -308,7 +313,6 @@ export async function POST(req: NextRequest): Promise<Response> {
     // que un simple "SI" retome exactamente donde íbamos, sin que el usuario tenga que
     // volver a escribirlo — la sesión en Redis no se pierde entre la comparación y el envío.
     await setSession(waId, { step: 2, amount, currency, country, locale });
-    await sendWhatsAppMessage(waId, t("compare_cta"));
     return NextResponse.json({ ok: true });
   }
 
@@ -372,7 +376,10 @@ export async function POST(req: NextRequest): Promise<Response> {
           // este destinatario (reutiliza la misma liquidation address/VA). El usuario no
           // necesita volver a pasar por WhatsApp para sus próximos envíos a la misma
           // persona: puede guardarla en su banca en línea y solo cambiar el monto ahí.
-          t("confirmed_deposit_reusable", { recipient_name: session.recipientName }),
+          t("confirmed_deposit_reusable", {
+            recipient_name: session.recipientName,
+            country_name: getCountry(session.country)?.name ?? session.country,
+          }),
         ];
         await sendWhatsAppMessage(waId, lines.join("\n"));
       } else {
