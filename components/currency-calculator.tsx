@@ -10,6 +10,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { COUNTRIES } from "@/constants/countries";
+import { computeCompetitorGets, COMPETITOR_FIXED_FEE } from "@/lib/competitor-compare";
 
 // Alcance actual: solo los corredores P2P/B2B que YA corren en vivo por Bridge —
 // MXN, USD, COP y zona EUR. El resto de NATIVE_RAILS (BR, GB, etc.) se habilita en la
@@ -20,17 +21,6 @@ const SUPPORTED_DEST_CODES = [
 ];
 
 const SOURCE_CURRENCIES = ["USD", "EUR"] as const;
-
-// Spread oculto promedio estimado de la competencia (remesadoras tradicionales) sobre
-// la tasa interbancaria — usado solo para la comparación visual, no afecta ningún cobro real.
-const COMPETITOR_SPREAD_PCT = 0.032;
-
-// Tarifa fija promedio que cobran remesadoras tradicionales (ej. Western Union, MoneyGram)
-// además del spread oculto — equivalente aproximado por moneda origen (no requiere otra
-// llamada a la API; son valores de referencia de mercado, no cobros reales de OmniPay).
-const COMPETITOR_FIXED_FEE: Record<string, number> = {
-  USD: 3.99, EUR: 3.69, GBP: 3.19, CAD: 5.49,
-};
 
 interface FxQuoteResponse {
   from_currency:   string;
@@ -93,12 +83,10 @@ export function CurrencyCalculator() {
     return () => { if (debounce.current) clearTimeout(debounce.current); };
   }, [amount, sourceCurrency, destCountry, destCurrency]);
 
-  // Competencia: misma tasa interbancaria real, pero un remesador tradicional cobra
-  // una tarifa fija visible ADEMÁS de esconder su margen en un peor tipo de cambio.
-  // Restamos la tarifa fija del monto (en moneda origen) antes de aplicar el spread.
-  const fixedFee = COMPETITOR_FIXED_FEE[sourceCurrency] ?? COMPETITOR_FIXED_FEE.USD;
+  // Competencia — fórmula compartida con el comando "comparar" del bot de WhatsApp
+  // (lib/competitor-compare.ts), para que ambos canales muestren el mismo número.
   const competitorGets = quote
-    ? parseFloat((Math.max(quote.sender_deposits - fixedFee, 0) * quote.fx_rate * (1 - COMPETITOR_SPREAD_PCT)).toFixed(2))
+    ? computeCompetitorGets(quote.sender_deposits, quote.fx_rate, sourceCurrency)
     : null;
 
   // Diferencial SIEMPRE en moneda destino — nunca en la moneda de origen (USD/EUR/GBP/CAD).
@@ -183,7 +171,7 @@ export function CurrencyCalculator() {
               <p className="text-slate-400 text-xs font-bold uppercase mb-1">{t("competitor_label")}</p>
               <p className="text-white font-bold text-lg">{fmt(competitorGets, destCurrency)}</p>
               <p className="text-slate-500 text-xs mt-1">
-                {t("competitor_spread_label", { fee: fmt(fixedFee, sourceCurrency) })}
+                {t("competitor_spread_label", { fee: fmt(COMPETITOR_FIXED_FEE[sourceCurrency] ?? COMPETITOR_FIXED_FEE.USD, sourceCurrency) })}
               </p>
             </div>
           </div>

@@ -1155,7 +1155,7 @@
     "p2p_only_label": "Für persönliche Überweisungen"
   },
   "whatsapp": {
-    "greeting": "👋 Hallo! Ich bin der OmniPay-Assistent.\n\nWie viel möchten Sie senden, in welches Land, und wie lautet Ihre E-Mail? (wir nutzen sie zur Kontoverifizierung — das passiert nur einmal)\n\nSchreiben Sie zum Beispiel:\n• *200 USD Mexiko juan@email.com*\n• *500 CAD Kolumbien juan@email.com*\n• *1000 EUR Spanien juan@email.com*\n\n_(Dieser Chat läuft aus Sicherheitsgründen in 5 Minuten ab)_",
+    "greeting": "👋 Hallo! Willkommen bei OmniPay 🌍\nSchick Geld ins Ausland zum besten Wechselkurs und ohne versteckte Gebühren.\n\n1️⃣ Jetzt Geld senden\n2️⃣ Gebühren vergleichen 📊\n\nSchreib *1* oder *2*, um loszulegen (oder direkt Betrag, Land und deine E-Mail, z. B. *200 USD Mexiko juan@email.com*).\n\n_(Dieser Chat läuft aus Sicherheitsgründen in 5 Minuten ab)_",
     "parse_error": "Hmm, das habe ich nicht ganz verstanden 🤔\n\nSchreiben Sie Betrag und Land so:\n*200 USD Mexiko*",
     "ask_email": "Um fortzufahren, wie lautet Ihre E-Mail-Adresse? Wir verwenden sie, um Ihr Konto bei unserem regulierten Zahlungsanbieter zu verifizieren.",
     "invalid_email": "Das sieht nicht nach einer gültigen E-Mail aus. Versuchen Sie es erneut (Beispiel: name@email.com)",
@@ -1218,7 +1218,13 @@
     "status_label_failed": "Fehlgeschlagen ❌",
     "status_no_order": "Ich habe keine aktuelle Überweisung für dich gespeichert. Schick mir deine Bestellnummer (beginnt mit *OP-*), oder starte eine neue Überweisung mit Betrag und Land.",
     "status_not_found": "Ich konnte keine Überweisung mit dieser Bestellnummer finden. Bitte überprüfe sie und versuche es erneut.",
-    "status_error": "Beim Abrufen deines Überweisungsstatus ist etwas schiefgelaufen. Bitte versuche es gleich noch einmal."
+    "status_error": "Beim Abrufen deines Überweisungsstatus ist etwas schiefgelaufen. Bitte versuche es gleich noch einmal.",
+    "compare_usage": "Schreib es so: *comparar 200 USD Mexiko* (Betrag, Währung, Land) und ich zeige dir, wie viel mehr dein Empfänger mit OmniPay bekommt im Vergleich zu einem klassischen Geldtransferdienst.",
+    "compare_error": "Ich konnte gerade keinen Vergleich erstellen. Bitte versuche es gleich noch einmal.",
+    "compare_reply": "🔎 Für {amount} {currency}:\n\n✅ Mit OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Klassischer Geldtransferdienst (geschätzt): {competitor_amount} {recipient_currency}\n\n💰 Dein Empfänger bekommt *+{savings} {recipient_currency} mehr* mit OmniPay.\n\nBereit zu senden? Schreib einfach Betrag und Land (z. B. *200 USD Mexiko*) und deine E-Mail.",
+    "compare_hint": "🔎 Willst du erstmal nur vergleichen? Schreib: *comparar 200 USD Mexiko*",
+    "compare_cta": "Möchtest du das jetzt senden?\n👉 Antworte mit *JA*, um fortzufahren.",
+    "menu_option_send_prompt": "Super 👍 Schreib mir Betrag, Land und deine E-Mail zusammen. Z. B.: *200 USD Mexiko juan@email.com*"
   },
   "kyc": {
     "title": "Verifizieren Sie Ihre Identität",

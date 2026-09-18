@@ -1155,7 +1155,7 @@
     "p2p_only_label": "Voor persoonlijke overboekingen"
   },
   "whatsapp": {
-    "greeting": "👋 Hoi! Ik ben de OmniPay-assistent.\n\nHoeveel wil je versturen, naar welk land, en wat is je e-mailadres? (we gebruiken het om je account te verifiëren, dit gebeurt maar één keer)\n\nSchrijf bijvoorbeeld:\n• *200 USD Mexico juan@email.com*\n• *500 CAD Colombia juan@email.com*\n• *1000 EUR Spanje juan@email.com*\n\n_(Deze chat verloopt over 5 minuten voor je veiligheid)_",
+    "greeting": "👋 Hoi! Welkom bij OmniPay 🌍\nStuur geld naar het buitenland tegen de beste wisselkoers en zonder verborgen kosten.\n\n1️⃣ Nu geld versturen\n2️⃣ Tarieven vergelijken 📊\n\nSchrijf *1* of *2* om te beginnen (of meteen bedrag, land en je e-mail, bijv. *200 USD Mexico juan@email.com*).\n\n_(Deze chat verloopt over 5 minuten voor je veiligheid)_",
     "parse_error": "Hmm, dat begreep ik niet helemaal 🤔\n\nSchrijf het bedrag en land zo:\n*200 USD Mexico*",
     "ask_email": "Om door te gaan, wat is je e-mailadres? We gebruiken het om je account te verifiëren bij onze gereguleerde betalingsprovider.",
     "invalid_email": "Dat lijkt geen geldig e-mailadres. Probeer opnieuw (voorbeeld: naam@email.com)",
@@ -1218,7 +1218,13 @@
     "status_label_failed": "Mislukt ❌",
     "status_no_order": "Ik heb geen recente overboeking voor je gevonden. Stuur je ordernummer (begint met *OP-*), of start een nieuwe overboeking door een bedrag en land te schrijven.",
     "status_not_found": "Ik kon geen overboeking vinden met dat ordernummer. Controleer het en probeer opnieuw.",
-    "status_error": "Er ging iets mis bij het opzoeken van je overboekingsstatus. Probeer het zo opnieuw."
+    "status_error": "Er ging iets mis bij het opzoeken van je overboekingsstatus. Probeer het zo opnieuw.",
+    "compare_usage": "Schrijf het zo: *comparar 200 USD Mexico* (bedrag, valuta, land) en ik laat je zien hoeveel meer je ontvanger krijgt met OmniPay t.o.v. een traditionele geldtransferdienst.",
+    "compare_error": "Ik kon nu geen vergelijking maken. Probeer het zo opnieuw.",
+    "compare_reply": "🔎 Bij het versturen van {amount} {currency}:\n\n✅ Met OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Traditionele geldtransferdienst (schatting): {competitor_amount} {recipient_currency}\n\n💰 Je ontvanger krijgt *+{savings} {recipient_currency} meer* met OmniPay.\n\nKlaar om te versturen? Schrijf gewoon het bedrag en land (bv. *200 USD Mexico*) en je e-mail.",
+    "compare_hint": "🔎 Wil je eerst alleen vergelijken? Schrijf: *comparar 200 USD Mexico*",
+    "compare_cta": "Wil je dit nu versturen?\n👉 Antwoord met *JA* om door te gaan.",
+    "menu_option_send_prompt": "Top 👍 Schrijf me bedrag, land en je e-mail, allemaal samen. Bijv.: *200 USD Mexico juan@email.com*"
   },
   "kyc": {
     "title": "Verifieer je identiteit",

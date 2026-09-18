@@ -48,9 +48,10 @@ import {
   accountPromptKey, maskedAccountSummary,
 } from "@/lib/wa-validation";
 import {
-  getSession, setSession, clearSession, beginRecipientCollection,
+  getSession, setSession, clearSession, beginRecipientCollection, fetchQuote,
   requestDepositInstructions, isSupportedSourceCurrency, getOrderAsync, statusLabelKey,
 } from "@/lib/wa-flow";
+import { computeCompetitorGets } from "@/lib/competitor-compare";
 
 const APP_URL  = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
 
@@ -222,6 +223,21 @@ export async function POST(req: NextRequest): Promise<Response> {
   const locale = session?.locale ?? localeFromPhone(waId);
   const t = await getWaTranslator(locale);
 
+  const trimmed = text.trim();
+
+  // ── Atajos del menú de bienvenida ("1️⃣ Enviar dinero" / "2️⃣ Comparar tarifas") ──
+  // Puramente aditivo: escribir el monto/país/correo directo (sin pasar por el menú)
+  // sigue funcionando exactamente igual que antes — esto solo le da un segundo camino
+  // de entrada a alguien que llega "a mirar" en vez de a enviar ya.
+  if (trimmed === "1") {
+    await sendWhatsAppMessage(waId, t("menu_option_send_prompt"));
+    return NextResponse.json({ ok: true });
+  }
+  if (trimmed === "2") {
+    await sendWhatsAppMessage(waId, t("compare_usage"));
+    return NextResponse.json({ ok: true });
+  }
+
   // ── Comando "Estado" — consulta de estado, disponible en cualquier momento (no
   // depende del step de la sesión, y no la toca — si el usuario estaba a mitad de otro
   // flujo puede seguir después). "Estado"/"Status" sin más usa el último order_id que le
@@ -231,7 +247,6 @@ export async function POST(req: NextRequest): Promise<Response> {
   // Insensible a mayúsculas (flag "i") y no atado al formato exacto que generamos hoy
   // (OP-{timestamp}-{random}) — con que empiece con "op-" basta, por si ese formato cambia.
   const ORDER_ID_REGEX = /^op-[\w-]+$/i;
-  const trimmed = text.trim();
   if (STATUS_KEYWORDS.has(trimmed.toLowerCase()) || ORDER_ID_REGEX.test(trimmed)) {
     try {
       const orderId = ORDER_ID_REGEX.test(trimmed) ? trimmed : await getLastOrder(waId);
@@ -257,6 +272,62 @@ export async function POST(req: NextRequest): Promise<Response> {
       // que el chat nunca se quede sin respuesta.
       console.error("[whatsapp/webhook] status command failed:", (e as Error).message);
       await sendWhatsAppMessage(waId, t("status_error")).catch(() => {});
+    }
+    return NextResponse.json({ ok: true });
+  }
+
+  // ── Comando "Comparar" — gancho de conversión, disponible en cualquier momento y
+  // SIN requerir email/KYC (a propósito: es para que alguien que ni siquiera es cliente
+  // todavía vea el ahorro antes de comprometerse a nada). Misma fórmula que la calculadora
+  // web (lib/competitor-compare.ts) — un solo cálculo, no dos que puedan desalinearse.
+  const COMPARE_REGEX = /^(comparar|compare|compara|comparación|comparacion)\b\s*(.*)$/i;
+  const compareMatch = trimmed.match(COMPARE_REGEX);
+  if (compareMatch) {
+    const rest = compareMatch[2]?.trim() ?? "";
+    const parsedCompare = rest ? parseAmount(rest) : null;
+    if (!parsedCompare) {
+      await sendWhatsAppMessage(waId, t("compare_usage"));
+      return NextResponse.json({ ok: true });
+    }
+    const { amount, currency, country } = parsedCompare;
+    const cq = await fetchQuote(currency, country, amount);
+    if (!cq) {
+      await sendWhatsAppMessage(waId, t("compare_error"));
+      return NextResponse.json({ ok: true });
+    }
+    const competitorGets = computeCompetitorGets(cq.senderDeposits, cq.rate, currency.toUpperCase());
+    const savings = parseFloat((cq.recipientGets - competitorGets).toFixed(2));
+    await sendWhatsAppMessage(waId, t("compare_reply", {
+      amount: String(amount), currency: currency.toUpperCase(),
+      omnipay_amount:    cq.recipientGets.toLocaleString("en-US"),
+      competitor_amount: competitorGets.toLocaleString("en-US"),
+      savings:           savings.toLocaleString("en-US"),
+      recipient_currency: cq.recipientCurrency,
+    }));
+    // Puente directo al envío: guardamos el monto/moneda/país ya parseados (step 2) para
+    // que un simple "SI" retome exactamente donde íbamos, sin que el usuario tenga que
+    // volver a escribirlo — la sesión en Redis no se pierde entre la comparación y el envío.
+    await setSession(waId, { step: 2, amount, currency, country, locale });
+    await sendWhatsAppMessage(waId, t("compare_cta"));
+    return NextResponse.json({ ok: true });
+  }
+
+  // ── Step 2: post-"comparar", esperando SI para saltar directo al envío con el
+  // monto/moneda/país que ya se cotizaron — evita que el usuario tenga que volver a
+  // teclearlos. Si no contesta "SI" simplemente no entra aquí y cae al parseo normal
+  // de abajo (Step 1), tratando el mensaje como una consulta nueva.
+  if (session?.step === 2 && session.amount && session.currency && session.country
+      && (trimmed.toLowerCase() === "si" || trimmed.toLowerCase() === "sí")) {
+    const identity = await getEmailForPhone(waId);
+    if (identity) {
+      const identityLocale = (identity.locale as WaLocale) ?? session.locale ?? locale;
+      await startKycOrCollection(
+        waId, identityLocale, await getWaTranslator(identityLocale),
+        session.amount, session.currency, session.country, identity.email,
+      );
+    } else {
+      await setSession(waId, { step: 3, amount: session.amount, currency: session.currency, country: session.country, locale });
+      await sendWhatsAppMessage(waId, t("ask_email"));
     }
     return NextResponse.json({ ok: true });
   }

@@ -1155,7 +1155,7 @@
     "p2p_only_label": "适用于个人汇款"
   },
   "whatsapp": {
-    "greeting": "👋 你好！我是OmniPay助手。\n\n您想汇多少钱到哪个国家？您的邮箱是什么？（我们用它来验证您的账户，只需一次）\n\n请这样写：\n• *200 USD 墨西哥 juan@email.com*\n• *500 CAD 哥伦比亚 juan@email.com*\n• *1000 EUR 西班牙 juan@email.com*\n\n_(为了您的安全，此聊天将在5分钟后过期)_",
+    "greeting": "👋 你好！欢迎使用OmniPay 🌍\n以最优汇率汇款到国外，零隐藏费用。\n\n1️⃣ 立即汇款\n2️⃣ 比较费率 📊\n\n输入 *1* 或 *2* 开始（或直接输入金额、国家和您的邮箱，例如 *200 USD 墨西哥 juan@email.com*）。\n\n_(为了您的安全，此聊天将在5分钟后过期)_",
     "parse_error": "嗯，我没太明白🤔\n\n请这样写金额和国家：\n*200 USD 墨西哥*",
     "ask_email": "为了继续，您的电子邮件是什么？我们用它在我们受监管的支付提供商处验证您的账户。",
     "invalid_email": "这似乎不是有效的电子邮件。请重试（例如：name@email.com）",
@@ -1218,7 +1218,13 @@
     "status_label_failed": "失败 ❌",
     "status_no_order": "没有找到您最近的汇款记录。请发送订单号（以*OP-*开头），或输入金额和国家开始新的汇款。",
     "status_not_found": "未找到该订单号对应的汇款。请核实后重试。",
-    "status_error": "查询汇款状态时出了点问题。请稍后再试。"
+    "status_error": "查询汇款状态时出了点问题。请稍后再试。",
+    "compare_usage": "请这样写：*comparar 200 USD 墨西哥*（金额、货币、国家），我会告诉你用OmniPay比传统汇款公司多汇多少钱给收款人。",
+    "compare_error": "现在无法生成比较结果，请稍后再试。",
+    "compare_reply": "🔎 汇出 {amount} {currency} 时：\n\n✅ 使用OmniPay：{omnipay_amount} {recipient_currency}\n🐌 传统汇款公司（估算）：{competitor_amount} {recipient_currency}\n\n💰 使用OmniPay，收款人*多收到 {savings} {recipient_currency}*。\n\n准备好汇款了吗？只需写下金额和国家（例如*200 USD 墨西哥*）和您的邮箱。",
+    "compare_hint": "🔎 只是想在决定前比较一下？请输入：*comparar 200 USD 墨西哥*",
+    "compare_cta": "现在就汇款吗？\n👉 回复\"是\"继续。",
+    "menu_option_send_prompt": "好的 👍 请把金额、国家和邮箱一起写给我。例如：*200 USD 墨西哥 juan@email.com*"
   },
   "kyc": {
     "title": "验证您的身份",

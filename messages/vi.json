@@ -1155,7 +1155,7 @@
     "p2p_only_label": "Dành cho chuyển tiền cá nhân"
   },
   "whatsapp": {
-    "greeting": "👋 Xin chào! Tôi là trợ lý OmniPay.\n\nBạn muốn gửi bao nhiêu, đến quốc gia nào, và email của bạn là gì? (chúng tôi dùng để xác minh tài khoản, việc này chỉ làm một lần)\n\nHãy viết như thế này:\n• *200 USD Mexico juan@email.com*\n• *500 CAD Colombia juan@email.com*\n• *1000 EUR Tây Ban Nha juan@email.com*\n\n_(Cuộc trò chuyện này hết hạn sau 5 phút vì lý do bảo mật)_",
+    "greeting": "👋 Xin chào! Chào mừng đến với OmniPay 🌍\nGửi tiền ra nước ngoài với tỷ giá tốt nhất và không phí ẩn.\n\n1️⃣ Gửi tiền ngay\n2️⃣ So sánh phí 📊\n\nViết *1* hoặc *2* để bắt đầu (hoặc viết luôn số tiền, quốc gia và email của bạn, vd. *200 USD Mexico juan@email.com*).\n\n_(Cuộc trò chuyện này hết hạn sau 5 phút vì lý do bảo mật)_",
     "parse_error": "Hừm, tôi chưa hiểu rõ 🤔\n\nHãy viết số tiền và quốc gia như sau:\n*200 USD Mexico*",
     "ask_email": "Để tiếp tục, email của bạn là gì? Chúng tôi dùng nó để xác minh tài khoản của bạn với nhà cung cấp thanh toán được quản lý của chúng tôi.",
     "invalid_email": "Đây có vẻ không phải là email hợp lệ. Hãy thử lại (ví dụ: ten@email.com)",
@@ -1218,7 +1218,13 @@
     "status_label_failed": "Thất bại ❌",
     "status_no_order": "Tôi không có giao dịch gần đây nào của bạn. Gửi số đơn hàng (bắt đầu bằng *OP-*), hoặc bắt đầu giao dịch mới bằng cách nhập số tiền và quốc gia.",
     "status_not_found": "Tôi không tìm thấy giao dịch nào với số đơn hàng đó. Kiểm tra lại và thử lại.",
-    "status_error": "Đã có lỗi khi kiểm tra trạng thái giao dịch của bạn. Vui lòng thử lại sau một chút."
+    "status_error": "Đã có lỗi khi kiểm tra trạng thái giao dịch của bạn. Vui lòng thử lại sau một chút.",
+    "compare_usage": "Viết thế này: *comparar 200 USD Mexico* (số tiền, tiền tệ, quốc gia) và tôi sẽ cho bạn thấy người nhận của bạn nhận được nhiều hơn bao nhiêu với OmniPay so với dịch vụ chuyển tiền truyền thống.",
+    "compare_error": "Tôi không thể tạo so sánh lúc này. Vui lòng thử lại sau một chút.",
+    "compare_reply": "🔎 Khi gửi {amount} {currency}:\n\n✅ Với OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Dịch vụ chuyển tiền truyền thống (ước tính): {competitor_amount} {recipient_currency}\n\n💰 Người nhận của bạn nhận được *+{savings} {recipient_currency} nhiều hơn* với OmniPay.\n\nSẵn sàng gửi chưa? Chỉ cần viết số tiền và quốc gia (vd. *200 USD Mexico*) và email của bạn.",
+    "compare_hint": "🔎 Chỉ muốn so sánh trước khi quyết định? Viết: *comparar 200 USD Mexico*",
+    "compare_cta": "Bạn có muốn gửi ngay bây giờ không?\n👉 Trả lời *CÓ* để tiếp tục.",
+    "menu_option_send_prompt": "Tuyệt 👍 Viết số tiền, quốc gia và email của bạn cùng nhau. Vd.: *200 USD Mexico juan@email.com*"
   },
   "kyc": {
     "title": "Xác minh danh tính của bạn",

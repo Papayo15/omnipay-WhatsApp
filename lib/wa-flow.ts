@@ -21,9 +21,10 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
 
 const SESSION_TTL = 10 * 60; // seconds
 
-export type WaStep = 1 | 3 | 5 | 6 | 65 | 7;
-// 1 = need amount+country · 3 = need email · 5 = need recipient name
-// 6 = need account field #1 · 65 = need account field #2 · 7 = awaiting SI/CANCELAR
+export type WaStep = 1 | 2 | 3 | 5 | 6 | 65 | 7;
+// 1 = need amount+country · 2 = post-"comparar", awaiting SI to jump into the send flow
+// with the already-parsed amount/currency/country · 3 = need email · 5 = need recipient
+// name · 6 = need account field #1 · 65 = need account field #2 · 7 = awaiting SI/CANCELAR
 
 export interface WaSession {
   step:      WaStep;
@@ -64,7 +65,7 @@ export async function clearSession(waId: string): Promise<void> {
 // Two-pass refine (approx → exact), same pattern as components/currency-calculator.tsx.
 export async function fetchQuote(
   currency: string, country: string, amount: number,
-): Promise<{ recipientGets: number; recipientCurrency: string; rate: number } | null> {
+): Promise<{ recipientGets: number; recipientCurrency: string; rate: number; senderDeposits: number } | null> {
   const destCurrency = getCountry(country)?.currency ?? "MXN";
   try {
     const qs1 = new URLSearchParams({ from: currency, to: destCurrency, amount: String(amount), country });
@@ -75,8 +76,13 @@ export async function fetchQuote(
     const approxTarget = parseFloat((amount * q1.fx_rate).toFixed(2));
     const qs2 = new URLSearchParams({ from: currency, to: destCurrency, amount: String(approxTarget), country });
     const r2 = await fetch(`${APP_URL}/api/bridge/fx-quote?${qs2}`);
-    const q2 = r2.ok ? await r2.json() as { fx_rate: number; recipient_gets: number } : { fx_rate: q1.fx_rate, recipient_gets: approxTarget };
-    return { recipientGets: q2.recipient_gets, recipientCurrency: destCurrency, rate: q2.fx_rate };
+    const q2 = r2.ok
+      ? await r2.json() as { fx_rate: number; recipient_gets: number; sender_deposits: number }
+      : { fx_rate: q1.fx_rate, recipient_gets: approxTarget, sender_deposits: amount };
+    return {
+      recipientGets: q2.recipient_gets, recipientCurrency: destCurrency, rate: q2.fx_rate,
+      senderDeposits: q2.sender_deposits,
+    };
   } catch {
     return null;
   }

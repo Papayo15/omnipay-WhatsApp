@@ -1155,7 +1155,7 @@
     "p2p_only_label": "Pour les envois personnels"
   },
   "whatsapp": {
-    "greeting": "👋 Bonjour ! Je suis l'assistant OmniPay.\n\nCombien voulez-vous envoyer, vers quel pays, et quel est votre e-mail ? (on l'utilise pour vérifier ton compte, une seule fois)\n\nÉcrivez par exemple :\n• *200 USD Mexique juan@email.com*\n• *500 CAD Colombie juan@email.com*\n• *1000 EUR Espagne juan@email.com*\n\n_(Cette conversation expire dans 5 minutes pour votre sécurité)_",
+    "greeting": "👋 Bonjour ! Bienvenue chez OmniPay 🌍\nEnvoie de l'argent à l'étranger au meilleur taux de change et sans frais cachés.\n\n1️⃣ Envoyer de l'argent maintenant\n2️⃣ Comparer les tarifs 📊\n\nÉcris *1* ou *2* pour commencer (ou directement le montant, le pays et ton e-mail, ex. *200 USD Mexique juan@email.com*).\n\n_(Cette conversation expire dans 5 minutes pour votre sécurité)_",
     "parse_error": "Hmm, je n'ai pas bien compris 🤔\n\nÉcrivez le montant et le pays ainsi :\n*200 USD Mexique*",
     "ask_email": "Pour continuer, quel est votre e-mail ? Nous l'utilisons pour vérifier votre compte auprès de notre prestataire de paiement réglementé.",
     "invalid_email": "Cela ne ressemble pas à un e-mail valide. Réessayez (exemple : nom@email.com)",
@@ -1218,7 +1218,13 @@
     "status_label_failed": "Échoué ❌",
     "status_no_order": "Je n'ai aucun envoi récent enregistré pour toi. Envoie-moi ton numéro de commande (commence par *OP-*), ou démarre un nouvel envoi en écrivant un montant et un pays.",
     "status_not_found": "Je n'ai trouvé aucun envoi avec ce numéro de commande. Vérifie-le et réessaie.",
-    "status_error": "Un problème est survenu lors de la vérification du statut de ton envoi. Réessaie dans un instant."
+    "status_error": "Un problème est survenu lors de la vérification du statut de ton envoi. Réessaie dans un instant.",
+    "compare_usage": "Écris-le comme ça : *comparar 200 USD Mexique* (montant, devise, pays) et je te montre combien de plus ton destinataire reçoit avec OmniPay par rapport à une société de transfert traditionnelle.",
+    "compare_error": "Je n'ai pas pu générer la comparaison pour le moment. Réessaie dans un instant.",
+    "compare_reply": "🔎 Pour {amount} {currency} :\n\n✅ Avec OmniPay : {omnipay_amount} {recipient_currency}\n🐌 Société de transfert traditionnelle (estimation) : {competitor_amount} {recipient_currency}\n\n💰 Ton destinataire reçoit *+{savings} {recipient_currency} de plus* avec OmniPay.\n\nPrêt à envoyer ? Écris juste le montant et le pays (ex. *200 USD Mexique*) et ton e-mail.",
+    "compare_hint": "🔎 Tu veux juste comparer avant de te décider ? Écris : *comparar 200 USD Mexique*",
+    "compare_cta": "Tu veux envoyer maintenant ?\n👉 Réponds *OUI* pour continuer.",
+    "menu_option_send_prompt": "Parfait 👍 Écris-moi le montant, le pays et ton e-mail, le tout ensemble. Ex. : *200 USD Mexique juan@email.com*"
   },
   "kyc": {
     "title": "Vérifiez votre identité",

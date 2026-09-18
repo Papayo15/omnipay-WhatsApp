@@ -1138,7 +1138,7 @@
     "p2p_only_label": "Para envíos personales"
   },
   "whatsapp": {
-    "greeting": "👋 ¡Hola! Soy el asistente de OmniPay.\n\n¿Cuánto quieres enviar, a qué país y cuál es tu correo? (lo usamos para verificar tu cuenta, esto solo se hace una vez)\n\nEscríbeme algo como:\n• *200 USD México juan@correo.com*\n• *500 CAD Colombia juan@correo.com*\n• *1000 EUR España juan@correo.com*\n\n_(Este chat expira en 5 minutos por seguridad)_",
+    "greeting": "👋 ¡Hola! Bienvenido a OmniPay 🌍\nEnvía dinero al extranjero con el mejor tipo de cambio y $0 en comisiones ocultas.\n\n1️⃣ Enviar dinero ahora\n2️⃣ Comparar tarifas 📊\n\nEscribe *1* o *2* para comenzar (o directo el monto, país y tu correo, ej. *200 USD México juan@correo.com*).\n\n_(Este chat expira en 5 minutos por seguridad)_",
     "parse_error": "Hmm, no entendí bien 🤔\n\nEscríbeme el monto y país así:\n*200 USD México*",
     "ask_email": "Para continuar, ¿cuál es tu correo electrónico? Lo usamos para verificar tu cuenta con nuestro proveedor de pagos regulado.",
     "invalid_email": "Ese no parece un correo válido. Intenta de nuevo (ejemplo: nombre@correo.com)",
@@ -1201,7 +1201,13 @@
     "status_label_failed": "Falló ❌",
     "status_no_order": "No tengo un envío reciente registrado para ti. Mándame tu número de orden (empieza con *OP-*), o inicia un envío nuevo escribiendo un monto y país.",
     "status_not_found": "No encontré ningún envío con ese número de orden. Revísalo bien y vuelve a intentar.",
-    "status_error": "Algo salió mal consultando el estado de tu envío. Intenta de nuevo en un momento."
+    "status_error": "Algo salió mal consultando el estado de tu envío. Intenta de nuevo en un momento.",
+    "compare_usage": "Escríbeme así: *comparar 200 USD México* (monto, moneda, país) y te muestro cuánto más recibe tu destinatario con OmniPay vs. una remesadora tradicional.",
+    "compare_error": "No pude generar la comparación en este momento. Intenta de nuevo en un momento.",
+    "compare_reply": "🔎 Enviando {amount} {currency}:\n\n✅ Con OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Remesadora tradicional (estimado): {competitor_amount} {recipient_currency}\n\n💰 Tu destinatario recibe *+{savings} {recipient_currency} más* con OmniPay.\n\n¿Listo para enviar? Solo escribe el monto y país (ej. *200 USD México*) y tu correo.",
+    "compare_hint": "🔎 ¿Solo quieres comparar antes de decidir? Escribe: *comparar 200 USD México*",
+    "compare_cta": "¿Quieres realizar este envío ahora?\n👉 Responde *SI* para continuar.",
+    "menu_option_send_prompt": "Perfecto 👍 Escríbeme el monto, el país y tu correo, todo junto. Ej: *200 USD México juan@correo.com*"
   },
   "kyc": {
     "title": "Verifica tu identidad",

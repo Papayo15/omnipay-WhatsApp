@@ -1155,7 +1155,7 @@
     "p2p_only_label": "Untuk transfer pribadi"
   },
   "whatsapp": {
-    "greeting": "👋 Hai! Saya asisten OmniPay.\n\nBerapa yang ingin Anda kirim, ke negara mana, dan apa email Anda? (kami gunakan untuk memverifikasi akun Anda, ini hanya dilakukan sekali)\n\nTulis seperti ini:\n• *200 USD Meksiko juan@email.com*\n• *500 CAD Kolombia juan@email.com*\n• *1000 EUR Spanyol juan@email.com*\n\n_(Obrolan ini kedaluwarsa dalam 5 menit demi keamanan Anda)_",
+    "greeting": "👋 Hai! Selamat datang di OmniPay 🌍\nKirim uang ke luar negeri dengan kurs terbaik dan tanpa biaya tersembunyi.\n\n1️⃣ Kirim uang sekarang\n2️⃣ Bandingkan tarif 📊\n\nTulis *1* atau *2* untuk mulai (atau langsung jumlah, negara, dan email Anda, mis. *200 USD Meksiko juan@email.com*).\n\n_(Obrolan ini kedaluwarsa dalam 5 menit demi keamanan Anda)_",
     "parse_error": "Hmm, saya kurang mengerti 🤔\n\nTulis jumlah dan negara seperti ini:\n*200 USD Meksiko*",
     "ask_email": "Untuk melanjutkan, apa email Anda? Kami menggunakannya untuk memverifikasi akun Anda dengan penyedia pembayaran kami yang teregulasi.",
     "invalid_email": "Itu sepertinya bukan email yang valid. Coba lagi (contoh: nama@email.com)",
@@ -1218,7 +1218,13 @@
     "status_label_failed": "Gagal ❌",
     "status_no_order": "Saya tidak punya transfer terbaru yang tercatat untuk Anda. Kirim nomor pesanan Anda (diawali *OP-*), atau mulai transfer baru dengan menulis jumlah dan negara.",
     "status_not_found": "Saya tidak menemukan transfer dengan nomor pesanan itu. Periksa lagi dan coba ulang.",
-    "status_error": "Terjadi kesalahan saat memeriksa status transfer Anda. Coba lagi sebentar lagi."
+    "status_error": "Terjadi kesalahan saat memeriksa status transfer Anda. Coba lagi sebentar lagi.",
+    "compare_usage": "Tulis seperti ini: *comparar 200 USD Meksiko* (jumlah, mata uang, negara) dan saya akan tunjukkan berapa lebih banyak penerima Anda dapatkan dengan OmniPay dibanding perusahaan pengiriman uang tradisional.",
+    "compare_error": "Saya tidak bisa membuat perbandingan saat ini. Coba lagi sebentar lagi.",
+    "compare_reply": "🔎 Saat mengirim {amount} {currency}:\n\n✅ Dengan OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Perusahaan pengiriman uang tradisional (perkiraan): {competitor_amount} {recipient_currency}\n\n💰 Penerima Anda mendapat *+{savings} {recipient_currency} lebih banyak* dengan OmniPay.\n\nSiap kirim? Cukup tulis jumlah dan negara (mis. *200 USD Meksiko*) dan email Anda.",
+    "compare_hint": "🔎 Cuma mau membandingkan dulu sebelum memutuskan? Tulis: *comparar 200 USD Meksiko*",
+    "compare_cta": "Mau kirim sekarang?\n👉 Balas *YA* untuk lanjut.",
+    "menu_option_send_prompt": "Bagus 👍 Tulis jumlah, negara, dan email Anda sekaligus. Mis.: *200 USD Meksiko juan@email.com*"
   },
   "kyc": {
     "title": "Verifikasi identitas Anda",

@@ -1155,7 +1155,7 @@
     "p2p_only_label": "Kişisel transferler için"
   },
   "whatsapp": {
-    "greeting": "👋 Merhaba! Ben OmniPay asistanıyım.\n\nNe kadar göndermek istiyorsunuz, hangi ülkeye ve e-postanız nedir? (hesabınızı doğrulamak için kullanıyoruz, bu yalnızca bir kez yapılır)\n\nŞöyle yazın:\n• *200 USD Meksika juan@email.com*\n• *500 CAD Kolombiya juan@email.com*\n• *1000 EUR İspanya juan@email.com*\n\n_(Bu sohbet güvenliğiniz için 5 dakika içinde sona erer)_",
+    "greeting": "👋 Merhaba! OmniPay'e hoş geldin 🌍\nEn iyi döviz kuruyla ve gizli ücret olmadan yurt dışına para gönder.\n\n1️⃣ Şimdi para gönder\n2️⃣ Ücretleri karşılaştır 📊\n\nBaşlamak için *1* veya *2* yaz (ya da direkt tutar, ülke ve e-postanı yaz, örn. *200 USD Meksika juan@email.com*).\n\n_(Bu sohbet güvenliğiniz için 5 dakika içinde sona erer)_",
     "parse_error": "Hmm, tam anlayamadım 🤔\n\nTutarı ve ülkeyi şöyle yazın:\n*200 USD Meksika*",
     "ask_email": "Devam etmek için e-postanız nedir? Düzenlenmiş ödeme sağlayıcımızda hesabınızı doğrulamak için kullanıyoruz.",
     "invalid_email": "Bu geçerli bir e-posta gibi görünmüyor. Tekrar deneyin (örnek: isim@email.com)",
@@ -1218,7 +1218,13 @@
     "status_label_failed": "Başarısız ❌",
     "status_no_order": "Senin için kayıtlı yakın zamanda bir transfer bulamadım. Sipariş numaranı gönder (*OP-* ile başlar), ya da bir tutar ve ülke yazarak yeni bir transfer başlat.",
     "status_not_found": "Bu sipariş numarasıyla bir transfer bulamadım. Kontrol edip tekrar dene.",
-    "status_error": "Transfer durumunu kontrol ederken bir sorun oluştu. Lütfen biraz sonra tekrar dene."
+    "status_error": "Transfer durumunu kontrol ederken bir sorun oluştu. Lütfen biraz sonra tekrar dene.",
+    "compare_usage": "Şöyle yaz: *comparar 200 USD Meksika* (tutar, para birimi, ülke) ve alıcının OmniPay ile geleneksel bir para transfer şirketine göre ne kadar daha fazla aldığını göstereyim.",
+    "compare_error": "Şu anda karşılaştırma oluşturamadım. Lütfen biraz sonra tekrar dene.",
+    "compare_reply": "🔎 {amount} {currency} gönderirken:\n\n✅ OmniPay ile: {omnipay_amount} {recipient_currency}\n🐌 Geleneksel para transfer şirketi (tahmini): {competitor_amount} {recipient_currency}\n\n💰 Alıcın OmniPay ile *+{savings} {recipient_currency} daha fazla* alıyor.\n\nGöndermeye hazır mısın? Sadece tutar ve ülke yaz (örn. *200 USD Meksika*) ve e-postanı.",
+    "compare_hint": "🔎 Karar vermeden önce sadece karşılaştırmak mı istiyorsun? Yaz: *comparar 200 USD Meksika*",
+    "compare_cta": "Bunu şimdi göndermek ister misin?\n👉 Devam etmek için *EVET* yaz.",
+    "menu_option_send_prompt": "Harika 👍 Tutar, ülke ve e-postanı birlikte yaz. Örn.: *200 USD Meksika juan@email.com*"
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",

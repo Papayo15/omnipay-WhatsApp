@@ -1155,7 +1155,7 @@
     "p2p_only_label": "Kwa uhamisho wa kibinafsi"
   },
   "whatsapp": {
-    "greeting": "👋 Habari! Mimi ni msaidizi wa OmniPay.\n\nUnataka kutuma kiasi gani, kwenda nchi gani, na barua pepe yako ni ipi? (tunaitumia kuthibitisha akaunti yako, hii hufanyika mara moja tu)\n\nAndika kitu kama:\n• *200 USD Mexico juan@email.com*\n• *500 CAD Colombia juan@email.com*\n• *1000 EUR Spain juan@email.com*\n\n_(Mazungumzo haya yataisha muda wake baada ya dakika 5 kwa usalama wako)_",
+    "greeting": "👋 Habari! Karibu OmniPay 🌍\nTuma pesa nje ya nchi kwa kiwango bora cha ubadilishaji na bila ada zilizofichwa.\n\n1️⃣ Tuma pesa sasa\n2️⃣ Linganisha viwango 📊\n\nAndika *1* au *2* kuanza (au moja kwa moja kiasi, nchi na barua pepe yako, mfano *200 USD Mexico juan@email.com*).\n\n_(Mazungumzo haya yataisha muda wake baada ya dakika 5 kwa usalama wako)_",
     "parse_error": "Hmm, sikuelewa vizuri 🤔\n\nAndika kiasi na nchi hivi:\n*200 USD Mexico*",
     "ask_email": "Ili kuendelea, barua pepe yako ni ipi? Tunaitumia kuthibitisha akaunti yako na mtoa huduma wetu wa malipo aliyesajiliwa.",
     "invalid_email": "Hiyo haionekani kama barua pepe halali. Jaribu tena (mfano: jina@email.com)",
@@ -1218,7 +1218,13 @@
     "status_label_failed": "Imeshindwa ❌",
     "status_no_order": "Sina uhamisho wa hivi karibuni uliosajiliwa kwa ajili yako. Tuma namba yako ya oda (inaanza na *OP-*), au anzisha uhamisho mpya kwa kuandika kiasi na nchi.",
     "status_not_found": "Sikupata uhamisho wowote na namba hiyo ya oda. Ikague tena na ujaribu tena.",
-    "status_error": "Kuna hitilafu wakati wa kukagua hali ya uhamisho wako. Tafadhali jaribu tena baada ya muda."
+    "status_error": "Kuna hitilafu wakati wa kukagua hali ya uhamisho wako. Tafadhali jaribu tena baada ya muda.",
+    "compare_usage": "Andika hivi: *comparar 200 USD Mexico* (kiasi, sarafu, nchi) nami nitakuonyesha ni kiasi gani zaidi mpokeaji wako anapata kwa OmniPay ikilinganishwa na kampuni ya kawaida ya kutuma pesa.",
+    "compare_error": "Sikuweza kutengeneza ulinganisho kwa sasa. Tafadhali jaribu tena baada ya muda.",
+    "compare_reply": "🔎 Ukituma {amount} {currency}:\n\n✅ Kwa OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Kampuni ya kawaida ya kutuma pesa (makadirio): {competitor_amount} {recipient_currency}\n\n💰 Mpokeaji wako anapata *+{savings} {recipient_currency} zaidi* kwa OmniPay.\n\nUko tayari kutuma? Andika tu kiasi na nchi (mfano *200 USD Mexico*) na barua pepe yako.",
+    "compare_hint": "🔎 Unataka tu kulinganisha kabla ya kuamua? Andika: *comparar 200 USD Mexico*",
+    "compare_cta": "Unataka kutuma hii sasa?\n👉 Jibu *NDIYO* kuendelea.",
+    "menu_option_send_prompt": "Vizuri 👍 Andika kiasi, nchi na barua pepe yako pamoja. Mfano: *200 USD Mexico juan@email.com*"
   },
   "kyc": {
     "title": "Thibitisha utambulisho wako",
