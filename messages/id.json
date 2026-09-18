@@ -1194,7 +1194,8 @@
     "ask_routing_number": "Kirim Routing Number milik penerima.",
     "ask_sort_code": "Kirim Sort Code milik penerima.",
     "ask_account_number": "Sekarang kirim Account Number.",
-    "ask_bic": "Sekarang kirim kode BIC/SWIFT (Bridge memerlukannya bersama IBAN)."
+    "ask_bic": "Sekarang kirim kode BIC/SWIFT (Bridge memerlukannya bersama IBAN).",
+    "country_not_available_yet": "Kami belum mendukung {country} — kami sedang mengusahakannya. Untuk saat ini coba AS, Meksiko, Brasil, Kolombia, Inggris, atau Eropa."
   },
   "kyc": {
     "title": "Verifikasi identitas Anda",

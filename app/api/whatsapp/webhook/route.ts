@@ -68,6 +68,21 @@ function isTwoFieldCountry(country: string): boolean {
   return !SINGLE_FIELD_COUNTRIES.has(country.toUpperCase());
 }
 
+// Países que Bridge ya soporta de forma nativa hoy (ver providers/bridge/liquidation.ts
+// → NATIVE_RAILS) — el resto del mundo depende del riel "swift" de Conduit, que solo se
+// activa cuando CONDUIT_MODULE_ENABLED="true" (mismo patrón que SERVICES_MODULE_ENABLED
+// del Módulo 4) — es decir, hasta que Conduit nos autorice, no antes.
+const BRIDGE_NATIVE_COUNTRIES = new Set([
+  "US", "MX", "BR", "CO", "GB",
+  "DE","FR","ES","IT","NL","PT","BE","AT","IE","FI","GR","CY","EE","LV","LT","LU","MT","SK","SI","HR",
+  "SE","DK","NO","PL","CZ","HU","RO","BG","CH","IS","LI",
+  "AD","MC","SM","XK","VA",
+]);
+function isConduitOnlyCountry(country: string): boolean {
+  return !BRIDGE_NATIVE_COUNTRIES.has(country.toUpperCase());
+}
+const CONDUIT_MODULE_ENABLED = process.env.CONDUIT_MODULE_ENABLED === "true";
+
 interface WaSession {
   step:      WaStep;
   amount?:   number;
@@ -204,6 +219,14 @@ async function startKycOrCollection(
   waId: string, locale: WaLocale, t: Awaited<ReturnType<typeof getWaTranslator>>,
   amount: number, currency: string, country: string, email: string,
 ): Promise<void> {
+  // País fuera de los rieles nativos de Bridge → depende de Conduit (riel "swift"),
+  // apagado hasta que nos autoricen. No arrancamos KYC ni pedimos nada para nada.
+  if (isConduitOnlyCountry(country) && !CONDUIT_MODULE_ENABLED) {
+    await sendWhatsAppMessage(waId, t("country_not_available_yet", { country }));
+    await clearSession(waId);
+    return;
+  }
+
   const customer = await findCustomerByEmail(email).catch(() => null);
   const isOk = (s?: string) => s === "active" || s === "approved" || s === "granted";
   const kycApproved = !!customer && (isOk(customer.status) || isOk(customer.kyc_status));

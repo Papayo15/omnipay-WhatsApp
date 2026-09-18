@@ -1193,7 +1193,8 @@
     "ask_routing_number": "Aiko Routing Number na wanda za a biya.",
     "ask_sort_code": "Aiko Sort Code na wanda za a biya.",
     "ask_account_number": "Yanzu aiko Account Number.",
-    "ask_bic": "Yanzu aiko lambar BIC/SWIFT (Bridge yana buƙatar wannan tare da IBAN)."
+    "ask_bic": "Yanzu aiko lambar BIC/SWIFT (Bridge yana buƙatar wannan tare da IBAN).",
+    "country_not_available_yet": "Ba mu goyon bayan {country} ba tukuna — muna aiki a kai. A yanzu gwada Amurka, Mexico, Brazil, Colombia, Burtaniya ko Turai."
   },
   "kyc": {
     "title": "Tabbatar da ainihin ka",

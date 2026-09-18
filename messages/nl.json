@@ -1194,7 +1194,8 @@
     "ask_routing_number": "Stuur het Routing Number van de ontvanger.",
     "ask_sort_code": "Stuur de Sort Code van de ontvanger.",
     "ask_account_number": "Stuur nu het Account Number.",
-    "ask_bic": "Stuur nu de BIC/SWIFT-code (Bridge vereist dit samen met de IBAN)."
+    "ask_bic": "Stuur nu de BIC/SWIFT-code (Bridge vereist dit samen met de IBAN).",
+    "country_not_available_yet": "We ondersteunen {country} nog niet — we werken eraan. Probeer voorlopig de VS, Mexico, Brazilië, Colombia, het VK of Europa."
   },
   "kyc": {
     "title": "Verifieer je identiteit",

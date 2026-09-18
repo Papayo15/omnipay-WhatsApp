@@ -1194,7 +1194,8 @@
     "ask_routing_number": "Invia il Routing Number del destinatario.",
     "ask_sort_code": "Invia il Sort Code del destinatario.",
     "ask_account_number": "Ora invia l'Account Number.",
-    "ask_bic": "Ora invia il codice BIC/SWIFT (Bridge lo richiede insieme all'IBAN)."
+    "ask_bic": "Ora invia il codice BIC/SWIFT (Bridge lo richiede insieme all'IBAN).",
+    "country_not_available_yet": "Non supportiamo ancora {country} — ci stiamo lavorando. Per ora prova con USA, Messico, Brasile, Colombia, Regno Unito o Europa."
   },
   "kyc": {
     "title": "Verifica la tua identità",

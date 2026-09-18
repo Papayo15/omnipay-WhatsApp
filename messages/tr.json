@@ -1194,7 +1194,8 @@
     "ask_routing_number": "Alıcının Routing Number'ını gönderin.",
     "ask_sort_code": "Alıcının Sort Code'unu gönderin.",
     "ask_account_number": "Şimdi Account Number'ı gönderin.",
-    "ask_bic": "Şimdi BIC/SWIFT kodunu gönderin (Bridge, IBAN ile birlikte bunu gerektirir)."
+    "ask_bic": "Şimdi BIC/SWIFT kodunu gönderin (Bridge, IBAN ile birlikte bunu gerektirir).",
+    "country_not_available_yet": "Henüz {country} desteklemiyoruz — üzerinde çalışıyoruz. Şimdilik ABD, Meksika, Brezilya, Kolombiya, İngiltere veya Avrupa'yı deneyin."
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",

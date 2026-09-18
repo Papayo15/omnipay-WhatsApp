@@ -1194,7 +1194,8 @@
     "ask_routing_number": "Пришлите Routing Number получателя.",
     "ask_sort_code": "Пришлите Sort Code получателя.",
     "ask_account_number": "Теперь пришлите Account Number.",
-    "ask_bic": "Теперь пришлите код BIC/SWIFT (Bridge требует его вместе с IBAN)."
+    "ask_bic": "Теперь пришлите код BIC/SWIFT (Bridge требует его вместе с IBAN).",
+    "country_not_available_yet": "Мы пока не поддерживаем {country} — мы над этим работаем. Пока попробуйте США, Мексику, Бразилию, Колумбию, Великобританию или Европу."
   },
   "kyc": {
     "title": "Подтвердите свою личность",

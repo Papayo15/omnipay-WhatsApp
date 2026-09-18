@@ -1194,7 +1194,8 @@
     "ask_routing_number": "प्राप्तकर्ता का Routing Number भेजें।",
     "ask_sort_code": "प्राप्तकर्ता का Sort Code भेजें।",
     "ask_account_number": "अब Account Number भेजें।",
-    "ask_bic": "अब BIC/SWIFT कोड भेजें (Bridge को IBAN के साथ यह चाहिए)।"
+    "ask_bic": "अब BIC/SWIFT कोड भेजें (Bridge को IBAN के साथ यह चाहिए)।",
+    "country_not_available_yet": "हम अभी {country} को सपोर्ट नहीं करते — हम इस पर काम कर रहे हैं। फिलहाल अमेरिका, मेक्सिको, ब्राज़ील, कोलंबिया, यूके या यूरोप आज़माएं।"
   },
   "kyc": {
     "title": "अपनी पहचान सत्यापित करें",

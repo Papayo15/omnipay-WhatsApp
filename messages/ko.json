@@ -1194,7 +1194,8 @@
     "ask_routing_number": "수취인의 Routing Number를 보내주세요.",
     "ask_sort_code": "수취인의 Sort Code를 보내주세요.",
     "ask_account_number": "이제 Account Number를 보내주세요.",
-    "ask_bic": "이제 BIC/SWIFT 코드를 보내주세요 (Bridge는 IBAN과 함께 이를 요구합니다)."
+    "ask_bic": "이제 BIC/SWIFT 코드를 보내주세요 (Bridge는 IBAN과 함께 이를 요구합니다).",
+    "country_not_available_yet": "아직 {country}은(는) 지원하지 않습니다 — 준비 중입니다. 지금은 미국, 멕시코, 브라질, 콜롬비아, 영국 또는 유럽을 이용해 주세요."
   },
   "kyc": {
     "title": "신원을 확인하세요",

@@ -1194,7 +1194,8 @@
     "ask_routing_number": "请发送收款人的Routing Number。",
     "ask_sort_code": "请发送收款人的Sort Code。",
     "ask_account_number": "现在请发送Account Number。",
-    "ask_bic": "现在请发送BIC/SWIFT代码（Bridge要求与IBAN一起提供）。"
+    "ask_bic": "现在请发送BIC/SWIFT代码（Bridge要求与IBAN一起提供）。",
+    "country_not_available_yet": "我们暂不支持{country}——我们正在努力开通。目前可以试试美国、墨西哥、巴西、哥伦比亚、英国或欧洲。"
   },
   "kyc": {
     "title": "验证您的身份",

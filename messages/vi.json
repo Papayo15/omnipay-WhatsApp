@@ -1194,7 +1194,8 @@
     "ask_routing_number": "Gửi Routing Number của người nhận.",
     "ask_sort_code": "Gửi Sort Code của người nhận.",
     "ask_account_number": "Bây giờ gửi Account Number.",
-    "ask_bic": "Bây giờ gửi mã BIC/SWIFT (Bridge yêu cầu mã này cùng với IBAN)."
+    "ask_bic": "Bây giờ gửi mã BIC/SWIFT (Bridge yêu cầu mã này cùng với IBAN).",
+    "country_not_available_yet": "Chúng tôi chưa hỗ trợ {country} — chúng tôi đang nỗ lực để hỗ trợ. Hiện tại hãy thử Hoa Kỳ, Mexico, Brazil, Colombia, Anh hoặc Châu Âu."
   },
   "kyc": {
     "title": "Xác minh danh tính của bạn",

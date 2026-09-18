@@ -1194,7 +1194,8 @@
     "ask_routing_number": "受取人のRouting Numberを送ってください。",
     "ask_sort_code": "受取人のSort Codeを送ってください。",
     "ask_account_number": "次にAccount Numberを送ってください。",
-    "ask_bic": "次にBIC/SWIFTコードを送ってください（BridgeはIBANと一緒に必要とします）。"
+    "ask_bic": "次にBIC/SWIFTコードを送ってください（BridgeはIBANと一緒に必要とします）。",
+    "country_not_available_yet": "まだ{country}には対応していません — 対応を進めています。今のところ、米国、メキシコ、ブラジル、コロンビア、英国、ヨーロッパをお試しください。"
   },
   "kyc": {
     "title": "本人確認を行ってください",

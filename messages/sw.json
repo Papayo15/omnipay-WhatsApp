@@ -1194,7 +1194,8 @@
     "ask_routing_number": "Tuma Routing Number ya mpokeaji.",
     "ask_sort_code": "Tuma Sort Code ya mpokeaji.",
     "ask_account_number": "Sasa tuma Account Number.",
-    "ask_bic": "Sasa tuma msimbo wa BIC/SWIFT (Bridge inahitaji hii pamoja na IBAN)."
+    "ask_bic": "Sasa tuma msimbo wa BIC/SWIFT (Bridge inahitaji hii pamoja na IBAN).",
+    "country_not_available_yet": "Bado hatujaunga mkono {country} — tunaifanyia kazi. Kwa sasa jaribu Marekani, Mexico, Brazil, Colombia, Uingereza au Ulaya."
   },
   "kyc": {
     "title": "Thibitisha utambulisho wako",

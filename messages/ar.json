@@ -1194,7 +1194,8 @@
     "ask_routing_number": "أرسل Routing Number الخاص بالمستفيد.",
     "ask_sort_code": "أرسل Sort Code الخاص بالمستفيد.",
     "ask_account_number": "الآن أرسل Account Number.",
-    "ask_bic": "الآن أرسل رمز BIC/SWIFT (يتطلبه Bridge إلى جانب IBAN)."
+    "ask_bic": "الآن أرسل رمز BIC/SWIFT (يتطلبه Bridge إلى جانب IBAN).",
+    "country_not_available_yet": "لا ندعم {country} بعد — نحن نعمل على ذلك. جرب حالياً الولايات المتحدة أو المكسيك أو البرازيل أو كولومبيا أو المملكة المتحدة أو أوروبا."
   },
   "kyc": {
     "title": "تحقق من هويتك",

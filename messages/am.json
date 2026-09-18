@@ -1194,7 +1194,8 @@
     "ask_routing_number": "የተቀባዩን Routing Number ይላኩ።",
     "ask_sort_code": "የተቀባዩን Sort Code ይላኩ።",
     "ask_account_number": "አሁን Account Number ይላኩ።",
-    "ask_bic": "አሁን BIC/SWIFT ኮድ ይላኩ (Bridge ከIBAN ጋር ይህን ይፈልጋል)።"
+    "ask_bic": "አሁን BIC/SWIFT ኮድ ይላኩ (Bridge ከIBAN ጋር ይህን ይፈልጋል)።",
+    "country_not_available_yet": "{country}ን እስካሁን አንደግፍም — በላዩ ላይ እየሰራን ነው። ለጊዜው አሜሪካ፣ ሜክሲኮ፣ ብራዚል፣ ኮሎምቢያ፣ እንግሊዝ ወይም አውሮፓን ይሞክሩ።"
   },
   "kyc": {
     "title": "ማንነትዎን ያረጋግጡ",
