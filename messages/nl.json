@@ -1195,7 +1195,18 @@
     "ask_sort_code": "Stuur de Sort Code van de ontvanger.",
     "ask_account_number": "Stuur nu het Account Number.",
     "ask_bic": "Stuur nu de BIC/SWIFT-code (Bridge vereist dit samen met de IBAN).",
-    "country_not_available_yet": "We ondersteunen {country} nog niet — we werken eraan. Probeer voorlopig de VS, Mexico, Brazilië, Colombia, het VK of Europa."
+    "country_not_available_yet": "We ondersteunen {country} nog niet — we werken eraan. Probeer voorlopig de VS, Mexico, Brazilië, Colombia, het VK of Europa.",
+    "confirmed_deposit_intro": "✅ Helemaal klaar. Maak precies {amount} {currency} over via {rail} naar deze rekening:",
+    "label_bank": "Bank",
+    "label_beneficiary": "Begunstigde",
+    "label_routing": "Routingnummer",
+    "label_account": "Rekeningnummer",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "Sort Code",
+    "label_clabe": "CLABE",
+    "label_pix": "PIX-sleutel",
+    "confirmed_deposit_footer": "{recipient_name} ontvangt {recipient_amount} {recipient_currency}. Zodra je storting bevestigd is, laten we het je hier weten.\n\n_OmniPay bewaart je bankgegevens niet._"
   },
   "kyc": {
     "title": "Verifieer je identiteit",

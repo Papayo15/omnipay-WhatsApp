@@ -46,6 +46,7 @@ import {
 } from "@/lib/wa-validation";
 import {
   getSession, setSession, clearSession, buildEnviarLink, beginRecipientCollection,
+  requestDepositInstructions,
 } from "@/lib/wa-flow";
 
 const APP_URL  = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
@@ -215,12 +216,42 @@ export async function POST(req: NextRequest): Promise<Response> {
       && session.amount && session.currency && session.country) {
     const answer = text.trim().toLowerCase();
     if (answer === "si" || answer === "sí") {
-      const link = buildEnviarLink({
-        email: session.email, currency: session.currency, country: session.country,
-        amount: String(session.recipientGets ?? session.amount),
-        recipientName: session.recipientName, account: session.account,
+      const di = await requestDepositInstructions({
+        email: session.email, sourceCurrency: session.currency, recipientName: session.recipientName,
+        country: session.country, amountTarget: session.recipientGets ?? session.amount,
+        account: session.account,
       });
-      await sendWhatsAppMessage(waId, t("confirmed_link", { link }));
+      if (di) {
+        const lines = [
+          t("confirmed_deposit_intro", { amount: di.amount_to_deposit, currency: di.currency, rail: di.rail }),
+          "",
+          ...(di.bank_name        ? [`${t("label_bank")}: ${di.bank_name}`] : []),
+          ...(di.beneficiary_name ? [`${t("label_beneficiary")}: ${di.beneficiary_name}`] : []),
+          ...(di.routing_number   ? [`${t("label_routing")}: ${di.routing_number}`] : []),
+          ...(di.clabe            ? [`${t("label_clabe")}: ${di.clabe}`] : []),
+          ...(di.iban             ? [`${t("label_iban")}: ${di.iban}`] : []),
+          ...(di.bic              ? [`${t("label_bic")}: ${di.bic}`] : []),
+          ...(di.sort_code        ? [`${t("label_sort_code")}: ${di.sort_code}`] : []),
+          ...(di.account_number   ? [`${t("label_account")}: ${di.account_number}`] : []),
+          ...(di.br_code          ? [`${t("label_pix")}: ${di.br_code}`] : []),
+          "",
+          t("confirmed_deposit_footer", {
+            recipient_name: session.recipientName,
+            recipient_amount: (session.recipientGets ?? session.amount).toLocaleString("en-US"),
+            recipient_currency: session.recipientCurrency ?? session.currency,
+          }),
+        ];
+        await sendWhatsAppMessage(waId, lines.join("\n"));
+      } else {
+        // Fallback: moneda de origen no soportada por /api/bridge/send, o Bridge devolvió
+        // needs_kyc/needs_tos inesperado — mandamos el link precargado a /enviar como antes.
+        const link = buildEnviarLink({
+          email: session.email, currency: session.currency, country: session.country,
+          amount: String(session.recipientGets ?? session.amount),
+          recipientName: session.recipientName, account: session.account,
+        });
+        await sendWhatsAppMessage(waId, t("confirmed_link", { link }));
+      }
       await clearSession(waId);
     } else if (answer === "cancelar" || answer === "cancel") {
       await sendWhatsAppMessage(waId, t("cancelled"));

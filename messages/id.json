@@ -1195,7 +1195,18 @@
     "ask_sort_code": "Kirim Sort Code milik penerima.",
     "ask_account_number": "Sekarang kirim Account Number.",
     "ask_bic": "Sekarang kirim kode BIC/SWIFT (Bridge memerlukannya bersama IBAN).",
-    "country_not_available_yet": "Kami belum mendukung {country} — kami sedang mengusahakannya. Untuk saat ini coba AS, Meksiko, Brasil, Kolombia, Inggris, atau Eropa."
+    "country_not_available_yet": "Kami belum mendukung {country} — kami sedang mengusahakannya. Untuk saat ini coba AS, Meksiko, Brasil, Kolombia, Inggris, atau Eropa.",
+    "confirmed_deposit_intro": "✅ Semua siap. Setorkan tepat {amount} {currency} via {rail} ke rekening ini:",
+    "label_bank": "Bank",
+    "label_beneficiary": "Penerima",
+    "label_routing": "Routing Number",
+    "label_account": "Nomor Rekening",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "Sort Code",
+    "label_clabe": "CLABE",
+    "label_pix": "Kunci PIX",
+    "confirmed_deposit_footer": "{recipient_name} akan menerima {recipient_amount} {recipient_currency}. Begitu setoranmu kami konfirmasi, kami kabari di sini.\n\n_OmniPay tidak menyimpan data bankmu._"
   },
   "kyc": {
     "title": "Verifikasi identitas Anda",

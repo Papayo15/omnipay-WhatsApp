@@ -1195,7 +1195,18 @@
     "ask_sort_code": "수취인의 Sort Code를 보내주세요.",
     "ask_account_number": "이제 Account Number를 보내주세요.",
     "ask_bic": "이제 BIC/SWIFT 코드를 보내주세요 (Bridge는 IBAN과 함께 이를 요구합니다).",
-    "country_not_available_yet": "아직 {country}은(는) 지원하지 않습니다 — 준비 중입니다. 지금은 미국, 멕시코, 브라질, 콜롬비아, 영국 또는 유럽을 이용해 주세요."
+    "country_not_available_yet": "아직 {country}은(는) 지원하지 않습니다 — 준비 중입니다. 지금은 미국, 멕시코, 브라질, 콜롬비아, 영국 또는 유럽을 이용해 주세요.",
+    "confirmed_deposit_intro": "✅ 준비 완료. {rail}을(를) 통해 이 계좌로 정확히 {amount} {currency}를 입금하세요:",
+    "label_bank": "은행",
+    "label_beneficiary": "수취인",
+    "label_routing": "라우팅 번호",
+    "label_account": "계좌번호",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "Sort Code",
+    "label_clabe": "CLABE",
+    "label_pix": "PIX 키",
+    "confirmed_deposit_footer": "{recipient_name}님이 {recipient_amount} {recipient_currency}를 받게 됩니다. 입금이 확인되는 대로 여기로 알려드릴게요.\n\n_OmniPay는 은행 정보를 저장하지 않습니다._"
   },
   "kyc": {
     "title": "신원을 확인하세요",

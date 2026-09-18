@@ -1195,7 +1195,18 @@
     "ask_sort_code": "Alıcının Sort Code'unu gönderin.",
     "ask_account_number": "Şimdi Account Number'ı gönderin.",
     "ask_bic": "Şimdi BIC/SWIFT kodunu gönderin (Bridge, IBAN ile birlikte bunu gerektirir).",
-    "country_not_available_yet": "Henüz {country} desteklemiyoruz — üzerinde çalışıyoruz. Şimdilik ABD, Meksika, Brezilya, Kolombiya, İngiltere veya Avrupa'yı deneyin."
+    "country_not_available_yet": "Henüz {country} desteklemiyoruz — üzerinde çalışıyoruz. Şimdilik ABD, Meksika, Brezilya, Kolombiya, İngiltere veya Avrupa'yı deneyin.",
+    "confirmed_deposit_intro": "✅ Her şey hazır. {rail} üzerinden bu hesaba tam olarak {amount} {currency} yatır:",
+    "label_bank": "Banka",
+    "label_beneficiary": "Alıcı",
+    "label_routing": "Routing Numarası",
+    "label_account": "Hesap Numarası",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "Sort Code",
+    "label_clabe": "CLABE",
+    "label_pix": "PIX Anahtarı",
+    "confirmed_deposit_footer": "{recipient_name} {recipient_amount} {recipient_currency} alacak. Ödemen onaylanır onaylanmaz buradan haber veririz.\n\n_OmniPay banka bilgilerini saklamaz._"
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",

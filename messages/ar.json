@@ -1195,7 +1195,18 @@
     "ask_sort_code": "أرسل Sort Code الخاص بالمستفيد.",
     "ask_account_number": "الآن أرسل Account Number.",
     "ask_bic": "الآن أرسل رمز BIC/SWIFT (يتطلبه Bridge إلى جانب IBAN).",
-    "country_not_available_yet": "لا ندعم {country} بعد — نحن نعمل على ذلك. جرب حالياً الولايات المتحدة أو المكسيك أو البرازيل أو كولومبيا أو المملكة المتحدة أو أوروبا."
+    "country_not_available_yet": "لا ندعم {country} بعد — نحن نعمل على ذلك. جرب حالياً الولايات المتحدة أو المكسيك أو البرازيل أو كولومبيا أو المملكة المتحدة أو أوروبا.",
+    "confirmed_deposit_intro": "✅ كل شيء جاهز. أودع بالضبط {amount} {currency} عبر {rail} في هذا الحساب:",
+    "label_bank": "البنك",
+    "label_beneficiary": "المستفيد",
+    "label_routing": "رقم التوجيه (Routing Number)",
+    "label_account": "رقم الحساب",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "Sort Code",
+    "label_clabe": "CLABE",
+    "label_pix": "مفتاح PIX",
+    "confirmed_deposit_footer": "سيستلم {recipient_name} مبلغ {recipient_amount} {recipient_currency}. بمجرد تأكيد إيداعك، سنخبرك هنا.\n\n_لا يقوم OmniPay بتخزين بياناتك المصرفية._"
   },
   "kyc": {
     "title": "تحقق من هويتك",

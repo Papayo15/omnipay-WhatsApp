@@ -1194,7 +1194,18 @@
     "ask_sort_code": "Aiko Sort Code na wanda za a biya.",
     "ask_account_number": "Yanzu aiko Account Number.",
     "ask_bic": "Yanzu aiko lambar BIC/SWIFT (Bridge yana buƙatar wannan tare da IBAN).",
-    "country_not_available_yet": "Ba mu goyon bayan {country} ba tukuna — muna aiki a kai. A yanzu gwada Amurka, Mexico, Brazil, Colombia, Burtaniya ko Turai."
+    "country_not_available_yet": "Ba mu goyon bayan {country} ba tukuna — muna aiki a kai. A yanzu gwada Amurka, Mexico, Brazil, Colombia, Burtaniya ko Turai.",
+    "confirmed_deposit_intro": "✅ An shirya. Sanya daidai {amount} {currency} ta hanyar {rail} zuwa wannan asusun:",
+    "label_bank": "Banki",
+    "label_beneficiary": "Mai karɓa",
+    "label_routing": "Routing Number",
+    "label_account": "Lambar Asusun",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "Sort Code",
+    "label_clabe": "CLABE",
+    "label_pix": "Makullin PIX",
+    "confirmed_deposit_footer": "{recipient_name} zai karɓi {recipient_amount} {recipient_currency}. Da zarar mun tabbatar da ajiyar ka, za mu sanar da kai a nan.\n\n_OmniPay baya adana bayanan bankin ka._"
   },
   "kyc": {
     "title": "Tabbatar da ainihin ka",

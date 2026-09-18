@@ -1195,7 +1195,18 @@
     "ask_sort_code": "Gửi Sort Code của người nhận.",
     "ask_account_number": "Bây giờ gửi Account Number.",
     "ask_bic": "Bây giờ gửi mã BIC/SWIFT (Bridge yêu cầu mã này cùng với IBAN).",
-    "country_not_available_yet": "Chúng tôi chưa hỗ trợ {country} — chúng tôi đang nỗ lực để hỗ trợ. Hiện tại hãy thử Hoa Kỳ, Mexico, Brazil, Colombia, Anh hoặc Châu Âu."
+    "country_not_available_yet": "Chúng tôi chưa hỗ trợ {country} — chúng tôi đang nỗ lực để hỗ trợ. Hiện tại hãy thử Hoa Kỳ, Mexico, Brazil, Colombia, Anh hoặc Châu Âu.",
+    "confirmed_deposit_intro": "✅ Xong rồi. Chuyển chính xác {amount} {currency} qua {rail} vào tài khoản này:",
+    "label_bank": "Ngân hàng",
+    "label_beneficiary": "Người thụ hưởng",
+    "label_routing": "Routing Number",
+    "label_account": "Số tài khoản",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "Sort Code",
+    "label_clabe": "CLABE",
+    "label_pix": "Khóa PIX",
+    "confirmed_deposit_footer": "{recipient_name} sẽ nhận {recipient_amount} {recipient_currency}. Ngay khi xác nhận khoản nạp của bạn, chúng tôi sẽ báo tại đây.\n\n_OmniPay không lưu trữ thông tin ngân hàng của bạn._"
   },
   "kyc": {
     "title": "Xác minh danh tính của bạn",

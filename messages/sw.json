@@ -1195,7 +1195,18 @@
     "ask_sort_code": "Tuma Sort Code ya mpokeaji.",
     "ask_account_number": "Sasa tuma Account Number.",
     "ask_bic": "Sasa tuma msimbo wa BIC/SWIFT (Bridge inahitaji hii pamoja na IBAN).",
-    "country_not_available_yet": "Bado hatujaunga mkono {country} — tunaifanyia kazi. Kwa sasa jaribu Marekani, Mexico, Brazil, Colombia, Uingereza au Ulaya."
+    "country_not_available_yet": "Bado hatujaunga mkono {country} — tunaifanyia kazi. Kwa sasa jaribu Marekani, Mexico, Brazil, Colombia, Uingereza au Ulaya.",
+    "confirmed_deposit_intro": "✅ Tayari. Weka {amount} {currency} kamili kupitia {rail} kwenye akaunti hii:",
+    "label_bank": "Benki",
+    "label_beneficiary": "Mpokeaji",
+    "label_routing": "Routing Number",
+    "label_account": "Namba ya Akaunti",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "Sort Code",
+    "label_clabe": "CLABE",
+    "label_pix": "Ufunguo wa PIX",
+    "confirmed_deposit_footer": "{recipient_name} atapokea {recipient_amount} {recipient_currency}. Mara tu tukithibitisha malipo yako, tutakujulisha hapa.\n\n_OmniPay haihifadhi taarifa zako za benki._"
   },
   "kyc": {
     "title": "Thibitisha utambulisho wako",

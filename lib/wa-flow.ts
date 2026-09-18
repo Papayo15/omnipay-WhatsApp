@@ -102,6 +102,72 @@ export function buildEnviarLink(params: {
   return `${APP_URL}/enviar?${qs.toString()}`;
 }
 
+// Fuentes soportadas por /api/bridge/send — mismo set que SendBody["source_currency"] ahí.
+const SUPPORTED_SOURCE_CURRENCIES = new Set(["usd", "eur", "gbp", "mxn", "brl"]);
+
+export interface DepositInstructions {
+  rail: string; currency: string;
+  bank_name?: string | null; beneficiary_name?: string | null;
+  routing_number?: string | null; account_number?: string | null;
+  iban?: string | null; bic?: string | null; sort_code?: string | null;
+  clabe?: string | null; br_code?: string | null;
+  amount_to_deposit: string;
+}
+
+// Llama a /api/bridge/send (el MISMO endpoint que usa /enviar en la web — nada de lógica
+// paralela) para crear la liquidation address + virtual account y devolver la ficha de
+// depósito real. Se usa después de la confirmación SI del bot, para dar las instrucciones
+// directo en el chat en vez de mandar a un link — "igual al de web solo en chat".
+// El sender ya existe en Bridge (se creó/aprobó durante el KYC del bot); usamos un nombre
+// de placeholder consistente con el que ya se usa en app/api/whatsapp/kyc-link/route.ts —
+// getOrCreateCustomer encuentra al cliente existente por email, así que no se usa para
+// renombrar nada.
+export async function requestDepositInstructions(params: {
+  email: string; sourceCurrency: string; recipientName: string; country: string;
+  amountTarget: number; account: AccountDetails;
+}): Promise<DepositInstructions | null> {
+  const sc = params.sourceCurrency.toLowerCase();
+  if (!SUPPORTED_SOURCE_CURRENCIES.has(sc)) return null;
+
+  try {
+    const res = await fetch(`${APP_URL}/api/bridge/send`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sender_name: "OmniPay WhatsApp",
+        sender_email: params.email,
+        source_currency: sc,
+        recipient_name: params.recipientName,
+        recipient_country: params.country,
+        amount_target: params.amountTarget,
+        channel: "whatsapp",
+        clabe: params.account.clabe,
+        iban: params.account.iban,
+        bic: params.account.bic,
+        pix_key: params.account.pix_key,
+        routing_number: params.account.routing_number,
+        account_number: params.account.account_number,
+        sort_code: params.account.sort_code,
+        bank_code: params.account.bank_code,
+      }),
+    });
+    if (!res.ok) return null;
+    const data = await res.json() as { needs_kyc?: boolean; needs_tos?: boolean; deposit_instructions?: Record<string, unknown> };
+    if (data.needs_kyc || data.needs_tos || !data.deposit_instructions) return null;
+    const di = data.deposit_instructions;
+    return {
+      rail: String(di.rail ?? ""), currency: String(di.currency ?? sc.toUpperCase()),
+      bank_name: (di.bank_name as string) ?? null, beneficiary_name: (di.beneficiary_name as string) ?? null,
+      routing_number: (di.routing_number as string) ?? null, account_number: (di.account_number as string) ?? null,
+      iban: (di.iban as string) ?? null, bic: (di.bic as string) ?? null, sort_code: (di.sort_code as string) ?? null,
+      clabe: (di.clabe as string) ?? null, br_code: (di.br_code as string) ?? null,
+      amount_to_deposit: String(di.amount_to_deposit ?? ""),
+    };
+  } catch {
+    return null;
+  }
+}
+
 // Reanuda el flujo de chat justo donde lo tendría un usuario ya aprobado: cotiza,
 // guarda la sesión en el paso 5 (nombre del destinatario) y manda los mensajes de
 // precheck + "dame el nombre". Usado por:

@@ -1195,7 +1195,18 @@
     "ask_sort_code": "请发送收款人的Sort Code。",
     "ask_account_number": "现在请发送Account Number。",
     "ask_bic": "现在请发送BIC/SWIFT代码（Bridge要求与IBAN一起提供）。",
-    "country_not_available_yet": "我们暂不支持{country}——我们正在努力开通。目前可以试试美国、墨西哥、巴西、哥伦比亚、英国或欧洲。"
+    "country_not_available_yet": "我们暂不支持{country}——我们正在努力开通。目前可以试试美国、墨西哥、巴西、哥伦比亚、英国或欧洲。",
+    "confirmed_deposit_intro": "✅ 一切就绪。请通过 {rail} 向此账户准确存入 {amount} {currency}:",
+    "label_bank": "银行",
+    "label_beneficiary": "收款人",
+    "label_routing": "Routing Number",
+    "label_account": "账号",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "Sort Code",
+    "label_clabe": "CLABE",
+    "label_pix": "PIX密钥",
+    "confirmed_deposit_footer": "{recipient_name} 将收到 {recipient_amount} {recipient_currency}。存款确认后，我们会在这里通知你。\n\n_OmniPay 不会存储你的银行信息。_"
   },
   "kyc": {
     "title": "验证您的身份",

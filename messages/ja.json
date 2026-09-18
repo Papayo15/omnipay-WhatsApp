@@ -1195,7 +1195,18 @@
     "ask_sort_code": "受取人のSort Codeを送ってください。",
     "ask_account_number": "次にAccount Numberを送ってください。",
     "ask_bic": "次にBIC/SWIFTコードを送ってください（BridgeはIBANと一緒に必要とします）。",
-    "country_not_available_yet": "まだ{country}には対応していません — 対応を進めています。今のところ、米国、メキシコ、ブラジル、コロンビア、英国、ヨーロッパをお試しください。"
+    "country_not_available_yet": "まだ{country}には対応していません — 対応を進めています。今のところ、米国、メキシコ、ブラジル、コロンビア、英国、ヨーロッパをお試しください。",
+    "confirmed_deposit_intro": "✅ 準備完了です。{rail} でこの口座に {amount} {currency} を正確に入金してください:",
+    "label_bank": "銀行名",
+    "label_beneficiary": "受取人",
+    "label_routing": "ルーティング番号",
+    "label_account": "口座番号",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "ソートコード",
+    "label_clabe": "CLABE",
+    "label_pix": "PIXキー",
+    "confirmed_deposit_footer": "{recipient_name} は {recipient_amount} {recipient_currency} を受け取ります。入金が確認され次第、こちらでお知らせします。\n\n_OmniPayはあなたの銀行情報を保存しません。_"
   },
   "kyc": {
     "title": "本人確認を行ってください",

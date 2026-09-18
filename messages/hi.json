@@ -1195,7 +1195,18 @@
     "ask_sort_code": "प्राप्तकर्ता का Sort Code भेजें।",
     "ask_account_number": "अब Account Number भेजें।",
     "ask_bic": "अब BIC/SWIFT कोड भेजें (Bridge को IBAN के साथ यह चाहिए)।",
-    "country_not_available_yet": "हम अभी {country} को सपोर्ट नहीं करते — हम इस पर काम कर रहे हैं। फिलहाल अमेरिका, मेक्सिको, ब्राज़ील, कोलंबिया, यूके या यूरोप आज़माएं।"
+    "country_not_available_yet": "हम अभी {country} को सपोर्ट नहीं करते — हम इस पर काम कर रहे हैं। फिलहाल अमेरिका, मेक्सिको, ब्राज़ील, कोलंबिया, यूके या यूरोप आज़माएं।",
+    "confirmed_deposit_intro": "✅ सब तैयार है। {rail} के ज़रिए इस खाते में ठीक {amount} {currency} जमा करें:",
+    "label_bank": "बैंक",
+    "label_beneficiary": "लाभार्थी",
+    "label_routing": "रूटिंग नंबर",
+    "label_account": "खाता संख्या",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "सॉर्ट कोड",
+    "label_clabe": "CLABE",
+    "label_pix": "PIX कुंजी",
+    "confirmed_deposit_footer": "{recipient_name} को {recipient_amount} {recipient_currency} मिलेगा। आपकी जमा राशि की पुष्टि होते ही हम आपको यहीं बताएंगे।\n\n_OmniPay आपकी बैंक जानकारी सुरक्षित नहीं रखता।_"
   },
   "kyc": {
     "title": "अपनी पहचान सत्यापित करें",

@@ -1195,7 +1195,18 @@
     "ask_sort_code": "Invia il Sort Code del destinatario.",
     "ask_account_number": "Ora invia l'Account Number.",
     "ask_bic": "Ora invia il codice BIC/SWIFT (Bridge lo richiede insieme all'IBAN).",
-    "country_not_available_yet": "Non supportiamo ancora {country} — ci stiamo lavorando. Per ora prova con USA, Messico, Brasile, Colombia, Regno Unito o Europa."
+    "country_not_available_yet": "Non supportiamo ancora {country} — ci stiamo lavorando. Per ora prova con USA, Messico, Brasile, Colombia, Regno Unito o Europa.",
+    "confirmed_deposit_intro": "✅ Tutto pronto. Deposita esattamente {amount} {currency} tramite {rail} su questo conto:",
+    "label_bank": "Banca",
+    "label_beneficiary": "Beneficiario",
+    "label_routing": "Routing Number",
+    "label_account": "Numero di conto",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "Sort Code",
+    "label_clabe": "CLABE",
+    "label_pix": "Chiave PIX",
+    "confirmed_deposit_footer": "{recipient_name} riceverà {recipient_amount} {recipient_currency}. Appena confermiamo il tuo deposito, ti avviseremo qui.\n\n_OmniPay non conserva i tuoi dati bancari._"
   },
   "kyc": {
     "title": "Verifica la tua identità",

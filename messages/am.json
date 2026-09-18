@@ -1195,7 +1195,18 @@
     "ask_sort_code": "የተቀባዩን Sort Code ይላኩ።",
     "ask_account_number": "አሁን Account Number ይላኩ።",
     "ask_bic": "አሁን BIC/SWIFT ኮድ ይላኩ (Bridge ከIBAN ጋር ይህን ይፈልጋል)።",
-    "country_not_available_yet": "{country}ን እስካሁን አንደግፍም — በላዩ ላይ እየሰራን ነው። ለጊዜው አሜሪካ፣ ሜክሲኮ፣ ብራዚል፣ ኮሎምቢያ፣ እንግሊዝ ወይም አውሮፓን ይሞክሩ።"
+    "country_not_available_yet": "{country}ን እስካሁን አንደግፍም — በላዩ ላይ እየሰራን ነው። ለጊዜው አሜሪካ፣ ሜክሲኮ፣ ብራዚል፣ ኮሎምቢያ፣ እንግሊዝ ወይም አውሮፓን ይሞክሩ።",
+    "confirmed_deposit_intro": "✅ ሁሉም ተዘጋጅቷል። በ {rail} በኩል በትክክል {amount} {currency} ወደዚህ አካውንት አስገባ:",
+    "label_bank": "ባንክ",
+    "label_beneficiary": "ተቀባይ",
+    "label_routing": "Routing Number",
+    "label_account": "የአካውንት ቁጥር",
+    "label_iban": "IBAN",
+    "label_bic": "BIC/SWIFT",
+    "label_sort_code": "Sort Code",
+    "label_clabe": "CLABE",
+    "label_pix": "PIX ቁልፍ",
+    "confirmed_deposit_footer": "{recipient_name} {recipient_amount} {recipient_currency} ይቀበላል። ገቢዎ ከተረጋገጠ በኋላ እዚህ እናሳውቅዎታለን።\n\n_OmniPay የባንክ መረጃዎን አያከማችም።_"
   },
   "kyc": {
     "title": "ማንነትዎን ያረጋግጡ",
