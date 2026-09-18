@@ -36,25 +36,24 @@
 export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
-import { getRedis }                  from "@/lib/redis";
 import { sendWhatsAppMessage }       from "@/lib/whatsapp";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
 import { getEmailForPhone, setEmailForPhone, setPendingTransfer, hashPhone, recordLastMessage } from "@/lib/wa-identity";
 import { findCustomerByEmail }       from "@/providers/bridge/customers";
-import { getCountry }                from "@/constants/countries";
 import {
   validateAccountDetails, parseAccountField, mergeSecondAccountField, secondAccountPromptKey,
-  accountPromptKey, maskedAccountSummary, type AccountDetails,
+  accountPromptKey, maskedAccountSummary,
 } from "@/lib/wa-validation";
+import {
+  getSession, setSession, clearSession, buildEnviarLink, beginRecipientCollection,
+} from "@/lib/wa-flow";
 
 const APP_URL  = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
 
 // ── Session TTL: 10 min — hay más pasos ahora (nombre + cuenta + confirmación) ───
-const SESSION_TTL = 10 * 60; // seconds
-
-type WaStep = 1 | 3 | 5 | 6 | 65 | 7;
+// (ver lib/wa-flow.ts — la sesión ahora vive ahí para compartirse con el webhook de Bridge)
 // 1 = need amount+country · 3 = need email · 5 = need recipient name
-// 6 = need account field #1 (routing/sort code/CLABE/IBAN/PIX/account — depends on country)
+// 6 = need account field #1 (routing/sort code/CLABE/IBAN/PIX/account — depends on país)
 // 65 = need account field #2 (only US routing→account, GB sort code→account — two-field countries)
 // 7 = awaiting SI/CANCELAR confirmation
 
@@ -82,45 +81,6 @@ function isConduitOnlyCountry(country: string): boolean {
   return !BRIDGE_NATIVE_COUNTRIES.has(country.toUpperCase());
 }
 const CONDUIT_MODULE_ENABLED = process.env.CONDUIT_MODULE_ENABLED === "true";
-
-interface WaSession {
-  step:      WaStep;
-  amount?:   number;
-  currency?: string;
-  country?:  string;
-  locale?:   WaLocale;
-  email?:    string;
-  recipientName?: string;
-  account?:  AccountDetails;       // se completa progresivamente en países de dos campos
-  recipientGets?: number;
-  recipientCurrency?: string;
-}
-
-async function getSession(waId: string): Promise<WaSession | null> {
-  try {
-    const redis = await getRedis();
-    const raw = await redis.get(`wa:session:${hashPhone(waId)}`);
-    return raw ? JSON.parse(raw) as WaSession : null;
-  } catch { return null; }
-}
-
-async function setSession(waId: string, session: WaSession): Promise<void> {
-  try {
-    const redis = await getRedis();
-    await redis.set(
-      `wa:session:${hashPhone(waId)}`,
-      JSON.stringify(session),
-      { EX: SESSION_TTL },
-    );
-  } catch { /* non-critical */ }
-}
-
-async function clearSession(waId: string): Promise<void> {
-  try {
-    const redis = await getRedis();
-    await redis.del(`wa:session:${hashPhone(waId)}`);
-  } catch { /* non-critical */ }
-}
 
 // ── Parse incoming message text ───────────────────────────────────────────────
 
@@ -173,47 +133,6 @@ function isValidEmail(s: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.trim());
 }
 
-// Fetches a guaranteed-rate quote — same engine as /api/bridge/fx-quote (lib/bridge-fees.ts).
-// Two-pass refine (approx → exact), same pattern as components/currency-calculator.tsx.
-async function fetchQuote(currency: string, country: string, amount: number): Promise<{ recipientGets: number; recipientCurrency: string; rate: number } | null> {
-  const destCurrency = getCountry(country)?.currency ?? "MXN";
-  try {
-    const qs1 = new URLSearchParams({ from: currency, to: destCurrency, amount: String(amount), country });
-    const r1 = await fetch(`${APP_URL}/api/bridge/fx-quote?${qs1}`);
-    if (!r1.ok) return null;
-    const q1 = await r1.json() as { fx_rate: number };
-
-    const approxTarget = parseFloat((amount * q1.fx_rate).toFixed(2));
-    const qs2 = new URLSearchParams({ from: currency, to: destCurrency, amount: String(approxTarget), country });
-    const r2 = await fetch(`${APP_URL}/api/bridge/fx-quote?${qs2}`);
-    const q2 = r2.ok ? await r2.json() as { fx_rate: number; recipient_gets: number } : { fx_rate: q1.fx_rate, recipient_gets: approxTarget };
-    return { recipientGets: q2.recipient_gets, recipientCurrency: destCurrency, rate: q2.fx_rate };
-  } catch {
-    return null;
-  }
-}
-
-// Construye el link final a /enviar con TODO precargado (email, monto, destinatario y
-// cuenta ya validados) — el depósito real solo se dispara ahí, nunca desde el chat.
-function buildEnviarLink(params: {
-  email: string; currency: string; country: string; amount: string;
-  recipientName: string; account: AccountDetails;
-}): string {
-  const qs = new URLSearchParams({
-    email: params.email, currency: params.currency, country: params.country,
-    amount: params.amount, recipient_name: params.recipientName,
-    channel: "whatsapp", // Módulo 2 — absorbe el costo de sesión de Meta internamente (lib/bridge-fees.ts)
-  });
-  const cc = params.country.toUpperCase();
-  if (cc === "MX") qs.set("account", params.account.clabe ?? "");
-  else if (cc === "US") { qs.set("routing", params.account.routing_number ?? ""); qs.set("account", params.account.account_number ?? ""); }
-  else if (cc === "GB") { qs.set("sortCode", params.account.sort_code ?? ""); qs.set("account", params.account.account_number ?? ""); }
-  else if (params.account.iban) { qs.set("account", params.account.iban); if (params.account.bic) qs.set("bic", params.account.bic); }
-  else if (params.account.pix_key) qs.set("account", params.account.pix_key);
-  else { qs.set("account", params.account.account_number ?? ""); if (params.account.bic) qs.set("bic", params.account.bic); }
-  return `${APP_URL}/enviar?${qs.toString()}`;
-}
-
 // ── KYC gate — pide email/verifica Bridge, arranca la recolección de destinatario ──
 async function startKycOrCollection(
   waId: string, locale: WaLocale, t: Awaited<ReturnType<typeof getWaTranslator>>,
@@ -239,21 +158,7 @@ async function startKycOrCollection(
     return;
   }
 
-  const quote = await fetchQuote(currency, country, amount);
-  await setSession(waId, {
-    step: 5, amount, currency, country, locale, email,
-    recipientGets: quote?.recipientGets, recipientCurrency: quote?.recipientCurrency,
-  });
-
-  if (quote) {
-    await sendWhatsAppMessage(waId, t("quote_ready_precheck", {
-      recipient_amount:   quote.recipientGets.toLocaleString("en-US"),
-      recipient_currency: quote.recipientCurrency,
-      rate:                quote.rate,
-      from_currency:       currency,
-    }));
-  }
-  await sendWhatsAppMessage(waId, t("ask_recipient_name"));
+  await beginRecipientCollection(waId, locale, t, amount, currency, country, email);
 }
 
 // ── GET — Meta webhook verification ──────────────────────────────────────────

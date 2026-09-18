@@ -22,6 +22,7 @@ import { emailStrings }                         from "@/lib/email-i18n";
 import { sendWhatsAppMessage, sendWhatsAppTemplate, templateLanguageCode } from "@/lib/whatsapp";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
 import { getPendingTransfer, isWithinMessageWindow }        from "@/lib/wa-identity";
+import { beginRecipientCollection }             from "@/lib/wa-flow";
 import { getCountry }                           from "@/constants/countries";
 
 // Node.js runtime required — redis package uses Node TCP sockets (incompatible with Edge)
@@ -248,7 +249,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       // came from the WhatsApp bot's KYC link. Only fires if we have a pending transfer
       // for this email (set in app/api/whatsapp/webhook/route.ts when the kyc_needed
       // message was sent) — silently no-ops for customers that didn't come from WhatsApp,
-      // or if the 30-min pending window already expired.
+      // or if the pending window (23h59m, see lib/wa-identity.ts) already expired.
       try {
         const pending = await getPendingTransfer(email);
         if (pending) {
@@ -258,14 +259,19 @@ export async function POST(req: NextRequest): Promise<Response> {
           const link = `${appUrl}/enviar?email=${encodeURIComponent(email)}&currency=${pending.currency}&country=${pending.country}&amount=${pending.amount}`;
           // Business-initiated — Bridge fires this whenever it fires. Si el usuario sigue
           // dentro de su ventana de servicio de 24h (nos escribió hace poco, ej. aprobación
-          // en 5 min mientras seguía en el chat) mandamos texto libre normal — gratis, sin
-          // esperar aprobación de plantilla. Si ya pasaron las 24h, la plantilla aprobada
-          // (kyc_approved_notification) es obligatoria — texto libre fallaría en silencio.
+          // en 5 min mientras seguía en el chat), retomamos el chat mismo — mismo flujo que
+          // un usuario ya aprobado (pide nombre del destinatario ahí, no un link a /enviar).
+          // Si ya pasaron las 24h, la plantilla aprobada (kyc_approved_notification) es
+          // obligatoria — texto libre fallaría en silencio, y el link a /enviar precargado
+          // sigue siendo el fallback (cambiar esto requiere reaprobar la plantilla en Meta).
           if (await isWithinMessageWindow(pending.waId)) {
             const t = await getWaTranslator(locale);
             await sendWhatsAppMessage(pending.waId, t("kyc_approved_notification", {
               amount: pending.amount, currency: pending.currency, country: destCurrency, link,
             }));
+            await beginRecipientCollection(
+              pending.waId, locale, t, pending.amount, pending.currency, pending.country, email,
+            );
           } else {
             await sendWhatsAppTemplate(pending.waId, "kyc_approved_notification", templateLanguageCode(locale), [
               String(pending.amount), pending.currency, destCurrency, link,
