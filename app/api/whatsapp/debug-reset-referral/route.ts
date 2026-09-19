@@ -26,6 +26,7 @@ export async function GET(req: NextRequest): Promise<Response> {
     `wa:referralshared:${hash}`,
     `wa:pendingref:${hash}`,
     `wa:session:${hash}`,
+    `wa:awaitingemail:${hash}`,
   ];
   const redis = await getRedis();
   const results: Record<string, boolean> = {};

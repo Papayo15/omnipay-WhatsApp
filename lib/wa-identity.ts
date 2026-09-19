@@ -152,16 +152,23 @@ export async function getPendingTransfer(email: string): Promise<PendingTransfer
   }
 }
 
-// Se borra justo después de usarla (aviso de aprobación enviado / chat retomado) — Bridge
-// dispara customer.updated varias veces con status "active" durante el mismo proceso de
-// aprobación (cada vez con su propio event_id, así que el dedup por evento de
-// app/api/bridge/webhook/route.ts no los agarra), y sin esto el aviso se repetía una vez
-// por cada evento — confirmado en vivo (el mismo mensaje llegó 3 veces seguidas).
-export async function clearPendingTransfer(email: string): Promise<void> {
+// GET + DEL por separado (getPendingTransfer + clearPendingTransfer) NO es atómico: Bridge
+// dispara customer.updated varias veces EN PARALELO (no una tras otra) durante la misma
+// aprobación, cada una en su propia invocación de la función — dos invocaciones pueden leer
+// "pending" != null antes de que cualquiera alcance a borrarlo, y las dos mandan el aviso.
+// Confirmado en vivo (el mismo mensaje llegó 3 veces seguidas sin que el usuario hiciera
+// nada). GETDEL es atómico en Redis (una sola operación, un solo viaje) — solo UNA
+// invocación puede "ganar" el valor; las demás ven null y no hacen nada.
+export async function takePendingTransfer(email: string): Promise<PendingTransfer | null> {
   try {
     const redis = await getRedis();
-    await redis.del(`wa:pending:${hashEmail(email)}`);
-  } catch { /* non-critical — peor caso, se repite el aviso una vez más */ }
+    const raw = await redis.getDel(`wa:pending:${hashEmail(email)}`);
+    if (!raw) return null;
+    const plain = await decrypt(raw);
+    return plain ? (JSON.parse(plain) as PendingTransfer) : null;
+  } catch {
+    return null;
+  }
 }
 
 // ── Ventana de servicio de WhatsApp (texto libre vs. plantilla) ──────────────────

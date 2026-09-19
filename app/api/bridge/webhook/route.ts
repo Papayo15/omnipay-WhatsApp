@@ -21,7 +21,7 @@ import { buildReceiptURL }                      from "@/lib/link";
 import { emailStrings }                         from "@/lib/email-i18n";
 import { sendWhatsAppMessage, sendWhatsAppTemplate, templateLanguageCode } from "@/lib/whatsapp";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
-import { getPendingTransfer, clearPendingTransfer, isWithinMessageWindow }        from "@/lib/wa-identity";
+import { takePendingTransfer, isWithinMessageWindow }        from "@/lib/wa-identity";
 import { beginRecipientCollection }             from "@/lib/wa-flow";
 import { getCountry }                           from "@/constants/countries";
 
@@ -254,14 +254,14 @@ export async function POST(req: NextRequest): Promise<Response> {
       // message was sent) — silently no-ops for customers that didn't come from WhatsApp,
       // or if the pending window (23h59m, see lib/wa-identity.ts) already expired.
       try {
-        const pending = await getPendingTransfer(email);
+        // GETDEL atómico — no GET + DEL por separado. Bridge dispara customer.updated
+        // varias veces EN PARALELO (no una tras otra) durante la misma aprobación; con
+        // GET+DEL, dos invocaciones concurrentes podían leer "pending" != null antes de que
+        // cualquiera lo borrara, y las dos mandaban el aviso (confirmado en vivo: llegó 3
+        // veces seguidas sin que el usuario hiciera nada). Con GETDEL solo una invocación
+        // puede "ganar" el valor.
+        const pending = await takePendingTransfer(email);
         if (pending) {
-          // Se borra ANTES de mandar el aviso, no después — Bridge dispara customer.updated
-          // varias veces seguidas con status "active" mientras el cliente progresa (cada
-          // vez con su propio event_id, así que el dedup por evento no lo agarra). Sin esto
-          // el mismo aviso "tu cuenta fue aprobada" se repetía una vez por cada evento
-          // (confirmado en vivo: llegó 3 veces seguidas al mismo usuario).
-          await clearPendingTransfer(email);
           const locale = (pending.locale as WaLocale) ?? "en";
           const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
           const destCurrency = getCountry(pending.country)?.currency ?? pending.country;
