@@ -1206,7 +1206,7 @@
     "label_sort_code": "Sort Code",
     "label_clabe": "CLABE",
     "label_pix": "Kunci PIX",
-    "confirmed_deposit_footer": "{recipient_name} akan menerima {recipient_amount} {recipient_currency}. Begitu setoranmu kami konfirmasi, kami kabari di sini.\n\n_OmniPay tidak menyimpan data bankmu._",
+    "confirmed_deposit_footer": "{recipient_name} akan menerima {recipient_amount} {recipient_currency}. Begitu setoranmu kami konfirmasi, kami akan mengirim email.\n\n_OmniPay tidak menyimpan data bankmu._",
     "currency_not_supported_source": "Kami belum bisa menerima setoran dalam {currency} untuk transfer ini. Coba lagi dengan USD, EUR, GBP, MXN, atau BRL.",
     "deposit_error": "Ada masalah saat membuat instruksi setoranmu. Balas *YA* lagi sebentar lagi, atau mulai ulang.",
     "confirmed_deposit_reusable": "💡 Simpan rekening ini di aplikasi bank Anda — ini milik Anda selamanya untuk mengirim ke {recipient_name} di {country_name}. Anda bisa menggunakannya berkali-kali, cukup buka bank Anda dan ubah jumlahnya, tanpa perlu chat kami di sini lagi. (Untuk negara lain, Anda perlu memulai transfer baru di sini.)",

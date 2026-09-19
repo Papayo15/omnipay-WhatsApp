@@ -1205,7 +1205,7 @@
     "label_sort_code": "Sort Code",
     "label_clabe": "CLABE",
     "label_pix": "Makullin PIX",
-    "confirmed_deposit_footer": "{recipient_name} zai karɓi {recipient_amount} {recipient_currency}. Da zarar mun tabbatar da ajiyar ka, za mu sanar da kai a nan.\n\n_OmniPay baya adana bayanan bankin ka._",
+    "confirmed_deposit_footer": "{recipient_name} zai karɓi {recipient_amount} {recipient_currency}. Da zarar mun tabbatar da ajiyar ka, za mu aika maka imel.\n\n_OmniPay baya adana bayanan bankin ka._",
     "currency_not_supported_source": "Ba mu iya karɓar ajiya cikin {currency} don wannan canja wuri ba tukuna. Sake gwadawa da USD, EUR, GBP, MXN ko BRL.",
     "deposit_error": "Wani abu ya faru ba daidai ba wajen ƙirƙirar umarnin ajiyar ka. Sake amsawa da *I* bayan ɗan lokaci, ko fara sabo.",
     "confirmed_deposit_reusable": "💡 Ajiye wannan asusun a app ɗin bankinka — naka ne har abada don aikawa ga {recipient_name} a {country_name}. Za ka iya sake amfani da shi sau da yawa yadda kake so, kawai buɗe bankinka ka canza adadin, ba tare da bukatar sake rubuto mana a nan ba. (Don wata ƙasa dabam, za ka bukaci fara sabon canja wuri a nan.)",

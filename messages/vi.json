@@ -1206,7 +1206,7 @@
     "label_sort_code": "Sort Code",
     "label_clabe": "CLABE",
     "label_pix": "Khóa PIX",
-    "confirmed_deposit_footer": "{recipient_name} sẽ nhận {recipient_amount} {recipient_currency}. Ngay khi xác nhận khoản nạp của bạn, chúng tôi sẽ báo tại đây.\n\n_OmniPay không lưu trữ thông tin ngân hàng của bạn._",
+    "confirmed_deposit_footer": "{recipient_name} sẽ nhận {recipient_amount} {recipient_currency}. Ngay khi xác nhận khoản nạp của bạn, chúng tôi sẽ gửi email cho bạn.\n\n_OmniPay không lưu trữ thông tin ngân hàng của bạn._",
     "currency_not_supported_source": "Chúng tôi chưa thể nhận tiền gửi bằng {currency} cho giao dịch này. Hãy thử lại bằng USD, EUR, GBP, MXN hoặc BRL.",
     "deposit_error": "Đã có lỗi khi tạo hướng dẫn nạp tiền của bạn. Hãy trả lời *CÓ* lại sau một chút, hoặc bắt đầu lại.",
     "confirmed_deposit_reusable": "💡 Lưu tài khoản này trong ứng dụng ngân hàng của bạn — nó là của bạn mãi mãi để gửi cho {recipient_name} tại {country_name}. Bạn có thể dùng lại bao nhiêu lần tùy thích, chỉ cần mở ngân hàng và đổi số tiền, không cần nhắn lại cho chúng tôi ở đây. (Nếu gửi sang quốc gia khác, bạn sẽ cần bắt đầu một giao dịch mới ở đây.)",

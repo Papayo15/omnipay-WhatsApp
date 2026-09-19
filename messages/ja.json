@@ -1206,7 +1206,7 @@
     "label_sort_code": "ソートコード",
     "label_clabe": "CLABE",
     "label_pix": "PIXキー",
-    "confirmed_deposit_footer": "{recipient_name} は {recipient_amount} {recipient_currency} を受け取ります。入金が確認され次第、こちらでお知らせします。\n\n_OmniPayはあなたの銀行情報を保存しません。_",
+    "confirmed_deposit_footer": "{recipient_name} は {recipient_amount} {recipient_currency} を受け取ります。入金が確認され次第、メールでお知らせします。\n\n_OmniPayはあなたの銀行情報を保存しません。_",
     "currency_not_supported_source": "この送金では{currency}での入金にまだ対応していません。USD、EUR、GBP、MXN、BRLのいずれかで再度お試しください。",
     "deposit_error": "入金案内の作成中に問題が発生しました。少ししてからもう一度「はい」と返信するか、最初からやり直してください。",
     "confirmed_deposit_reusable": "💡 この口座を銀行アプリに保存してください — {country_name} の {recipient_name} への送金にずっと使えます。何度でも再利用できます。銀行アプリを開いて金額を変えるだけで、ここに再度メッセージする必要はありません。（別の国に送る場合は、ここで新しい送金を開始する必要があります。）",

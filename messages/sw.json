@@ -1206,7 +1206,7 @@
     "label_sort_code": "Sort Code",
     "label_clabe": "CLABE",
     "label_pix": "Ufunguo wa PIX",
-    "confirmed_deposit_footer": "{recipient_name} atapokea {recipient_amount} {recipient_currency}. Mara tu tukithibitisha malipo yako, tutakujulisha hapa.\n\n_OmniPay haihifadhi taarifa zako za benki._",
+    "confirmed_deposit_footer": "{recipient_name} atapokea {recipient_amount} {recipient_currency}. Mara tu tukithibitisha malipo yako, tutakutumia barua pepe.\n\n_OmniPay haihifadhi taarifa zako za benki._",
     "currency_not_supported_source": "Bado hatuwezi kupokea malipo kwa {currency} kwa uhamisho huu. Jaribu tena kwa USD, EUR, GBP, MXN au BRL.",
     "deposit_error": "Kuna hitilafu wakati wa kutengeneza maagizo yako ya malipo. Jibu tena *NDIYO* baada ya muda, au anza upya.",
     "confirmed_deposit_reusable": "💡 Hifadhi akaunti hii katika programu ya benki yako — ni yako milele kutuma kwa {recipient_name} nchini {country_name}. Unaweza kuitumia tena mara nyingi upendavyo, fungua tu benki yako na ubadilishe kiasi, bila kuhitaji kuandika tena hapa. (Kwa nchi nyingine, utahitaji kuanzisha uhamisho mpya hapa.)",

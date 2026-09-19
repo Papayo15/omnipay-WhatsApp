@@ -1206,7 +1206,7 @@
     "label_sort_code": "Sort Code",
     "label_clabe": "CLABE",
     "label_pix": "PIX-sleutel",
-    "confirmed_deposit_footer": "{recipient_name} ontvangt {recipient_amount} {recipient_currency}. Zodra je storting bevestigd is, laten we het je hier weten.\n\n_OmniPay bewaart je bankgegevens niet._",
+    "confirmed_deposit_footer": "{recipient_name} ontvangt {recipient_amount} {recipient_currency}. Zodra je storting bevestigd is, sturen we je een e-mail.\n\n_OmniPay bewaart je bankgegevens niet._",
     "currency_not_supported_source": "We kunnen voor deze overboeking nog geen stortingen in {currency} accepteren. Probeer het opnieuw met USD, EUR, GBP, MXN of BRL.",
     "deposit_error": "Er ging iets mis bij het maken van je stortingsinstructies. Antwoord zo weer met *JA*, of begin opnieuw.",
     "confirmed_deposit_reusable": "💡 Sla deze rekening op in je bank-app — hij is voorgoed van jou om naar {recipient_name} in {country_name} te sturen. Je kunt hem zo vaak gebruiken als je wilt, open gewoon je bank en wijzig het bedrag, zonder ons hier opnieuw te hoeven schrijven. (Voor een ander land moet je hier een nieuwe overboeking starten.)",
