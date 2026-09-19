@@ -15,8 +15,8 @@
 // Módulo 2/3 — flujo conversacional + KYC + recolección de destinatario + confirmación:
 //   1. "200 USD México" → parseamos monto/moneda/país
 //   2. Si no conocemos su email (primera vez) → lo pedimos una sola vez
-//   3. Bridge (findCustomerByEmail) — si no tiene KYC aprobado, link a /kyc (Persona, sin
-//      reimplementar KYC)
+//   3. Bridge (getOrCreateCustomer — misma función que usa la web) — si no tiene KYC
+//      aprobado, link a /kyc (Persona, sin reimplementar KYC)
 //   4. Si ya está aprobado → pedimos nombre del destinatario y su cuenta bancaria (formato
 //      según el país — CLABE/IBAN/routing+account/sort code+account/PIX)
 //   5. Validamos con lib/wa-validation.ts (checksums reales: CLABE módulo 10, IBAN módulo 97,
@@ -44,7 +44,7 @@ import {
   setLastOrder, getLastOrder, hasSharedReferralLink, markReferralLinkShared,
   setPendingReferralCode, getPendingReferralCode, clearPendingReferralCode,
 } from "@/lib/wa-identity";
-import { findCustomerByEmail }       from "@/providers/bridge/customers";
+import { getOrCreateCustomer }       from "@/providers/bridge/customers";
 import {
   validateAccountDetails, parseAccountField, mergeSecondAccountField, secondAccountPromptKey,
   accountPromptKey, fullAccountSummary,
@@ -186,11 +186,25 @@ async function startKycOrCollection(
     return;
   }
 
-  const customer = await findCustomerByEmail(email).catch(() => null);
-  const isOk = (s?: string) => s === "active" || s === "approved" || s === "granted";
-  const kycApproved = !!customer && (isOk(customer.status) || isOk(customer.kyc_status));
+  // Misma función que ya usa la web (app/api/bridge/send/route.ts,
+  // app/api/whatsapp/kyc-link/route.ts) — antes esto tenía su propia revisión simplificada
+  // (solo status/kyc_status en "active"/"approved"/"granted") que no contemplaba
+  // deposits_restricted (puede seguir enviando, Bridge solo bloquea depósitos entrantes) ni
+  // paused/offboarded (bloqueado de verdad) — reenviaba a un cliente restringido a hacer
+  // KYC de nuevo en vez de dejarlo pasar, y a uno bloqueado igual, en vez de avisarle.
+  const { needsKyc, accountBlocked } = await getOrCreateCustomer({
+    type: "individual", email,
+    first_name: "OmniPay", last_name: "WhatsApp", country: "USA",
+    endorsements: ["base", "sepa", "spei", "pix", "faster_payments", "cop"],
+  }).catch(() => ({ needsKyc: true, accountBlocked: false }));
 
-  if (!kycApproved) {
+  if (accountBlocked) {
+    await sendWhatsAppMessage(waId, t("deposit_error"));
+    await clearSession(waId);
+    return;
+  }
+
+  if (needsKyc) {
     const kycLink = `${APP_URL}/kyc?email=${encodeURIComponent(email)}&wa=${hashPhone(waId)}&locale=${locale}`;
     await setPendingTransfer(email, { waId, locale, amount, currency, country });
     await sendWhatsAppMessage(waId, t("kyc_needed", { link: kycLink }));
