@@ -40,7 +40,7 @@ import { sendWhatsAppMessage }       from "@/lib/whatsapp";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
 import {
   getEmailForPhone, setEmailForPhone, setPendingTransfer, hashPhone, recordLastMessage,
-  setLastOrder, getLastOrder,
+  setLastOrder, getLastOrder, hasSharedReferralLink, markReferralLinkShared,
 } from "@/lib/wa-identity";
 import { findCustomerByEmail }       from "@/providers/bridge/customers";
 import {
@@ -382,14 +382,16 @@ export async function POST(req: NextRequest): Promise<Response> {
           }),
         ];
         await sendWhatsAppMessage(waId, lines.join("\n"));
-        // Módulo 3 — le damos a Juan su propio link para invitar amigos justo aquí, en el
-        // mismo mensaje del envío. Siempre texto libre: como acaba de escribirnos "SI" hace
-        // segundos, está garantizado que sigue dentro de su ventana de 24h — nunca necesita
-        // plantilla. El código de referido ES su propio waId (lib/referral.ts) — mismo
-        // diseño ya usado para notificar la recompensa, sin tabla de referidos.
-        await sendWhatsAppMessage(waId, t("referral_share_prompt", {
-          link: `${APP_URL}/enviar?ref=${waId}`,
-        }));
+        // Módulo 3 — le damos a Juan su propio link para invitar amigos, pero UNA SOLA VEZ
+        // por usuario (no en cada envío que haga) — puntero corto en Redis, no una tabla de
+        // usuarios. Siempre texto libre cuando se manda: como acaba de escribirnos "SI" hace
+        // segundos, está garantizado que sigue dentro de su ventana de 24h.
+        if (!(await hasSharedReferralLink(waId))) {
+          await sendWhatsAppMessage(waId, t("referral_share_prompt", {
+            link: `${APP_URL}/enviar?ref=${waId}`,
+          }));
+          await markReferralLinkShared(waId);
+        }
       } else {
         // /api/bridge/send falló (Bridge caído, needs_kyc/needs_tos inesperado, etc.) —
         // sin link de respaldo: se le pide reintentar el SI en vez de mandarlo a la web.

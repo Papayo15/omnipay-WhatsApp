@@ -159,6 +159,27 @@ export async function recordLastMessage(waId: string): Promise<void> {
   } catch { /* non-critical — peor caso: usamos plantilla cuando texto libre habría bastado */ }
 }
 
+// ── Link de referido — se manda UNA SOLA VEZ por usuario, nunca en cada envío ────
+// Puntero corto (no PII, solo un flag), mismo TTL largo que el puntero teléfono↔correo —
+// "una vez por usuario" se interpreta como indefinido, no "una vez al día".
+const REFERRAL_SHARED_TTL_SECONDS = 365 * 24 * 3600;
+
+export async function hasSharedReferralLink(waId: string): Promise<boolean> {
+  try {
+    const redis = await getRedis();
+    return (await redis.get(`wa:referralshared:${hashPhone(waId)}`)) !== null;
+  } catch {
+    return false; // conservador: peor caso, se lo mandamos una vez de más
+  }
+}
+
+export async function markReferralLinkShared(waId: string): Promise<void> {
+  try {
+    const redis = await getRedis();
+    await redis.set(`wa:referralshared:${hashPhone(waId)}`, "1", { EX: REFERRAL_SHARED_TTL_SECONDS });
+  } catch { /* non-critical */ }
+}
+
 // ── Último order_id del usuario — para el comando "Estado" del bot ───────────
 // Puntero corto (no PII: solo el order_id que /api/bridge/send ya generó), mismo TTL
 // que lib/order-state.ts (48h) — no tiene caso recordarlo más tiempo que el propio pedido.
