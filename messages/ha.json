@@ -1154,7 +1154,7 @@
     "p2p_only_label": "Don canja wurin kai tsaye"
   },
   "whatsapp": {
-    "greeting": "👋 Sannu! Barka da zuwa OmniPay 🌍\nAika kuɗi zuwa ƙasashen waje da mafi kyawun farashin canjin kuɗi kuma babu ɓoyayyun kuɗaden sabis.\n\n1️⃣ Aika kuɗi yanzu\n2️⃣ Kwatanta farashi 📊\n\nRubuta *1* ko *2* don farawa (ko kai tsaye adadi, ƙasa da imel ɗinka, misali *200 USD Mexico juan@email.com*).\n\n_(Wannan tattaunawar za ta ƙare a cikin mintuna 5 don tsaronka)_",
+    "greeting": "👋 Sannu! Barka da zuwa OmniPay 🌍\nAika kuɗi zuwa ƙasashen waje da mafi kyawun farashin canjin kuɗi kuma babu ɓoyayyun kuɗaden sabis.\n\n1️⃣ Aika kuɗi yanzu\n2️⃣ Kwatanta farashi 📊\n\nRubuta *1* ko *2* don farawa.",
     "parse_error": "Hmm, ban gane sosai ba 🤔\n\nRubuta adadi da ƙasar kamar haka:\n*200 USD Mexico*",
     "ask_email": "Don ci gaba, menene imel ɗinka? Muna amfani da shi don tabbatar da asusunka tare da mai ba da hidimar biyan kuɗi da aka tsara.",
     "invalid_email": "Wannan bai yi kama da ingantaccen imel ba. Sake gwadawa (misali: suna@email.com)",

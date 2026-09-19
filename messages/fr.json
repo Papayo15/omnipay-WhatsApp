@@ -1155,7 +1155,7 @@
     "p2p_only_label": "Pour les envois personnels"
   },
   "whatsapp": {
-    "greeting": "👋 Bonjour ! Bienvenue chez OmniPay 🌍\nEnvoie de l'argent à l'étranger au meilleur taux de change et sans frais cachés.\n\n1️⃣ Envoyer de l'argent maintenant\n2️⃣ Comparer les tarifs 📊\n\nÉcris *1* ou *2* pour commencer (ou directement le montant, le pays et ton e-mail, ex. *200 USD Mexique juan@email.com*).\n\n_(Cette conversation expire dans 5 minutes pour votre sécurité)_",
+    "greeting": "👋 Bonjour ! Bienvenue chez OmniPay 🌍\nEnvoie de l'argent à l'étranger au meilleur taux de change et sans frais cachés.\n\n1️⃣ Envoyer de l'argent maintenant\n2️⃣ Comparer les tarifs 📊\n\nÉcris *1* ou *2* pour commencer.",
     "parse_error": "Hmm, je n'ai pas bien compris 🤔\n\nÉcrivez le montant et le pays ainsi :\n*200 USD Mexique*",
     "ask_email": "Pour continuer, quel est votre e-mail ? Nous l'utilisons pour vérifier votre compte auprès de notre prestataire de paiement réglementé.",
     "invalid_email": "Cela ne ressemble pas à un e-mail valide. Réessayez (exemple : nom@email.com)",

@@ -1155,7 +1155,7 @@
     "p2p_only_label": "Kişisel transferler için"
   },
   "whatsapp": {
-    "greeting": "👋 Merhaba! OmniPay'e hoş geldin 🌍\nEn iyi döviz kuruyla ve gizli ücret olmadan yurt dışına para gönder.\n\n1️⃣ Şimdi para gönder\n2️⃣ Ücretleri karşılaştır 📊\n\nBaşlamak için *1* veya *2* yaz (ya da direkt tutar, ülke ve e-postanı yaz, örn. *200 USD Meksika juan@email.com*).\n\n_(Bu sohbet güvenliğiniz için 5 dakika içinde sona erer)_",
+    "greeting": "👋 Merhaba! OmniPay'e hoş geldin 🌍\nEn iyi döviz kuruyla ve gizli ücret olmadan yurt dışına para gönder.\n\n1️⃣ Şimdi para gönder\n2️⃣ Ücretleri karşılaştır 📊\n\nBaşlamak için *1* veya *2* yaz.",
     "parse_error": "Hmm, tam anlayamadım 🤔\n\nTutarı ve ülkeyi şöyle yazın:\n*200 USD Meksika*",
     "ask_email": "Devam etmek için e-postanız nedir? Düzenlenmiş ödeme sağlayıcımızda hesabınızı doğrulamak için kullanıyoruz.",
     "invalid_email": "Bu geçerli bir e-posta gibi görünmüyor. Tekrar deneyin (örnek: isim@email.com)",

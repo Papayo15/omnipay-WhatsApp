@@ -1155,7 +1155,7 @@
     "p2p_only_label": "Kwa uhamisho wa kibinafsi"
   },
   "whatsapp": {
-    "greeting": "👋 Habari! Karibu OmniPay 🌍\nTuma pesa nje ya nchi kwa kiwango bora cha ubadilishaji na bila ada zilizofichwa.\n\n1️⃣ Tuma pesa sasa\n2️⃣ Linganisha viwango 📊\n\nAndika *1* au *2* kuanza (au moja kwa moja kiasi, nchi na barua pepe yako, mfano *200 USD Mexico juan@email.com*).\n\n_(Mazungumzo haya yataisha muda wake baada ya dakika 5 kwa usalama wako)_",
+    "greeting": "👋 Habari! Karibu OmniPay 🌍\nTuma pesa nje ya nchi kwa kiwango bora cha ubadilishaji na bila ada zilizofichwa.\n\n1️⃣ Tuma pesa sasa\n2️⃣ Linganisha viwango 📊\n\nAndika *1* au *2* kuanza.",
     "parse_error": "Hmm, sikuelewa vizuri 🤔\n\nAndika kiasi na nchi hivi:\n*200 USD Mexico*",
     "ask_email": "Ili kuendelea, barua pepe yako ni ipi? Tunaitumia kuthibitisha akaunti yako na mtoa huduma wetu wa malipo aliyesajiliwa.",
     "invalid_email": "Hiyo haionekani kama barua pepe halali. Jaribu tena (mfano: jina@email.com)",

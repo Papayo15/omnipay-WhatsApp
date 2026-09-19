@@ -1153,7 +1153,7 @@
     "p2p_only_label": "For personal transfers"
   },
   "whatsapp": {
-    "greeting": "👋 Hi! Welcome to OmniPay 🌍\nSend money abroad with the best exchange rate and $0 in hidden fees.\n\n1️⃣ Send money now\n2️⃣ Compare rates 📊\n\nWrite *1* or *2* to get started (or go straight to the amount, country and your email, e.g. *200 USD Mexico juan@email.com*).\n\n_(This chat expires in 5 minutes for your security)_",
+    "greeting": "👋 Hi! Welcome to OmniPay 🌍\nSend money abroad with the best exchange rate and $0 in hidden fees.\n\n1️⃣ Send money now\n2️⃣ Compare rates 📊\n\nWrite *1* or *2* to get started.",
     "parse_error": "Hmm, I didn't quite get that 🤔\n\nWrite the amount and country like this:\n*200 USD Mexico*",
     "ask_email": "To continue, what's your email? We use it to verify your account with our regulated payment provider.",
     "invalid_email": "That doesn't look like a valid email. Try again (example: name@email.com)",

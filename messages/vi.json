@@ -1155,7 +1155,7 @@
     "p2p_only_label": "Dành cho chuyển tiền cá nhân"
   },
   "whatsapp": {
-    "greeting": "👋 Xin chào! Chào mừng đến với OmniPay 🌍\nGửi tiền ra nước ngoài với tỷ giá tốt nhất và không phí ẩn.\n\n1️⃣ Gửi tiền ngay\n2️⃣ So sánh phí 📊\n\nViết *1* hoặc *2* để bắt đầu (hoặc viết luôn số tiền, quốc gia và email của bạn, vd. *200 USD Mexico juan@email.com*).\n\n_(Cuộc trò chuyện này hết hạn sau 5 phút vì lý do bảo mật)_",
+    "greeting": "👋 Xin chào! Chào mừng đến với OmniPay 🌍\nGửi tiền ra nước ngoài với tỷ giá tốt nhất và không phí ẩn.\n\n1️⃣ Gửi tiền ngay\n2️⃣ So sánh phí 📊\n\nViết *1* hoặc *2* để bắt đầu.",
     "parse_error": "Hừm, tôi chưa hiểu rõ 🤔\n\nHãy viết số tiền và quốc gia như sau:\n*200 USD Mexico*",
     "ask_email": "Để tiếp tục, email của bạn là gì? Chúng tôi dùng nó để xác minh tài khoản của bạn với nhà cung cấp thanh toán được quản lý của chúng tôi.",
     "invalid_email": "Đây có vẻ không phải là email hợp lệ. Hãy thử lại (ví dụ: ten@email.com)",

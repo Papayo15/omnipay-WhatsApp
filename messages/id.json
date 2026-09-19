@@ -1155,7 +1155,7 @@
     "p2p_only_label": "Untuk transfer pribadi"
   },
   "whatsapp": {
-    "greeting": "👋 Hai! Selamat datang di OmniPay 🌍\nKirim uang ke luar negeri dengan kurs terbaik dan tanpa biaya tersembunyi.\n\n1️⃣ Kirim uang sekarang\n2️⃣ Bandingkan tarif 📊\n\nTulis *1* atau *2* untuk mulai (atau langsung jumlah, negara, dan email Anda, mis. *200 USD Meksiko juan@email.com*).\n\n_(Obrolan ini kedaluwarsa dalam 5 menit demi keamanan Anda)_",
+    "greeting": "👋 Hai! Selamat datang di OmniPay 🌍\nKirim uang ke luar negeri dengan kurs terbaik dan tanpa biaya tersembunyi.\n\n1️⃣ Kirim uang sekarang\n2️⃣ Bandingkan tarif 📊\n\nTulis *1* atau *2* untuk mulai.",
     "parse_error": "Hmm, saya kurang mengerti 🤔\n\nTulis jumlah dan negara seperti ini:\n*200 USD Meksiko*",
     "ask_email": "Untuk melanjutkan, apa email Anda? Kami menggunakannya untuk memverifikasi akun Anda dengan penyedia pembayaran kami yang teregulasi.",
     "invalid_email": "Itu sepertinya bukan email yang valid. Coba lagi (contoh: nama@email.com)",
