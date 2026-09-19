@@ -1236,7 +1236,11 @@
     "subtitle": "ይህ ወደ 2 ደቂቃ ይወስዳል። OmniPay የተቆጣጣሪ የማንነት ማረጋገጫ አቅራቢዎችን Bridge እና Persona ይጠቀማል — የእርስዎን ሰነዶች በጭራሽ አናይም ወይም አናከማችም።",
     "loading": "ማረጋገጫ በመጫን ላይ…",
     "error": "ማረጋገጫ መጀመር አልተቻለም። ከWhatsApp እንደገና ይሞክሩ።",
-    "missing_params": "ይህ አገናኝ ያልተሟላ ነው። ከWhatsApp አዲስ ይጠይቁ።"
+    "missing_params": "ይህ አገናኝ ያልተሟላ ነው። ከWhatsApp አዲስ ይጠይቁ።",
+    "done_title": "ማንነት ተረጋግጧል!",
+    "done_subtitle": "ማንነትዎ ተረጋግጧል። ዝውውርዎን ለመቀጠል ወደ WhatsApp ይመለሱ።",
+    "done_cta": "ወደ WhatsApp ተመለስ",
+    "done_prefill": "ተጠናቋል፣ ማንነቴን አሁን አረጋግጫለሁ"
   },
   "serviciosMx": {
     "title": "በሜክሲኮ የአገልግሎት ክፍያ ይክፈሉ",

@@ -1235,7 +1235,11 @@
     "subtitle": "Wannan yana ɗaukar kimanin mintuna 2. OmniPay yana amfani da Bridge da Persona, masu ba da tabbatar da ainihi da aka tsara — ba mu taɓa ganin ko adana takardunku ba.",
     "loading": "Ana loda tabbatarwa…",
     "error": "Ba a iya fara tabbatarwa ba. Sake gwadawa daga WhatsApp.",
-    "missing_params": "Wannan hanyar haɗi bata cika ba. Nemi sabuwa daga WhatsApp."
+    "missing_params": "Wannan hanyar haɗi bata cika ba. Nemi sabuwa daga WhatsApp.",
+    "done_title": "An tabbatar da asali!",
+    "done_subtitle": "An tabbatar da asalinka. Koma WhatsApp don ci gaba da canja wurinka.",
+    "done_cta": "Koma WhatsApp",
+    "done_prefill": "An gama, na tabbatar da asalina yanzu"
   },
   "serviciosMx": {
     "title": "Biya kudin sabis a Mexico",

@@ -1236,7 +1236,11 @@
     "subtitle": "Ini memakan waktu sekitar 2 menit. OmniPay menggunakan Bridge dan Persona, penyedia verifikasi identitas yang teregulasi — kami tidak pernah melihat atau menyimpan dokumen Anda.",
     "loading": "Memuat verifikasi…",
     "error": "Tidak dapat memulai verifikasi. Coba lagi dari WhatsApp.",
-    "missing_params": "Tautan ini tidak lengkap. Minta tautan baru dari WhatsApp."
+    "missing_params": "Tautan ini tidak lengkap. Minta tautan baru dari WhatsApp.",
+    "done_title": "Identitas terverifikasi!",
+    "done_subtitle": "Identitas Anda telah dikonfirmasi. Kembali ke WhatsApp untuk melanjutkan transfer Anda.",
+    "done_cta": "Kembali ke WhatsApp",
+    "done_prefill": "Selesai, saya baru saja memverifikasi identitas saya"
   },
   "serviciosMx": {
     "title": "Bayar tagihan layanan di Meksiko",

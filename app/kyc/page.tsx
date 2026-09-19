@@ -9,7 +9,9 @@
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Zap } from "lucide-react";
+import Image from "next/image";
+import { Zap, CheckCircle2, MessageCircle } from "lucide-react";
+import { buildWhatsAppLink } from "@/lib/messaging";
 
 function KycInner() {
   const t = useTranslations("kyc");
@@ -58,6 +60,34 @@ function KycInner() {
       .catch(() => setStatus("error"));
   }, [params]);
 
+  // "done" cubre dos casos: (a) Persona nos redirigió de vuelta con ?done=1, o (b) el
+  // fetch a /api/whatsapp/kyc-link encontró que ya estaba aprobado desde antes — ambos
+  // llevan a la misma pantalla de éxito con el botón de regreso a WhatsApp.
+  const isDoneScreen = status === "done" || !!params.get("done");
+
+  const botNumber = process.env.NEXT_PUBLIC_WHATSAPP_BOT_NUMBER ?? "";
+  const whatsAppLink = buildWhatsAppLink(t("done_prefill"), botNumber);
+
+  if (isDoneScreen) {
+    return (
+      <main className="min-h-screen bg-[#0f172a] flex flex-col items-center justify-center px-6 text-center">
+        <Image src="/icon-512.png" alt="OmniPay" width={64} height={64} className="rounded-2xl mb-5" />
+        <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center mb-5">
+          <CheckCircle2 className="w-9 h-9 text-emerald-400" />
+        </div>
+        <h1 className="text-white font-bold text-xl mb-2">{t("done_title")}</h1>
+        <p className="text-slate-400 text-sm max-w-xs mb-8">{t("done_subtitle")}</p>
+        <a
+          href={whatsAppLink}
+          className="w-full max-w-xs py-4 px-6 bg-emerald-500 hover:bg-emerald-600 text-[#0f172a] font-bold rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20"
+        >
+          <span>{t("done_cta")}</span>
+          <MessageCircle className="w-5 h-5" />
+        </a>
+      </main>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-[#0f172a] flex flex-col items-center justify-center px-6 text-center">
       <Zap className="w-8 h-8 text-[#00C9C8] mb-4" />
@@ -66,8 +96,6 @@ function KycInner() {
       {status === "loading" && <p className="text-slate-500 text-xs mt-6 animate-pulse">{t("loading")}</p>}
       {status === "error" && <p className="text-red-400 text-xs mt-6">{t("error")}</p>}
       {status === "missing" && <p className="text-red-400 text-xs mt-6">{t("missing_params")}</p>}
-      {status === "done" && <p className="text-emerald-400 text-xs mt-6">✓</p>}
-      {params.get("done") && <p className="text-emerald-400 text-xs mt-6">✓</p>}
     </main>
   );
 }

@@ -1236,7 +1236,11 @@
     "subtitle": "Bu yaklaşık 2 dakika sürer. OmniPay, düzenlenmiş kimlik doğrulama sağlayıcıları Bridge ve Persona'yı kullanır — belgelerinizi asla görmeyiz veya saklamayız.",
     "loading": "Doğrulama yükleniyor…",
     "error": "Doğrulama başlatılamadı. WhatsApp'tan tekrar deneyin.",
-    "missing_params": "Bu bağlantı eksik. WhatsApp'tan yeni bir bağlantı isteyin."
+    "missing_params": "Bu bağlantı eksik. WhatsApp'tan yeni bir bağlantı isteyin.",
+    "done_title": "Kimlik doğrulandı!",
+    "done_subtitle": "Kimliğin onaylandı. Transferine devam etmek için WhatsApp'a geri dön.",
+    "done_cta": "WhatsApp'a dön",
+    "done_prefill": "Tamam, kimliğimi az önce doğruladım"
   },
   "serviciosMx": {
     "title": "Meksika'da bir fatura ödeyin",

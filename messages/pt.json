@@ -1235,7 +1235,11 @@
     "subtitle": "Isso leva cerca de 2 minutos. A OmniPay usa Bridge e Persona, provedores regulados de verificação de identidade — nunca vemos ou armazenamos seus documentos.",
     "loading": "Carregando verificação…",
     "error": "Não foi possível iniciar a verificação. Tente novamente pelo WhatsApp.",
-    "missing_params": "Este link está incompleto. Solicite um novo pelo WhatsApp."
+    "missing_params": "Este link está incompleto. Solicite um novo pelo WhatsApp.",
+    "done_title": "Identidade verificada!",
+    "done_subtitle": "Sua identidade foi confirmada. Volte para o WhatsApp para continuar seu envio.",
+    "done_cta": "Voltar ao WhatsApp",
+    "done_prefill": "Pronto, acabei de verificar minha identidade"
   },
   "serviciosMx": {
     "title": "Pague uma conta de serviço no México",

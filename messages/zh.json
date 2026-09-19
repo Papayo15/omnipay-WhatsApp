@@ -1236,7 +1236,11 @@
     "subtitle": "大约需要2分钟。OmniPay使用受监管的身份验证提供商Bridge和Persona——我们绝不查看或存储您的文件。",
     "loading": "正在加载验证…",
     "error": "无法开始验证。请从WhatsApp重试。",
-    "missing_params": "此链接不完整。请从WhatsApp请求新链接。"
+    "missing_params": "此链接不完整。请从WhatsApp请求新链接。",
+    "done_title": "身份验证成功！",
+    "done_subtitle": "您的身份已确认。请返回WhatsApp继续您的汇款。",
+    "done_cta": "返回WhatsApp",
+    "done_prefill": "好了，我刚完成身份验证"
   },
   "serviciosMx": {
     "title": "支付墨西哥账单",

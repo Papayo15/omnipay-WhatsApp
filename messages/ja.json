@@ -1236,7 +1236,11 @@
     "subtitle": "所要時間は約2分です。OmniPayは規制対象の本人確認プロバイダーであるBridgeとPersonaを使用しており、お客様の書類を確認・保存することはありません。",
     "loading": "確認を読み込み中…",
     "error": "確認を開始できませんでした。WhatsAppから再試行してください。",
-    "missing_params": "このリンクは不完全です。WhatsAppから新しいリンクをリクエストしてください。"
+    "missing_params": "このリンクは不完全です。WhatsAppから新しいリンクをリクエストしてください。",
+    "done_title": "本人確認が完了しました！",
+    "done_subtitle": "本人確認が完了しました。送金を続けるにはWhatsAppに戻ってください。",
+    "done_cta": "WhatsAppに戻る",
+    "done_prefill": "完了しました、本人確認をしたところです"
   },
   "serviciosMx": {
     "title": "メキシコの公共料金を支払う",

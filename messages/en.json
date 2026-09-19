@@ -1234,7 +1234,11 @@
     "subtitle": "This takes about 2 minutes. OmniPay uses Bridge and Persona, regulated identity verification providers — we never see or store your documents.",
     "loading": "Loading verification…",
     "error": "Could not start verification. Please try again from WhatsApp.",
-    "missing_params": "This link is incomplete. Please request a new one from WhatsApp."
+    "missing_params": "This link is incomplete. Please request a new one from WhatsApp.",
+    "done_title": "Identity verified!",
+    "done_subtitle": "Your identity has been confirmed. Go back to WhatsApp to continue your transfer.",
+    "done_cta": "Back to WhatsApp",
+    "done_prefill": "Done, I just verified my identity"
   },
   "serviciosMx": {
     "title": "Pay a Mexico service bill",

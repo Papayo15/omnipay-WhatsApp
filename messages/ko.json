@@ -1236,7 +1236,11 @@
     "subtitle": "약 2분 정도 소요됩니다. OmniPay는 규제된 신원 확인 제공업체인 Bridge와 Persona를 사용하며, 귀하의 문서를 확인하거나 저장하지 않습니다.",
     "loading": "확인 로드 중…",
     "error": "확인을 시작할 수 없습니다. WhatsApp에서 다시 시도해 주세요.",
-    "missing_params": "이 링크가 불완전합니다. WhatsApp에서 새 링크를 요청해 주세요."
+    "missing_params": "이 링크가 불완전합니다. WhatsApp에서 새 링크를 요청해 주세요.",
+    "done_title": "신원 확인 완료!",
+    "done_subtitle": "신원이 확인되었습니다. 송금을 계속하려면 WhatsApp으로 돌아가세요.",
+    "done_cta": "WhatsApp으로 돌아가기",
+    "done_prefill": "완료했어요, 방금 신원 확인을 마쳤어요"
   },
   "serviciosMx": {
     "title": "멕시코 공과금 납부",

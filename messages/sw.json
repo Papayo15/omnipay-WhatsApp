@@ -1236,7 +1236,11 @@
     "subtitle": "Hii inachukua takriban dakika 2. OmniPay hutumia Bridge na Persona, watoa huduma wa uthibitisho wa utambulisho waliosajiliwa — hatuoni wala kuhifadhi hati zako.",
     "loading": "Inapakia uthibitisho…",
     "error": "Imeshindwa kuanzisha uthibitisho. Jaribu tena kutoka WhatsApp.",
-    "missing_params": "Kiungo hiki hakijakamilika. Omba kipya kutoka WhatsApp."
+    "missing_params": "Kiungo hiki hakijakamilika. Omba kipya kutoka WhatsApp.",
+    "done_title": "Utambulisho umethibitishwa!",
+    "done_subtitle": "Utambulisho wako umethibitishwa. Rudi WhatsApp kuendelea na uhamisho wako.",
+    "done_cta": "Rudi WhatsApp",
+    "done_prefill": "Nimemaliza, nimethibitisha utambulisho wangu"
   },
   "serviciosMx": {
     "title": "Lipa bili ya huduma Mexico",

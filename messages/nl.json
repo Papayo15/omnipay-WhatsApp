@@ -1236,7 +1236,11 @@
     "subtitle": "Dit duurt ongeveer 2 minuten. OmniPay gebruikt Bridge en Persona, gereguleerde aanbieders van identiteitsverificatie — we zien of bewaren je documenten nooit.",
     "loading": "Verificatie laden…",
     "error": "Kon verificatie niet starten. Probeer opnieuw vanuit WhatsApp.",
-    "missing_params": "Deze link is onvolledig. Vraag een nieuwe aan via WhatsApp."
+    "missing_params": "Deze link is onvolledig. Vraag een nieuwe aan via WhatsApp.",
+    "done_title": "Identiteit geverifieerd!",
+    "done_subtitle": "Je identiteit is bevestigd. Ga terug naar WhatsApp om je overboeking voort te zetten.",
+    "done_cta": "Terug naar WhatsApp",
+    "done_prefill": "Klaar, ik heb net mijn identiteit geverifieerd"
   },
   "serviciosMx": {
     "title": "Betaal een rekening in Mexico",

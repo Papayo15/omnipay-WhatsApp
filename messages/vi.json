@@ -1236,7 +1236,11 @@
     "subtitle": "Việc này mất khoảng 2 phút. OmniPay sử dụng Bridge và Persona, các nhà cung cấp xác minh danh tính được quản lý — chúng tôi không bao giờ xem hoặc lưu trữ tài liệu của bạn.",
     "loading": "Đang tải xác minh…",
     "error": "Không thể bắt đầu xác minh. Vui lòng thử lại từ WhatsApp.",
-    "missing_params": "Liên kết này chưa đầy đủ. Vui lòng yêu cầu liên kết mới từ WhatsApp."
+    "missing_params": "Liên kết này chưa đầy đủ. Vui lòng yêu cầu liên kết mới từ WhatsApp.",
+    "done_title": "Đã xác minh danh tính!",
+    "done_subtitle": "Danh tính của bạn đã được xác nhận. Quay lại WhatsApp để tiếp tục giao dịch.",
+    "done_cta": "Quay lại WhatsApp",
+    "done_prefill": "Xong, tôi vừa xác minh danh tính"
   },
   "serviciosMx": {
     "title": "Thanh toán hóa đơn dịch vụ ở Mexico",
