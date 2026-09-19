@@ -65,7 +65,8 @@ interface SendBody {
   // ?ref= by app/enviar/page.tsx (lib/referral.ts) and stored in localStorage — no DB.
   referral_code?:    string;
   // Módulo 2 — "whatsapp" cuando el envío viene del bot (?channel= en el link generado
-  // por app/api/whatsapp/webhook/route.ts) — absorbe el costo de sesión de Meta internamente.
+  // por app/api/whatsapp/webhook/route.ts) — recupera el costo de sesión de Meta del
+  // cliente en vez de restarlo del margen (lib/bridge-fees.ts).
   channel?:          "web" | "whatsapp";
 }
 

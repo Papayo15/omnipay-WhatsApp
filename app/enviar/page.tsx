@@ -202,7 +202,8 @@ export default function EnviarPage() {
   const buildBody = useCallback(() => {
     const referralCode = getReferralCode();
     // Módulo 2 — si el link vino del bot de WhatsApp (?channel=whatsapp), el motor de fees
-    // absorbe internamente el costo de la sesión de Meta sin cambiar lo que paga el cliente.
+    // recupera el costo de la sesión de Meta (~$0.02) dentro del fee del canal — el cliente
+    // paga esos centavos de más frente a un envío idéntico por /enviar (lib/bridge-fees.ts).
     const channel = searchParams.get("channel") === "whatsapp" ? "whatsapp" : "web";
     const base: Record<string, unknown> = {
       sender_name:       senderName.trim(),

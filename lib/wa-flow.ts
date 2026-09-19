@@ -97,7 +97,7 @@ export function buildEnviarLink(params: {
   const qs = new URLSearchParams({
     email: params.email, currency: params.currency, country: params.country,
     amount: params.amount, recipient_name: params.recipientName,
-    channel: "whatsapp", // Módulo 2 — absorbe el costo de sesión de Meta internamente (lib/bridge-fees.ts)
+    channel: "whatsapp", // Módulo 2 — recupera el costo de sesión de Meta del cliente (lib/bridge-fees.ts)
   });
   const cc = params.country.toUpperCase();
   if (cc === "MX") qs.set("account", params.account.clabe ?? "");

@@ -49,10 +49,13 @@ export const KYC_FEE_P2P = 0.00;
 export const KYB_FEE_B2B = 0.00;
 
 // Costo de la ventana de conversación de WhatsApp Cloud API (Meta) — ~$0.02 USD / ~$0.40 MXN
-// por sesión de 24h, una vez agotada la cuota gratuita mensual. OmniPay absorbe este costo:
-// el cliente paga exactamente lo mismo que por /enviar directo — total_sender_pays NO cambia.
-// Solo se refleja en omnipay_net_revenue (para que el negocio sepa el margen real que le
-// queda en órdenes que vienen del canal WhatsApp).
+// por sesión de 24h, una vez agotada la cuota gratuita mensual. Se recupera dentro del fee
+// del canal (bridge_offramp/wise_fee) para órdenes channel="whatsapp" — total_sender_pays
+// SÍ sube esos $0.02 frente a un envío idéntico por /enviar. Antes se absorbía descontándolo
+// del margen (omnipay_net_revenue), pero eso podía dejar el margen neto en negativo si
+// coincidía con un referido con comisión en $0 — un envío nunca debe costarle dinero a
+// OmniPay. Si Meta no llega a cobrar la sesión ese mes (cuota gratuita), esos $0.02 quedan
+// como ganancia extra — aceptado.
 export const WHATSAPP_SESSION_COST_USD = 0.02;
 
 // Wise B2B costs (transfer fee + FX spread, conservative estimate covering most corridors)
@@ -187,13 +190,22 @@ function _buildQuote(
   let bridgeOnramp:  number | undefined;
   let bridgeOfframp: number | undefined;
 
+  // Costo de sesión de WhatsApp (Meta) — se recupera dentro del fee del canal (Bridge hoy;
+  // Conduit cuando se active), NO restándolo del margen de OmniPay. Antes se "absorbía"
+  // descontándolo de omnipay_net_revenue, lo cual podía dejar el margen neto en negativo
+  // cuando coincidía con un referido con comisión en $0 (waiveServiceFee) — un envío nunca
+  // debe costarle dinero a OmniPay. Ahora se cobra siempre que channel="whatsapp",
+  // independiente del descuento de referido; si Meta no llega a cobrar esa sesión (dentro
+  // de su cuota gratuita mensual), esos $0.02 quedan como ganancia extra — aceptado.
+  const whatsappCost = channel === "whatsapp" ? WHATSAPP_SESSION_COST_USD : 0;
+
   if (provider === "b2b") {
     stripeFee         = parseFloat((amount * STRIPE_PCT + STRIPE_FLAT).toFixed(2));
-    wiseFee           = parseFloat((amount * WISE_B2B_PCT).toFixed(2));
+    wiseFee           = parseFloat((amount * WISE_B2B_PCT + whatsappCost).toFixed(2));
     providerCostTotal = stripeFee + wiseFee;
   } else {
     bridgeOnramp      = parseFloat((amount * BRIDGE_ONRAMP_PCT).toFixed(2));
-    bridgeOfframp     = parseFloat((amount * BRIDGE_OFFRAMP_PCT).toFixed(2));
+    bridgeOfframp     = parseFloat((amount * BRIDGE_OFFRAMP_PCT + whatsappCost).toFixed(2));
     providerCostTotal = bridgeOnramp + bridgeOfframp;
   }
 
@@ -203,11 +215,6 @@ function _buildQuote(
   // omnipayRev (bruto) es lo que se le cobra al cliente — nunca cambia por canal.
   const omnipayRev = parseFloat((omnipayService + flat).toFixed(2));
   const total      = parseFloat((amount + providerCostTotal + omnipayRev + kyc).toFixed(2));
-
-  // Costo de sesión de WhatsApp — absorbido por OmniPay, nunca por el cliente. Se resta
-  // SOLO del margen neto reportado (omnipay_net_revenue), jamás de total_sender_pays.
-  const whatsappCost = channel === "whatsapp" ? WHATSAPP_SESSION_COST_USD : 0;
-  const omnipayNetAfterCosts = parseFloat((omnipayRev - whatsappCost).toFixed(2));
 
   return {
     amount_principal:    amount,
@@ -219,7 +226,7 @@ function _buildQuote(
     provider_cost_total: parseFloat(providerCostTotal.toFixed(2)),
     omnipay_service:     omnipayService,
     omnipay_flat:        flat,
-    omnipay_net_revenue: omnipayNetAfterCosts,
+    omnipay_net_revenue: omnipayRev,
     whatsapp_session_cost: channel === "whatsapp" ? whatsappCost : undefined,
     kyc_surcharge:       kyc,
     is_new_customer:     isNew,
