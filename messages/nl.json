@@ -1224,7 +1224,7 @@
     "compare_reply": "🔎 Vergelijking voor het versturen van {amount} {currency} naar {country_name} ({country_code}):\n\n⚡ Met OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Traditionele geldtransferdienst (schatting): {competitor_amount} {recipient_currency}\n\n💰 Je ontvanger krijgt bij ons +{savings} {recipient_currency} extra.\n\n----------------------------------\nWat wil je nu doen?\n👉 Antwoord met *JA* om deze {amount} {currency} nu te versturen.\n👉 Of schrijf een andere vergelijking (bijv. comparar 500 USD Colombia) of \"1\" voor het menu.",
     "compare_hint": "🔎 Wil je eerst alleen vergelijken? Schrijf: *comparar 200 USD Mexico*",
     "compare_cta": "Wil je dit nu versturen?\n👉 Antwoord met *JA* om door te gaan.",
-    "menu_option_send_prompt": "Top 👍 Schrijf me bedrag, land en je e-mail, allemaal samen. Bijv.: *200 USD Mexico juan@email.com*"
+    "menu_option_send_prompt": "Top 👍 Schrijf me het bedrag, de valuta die je verstuurt, het land van je ontvanger en jouw e-mail (die van de afzender) — allemaal samen. Bijv.: *200 USD Mexico juan@email.com* (je stuurt 200 USD, je ontvanger zit in Mexico)."
   },
   "kyc": {
     "title": "Verifieer je identiteit",

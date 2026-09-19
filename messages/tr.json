@@ -1224,7 +1224,7 @@
     "compare_reply": "🔎 {amount} {currency} tutarını {country_name} ({country_code}) ülkesine gönderme karşılaştırması:\n\n⚡ OmniPay ile: {omnipay_amount} {recipient_currency}\n🐌 Geleneksel para transfer şirketi (tahmini): {competitor_amount} {recipient_currency}\n\n💰 Alıcın bizimle +{savings} {recipient_currency} fazladan alıyor.\n\n----------------------------------\nŞimdi ne yapmak istersin?\n👉 Bu {amount} {currency} tutarını şimdi göndermek için *EVET* yaz.\n👉 Ya da başka bir karşılaştırma yaz (örn: comparar 500 USD Kolombiya) veya menü için \"1\" yaz.",
     "compare_hint": "🔎 Karar vermeden önce sadece karşılaştırmak mı istiyorsun? Yaz: *comparar 200 USD Meksika*",
     "compare_cta": "Bunu şimdi göndermek ister misin?\n👉 Devam etmek için *EVET* yaz.",
-    "menu_option_send_prompt": "Harika 👍 Tutar, ülke ve e-postanı birlikte yaz. Örn.: *200 USD Meksika juan@email.com*"
+    "menu_option_send_prompt": "Harika 👍 Tutarı, gönderdiğin para birimini, alıcının ülkesini ve senin (gönderenin) e-postanı birlikte yaz. Örn.: *200 USD Meksika juan@email.com* (200 USD gönderiyorsun, alıcın Meksika'da)."
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",

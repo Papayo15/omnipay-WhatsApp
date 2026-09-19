@@ -1224,7 +1224,7 @@
     "compare_reply": "🔎 Ulinganisho wa kutuma {amount} {currency} kwenda {country_name} ({country_code}):\n\n⚡ Kwa OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Kampuni ya kawaida ya kutuma pesa (makadirio): {competitor_amount} {recipient_currency}\n\n💰 Mpokeaji wako anapata +{savings} {recipient_currency} zaidi kwetu.\n\n----------------------------------\nUnataka kufanya nini sasa?\n👉 Jibu *NDIYO* kutuma {amount} {currency} hii sasa.\n👉 Au andika ulinganisho mwingine (mfano: comparar 500 USD Colombia) au \"1\" kwa menyu.",
     "compare_hint": "🔎 Unataka tu kulinganisha kabla ya kuamua? Andika: *comparar 200 USD Mexico*",
     "compare_cta": "Unataka kutuma hii sasa?\n👉 Jibu *NDIYO* kuendelea.",
-    "menu_option_send_prompt": "Vizuri 👍 Andika kiasi, nchi na barua pepe yako pamoja. Mfano: *200 USD Mexico juan@email.com*"
+    "menu_option_send_prompt": "Vizuri 👍 Andika kiasi, sarafu unayotuma, nchi ya mpokeaji wako, na barua pepe yako (ya mtumaji) pamoja. Mfano: *200 USD Mexico juan@email.com* (unatuma USD 200, mpokeaji wako yuko Mexico)."
   },
   "kyc": {
     "title": "Thibitisha utambulisho wako",

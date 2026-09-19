@@ -1224,7 +1224,7 @@
     "compare_reply": "🔎 {amount} {currency} ወደ {country_name} ({country_code}) ለመላክ ንጽጽር:\n\n⚡ በOmniPay: {omnipay_amount} {recipient_currency}\n🐌 ባህላዊ የገንዘብ መላኪያ (ግምት): {competitor_amount} {recipient_currency}\n\n💰 ተቀባይዎ ከእኛ ጋር +{savings} {recipient_currency} ተጨማሪ ያገኛል።\n\n----------------------------------\nአሁን ምን ማድረግ ይፈልጋሉ?\n👉 ይህን {amount} {currency} አሁን ለመላክ *አዎ* ብለው ይመልሱ።\n👉 ወይም ሌላ ንጽጽር ይጻፉ (ለምሳሌ: comparar 500 USD ኮሎምቢያ) ወይም ለምናሌ \"1\" ይጻፉ።",
     "compare_hint": "🔎 ከመወሰንዎ በፊት ማወዳደር ብቻ ይፈልጋሉ? ይጻፉ: *comparar 200 USD ሜክሲኮ*",
     "compare_cta": "አሁን ይህን መላክ ይፈልጋሉ?\n👉 ለመቀጠል *አዎ* ብለው ይመልሱ።",
-    "menu_option_send_prompt": "እሺ 👍 መጠን፣ ሀገር እና ኢሜይልዎን አብረው ይጻፉ። ለምሳሌ: *200 USD ሜክሲኮ juan@email.com*"
+    "menu_option_send_prompt": "እሺ 👍 መጠኑን፣ የሚልኩትን ገንዘብ፣ የተቀባይዎን ሀገር እና የእርስዎን (የላኪውን) ኢሜይል አብረው ይጻፉ። ለምሳሌ: *200 USD ሜክሲኮ juan@email.com* (200 USD እየላኩ ነው፣ ተቀባይዎ ሜክሲኮ ውስጥ ነው)።"
   },
   "kyc": {
     "title": "ማንነትዎን ያረጋግጡ",

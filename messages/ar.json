@@ -1224,7 +1224,7 @@
     "compare_reply": "🔎 مقارنة لإرسال {amount} {currency} إلى {country_name} ({country_code}):\n\n⚡ مع OmniPay: {omnipay_amount} {recipient_currency}\n🐌 شركة تحويل أموال تقليدية (تقديري): {competitor_amount} {recipient_currency}\n\n💰 يحصل المستفيد لديك على +{savings} {recipient_currency} إضافية معنا.\n\n----------------------------------\nماذا تريد أن تفعل الآن؟\n👉 أجب بـ *نعم* لإرسال هذا المبلغ {amount} {currency} الآن.\n👉 أو اكتب مقارنة أخرى (مثال: comparar 500 USD كولومبيا) أو \"1\" للقائمة.",
     "compare_hint": "🔎 تريد فقط المقارنة قبل أن تقرر؟ اكتب: *comparar 200 USD المكسيك*",
     "compare_cta": "هل تريد إرسال هذا الآن؟\n👉 أجب بـ *نعم* للمتابعة.",
-    "menu_option_send_prompt": "ممتاز 👍 اكتب المبلغ والدولة وبريدك الإلكتروني معاً. مثال: *200 USD المكسيك juan@email.com*"
+    "menu_option_send_prompt": "ممتاز 👍 اكتب المبلغ، والعملة التي ترسلها، ودولة المستفيد، وبريدك الإلكتروني (بريد المرسل) — كل ذلك معاً. مثال: *200 USD المكسيك juan@email.com* (أنت ترسل 200 USD، والمستفيد في المكسيك)."
   },
   "kyc": {
     "title": "تحقق من هويتك",

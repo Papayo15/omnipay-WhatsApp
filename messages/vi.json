@@ -1224,7 +1224,7 @@
     "compare_reply": "🔎 So sánh khi gửi {amount} {currency} đến {country_name} ({country_code}):\n\n⚡ Với OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Dịch vụ chuyển tiền truyền thống (ước tính): {competitor_amount} {recipient_currency}\n\n💰 Người nhận của bạn nhận thêm +{savings} {recipient_currency} khi dùng chúng tôi.\n\n----------------------------------\nBạn muốn làm gì bây giờ?\n👉 Trả lời *CÓ* để gửi {amount} {currency} này ngay bây giờ.\n👉 Hoặc viết một báo giá khác (vd: comparar 500 USD Colombia) hoặc \"1\" để vào menu.",
     "compare_hint": "🔎 Chỉ muốn so sánh trước khi quyết định? Viết: *comparar 200 USD Mexico*",
     "compare_cta": "Bạn có muốn gửi ngay bây giờ không?\n👉 Trả lời *CÓ* để tiếp tục.",
-    "menu_option_send_prompt": "Tuyệt 👍 Viết số tiền, quốc gia và email của bạn cùng nhau. Vd.: *200 USD Mexico juan@email.com*"
+    "menu_option_send_prompt": "Tuyệt 👍 Viết số tiền, loại tiền bạn gửi, quốc gia của người nhận, và email của bạn (người gửi) — tất cả cùng nhau. Vd.: *200 USD Mexico juan@email.com* (bạn gửi 200 USD, người nhận ở Mexico)."
   },
   "kyc": {
     "title": "Xác minh danh tính của bạn",

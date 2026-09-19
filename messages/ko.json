@@ -1224,7 +1224,7 @@
     "compare_reply": "🔎 {amount} {currency}를 {country_name}({country_code})으로 보낼 때 비교:\n\n⚡ OmniPay 이용 시: {omnipay_amount} {recipient_currency}\n🐌 기존 송금 회사(추정): {competitor_amount} {recipient_currency}\n\n💰 저희를 이용하면 수취인이 +{savings} {recipient_currency} 더 받습니다.\n\n----------------------------------\n지금 무엇을 하고 싶으신가요?\n👉 이 {amount} {currency}를 지금 보내려면 *예*라고 답장하세요.\n👉 또는 다른 비교를 입력하거나 (예: comparar 500 USD 콜롬비아) 메뉴로 가려면 \"1\"을 입력하세요.",
     "compare_hint": "🔎 결정하기 전에 비교만 해보고 싶으신가요? 작성해 주세요: *comparar 200 USD 멕시코*",
     "compare_cta": "지금 송금하시겠어요?\n👉 계속하려면 *예*라고 답장해 주세요.",
-    "menu_option_send_prompt": "좋아요 👍 금액, 국가, 이메일을 함께 적어주세요. 예: *200 USD 멕시코 juan@email.com*"
+    "menu_option_send_prompt": "좋아요 👍 금액, 보내는 통화, 수취인의 국가, 그리고 당신(발신자)의 이메일을 함께 적어주세요. 예: *200 USD 멕시코 juan@email.com* (200 USD를 보내고, 수취인은 멕시코에 있음)."
   },
   "kyc": {
     "title": "신원을 확인하세요",
