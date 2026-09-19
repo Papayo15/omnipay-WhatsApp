@@ -152,6 +152,18 @@ export async function getPendingTransfer(email: string): Promise<PendingTransfer
   }
 }
 
+// Se borra justo después de usarla (aviso de aprobación enviado / chat retomado) — Bridge
+// dispara customer.updated varias veces con status "active" durante el mismo proceso de
+// aprobación (cada vez con su propio event_id, así que el dedup por evento de
+// app/api/bridge/webhook/route.ts no los agarra), y sin esto el aviso se repetía una vez
+// por cada evento — confirmado en vivo (el mismo mensaje llegó 3 veces seguidas).
+export async function clearPendingTransfer(email: string): Promise<void> {
+  try {
+    const redis = await getRedis();
+    await redis.del(`wa:pending:${hashEmail(email)}`);
+  } catch { /* non-critical — peor caso, se repite el aviso una vez más */ }
+}
+
 // ── Ventana de servicio de WhatsApp (texto libre vs. plantilla) ──────────────────
 // Meta: "cuando un usuario te escribe, arranca una ventana de servicio de 24 horas.
 // Si te vuelve a escribir antes de que expire, la ventana se reinicia a 24 horas

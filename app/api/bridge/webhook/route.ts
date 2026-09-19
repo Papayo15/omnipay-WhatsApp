@@ -21,7 +21,7 @@ import { buildReceiptURL }                      from "@/lib/link";
 import { emailStrings }                         from "@/lib/email-i18n";
 import { sendWhatsAppMessage, sendWhatsAppTemplate, templateLanguageCode } from "@/lib/whatsapp";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
-import { getPendingTransfer, isWithinMessageWindow }        from "@/lib/wa-identity";
+import { getPendingTransfer, clearPendingTransfer, isWithinMessageWindow }        from "@/lib/wa-identity";
 import { beginRecipientCollection }             from "@/lib/wa-flow";
 import { getCountry }                           from "@/constants/countries";
 
@@ -256,6 +256,12 @@ export async function POST(req: NextRequest): Promise<Response> {
       try {
         const pending = await getPendingTransfer(email);
         if (pending) {
+          // Se borra ANTES de mandar el aviso, no después — Bridge dispara customer.updated
+          // varias veces seguidas con status "active" mientras el cliente progresa (cada
+          // vez con su propio event_id, así que el dedup por evento no lo agarra). Sin esto
+          // el mismo aviso "tu cuenta fue aprobada" se repetía una vez por cada evento
+          // (confirmado en vivo: llegó 3 veces seguidas al mismo usuario).
+          await clearPendingTransfer(email);
           const locale = (pending.locale as WaLocale) ?? "en";
           const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
           const destCurrency = getCountry(pending.country)?.currency ?? pending.country;
