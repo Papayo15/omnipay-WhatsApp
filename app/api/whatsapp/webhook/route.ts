@@ -41,6 +41,7 @@ import { buildWhatsAppLink }          from "@/lib/messaging";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
 import {
   getEmailForPhone, setEmailForPhone, setPendingTransfer, hashPhone, recordLastMessage,
+  setAwaitingEmailChange, isAwaitingEmailChange, clearAwaitingEmailChange,
   setLastOrder, getLastOrder, hasSharedReferralLink, markReferralLinkShared,
   setPendingReferralCode, getPendingReferralCode, clearPendingReferralCode,
 } from "@/lib/wa-identity";
@@ -314,23 +315,26 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   // ── Comando "Cambiar correo" — pide explícitamente el correo nuevo (mejor que borrar y
   // esperar a que lo escriban solos en su próximo mensaje) y lo confirma antes de guardarlo.
+  // Usa su propio puntero en Redis (24h, ventana de servicio de WhatsApp) en vez del step de
+  // la sesión general (10 min) — confirmado en vivo que alguien puede tardar horas en
+  // responder con el correo nuevo, y la sesión de 10 min ya había expirado para entonces.
   const CHANGE_EMAIL_KEYWORDS = new Set(["cambiar correo", "cambiar email", "change email", "cambiar mail"]);
   if (CHANGE_EMAIL_KEYWORDS.has(trimmed.toLowerCase())) {
     const identity = await getEmailForPhone(waId);
-    await setSession(waId, { step: 8, locale });
+    await setAwaitingEmailChange(waId);
     await sendWhatsAppMessage(waId, t("change_email_prompt", { old_email: identity?.email ?? t("change_email_none") }));
     return NextResponse.json({ ok: true });
   }
 
-  // ── Step 8: esperando el correo nuevo tras "cambiar correo" ───────────────────
-  if (session?.step === 8) {
+  // ── Esperando el correo nuevo tras "cambiar correo" ────────────────────────────
+  if (await isAwaitingEmailChange(waId)) {
     if (!isValidEmail(text)) {
       await sendWhatsAppMessage(waId, t("invalid_email"));
       return NextResponse.json({ ok: true });
     }
     const newEmail = text.trim().toLowerCase();
     await setEmailForPhone(waId, newEmail, locale);
-    await clearSession(waId);
+    await clearAwaitingEmailChange(waId);
     await sendWhatsAppMessage(waId, t("change_email_confirmed", { email: newEmail }));
     return NextResponse.json({ ok: true });
   }

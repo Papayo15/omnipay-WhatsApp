@@ -232,6 +232,39 @@ export async function clearPendingReferralCode(waId: string): Promise<void> {
   } catch { /* non-critical */ }
 }
 
+// ── "Cambiar correo" — bandera propia con TTL largo, NO la sesión de 10 min ──────────
+// La sesión general (lib/wa-flow.ts) dura 10 minutos, pensada para un flujo de envío que
+// se hace de corrido. "Cambiar correo" es una acción puntual que alguien puede iniciar y
+// no terminar de inmediato (ej. se distrae, revisa su correo real primero) — confirmado en
+// vivo: pasaron 3+ horas entre pedirlo y escribir el correo nuevo, la sesión ya había
+// expirado y el mensaje cayó como si nada. Usamos las mismas 24h que la ventana de servicio
+// al cliente de WhatsApp (después de eso Meta ya no deja responder libremente sin plantilla,
+// así que no tiene sentido esperar más que eso de todas formas).
+const AWAITING_EMAIL_CHANGE_TTL_SECONDS = 24 * 60 * 60;
+
+export async function setAwaitingEmailChange(waId: string): Promise<void> {
+  try {
+    const redis = await getRedis();
+    await redis.set(`wa:awaitingemail:${hashPhone(waId)}`, "1", { EX: AWAITING_EMAIL_CHANGE_TTL_SECONDS });
+  } catch { /* non-critical */ }
+}
+
+export async function isAwaitingEmailChange(waId: string): Promise<boolean> {
+  try {
+    const redis = await getRedis();
+    return (await redis.get(`wa:awaitingemail:${hashPhone(waId)}`)) !== null;
+  } catch {
+    return false;
+  }
+}
+
+export async function clearAwaitingEmailChange(waId: string): Promise<void> {
+  try {
+    const redis = await getRedis();
+    await redis.del(`wa:awaitingemail:${hashPhone(waId)}`);
+  } catch { /* non-critical */ }
+}
+
 // ── Último order_id del usuario — para el comando "Estado" del bot ───────────
 // Puntero corto (no PII: solo el order_id que /api/bridge/send ya generó), mismo TTL
 // que lib/order-state.ts (48h) — no tiene caso recordarlo más tiempo que el propio pedido.
