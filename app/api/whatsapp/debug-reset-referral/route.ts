@@ -1,7 +1,8 @@
-// Endpoint temporal de un solo uso — resetea el flag "ya le compartimos su link de
-// referido" (hasSharedReferralLink) para un número, así se puede volver a ver el mensaje
-// en una prueba real sin esperar 365 días. Protegido con LINK_SECRET (ya existente) para
-// que no sea un endpoint público abierto. Se borra después de usarse.
+// Endpoint temporal de un solo uso — borra TODOS los punteros guardados en Redis para un
+// número de prueba (correo vinculado, última orden, flag de link de referido ya
+// compartido, código de referido pendiente, sesión activa) para poder probar el flujo
+// completo como si fuera un usuario 100% nuevo. Protegido con LINK_SECRET (ya existente)
+// para que no sea un endpoint público abierto. Se borra después de usarse.
 import { NextRequest, NextResponse } from "next/server";
 import { getRedis } from "@/lib/redis";
 import { hashPhone } from "@/lib/wa-identity";
@@ -18,8 +19,18 @@ export async function GET(req: NextRequest): Promise<Response> {
   }
   if (!wa) return NextResponse.json({ error: "missing wa" }, { status: 400 });
 
-  const key = `wa:referralshared:${hashPhone(wa)}`;
+  const hash = hashPhone(wa);
+  const keys = [
+    `wa:id2email:${hash}`,
+    `wa:lastorder:${hash}`,
+    `wa:referralshared:${hash}`,
+    `wa:pendingref:${hash}`,
+    `wa:session:${hash}`,
+  ];
   const redis = await getRedis();
-  const existed = await redis.del(key);
-  return NextResponse.json({ ok: true, key, existed: existed > 0 });
+  const results: Record<string, boolean> = {};
+  for (const key of keys) {
+    results[key] = (await redis.del(key)) > 0;
+  }
+  return NextResponse.json({ ok: true, cleared: results });
 }
