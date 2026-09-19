@@ -69,11 +69,19 @@ export async function verifyBridgeWebhook(
       const sigBuf    = new Uint8Array(sigBinary.length);
       for (let i = 0; i < sigBinary.length; i++) sigBuf[i] = sigBinary.charCodeAt(i);
 
+      // Bridge's propio ejemplo oficial (TypeScript, apidocs.bridge.xyz) hashea el payload
+      // DOS veces, no una: primero SHA-256 manual sobre "{t}.{body}", y ESE digest de 32
+      // bytes es lo que se firma/verifica con RSA-SHA256 (que internamente vuelve a
+      // hashear con SHA-256) — node's crypto.createVerify('RSA-SHA256').update(digest) hace
+      // justo eso. crypto.subtle.verify con hash:"SHA-256" solo hashea una vez, así que hay
+      // que pre-hashear a mano para igualar el comportamiento real de Bridge.
+      const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(`${timestamp}.${rawBody}`));
+
       return await crypto.subtle.verify(
         "RSASSA-PKCS1-v1_5",
         cryptoKey,
         sigBuf,
-        new TextEncoder().encode(`${timestamp}.${rawBody}`),
+        digest,
       );
     } catch (e) {
       console.error("[bridge/webhook] RSA verification error:", e);
