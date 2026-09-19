@@ -163,9 +163,16 @@ export async function requestDepositInstructions(params: {
         bank_code: params.account.bank_code,
       }),
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      const errText = await res.text().catch(() => "");
+      console.error(`[wa-flow] requestDepositInstructions: /api/bridge/send failed (${res.status}):`, errText);
+      return null;
+    }
     const data = await res.json() as { needs_kyc?: boolean; needs_tos?: boolean; order_id?: string; deposit_instructions?: Record<string, unknown> };
-    if (data.needs_kyc || data.needs_tos || !data.deposit_instructions || !data.order_id) return null;
+    if (data.needs_kyc || data.needs_tos || !data.deposit_instructions || !data.order_id) {
+      console.error("[wa-flow] requestDepositInstructions: unexpected response shape:", JSON.stringify(data).slice(0, 500));
+      return null;
+    }
     const di = data.deposit_instructions;
     return {
       orderId: data.order_id,
@@ -176,7 +183,8 @@ export async function requestDepositInstructions(params: {
       clabe: (di.clabe as string) ?? null, br_code: (di.br_code as string) ?? null,
       amount_to_deposit: String(di.amount_to_deposit ?? ""),
     };
-  } catch {
+  } catch (e) {
+    console.error("[wa-flow] requestDepositInstructions failed:", (e as Error).message);
     return null;
   }
 }

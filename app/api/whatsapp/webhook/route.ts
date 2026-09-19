@@ -45,7 +45,7 @@ import {
 import { findCustomerByEmail }       from "@/providers/bridge/customers";
 import {
   validateAccountDetails, parseAccountField, mergeSecondAccountField, secondAccountPromptKey,
-  accountPromptKey, maskedAccountSummary,
+  accountPromptKey, fullAccountSummary,
 } from "@/lib/wa-validation";
 import {
   getSession, setSession, clearSession, beginRecipientCollection, fetchQuote,
@@ -406,7 +406,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       await sendWhatsAppMessage(waId, t(`validation_${result.errorKey ?? "generic"}`));
       return NextResponse.json({ ok: true });
     }
-    const summary = maskedAccountSummary(session.country, merged);
+    const summary = fullAccountSummary(session.country, merged);
     await setSession(waId, { ...session, step: 7, account: merged });
     await sendWhatsAppMessage(waId, t("confirm_summary", {
       name:     session.recipientName,
@@ -436,7 +436,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       await sendWhatsAppMessage(waId, t(`validation_${result.errorKey ?? "generic"}`));
       return NextResponse.json({ ok: true });
     }
-    const summary = maskedAccountSummary(session.country, parsed);
+    const summary = fullAccountSummary(session.country, parsed);
     await setSession(waId, { ...session, step: 7, account: parsed });
     await sendWhatsAppMessage(waId, t("confirm_summary", {
       name:     session.recipientName,

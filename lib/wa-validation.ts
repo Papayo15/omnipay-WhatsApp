@@ -219,6 +219,22 @@ export function maskedAccountSummary(country: string, details: AccountDetails): 
   return `${details.bic ?? ""} · Cuenta ${maskAccount(details.account_number ?? "")}`;
 }
 
+// Resumen SIN enmascarar — usado en la confirmación final (paso 7) para que el usuario
+// pueda verificar visualmente que no hay un typo antes de mandar dinero real. No hay
+// riesgo de exponer el dato a un tercero: es un eco de lo que el propio usuario acaba de
+// escribir, en su propio chat.
+export function fullAccountSummary(country: string, details: AccountDetails): string {
+  const cc = country.toUpperCase();
+  const SEPA = new Set(["DE","FR","ES","IT","NL","PT","BE","AT","IE","FI","GR","CY","EE","LV","LT","LU","MT","SK","SI","HR","SE","DK","NO","PL","CZ","HU","RO","BG","CH","IS","LI"]);
+  if (cc === "MX") return `CLABE ${details.clabe ?? ""}`;
+  if (cc === "US") return `Routing ${details.routing_number ?? ""} · Cuenta ${details.account_number ?? ""}`;
+  if (cc === "GB") return `Sort code ${details.sort_code ?? ""} · Cuenta ${details.account_number ?? ""}`;
+  if (SEPA.has(cc)) return `IBAN ${details.iban ?? ""} · BIC ${details.bic ?? ""}`;
+  if (cc === "BR") return `PIX ${details.pix_key ?? ""}`;
+  if (cc === "CO") return `Cuenta ${details.account_number ?? ""}`;
+  return `${details.bic ?? ""} · Cuenta ${details.account_number ?? ""}`;
+}
+
 // Enmascara una cuenta para mostrarla en el resumen de confirmación — nunca el número completo.
 export function maskAccount(value: string): string {
   const clean = (value ?? "").replace(/\s/g, "");
