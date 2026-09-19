@@ -1225,7 +1225,10 @@
     "compare_cta": "Quer fazer esse envio agora?\n👉 Responda *SIM* para continuar.",
     "menu_option_send_prompt": "Perfeito 👍 Escreva o valor, a moeda que você envia, o país do seu destinatário e o seu e-mail (o do remetente) — tudo junto. Ex.: *200 USD México juan@email.com* (você envia 200 USD, seu destinatário está no México).",
     "referral_share_prompt": "🎁 Conhece alguém para quem a OmniPay seria útil? Compartilhe este link — quando essa pessoa concluir o primeiro envio, você ganha seu próximo envio sem taxa de serviço:\n\n{link}",
-    "referral_invite_message": "Olá! Um amigo me recomendou a OmniPay 🌍 REF:{ref}"
+    "referral_invite_message": "Olá! Um amigo me recomendou a OmniPay 🌍 REF:{ref}",
+    "change_email_prompt": "Seu e-mail atual é: {old_email}\n\nQual é o seu novo e-mail?",
+    "change_email_confirmed": "✅ Pronto — seu e-mail agora é {email}. Seu próximo envio vai usá-lo.",
+    "change_email_none": "(nenhum salvo ainda)"
   },
   "kyc": {
     "title": "Verifique sua identidade",

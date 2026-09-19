@@ -21,10 +21,11 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
 
 const SESSION_TTL = 10 * 60; // seconds
 
-export type WaStep = 1 | 2 | 3 | 5 | 6 | 65 | 7;
+export type WaStep = 1 | 2 | 3 | 5 | 6 | 65 | 7 | 8;
 // 1 = need amount+country · 2 = post-"comparar", awaiting SI to jump into the send flow
 // with the already-parsed amount/currency/country · 3 = need email · 5 = need recipient
 // name · 6 = need account field #1 · 65 = need account field #2 · 7 = awaiting SI/CANCELAR
+// · 8 = awaiting new email after "cambiar correo"
 
 export interface WaSession {
   step:      WaStep;

@@ -1226,7 +1226,10 @@
     "compare_cta": "አሁን ይህን መላክ ይፈልጋሉ?\n👉 ለመቀጠል *አዎ* ብለው ይመልሱ።",
     "menu_option_send_prompt": "እሺ 👍 መጠኑን፣ የሚልኩትን ገንዘብ፣ የተቀባይዎን ሀገር እና የእርስዎን (የላኪውን) ኢሜይል አብረው ይጻፉ። ለምሳሌ: *200 USD ሜክሲኮ juan@email.com* (200 USD እየላኩ ነው፣ ተቀባይዎ ሜክሲኮ ውስጥ ነው)።",
     "referral_share_prompt": "🎁 OmniPay የሚጠቅመው ሰው ያውቃሉ? ይህን አገናኝ ያጋሩ — የመጀመሪያ ዝውውራቸውን ሲያጠናቅቁ፣ የሚቀጥለው ዝውውርዎ ያለ አገልግሎት ክፍያ ይሆናል፦\n\n{link}",
-    "referral_invite_message": "ሰላም! አንድ ጓደኛዬ OmniPay መክሮኛል 🌍 REF:{ref}"
+    "referral_invite_message": "ሰላም! አንድ ጓደኛዬ OmniPay መክሮኛል 🌍 REF:{ref}",
+    "change_email_prompt": "የአሁኑ ኢሜይልዎ: {old_email}\n\nአዲሱ ኢሜይልዎ ምንድን ነው?",
+    "change_email_confirmed": "✅ ተከናውኗል — ኢሜይልዎ አሁን {email} ነው። የሚቀጥለው ዝውውርዎ ይህንን ይጠቀማል።",
+    "change_email_none": "(እስካሁን ምንም አልተቀመጠም)"
   },
   "kyc": {
     "title": "ማንነትዎን ያረጋግጡ",

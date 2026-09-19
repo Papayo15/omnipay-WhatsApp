@@ -1226,7 +1226,10 @@
     "compare_cta": "今すぐ送金しますか？\n👉 続けるには「はい」と返信してください。",
     "menu_option_send_prompt": "了解です 👍 金額、送金する通貨、受取人の国、そしてあなた（送金者）のメールアドレスを一緒に書いてください。例：*200 USD メキシコ juan@email.com*（200 USDを送金し、受取人はメキシコにいます）。",
     "referral_share_prompt": "🎁 OmniPayが役立ちそうな知り合いはいますか？このリンクをシェアしてください — その方が初めての送金を完了すると、あなたの次回の送金は手数料無料になります：\n\n{link}",
-    "referral_invite_message": "こんにちは！友人からOmniPayを勧められました 🌍 REF:{ref}"
+    "referral_invite_message": "こんにちは！友人からOmniPayを勧められました 🌍 REF:{ref}",
+    "change_email_prompt": "現在のメールアドレスは：{old_email}\n\n新しいメールアドレスは何ですか？",
+    "change_email_confirmed": "✅ 完了しました — メールアドレスは {email} になりました。次回の送金で使用されます。",
+    "change_email_none": "（まだ保存されていません）"
   },
   "kyc": {
     "title": "本人確認を行ってください",

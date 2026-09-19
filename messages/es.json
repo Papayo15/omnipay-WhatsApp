@@ -1209,7 +1209,10 @@
     "compare_cta": "¿Quieres realizar este envío ahora?\n👉 Responde *SI* para continuar.",
     "menu_option_send_prompt": "Perfecto 👍 Escríbeme el monto, la moneda que envías, el país de tu destinatario y tu correo (el del emisor) — todo junto. Ej: *200 USD México juan@correo.com* (envías 200 USD, tu destinatario está en México).",
     "referral_share_prompt": "🎁 ¿Conoces a alguien a quien le sirva OmniPay? Comparte este link — cuando complete su primer envío, tú ganas tu próximo envío con $0 de comisión de servicio:\n\n{link}",
-    "referral_invite_message": "¡Hola! Un amigo me recomendó OmniPay 🌍 REF:{ref}"
+    "referral_invite_message": "¡Hola! Un amigo me recomendó OmniPay 🌍 REF:{ref}",
+    "change_email_prompt": "Tu correo actual es: {old_email}\n\n¿Cuál es tu correo nuevo?",
+    "change_email_confirmed": "✅ Listo — tu correo ahora es {email}. Tu próximo envío lo usará.",
+    "change_email_none": "(no tenías ninguno guardado)"
   },
   "kyc": {
     "title": "Verifica tu identidad",

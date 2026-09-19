@@ -277,6 +277,29 @@ export async function POST(req: NextRequest): Promise<Response> {
     return NextResponse.json({ ok: true });
   }
 
+  // ── Comando "Cambiar correo" — pide explícitamente el correo nuevo (mejor que borrar y
+  // esperar a que lo escriban solos en su próximo mensaje) y lo confirma antes de guardarlo.
+  const CHANGE_EMAIL_KEYWORDS = new Set(["cambiar correo", "cambiar email", "change email", "cambiar mail"]);
+  if (CHANGE_EMAIL_KEYWORDS.has(trimmed.toLowerCase())) {
+    const identity = await getEmailForPhone(waId);
+    await setSession(waId, { step: 8, locale });
+    await sendWhatsAppMessage(waId, t("change_email_prompt", { old_email: identity?.email ?? t("change_email_none") }));
+    return NextResponse.json({ ok: true });
+  }
+
+  // ── Step 8: esperando el correo nuevo tras "cambiar correo" ───────────────────
+  if (session?.step === 8) {
+    if (!isValidEmail(text)) {
+      await sendWhatsAppMessage(waId, t("invalid_email"));
+      return NextResponse.json({ ok: true });
+    }
+    const newEmail = text.trim().toLowerCase();
+    await setEmailForPhone(waId, newEmail, locale);
+    await clearSession(waId);
+    await sendWhatsAppMessage(waId, t("change_email_confirmed", { email: newEmail }));
+    return NextResponse.json({ ok: true });
+  }
+
   // ── Comando "Estado" — consulta de estado, disponible en cualquier momento (no
   // depende del step de la sesión, y no la toca — si el usuario estaba a mitad de otro
   // flujo puede seguir después). "Estado"/"Status" sin más usa el último order_id que le

@@ -1226,7 +1226,10 @@
     "compare_cta": "Bạn có muốn gửi ngay bây giờ không?\n👉 Trả lời *CÓ* để tiếp tục.",
     "menu_option_send_prompt": "Tuyệt 👍 Viết số tiền, loại tiền bạn gửi, quốc gia của người nhận, và email của bạn (người gửi) — tất cả cùng nhau. Vd.: *200 USD Mexico juan@email.com* (bạn gửi 200 USD, người nhận ở Mexico).",
     "referral_share_prompt": "🎁 Bạn có biết ai đó có thể cần OmniPay không? Chia sẻ liên kết này — khi họ hoàn tất lần chuyển tiền đầu tiên, lần chuyển tiền tiếp theo của bạn sẽ không mất phí dịch vụ:\n\n{link}",
-    "referral_invite_message": "Xin chào! Một người bạn đã giới thiệu OmniPay cho tôi 🌍 REF:{ref}"
+    "referral_invite_message": "Xin chào! Một người bạn đã giới thiệu OmniPay cho tôi 🌍 REF:{ref}",
+    "change_email_prompt": "Email hiện tại của bạn là: {old_email}\n\nEmail mới của bạn là gì?",
+    "change_email_confirmed": "✅ Xong — email của bạn bây giờ là {email}. Lần chuyển tiền tiếp theo sẽ dùng email này.",
+    "change_email_none": "(chưa lưu email nào)"
   },
   "kyc": {
     "title": "Xác minh danh tính của bạn",

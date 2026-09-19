@@ -1226,7 +1226,10 @@
     "compare_cta": "Wil je dit nu versturen?\n👉 Antwoord met *JA* om door te gaan.",
     "menu_option_send_prompt": "Top 👍 Schrijf me het bedrag, de valuta die je verstuurt, het land van je ontvanger en jouw e-mail (die van de afzender) — allemaal samen. Bijv.: *200 USD Mexico juan@email.com* (je stuurt 200 USD, je ontvanger zit in Mexico).",
     "referral_share_prompt": "🎁 Ken je iemand voor wie OmniPay handig zou zijn? Deel deze link — zodra die persoon zijn eerste overboeking voltooit, krijg jij je volgende overboeking zonder servicekosten:\n\n{link}",
-    "referral_invite_message": "Hoi! Een vriend heeft me OmniPay aangeraden 🌍 REF:{ref}"
+    "referral_invite_message": "Hoi! Een vriend heeft me OmniPay aangeraden 🌍 REF:{ref}",
+    "change_email_prompt": "Je huidige e-mail is: {old_email}\n\nWat is je nieuwe e-mailadres?",
+    "change_email_confirmed": "✅ Gedaan — je e-mail is nu {email}. Je volgende overboeking gebruikt deze.",
+    "change_email_none": "(nog geen opgeslagen)"
   },
   "kyc": {
     "title": "Verifieer je identiteit",

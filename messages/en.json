@@ -1224,7 +1224,10 @@
     "compare_cta": "Want to send this now?\n👉 Reply *YES* to continue.",
     "menu_option_send_prompt": "Great 👍 Write the amount, the currency you're sending, your recipient's country, and your (the sender's) email — all together. E.g.: *200 USD Mexico juan@email.com* (you send 200 USD, your recipient is in Mexico).",
     "referral_share_prompt": "🎁 Know someone OmniPay could help? Share this link — when they complete their first transfer, you get your next transfer with $0 service fee:\n\n{link}",
-    "referral_invite_message": "Hi! A friend recommended OmniPay to me 🌍 REF:{ref}"
+    "referral_invite_message": "Hi! A friend recommended OmniPay to me 🌍 REF:{ref}",
+    "change_email_prompt": "Your current email is: {old_email}\n\nWhat's your new email?",
+    "change_email_confirmed": "✅ Done — your email is now {email}. Your next transfer will use it.",
+    "change_email_none": "(none saved yet)"
   },
   "kyc": {
     "title": "Verify your identity",

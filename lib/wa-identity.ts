@@ -78,6 +78,18 @@ export async function getEmailForPhone(waId: string): Promise<WaIdentity | null>
   }
 }
 
+// Permite al usuario cambiar de correo (ej. probó con uno inventado en sandbox y ahora
+// quiere usar el real) — borra solo el puntero teléfono→correo; el siguiente mensaje con
+// un correo nuevo (ya sea "cambiar correo" + correo, o "200 USD México nuevo@correo.com"
+// directo) lo vuelve a guardar. No borra el puntero inverso correo→teléfono (sirve para
+// que Bridge nos encuentre si ese correo viejo ya tenía un envío pendiente en curso).
+export async function deleteEmailForPhone(waId: string): Promise<void> {
+  try {
+    const redis = await getRedis();
+    await redis.del(`wa:id2email:${hashPhone(waId)}`);
+  } catch { /* non-critical */ }
+}
+
 export async function setEmailForPhone(waId: string, email: string, locale: string): Promise<void> {
   try {
     const redis = await getRedis();
