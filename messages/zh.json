@@ -1240,7 +1240,10 @@
     "done_title": "身份验证成功！",
     "done_subtitle": "您的身份已确认。请返回WhatsApp继续您的汇款。",
     "done_cta": "返回WhatsApp",
-    "done_prefill": "好了，我刚完成身份验证"
+    "done_prefill": "好了，我刚完成身份验证",
+    "verifying": "正在通过Bridge确认您的审批…",
+    "pending_title": "快好了",
+    "pending_subtitle": "我们仍在确认您的验证。请返回WhatsApp——准备好后我们会在那里通知您。"
   },
   "serviciosMx": {
     "title": "支付墨西哥账单",

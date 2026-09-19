@@ -1240,7 +1240,10 @@
     "done_title": "Utambulisho umethibitishwa!",
     "done_subtitle": "Utambulisho wako umethibitishwa. Rudi WhatsApp kuendelea na uhamisho wako.",
     "done_cta": "Rudi WhatsApp",
-    "done_prefill": "Nimemaliza, nimethibitisha utambulisho wangu"
+    "done_prefill": "Nimemaliza, nimethibitisha utambulisho wangu",
+    "verifying": "Tunathibitisha idhini yako na Bridge…",
+    "pending_title": "Karibu kumaliza",
+    "pending_subtitle": "Bado tunathibitisha uthibitisho wako. Rudi WhatsApp — tutakujulisha huko mara tu ikiwa tayari."
   },
   "serviciosMx": {
     "title": "Lipa bili ya huduma Mexico",

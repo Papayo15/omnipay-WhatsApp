@@ -1240,7 +1240,10 @@
     "done_title": "Đã xác minh danh tính!",
     "done_subtitle": "Danh tính của bạn đã được xác nhận. Quay lại WhatsApp để tiếp tục giao dịch.",
     "done_cta": "Quay lại WhatsApp",
-    "done_prefill": "Xong, tôi vừa xác minh danh tính"
+    "done_prefill": "Xong, tôi vừa xác minh danh tính",
+    "verifying": "Đang xác nhận sự chấp thuận của bạn với Bridge…",
+    "pending_title": "Sắp xong rồi",
+    "pending_subtitle": "Chúng tôi vẫn đang xác nhận việc xác minh của bạn. Quay lại WhatsApp — chúng tôi sẽ báo cho bạn ở đó ngay khi sẵn sàng."
   },
   "serviciosMx": {
     "title": "Thanh toán hóa đơn dịch vụ ở Mexico",

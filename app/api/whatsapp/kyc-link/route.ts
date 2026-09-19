@@ -36,7 +36,11 @@ export async function GET(req: NextRequest): Promise<Response> {
 
   const appUrl      = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
   const isSandbox   = (process.env.BRIDGE_API_BASE ?? "").includes("sandbox");
-  const kycRedirect = `${appUrl}/kyc?done=1&wa=${encodeURIComponent(wa)}&locale=${locale}`;
+  // email va en el redirect para que /kyc?done=1 pueda confirmar en vivo contra Bridge que
+  // el cliente ya quedó aprobado de verdad, antes de activar el botón "Volver a WhatsApp" —
+  // Persona regresa al usuario en cuanto TERMINA de subir sus datos, no cuando Bridge ya
+  // lo aprobó (esa revisión puede tardar más), así que "regresó de Persona" ≠ "ya aprobado".
+  const kycRedirect = `${appUrl}/kyc?done=1&email=${encodeURIComponent(email)}&wa=${encodeURIComponent(wa)}&locale=${locale}`;
 
   try {
     // Si el bot de WhatsApp ya nos dio el customer_id (lo resolvió momentos antes), lo

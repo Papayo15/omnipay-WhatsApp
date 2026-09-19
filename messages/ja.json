@@ -1240,7 +1240,10 @@
     "done_title": "本人確認が完了しました！",
     "done_subtitle": "本人確認が完了しました。送金を続けるにはWhatsAppに戻ってください。",
     "done_cta": "WhatsAppに戻る",
-    "done_prefill": "完了しました、本人確認をしたところです"
+    "done_prefill": "完了しました、本人確認をしたところです",
+    "verifying": "Bridgeで承認を確認しています…",
+    "pending_title": "もう少しです",
+    "pending_subtitle": "本人確認をまだ確認中です。WhatsAppに戻ってください — 準備ができ次第そちらでお知らせします。"
   },
   "serviciosMx": {
     "title": "メキシコの公共料金を支払う",

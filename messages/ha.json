@@ -1239,7 +1239,10 @@
     "done_title": "An tabbatar da asali!",
     "done_subtitle": "An tabbatar da asalinka. Koma WhatsApp don ci gaba da canja wurinka.",
     "done_cta": "Koma WhatsApp",
-    "done_prefill": "An gama, na tabbatar da asalina yanzu"
+    "done_prefill": "An gama, na tabbatar da asalina yanzu",
+    "verifying": "Ana tabbatar da amincewarka tare da Bridge…",
+    "pending_title": "Kusan ƙarewa",
+    "pending_subtitle": "Muna ci gaba da tabbatar da tabbaci naka. Koma WhatsApp — za mu sanar da kai a can da zarar ya shirya."
   },
   "serviciosMx": {
     "title": "Biya kudin sabis a Mexico",

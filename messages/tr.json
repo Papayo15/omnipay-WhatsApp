@@ -1240,7 +1240,10 @@
     "done_title": "Kimlik doğrulandı!",
     "done_subtitle": "Kimliğin onaylandı. Transferine devam etmek için WhatsApp'a geri dön.",
     "done_cta": "WhatsApp'a dön",
-    "done_prefill": "Tamam, kimliğimi az önce doğruladım"
+    "done_prefill": "Tamam, kimliğimi az önce doğruladım",
+    "verifying": "Onayın Bridge ile doğrulanıyor…",
+    "pending_title": "Neredeyse tamam",
+    "pending_subtitle": "Doğrulamanı hâlâ onaylıyoruz. WhatsApp'a geri dön — hazır olduğunda orada haber vereceğiz."
   },
   "serviciosMx": {
     "title": "Meksika'da bir fatura ödeyin",

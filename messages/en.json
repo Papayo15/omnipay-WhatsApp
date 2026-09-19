@@ -1238,7 +1238,10 @@
     "done_title": "Identity verified!",
     "done_subtitle": "Your identity has been confirmed. Go back to WhatsApp to continue your transfer.",
     "done_cta": "Back to WhatsApp",
-    "done_prefill": "Done, I just verified my identity"
+    "done_prefill": "Done, I just verified my identity",
+    "verifying": "Confirming your approval with Bridge…",
+    "pending_title": "Almost there",
+    "pending_subtitle": "We're still confirming your verification. Go back to WhatsApp — we'll message you there as soon as it's ready."
   },
   "serviciosMx": {
     "title": "Pay a Mexico service bill",

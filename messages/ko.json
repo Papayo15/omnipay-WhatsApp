@@ -1240,7 +1240,10 @@
     "done_title": "신원 확인 완료!",
     "done_subtitle": "신원이 확인되었습니다. 송금을 계속하려면 WhatsApp으로 돌아가세요.",
     "done_cta": "WhatsApp으로 돌아가기",
-    "done_prefill": "완료했어요, 방금 신원 확인을 마쳤어요"
+    "done_prefill": "완료했어요, 방금 신원 확인을 마쳤어요",
+    "verifying": "Bridge에서 승인을 확인하는 중…",
+    "pending_title": "거의 다 됐어요",
+    "pending_subtitle": "아직 확인을 진행 중입니다. WhatsApp으로 돌아가세요 — 준비되는 대로 그곳에서 알려드릴게요."
   },
   "serviciosMx": {
     "title": "멕시코 공과금 납부",

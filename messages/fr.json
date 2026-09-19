@@ -1240,7 +1240,10 @@
     "done_title": "Identité vérifiée !",
     "done_subtitle": "Ton identité a été confirmée. Retourne sur WhatsApp pour continuer ton envoi.",
     "done_cta": "Retour à WhatsApp",
-    "done_prefill": "C'est fait, je viens de vérifier mon identité"
+    "done_prefill": "C'est fait, je viens de vérifier mon identité",
+    "verifying": "Confirmation de ton approbation auprès de Bridge…",
+    "pending_title": "Presque fini",
+    "pending_subtitle": "On confirme encore ta vérification. Retourne sur WhatsApp — on te préviendra là-bas dès que ce sera prêt."
   },
   "serviciosMx": {
     "title": "Payez une facture de service au Mexique",

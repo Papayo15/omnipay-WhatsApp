@@ -1223,7 +1223,10 @@
     "done_title": "¡Identidad verificada!",
     "done_subtitle": "Tu identidad quedó confirmada. Regresa a WhatsApp para continuar con tu envío.",
     "done_cta": "Volver a WhatsApp",
-    "done_prefill": "Listo, ya verifiqué mi identidad"
+    "done_prefill": "Listo, ya verifiqué mi identidad",
+    "verifying": "Confirmando tu aprobación con Bridge…",
+    "pending_title": "Casi listo",
+    "pending_subtitle": "Seguimos confirmando tu verificación. Regresa a WhatsApp — te avisamos ahí en cuanto esté lista."
   },
   "serviciosMx": {
     "title": "Paga un servicio en México",

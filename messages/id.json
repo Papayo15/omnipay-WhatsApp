@@ -1240,7 +1240,10 @@
     "done_title": "Identitas terverifikasi!",
     "done_subtitle": "Identitas Anda telah dikonfirmasi. Kembali ke WhatsApp untuk melanjutkan transfer Anda.",
     "done_cta": "Kembali ke WhatsApp",
-    "done_prefill": "Selesai, saya baru saja memverifikasi identitas saya"
+    "done_prefill": "Selesai, saya baru saja memverifikasi identitas saya",
+    "verifying": "Mengonfirmasi persetujuan Anda dengan Bridge…",
+    "pending_title": "Hampir selesai",
+    "pending_subtitle": "Kami masih mengonfirmasi verifikasi Anda. Kembali ke WhatsApp — kami akan memberi tahu Anda di sana begitu siap."
   },
   "serviciosMx": {
     "title": "Bayar tagihan layanan di Meksiko",

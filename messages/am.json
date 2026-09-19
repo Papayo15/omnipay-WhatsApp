@@ -1240,7 +1240,10 @@
     "done_title": "ማንነት ተረጋግጧል!",
     "done_subtitle": "ማንነትዎ ተረጋግጧል። ዝውውርዎን ለመቀጠል ወደ WhatsApp ይመለሱ።",
     "done_cta": "ወደ WhatsApp ተመለስ",
-    "done_prefill": "ተጠናቋል፣ ማንነቴን አሁን አረጋግጫለሁ"
+    "done_prefill": "ተጠናቋል፣ ማንነቴን አሁን አረጋግጫለሁ",
+    "verifying": "ከ Bridge ጋር ማረጋገጫዎን በማረጋገጥ ላይ…",
+    "pending_title": "ሊጠናቀቅ ተቃርቧል",
+    "pending_subtitle": "ማረጋገጫዎን አሁንም እያረጋገጥን ነው። ወደ WhatsApp ይመለሱ — ዝግጁ ሲሆን እዚያ እናሳውቅዎታለን።"
   },
   "serviciosMx": {
     "title": "በሜክሲኮ የአገልግሎት ክፍያ ይክፈሉ",

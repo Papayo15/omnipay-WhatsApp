@@ -1240,7 +1240,10 @@
     "done_title": "Identiteit geverifieerd!",
     "done_subtitle": "Je identiteit is bevestigd. Ga terug naar WhatsApp om je overboeking voort te zetten.",
     "done_cta": "Terug naar WhatsApp",
-    "done_prefill": "Klaar, ik heb net mijn identiteit geverifieerd"
+    "done_prefill": "Klaar, ik heb net mijn identiteit geverifieerd",
+    "verifying": "Je goedkeuring wordt bevestigd bij Bridge…",
+    "pending_title": "Bijna klaar",
+    "pending_subtitle": "We bevestigen je verificatie nog. Ga terug naar WhatsApp — we laten het je daar weten zodra het klaar is."
   },
   "serviciosMx": {
     "title": "Betaal een rekening in Mexico",
