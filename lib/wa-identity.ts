@@ -180,6 +180,34 @@ export async function markReferralLinkShared(waId: string): Promise<void> {
   } catch { /* non-critical */ }
 }
 
+// ── Código de referido capturado del link de WhatsApp ("REF:<waId>" en el texto
+// prellenado) — puntero corto hasta que el usuario complete su primer envío, mismo TTL
+// de 30 días que usa el lado web (lib/referral.ts) para el equivalente ?ref= en localStorage.
+const PENDING_REFERRAL_TTL_SECONDS = 30 * 24 * 3600;
+
+export async function setPendingReferralCode(waId: string, code: string): Promise<void> {
+  try {
+    const redis = await getRedis();
+    await redis.set(`wa:pendingref:${hashPhone(waId)}`, code, { EX: PENDING_REFERRAL_TTL_SECONDS });
+  } catch { /* non-critical — peor caso, no se aplica el descuento de referido */ }
+}
+
+export async function getPendingReferralCode(waId: string): Promise<string | null> {
+  try {
+    const redis = await getRedis();
+    return await redis.get(`wa:pendingref:${hashPhone(waId)}`);
+  } catch {
+    return null;
+  }
+}
+
+export async function clearPendingReferralCode(waId: string): Promise<void> {
+  try {
+    const redis = await getRedis();
+    await redis.del(`wa:pendingref:${hashPhone(waId)}`);
+  } catch { /* non-critical */ }
+}
+
 // ── Último order_id del usuario — para el comando "Estado" del bot ───────────
 // Puntero corto (no PII: solo el order_id que /api/bridge/send ya generó), mismo TTL
 // que lib/order-state.ts (48h) — no tiene caso recordarlo más tiempo que el propio pedido.

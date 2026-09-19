@@ -1225,7 +1225,8 @@
     "compare_hint": "🔎 Wil je eerst alleen vergelijken? Schrijf: *comparar 200 USD Mexico*",
     "compare_cta": "Wil je dit nu versturen?\n👉 Antwoord met *JA* om door te gaan.",
     "menu_option_send_prompt": "Top 👍 Schrijf me het bedrag, de valuta die je verstuurt, het land van je ontvanger en jouw e-mail (die van de afzender) — allemaal samen. Bijv.: *200 USD Mexico juan@email.com* (je stuurt 200 USD, je ontvanger zit in Mexico).",
-    "referral_share_prompt": "🎁 Ken je iemand die ook geld naar het buitenland stuurt? Deel deze link — zodra die persoon zijn eerste overboeking voltooit, krijg jij je volgende overboeking zonder servicekosten:\n\n{link}"
+    "referral_share_prompt": "🎁 Ken je iemand die ook geld naar het buitenland stuurt? Deel deze link — zodra die persoon zijn eerste overboeking voltooit, krijg jij je volgende overboeking zonder servicekosten:\n\n{link}",
+    "referral_invite_message": "Hoi! Een vriend vertelde me over OmniPay om geld naar het buitenland te sturen 🌍 REF:{ref}"
   },
   "kyc": {
     "title": "Verifieer je identiteit",

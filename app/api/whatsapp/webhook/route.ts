@@ -36,11 +36,13 @@
 export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
-import { sendWhatsAppMessage }       from "@/lib/whatsapp";
+import { sendWhatsAppMessage, stripKnownTrunkPrefix } from "@/lib/whatsapp";
+import { buildWhatsAppLink }          from "@/lib/messaging";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
 import {
   getEmailForPhone, setEmailForPhone, setPendingTransfer, hashPhone, recordLastMessage,
   setLastOrder, getLastOrder, hasSharedReferralLink, markReferralLinkShared,
+  setPendingReferralCode, getPendingReferralCode, clearPendingReferralCode,
 } from "@/lib/wa-identity";
 import { findCustomerByEmail }       from "@/providers/bridge/customers";
 import {
@@ -212,13 +214,25 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   if (msgType !== "text") return NextResponse.json({ ok: true });
 
-  const text = String(((msg.text as Record<string,string>)?.body ?? "")).trim();
-  if (!text || !waId) return NextResponse.json({ ok: true });
+  const rawText = String(((msg.text as Record<string,string>)?.body ?? "")).trim();
+  if (!rawText || !waId) return NextResponse.json({ ok: true });
 
   // Cada mensaje real del usuario reinicia la ventana de servicio de 24h (lib/wa-identity.ts)
   // — así los avisos proactivos (KYC aprobado, recompensa de referido) saben si pueden
   // mandar texto libre o si ya toca usar la plantilla aprobada de Meta.
   await recordLastMessage(waId);
+
+  // Módulo 3 — captura "REF:<waId>" del mensaje prellenado del link de invitación de
+  // WhatsApp (ver referral_share_prompt más abajo) — mismo rol que ?ref= en localStorage
+  // del lado web (lib/referral.ts), pero vía Redis porque el chat no tiene localStorage.
+  // Se quita del texto antes de seguir, para que no interfiera con el parseo normal de
+  // monto/país/correo.
+  const refMatch = rawText.match(/REF:(\d{8,15})/i);
+  if (refMatch) await setPendingReferralCode(waId, refMatch[1]);
+  // Si el mensaje era SOLO el marcador (p.ej. tocaron el link de invitación sin editar el
+  // texto prellenado), queda vacío — cae de forma natural en el saludo normal más abajo,
+  // ya con el código de referido guardado.
+  const text = rawText.replace(/REF:\d{8,15}/i, "").trim();
 
   const session = await getSession(waId);
   const locale = session?.locale ?? localeFromPhone(waId);
@@ -346,13 +360,15 @@ export async function POST(req: NextRequest): Promise<Response> {
         await clearSession(waId);
         return NextResponse.json({ ok: true });
       }
+      const pendingReferralCode = await getPendingReferralCode(waId);
       const di = await requestDepositInstructions({
         email: session.email, sourceCurrency: session.currency, recipientName: session.recipientName,
         country: session.country, amountTarget: session.recipientGets ?? session.amount,
-        account: session.account,
+        account: session.account, referralCode: pendingReferralCode,
       });
       if (di) {
         await setLastOrder(waId, di.orderId);
+        if (pendingReferralCode) await clearPendingReferralCode(waId);
         const lines = [
           t("confirmed_deposit_intro", { amount: di.amount_to_deposit, currency: di.currency, rail: di.rail }),
           "",
@@ -387,9 +403,14 @@ export async function POST(req: NextRequest): Promise<Response> {
         // usuarios. Siempre texto libre cuando se manda: como acaba de escribirnos "SI" hace
         // segundos, está garantizado que sigue dentro de su ventana de 24h.
         if (!(await hasSharedReferralLink(waId))) {
-          await sendWhatsAppMessage(waId, t("referral_share_prompt", {
-            link: `${APP_URL}/enviar?ref=${waId}`,
-          }));
+          // El link abre WhatsApp del amigo directo con un mensaje prellenado AL NÚMERO
+          // DEL BOT (no a la web) — el amigo solo le da "enviar" y ya arrancó la
+          // conversación. El "REF:<waId>" viaja en el texto y el propio bot lo detecta y
+          // lo guarda (arriba, al recibir el mensaje) sin que el amigo tenga que hacer nada.
+          const botRaw    = process.env.WHATSAPP_BOT_NUMBER ?? "";
+          const botNumber = stripKnownTrunkPrefix(botRaw) ?? botRaw;
+          const inviteLink = buildWhatsAppLink(t("referral_invite_message", { ref: waId }), botNumber);
+          await sendWhatsAppMessage(waId, t("referral_share_prompt", { link: inviteLink }));
           await markReferralLinkShared(waId);
         }
       } else {

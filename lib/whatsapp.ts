@@ -23,7 +23,7 @@ const KNOWN_TRUNK_PREFIXES: Array<{ cc: string; extra: string; len: number }> = 
   { cc: "54", extra: "9", len: 13 }, // Argentina
 ];
 
-function stripKnownTrunkPrefix(waId: string): string | null {
+export function stripKnownTrunkPrefix(waId: string): string | null {
   for (const { cc, extra, len } of KNOWN_TRUNK_PREFIXES) {
     if (waId.length === len && waId.startsWith(cc + extra)) {
       return cc + waId.slice((cc + extra).length);

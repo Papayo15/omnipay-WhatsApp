@@ -1223,7 +1223,8 @@
     "compare_hint": "🔎 Just want to compare before deciding? Write: *comparar 200 USD Mexico*",
     "compare_cta": "Want to send this now?\n👉 Reply *YES* to continue.",
     "menu_option_send_prompt": "Great 👍 Write the amount, the currency you're sending, your recipient's country, and your (the sender's) email — all together. E.g.: *200 USD Mexico juan@email.com* (you send 200 USD, your recipient is in Mexico).",
-    "referral_share_prompt": "🎁 Know someone who also sends money abroad? Share this link — when they complete their first transfer, you get your next transfer with $0 service fee:\n\n{link}"
+    "referral_share_prompt": "🎁 Know someone who also sends money abroad? Share this link — when they complete their first transfer, you get your next transfer with $0 service fee:\n\n{link}",
+    "referral_invite_message": "Hi! A friend told me about OmniPay for sending money abroad 🌍 REF:{ref}"
   },
   "kyc": {
     "title": "Verify your identity",

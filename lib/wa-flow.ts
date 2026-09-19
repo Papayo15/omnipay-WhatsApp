@@ -136,7 +136,7 @@ export interface DepositInstructions {
 // renombrar nada.
 export async function requestDepositInstructions(params: {
   email: string; sourceCurrency: string; recipientName: string; country: string;
-  amountTarget: number; account: AccountDetails;
+  amountTarget: number; account: AccountDetails; referralCode?: string | null;
 }): Promise<DepositInstructions | null> {
   const sc = params.sourceCurrency.toLowerCase();
   if (!SUPPORTED_SOURCE_CURRENCIES.has(sc)) return null;
@@ -161,6 +161,7 @@ export async function requestDepositInstructions(params: {
         account_number: params.account.account_number,
         sort_code: params.account.sort_code,
         bank_code: params.account.bank_code,
+        ...(params.referralCode ? { referral_code: params.referralCode } : {}),
       }),
     });
     if (!res.ok) {
