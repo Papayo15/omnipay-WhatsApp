@@ -84,13 +84,43 @@ export async function createVirtualAccount(
     body.developer_reference = params.developerReference;
   }
 
-  return bridgeRequest<VirtualAccount>(
-    "POST",
-    `/customers/${params.customerId}/virtual_accounts`,
-    body,
-    // Idempotency key includes currency — USD/EUR/etc are distinct VAs; same key + different body = Bridge error
-    `va-${params.customerId}-${params.sourceCurrency}-${params.reference ?? params.destinationAddress.slice(-12)}`,
+  try {
+    return await bridgeRequest<VirtualAccount>(
+      "POST",
+      `/customers/${params.customerId}/virtual_accounts`,
+      body,
+      // Idempotency key includes currency — USD/EUR/etc are distinct VAs; same key + different body = Bridge error
+      `va-${params.customerId}-${params.sourceCurrency}-${params.reference ?? params.destinationAddress.slice(-12)}`,
+    );
+  } catch (e) {
+    // Same class of error already handled for external accounts (providers/bridge/
+    // liquidation.ts): our app-level Redis cache (app/api/bridge/send/route.ts) is meant
+    // to always short-circuit repeat calls for the same sender+currency+recipient via
+    // getVirtualAccount, but if that cache entry is ever missing/expired while Bridge
+    // still remembers fulfilling this exact idempotency key >24h ago, Bridge refuses to
+    // replay it — list the customer's VAs and recover the existing one instead of failing
+    // the whole send.
+    const bridgeErr = e as Error & { type?: string; message?: string };
+    const isIdempDeadline = bridgeErr.type?.includes("idempotency")
+      || bridgeErr.message?.toLowerCase().includes("idempotency")
+      || bridgeErr.message?.toLowerCase().includes("24 hours");
+    if (isIdempDeadline) {
+      const list = await bridgeRequest<{ data: VirtualAccount[] }>(
+        "GET", `/customers/${params.customerId}/virtual_accounts`,
+      );
+      const existing = list.data?.find(v => v.source_deposit_instructions?.currency === params.sourceCurrency)
+        ?? list.data?.[0];
+      if (existing) return existing;
+    }
+    throw e;
+  }
+}
+
+export async function listVirtualAccounts(customerId: string): Promise<VirtualAccount[]> {
+  const list = await bridgeRequest<{ data: VirtualAccount[] }>(
+    "GET", `/customers/${customerId}/virtual_accounts`,
   );
+  return list.data ?? [];
 }
 
 export async function getVirtualAccount(
