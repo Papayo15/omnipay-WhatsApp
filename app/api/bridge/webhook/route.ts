@@ -67,7 +67,8 @@ export async function POST(req: NextRequest): Promise<Response> {
   console.log("[bridge/webhook][debug] headers:", JSON.stringify(Object.fromEntries(req.headers.entries())));
   console.log("[bridge/webhook][debug] sigHeader present:", !!sigHeader, "len:", sigHeader?.length ?? 0);
   console.log("[bridge/webhook][debug] BRIDGE_WEBHOOK_PUBLIC_KEY set:", !!process.env.BRIDGE_WEBHOOK_PUBLIC_KEY, "len:", process.env.BRIDGE_WEBHOOK_PUBLIC_KEY?.length ?? 0);
-  console.log("[bridge/webhook][debug] rawBody len:", rawBody.length, "snippet:", rawBody.slice(0, 200));
+  console.log("[bridge/webhook][debug] rawBody b64:", Buffer.from(rawBody, "utf8").toString("base64"));
+  console.log("[bridge/webhook][debug] full sig header:", sigHeader);
 
   // Verify signature
   let valid: boolean;
