@@ -1225,8 +1225,8 @@
     "compare_hint": "🔎 Unataka tu kulinganisha kabla ya kuamua? Andika: *comparar 200 USD Mexico*",
     "compare_cta": "Unataka kutuma hii sasa?\n👉 Jibu *NDIYO* kuendelea.",
     "menu_option_send_prompt": "Vizuri 👍 Andika kiasi, sarafu unayotuma, nchi ya mpokeaji wako, na barua pepe yako (ya mtumaji) pamoja. Mfano: *200 USD Mexico juan@email.com* (unatuma USD 200, mpokeaji wako yuko Mexico).",
-    "referral_share_prompt": "🎁 Unamjua mtu ambaye pia anatuma pesa nje ya nchi? Shiriki kiungo hiki — mara tu akikamilisha uhamisho wake wa kwanza, uhamisho wako ujao utakuwa bila ada ya huduma:\n\n{link}",
-    "referral_invite_message": "Habari! Rafiki alinieleza kuhusu OmniPay kwa kutuma pesa nje ya nchi 🌍 REF:{ref}"
+    "referral_share_prompt": "🎁 Unamjua mtu ambaye OmniPay inaweza kumsaidia? Shiriki kiungo hiki — mara tu akikamilisha uhamisho wake wa kwanza, uhamisho wako ujao utakuwa bila ada ya huduma:\n\n{link}",
+    "referral_invite_message": "Habari! Rafiki alinipendekeza OmniPay 🌍 REF:{ref}"
   },
   "kyc": {
     "title": "Thibitisha utambulisho wako",

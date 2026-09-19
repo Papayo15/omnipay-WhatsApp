@@ -1225,8 +1225,8 @@
     "compare_hint": "🔎 Vuoi solo confrontare prima di decidere? Scrivi: *comparar 200 USD Messico*",
     "compare_cta": "Vuoi inviare questo ora?\n👉 Rispondi *SI* per continuare.",
     "menu_option_send_prompt": "Perfetto 👍 Scrivimi l'importo, la valuta che invii, il paese del tuo destinatario e la tua email (quella del mittente) — tutto insieme. Es.: *200 USD Messico juan@email.com* (invii 200 USD, il tuo destinatario è in Messico).",
-    "referral_share_prompt": "🎁 Conosci qualcuno che invia anche denaro all'estero? Condividi questo link — quando completa il suo primo invio, tu ottieni il tuo prossimo invio senza commissione di servizio:\n\n{link}",
-    "referral_invite_message": "Ciao! Un amico mi ha parlato di OmniPay per inviare denaro all'estero 🌍 REF:{ref}"
+    "referral_share_prompt": "🎁 Conosci qualcuno a cui potrebbe servire OmniPay? Condividi questo link — quando completa il suo primo invio, tu ottieni il tuo prossimo invio senza commissione di servizio:\n\n{link}",
+    "referral_invite_message": "Ciao! Un amico mi ha consigliato OmniPay 🌍 REF:{ref}"
   },
   "kyc": {
     "title": "Verifica la tua identità",

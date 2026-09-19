@@ -1225,8 +1225,8 @@
     "compare_hint": "🔎 결정하기 전에 비교만 해보고 싶으신가요? 작성해 주세요: *comparar 200 USD 멕시코*",
     "compare_cta": "지금 송금하시겠어요?\n👉 계속하려면 *예*라고 답장해 주세요.",
     "menu_option_send_prompt": "좋아요 👍 금액, 보내는 통화, 수취인의 국가, 그리고 당신(발신자)의 이메일을 함께 적어주세요. 예: *200 USD 멕시코 juan@email.com* (200 USD를 보내고, 수취인은 멕시코에 있음).",
-    "referral_share_prompt": "🎁 해외로 송금하는 지인이 있으신가요? 이 링크를 공유해 보세요 — 그분이 첫 송금을 완료하면, 당신의 다음 송금은 서비스 수수료가 무료가 됩니다:\n\n{link}",
-    "referral_invite_message": "안녕하세요! 친구가 해외 송금에 OmniPay를 추천해줬어요 🌍 REF:{ref}"
+    "referral_share_prompt": "🎁 OmniPay가 도움이 될 만한 지인이 있으신가요? 이 링크를 공유해 보세요 — 그분이 첫 송금을 완료하면, 당신의 다음 송금은 서비스 수수료가 무료가 됩니다:\n\n{link}",
+    "referral_invite_message": "안녕하세요! 친구가 OmniPay를 추천해줬어요 🌍 REF:{ref}"
   },
   "kyc": {
     "title": "신원을 확인하세요",

@@ -1225,8 +1225,8 @@
     "compare_hint": "🔎 Karar vermeden önce sadece karşılaştırmak mı istiyorsun? Yaz: *comparar 200 USD Meksika*",
     "compare_cta": "Bunu şimdi göndermek ister misin?\n👉 Devam etmek için *EVET* yaz.",
     "menu_option_send_prompt": "Harika 👍 Tutarı, gönderdiğin para birimini, alıcının ülkesini ve senin (gönderenin) e-postanı birlikte yaz. Örn.: *200 USD Meksika juan@email.com* (200 USD gönderiyorsun, alıcın Meksika'da).",
-    "referral_share_prompt": "🎁 Yurt dışına para gönderen birini tanıyor musun? Bu bağlantıyı paylaş — o kişi ilk transferini tamamladığında, bir sonraki transferin hizmet ücreti olmadan olur:\n\n{link}",
-    "referral_invite_message": "Merhaba! Bir arkadaşım yurt dışına para göndermek için OmniPay'den bahsetti 🌍 REF:{ref}"
+    "referral_share_prompt": "🎁 OmniPay'in işine yarayacağı birini tanıyor musun? Bu bağlantıyı paylaş — o kişi ilk transferini tamamladığında, bir sonraki transferin hizmet ücreti olmadan olur:\n\n{link}",
+    "referral_invite_message": "Merhaba! Bir arkadaşım bana OmniPay'i önerdi 🌍 REF:{ref}"
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",

@@ -93,18 +93,42 @@ const CONDUIT_MODULE_ENABLED = process.env.CONDUIT_MODULE_ENABLED === "true";
 // ── Parse incoming message text ───────────────────────────────────────────────
 
 // Supported country aliases → ISO code
+// Cubre bastante más que los países que de verdad soportamos (BRIDGE_NATIVE_COUNTRIES,
+// arriba) — a propósito: un país RECONOCIDO pero no soportado cae en isConduitOnlyCountry()
+// y responde "todavía no lo cubrimos" (country_not_available_yet). Un país NO reconocido en
+// absoluto (ej. nadie agregó "China") antes caía en el default "MX" en silencio — "500 yenes
+// China" se cotizaba como si fuera México. Mientras más países estén aquí, menos casos caen
+// en ese default equivocado.
 const COUNTRY_ALIASES: Record<string, string> = {
   mexico: "MX", méxico: "MX", mx: "MX",
   usa: "US", "estados unidos": "US", "united states": "US", us: "US", eeuu: "US",
   brasil: "BR", brazil: "BR", br: "BR",
   colombia: "CO", co: "CO",
-  uk: "GB", "reino unido": "GB", "united kingdom": "GB", gb: "GB", england: "GB",
+  uk: "GB", "reino unido": "GB", "united kingdom": "GB", gb: "GB", england: "GB", inglaterra: "GB",
   alemania: "DE", germany: "DE", de: "DE",
   españa: "ES", espana: "ES", spain: "ES", es: "ES",
   francia: "FR", france: "FR", fr: "FR",
   italia: "IT", italy: "IT", it: "IT",
   portugal: "PT", pt: "PT",
   canada: "CA", canadá: "CA", ca: "CA",
+  paises_bajos: "NL", holanda: "NL", netherlands: "NL", nl: "NL",
+  belgica: "BE", bélgica: "BE", belgium: "BE",
+  austria: "AT", irlanda: "IE", ireland: "IE", finlandia: "FI", finland: "FI",
+  grecia: "GR", greece: "GR", suecia: "SE", sweden: "SE",
+  dinamarca: "DK", denmark: "DK", noruega: "NO", norway: "NO",
+  polonia: "PL", poland: "PL", suiza: "CH", switzerland: "CH",
+  // Reconocidos pero NO soportados hoy (LatAm más allá de MX/BR/CO, y el resto del mundo) —
+  // caen correctamente en "todavía no lo cubrimos" en vez de en el default de México.
+  china: "CN", japon: "JP", japón: "JP", japan: "JP",
+  argentina: "AR", chile: "CL", peru: "PE", perú: "PE",
+  venezuela: "VE", ecuador: "EC", bolivia: "BO", paraguay: "PY", uruguay: "UY",
+  "republica dominicana": "DO", "república dominicana": "DO",
+  guatemala: "GT", honduras: "HN", "el salvador": "SV", nicaragua: "NI",
+  "costa rica": "CR", panama: "PA", panamá: "PA", cuba: "CU",
+  india: "IN", australia: "AU", rusia: "RU", russia: "RU",
+  corea: "KR", korea: "KR", "corea del sur": "KR",
+  sudafrica: "ZA", "south africa": "ZA", nigeria: "NG", egipto: "EG", egypt: "EG",
+  israel: "IL", "emiratos arabes unidos": "AE", "united arab emirates": "AE", uae: "AE",
 };
 
 // Supported currencies

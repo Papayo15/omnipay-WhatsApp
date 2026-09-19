@@ -1224,8 +1224,8 @@
     "compare_hint": "🔎 Kana son kwatanta kawai kafin ka yanke shawara? Rubuta: *comparar 200 USD Mexico*",
     "compare_cta": "Kana son aika wannan yanzu?\n👉 Amsa da *I* don ci gaba.",
     "menu_option_send_prompt": "Madalla 👍 Rubuta adadi, kuɗin da kake aikawa, ƙasar mai karɓarka, da imel ɗinka (na wanda ke aikawa) tare. Misali: *200 USD Mexico juan@email.com* (kana aika USD 200, mai karɓarka yana Mexico).",
-    "referral_share_prompt": "🎁 Ka san wani wanda kuma yake aika kuɗi zuwa ƙasashen waje? Raba wannan hanyar haɗi — da zarar ya kammala canja wurinsa na farko, canja wurin ka na gaba zai kasance ba tare da kuɗin sabis ba:\n\n{link}",
-    "referral_invite_message": "Sannu! Wani aboki ya gaya mini game da OmniPay don aika kuɗi zuwa ƙasashen waje 🌍 REF:{ref}"
+    "referral_share_prompt": "🎁 Ka san wani wanda OmniPay zai iya taimaka masa? Raba wannan hanyar haɗi — da zarar ya kammala canja wurinsa na farko, canja wurin ka na gaba zai kasance ba tare da kuɗin sabis ba:\n\n{link}",
+    "referral_invite_message": "Sannu! Wani aboki ya ba ni shawarar OmniPay 🌍 REF:{ref}"
   },
   "kyc": {
     "title": "Tabbatar da ainihin ka",

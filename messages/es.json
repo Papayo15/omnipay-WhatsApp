@@ -1208,8 +1208,8 @@
     "compare_hint": "🔎 ¿Solo quieres comparar antes de decidir? Escribe: *comparar 200 USD México*",
     "compare_cta": "¿Quieres realizar este envío ahora?\n👉 Responde *SI* para continuar.",
     "menu_option_send_prompt": "Perfecto 👍 Escríbeme el monto, la moneda que envías, el país de tu destinatario y tu correo (el del emisor) — todo junto. Ej: *200 USD México juan@correo.com* (envías 200 USD, tu destinatario está en México).",
-    "referral_share_prompt": "🎁 ¿Conoces a alguien que también envía dinero al extranjero? Comparte este link — cuando complete su primer envío, tú ganas tu próximo envío con $0 de comisión de servicio:\n\n{link}",
-    "referral_invite_message": "¡Hola! Un amigo me habló de OmniPay para enviar dinero al extranjero 🌍 REF:{ref}"
+    "referral_share_prompt": "🎁 ¿Conoces a alguien a quien le sirva OmniPay? Comparte este link — cuando complete su primer envío, tú ganas tu próximo envío con $0 de comisión de servicio:\n\n{link}",
+    "referral_invite_message": "¡Hola! Un amigo me recomendó OmniPay 🌍 REF:{ref}"
   },
   "kyc": {
     "title": "Verifica tu identidad",

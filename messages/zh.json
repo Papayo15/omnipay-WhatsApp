@@ -1225,8 +1225,8 @@
     "compare_hint": "🔎 只是想在决定前比较一下？请输入：*comparar 200 USD 墨西哥*",
     "compare_cta": "现在就汇款吗？\n👉 回复\"是\"继续。",
     "menu_option_send_prompt": "好的 👍 请把金额、您汇出的货币、收款人所在国家，以及您（汇款人）的邮箱一起写给我。例如：*200 USD 墨西哥 juan@email.com*（您汇出200美元，收款人在墨西哥）。",
-    "referral_share_prompt": "🎁 认识也需要往国外汇款的朋友吗？分享这个链接——对方完成第一次汇款后，你的下一次汇款将免服务费：\n\n{link}",
-    "referral_invite_message": "你好！朋友向我推荐了OmniPay用于海外汇款 🌍 REF:{ref}"
+    "referral_share_prompt": "🎁 认识可能需要OmniPay的人吗？分享这个链接——对方完成第一次汇款后，你的下一次汇款将免服务费：\n\n{link}",
+    "referral_invite_message": "你好！朋友向我推荐了OmniPay 🌍 REF:{ref}"
   },
   "kyc": {
     "title": "验证您的身份",

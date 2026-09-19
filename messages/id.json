@@ -1225,8 +1225,8 @@
     "compare_hint": "🔎 Cuma mau membandingkan dulu sebelum memutuskan? Tulis: *comparar 200 USD Meksiko*",
     "compare_cta": "Mau kirim sekarang?\n👉 Balas *YA* untuk lanjut.",
     "menu_option_send_prompt": "Bagus 👍 Tulis jumlah, mata uang yang Anda kirim, negara penerima Anda, dan email Anda (pengirim) — semua sekaligus. Mis.: *200 USD Meksiko juan@email.com* (Anda mengirim 200 USD, penerima Anda di Meksiko).",
-    "referral_share_prompt": "🎁 Kenal seseorang yang juga mengirim uang ke luar negeri? Bagikan tautan ini — begitu mereka menyelesaikan transfer pertama, transfer berikutnya Anda gratis biaya layanan:\n\n{link}",
-    "referral_invite_message": "Hai! Seorang teman memberi tahu saya tentang OmniPay untuk kirim uang ke luar negeri 🌍 REF:{ref}"
+    "referral_share_prompt": "🎁 Kenal seseorang yang mungkin butuh OmniPay? Bagikan tautan ini — begitu mereka menyelesaikan transfer pertama, transfer berikutnya Anda gratis biaya layanan:\n\n{link}",
+    "referral_invite_message": "Hai! Seorang teman merekomendasikan OmniPay kepada saya 🌍 REF:{ref}"
   },
   "kyc": {
     "title": "Verifikasi identitas Anda",
