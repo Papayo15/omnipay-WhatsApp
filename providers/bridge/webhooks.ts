@@ -1,8 +1,14 @@
 // Bridge.xyz Webhook Signature Verification
 // Bridge signs webhook payloads with RSA-SHA256 using a per-endpoint private key.
-// The matching public key is shown in the Bridge dashboard (-----BEGIN PUBLIC KEY-----)
-// Store it in BRIDGE_WEBHOOK_PUBLIC_KEY env var (the full PEM string).
-// Header sent by Bridge: X-Bridge-Signature: <base64-encoded RSA signature>
+// The matching public key is returned once when the webhook subscription is created
+// (POST /v0/webhooks) — store it in BRIDGE_WEBHOOK_PUBLIC_KEY env var (full PEM string).
+// Confirmed against real Bridge sandbox deliveries (2026-09-19, 9 retries logged before
+// this fix): header is "X-Webhook-Signature", format "t=<unix ms>,v0=<base64 RSA sig>" —
+// the signed message is "{t}.{raw body}", not the raw body alone (timestamped signing,
+// same idea as Stripe/Svix-style — protects against replay). The previous implementation
+// assumed a plain "X-Bridge-Signature: <sig>" header signing the raw body directly, which
+// never matched any real delivery (this webhook had never actually fired successfully
+// before last night, so the mismatch went unnoticed).
 
 export interface BridgeWebhookEvent {
   id:         string;
@@ -39,9 +45,18 @@ export async function verifyBridgeWebhook(
   }
   if (!signatureHeader) return false;
 
-  // RSA-SHA256 (Bridge default — public key from dashboard)
+  // RSA-SHA256 (Bridge default — public key from webhook creation response)
   if (publicKeyPem) {
     try {
+      // Formato real: "t=<unix ms>,v0=<base64 RSA sig>" — se firma "{t}.{rawBody}", no
+      // el body solo (confirmado contra entregas reales, ver comentario arriba del archivo).
+      const parts = Object.fromEntries(
+        signatureHeader.split(",").map((p) => p.trim().split("=") as [string, string]),
+      );
+      const timestamp = parts.t;
+      const sigB64     = parts.v0;
+      if (!timestamp || !sigB64) return false;
+
       const keyBuf = pemToArrayBuffer(publicKeyPem);
       const cryptoKey = await crypto.subtle.importKey(
         "spki",
@@ -50,7 +65,7 @@ export async function verifyBridgeWebhook(
         false,
         ["verify"],
       );
-      const sigBinary = atob(signatureHeader.replace(/\s+/g, ""));
+      const sigBinary = atob(sigB64.replace(/\s+/g, ""));
       const sigBuf    = new Uint8Array(sigBinary.length);
       for (let i = 0; i < sigBinary.length; i++) sigBuf[i] = sigBinary.charCodeAt(i);
 
@@ -58,7 +73,7 @@ export async function verifyBridgeWebhook(
         "RSASSA-PKCS1-v1_5",
         cryptoKey,
         sigBuf,
-        new TextEncoder().encode(rawBody),
+        new TextEncoder().encode(`${timestamp}.${rawBody}`),
       );
     } catch (e) {
       console.error("[bridge/webhook] RSA verification error:", e);

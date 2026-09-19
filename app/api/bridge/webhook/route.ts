@@ -55,7 +55,10 @@ async function markEventProcessed(eventId: string): Promise<boolean> {
 
 export async function POST(req: NextRequest): Promise<Response> {
   const rawBody  = await req.text();
-  const sigHeader = req.headers.get("x-bridge-signature");
+  // Confirmado en logs reales (9 reintentos reales de Bridge sandbox, 2026-09-19): el
+  // header de verdad es "x-webhook-signature", no "x-bridge-signature" como asumía este
+  // código — nunca se había recibido un webhook real hasta anoche para notarlo.
+  const sigHeader = req.headers.get("x-webhook-signature");
 
   // DIAGNÓSTICO TEMPORAL — el webhook de Bridge sandbox llega pero la firma se rechaza
   // (visto en logs reales: "[bridge/webhook] Invalid signature"). Antes de asumir cuál es
