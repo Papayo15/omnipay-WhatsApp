@@ -57,6 +57,15 @@ export async function POST(req: NextRequest): Promise<Response> {
   const rawBody  = await req.text();
   const sigHeader = req.headers.get("x-bridge-signature");
 
+  // DIAGNÓSTICO TEMPORAL — el webhook de Bridge sandbox llega pero la firma se rechaza
+  // (visto en logs reales: "[bridge/webhook] Invalid signature"). Antes de asumir cuál es
+  // la causa (header con otro nombre, formato de firma distinto, PEM mal guardada), lo
+  // confirmamos con lo que Bridge de verdad manda. Quitar en cuanto se resuelva.
+  console.log("[bridge/webhook][debug] headers:", JSON.stringify(Object.fromEntries(req.headers.entries())));
+  console.log("[bridge/webhook][debug] sigHeader present:", !!sigHeader, "len:", sigHeader?.length ?? 0);
+  console.log("[bridge/webhook][debug] BRIDGE_WEBHOOK_PUBLIC_KEY set:", !!process.env.BRIDGE_WEBHOOK_PUBLIC_KEY, "len:", process.env.BRIDGE_WEBHOOK_PUBLIC_KEY?.length ?? 0);
+  console.log("[bridge/webhook][debug] rawBody len:", rawBody.length, "snippet:", rawBody.slice(0, 200));
+
   // Verify signature
   let valid: boolean;
   try {

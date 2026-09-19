@@ -140,8 +140,24 @@ const CURRENCY_ALIASES: Record<string, string> = {
   mxn: "MXN", pesos: "MXN", peso: "MXN",
 };
 
+// Alias corto (ej. "co" para Colombia, "it" para Italia) + texto.includes() era una
+// bomba de tiempo: casi cualquier correo hace match por accidente ("co" aparece dentro de
+// "hotmail.COm", "gmail.COm", cualquier ".com"/".co") — confirmado en vivo: "50 pesos
+// mexicanos Canadá paucm@hotmail.com" se leía como Colombia, no Canadá, porque "co" ya
+// había hecho match dentro de ".com" antes de llegar a "canadá" en la lista. Dos capas de
+// arreglo: (1) quitamos el correo del texto antes de buscar alias — nunca debería buscarse
+// ahí un país/moneda — y (2) exigimos límites de palabra reales (no unicode-aware nativo en
+// JS \b, así que se arma a mano) para que "co" no matchee dentro de otra palabra tampoco.
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+function includesWord(text: string, alias: string): boolean {
+  return new RegExp(`(^|[^\\p{L}\\p{N}])${escapeRegExp(alias)}($|[^\\p{L}\\p{N}])`, "iu").test(text);
+}
+
 function parseAmount(text: string): { amount: number; currency: string; country: string } | null {
-  const t = text.toLowerCase().trim();
+  const withoutEmail = text.replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g, " ");
+  const t = withoutEmail.toLowerCase().trim();
 
   const numMatch = t.match(/\b(\d{1,6}(?:[.,]\d{1,2})?)\b/);
   if (!numMatch) return null;
@@ -150,12 +166,12 @@ function parseAmount(text: string): { amount: number; currency: string; country:
 
   let currency = "USD";
   for (const [alias, code] of Object.entries(CURRENCY_ALIASES)) {
-    if (t.includes(alias)) { currency = code; break; }
+    if (includesWord(t, alias)) { currency = code; break; }
   }
 
   let country = "MX"; // default
   for (const [alias, code] of Object.entries(COUNTRY_ALIASES)) {
-    if (t.includes(alias)) { country = code; break; }
+    if (includesWord(t, alias)) { country = code; break; }
   }
 
   return { amount, currency, country };
