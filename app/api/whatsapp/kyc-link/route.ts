@@ -16,7 +16,7 @@
 // itself, so a placeholder name on the Bridge customer record is fine here.
 
 import { NextRequest, NextResponse } from "next/server";
-import { getOrCreateCustomer, getKycLink, createKycLink, createTosLink } from "@/providers/bridge/customers";
+import { getOrCreateCustomer, evaluateCustomerById, getKycLink, createKycLink, createTosLink } from "@/providers/bridge/customers";
 
 export const runtime = "nodejs";
 
@@ -24,10 +24,11 @@ const ENDORSEMENTS = ["base", "sepa", "spei", "pix", "faster_payments", "cop"];
 
 export async function GET(req: NextRequest): Promise<Response> {
   const { searchParams } = new URL(req.url);
-  const email   = (searchParams.get("email") ?? "").trim().toLowerCase();
-  const wa      = searchParams.get("wa") ?? "";
-  const locale  = searchParams.get("locale") ?? "en";
-  const tosDone = searchParams.get("tos_done") === "1";
+  const email      = (searchParams.get("email") ?? "").trim().toLowerCase();
+  const wa         = searchParams.get("wa") ?? "";
+  const locale     = searchParams.get("locale") ?? "en";
+  const tosDone    = searchParams.get("tos_done") === "1";
+  const customerId = searchParams.get("customer_id") ?? "";
 
   if (!email || !email.includes("@")) {
     return NextResponse.json({ error: "Valid email is required" }, { status: 400 });
@@ -38,14 +39,20 @@ export async function GET(req: NextRequest): Promise<Response> {
   const kycRedirect = `${appUrl}/kyc?done=1&wa=${encodeURIComponent(wa)}&locale=${locale}`;
 
   try {
-    const { customer, isNew, needsKyc } = await getOrCreateCustomer({
-      type:        "individual",
-      email,
-      first_name:  "OmniPay",
-      last_name:   "WhatsApp",
-      country:     "USA",
-      endorsements: ENDORSEMENTS,
-    });
+    // Si el bot de WhatsApp ya nos dio el customer_id (lo resolvió momentos antes), lo
+    // buscamos directo por ID — sin esto, buscar de nuevo por correo puede chocar con el
+    // indexado eventualmente consistente de Bridge para un cliente recién creado y dejar
+    // esta pantalla cargando varios segundos (o de más).
+    const { customer, isNew, needsKyc } = customerId
+      ? await evaluateCustomerById(customerId, "individual")
+      : await getOrCreateCustomer({
+          type:        "individual",
+          email,
+          first_name:  "OmniPay",
+          last_name:   "WhatsApp",
+          country:     "USA",
+          endorsements: ENDORSEMENTS,
+        });
 
     if (!needsKyc) {
       return NextResponse.json({ needs_tos: false, needs_kyc: false, customer_id: customer.id });

@@ -14,26 +14,38 @@ import { Zap } from "lucide-react";
 function KycInner() {
   const t = useTranslations("kyc");
   const params = useSearchParams();
-  const [status, setStatus] = useState<"loading" | "error" | "missing">("loading");
+  const [status, setStatus] = useState<"loading" | "error" | "missing" | "done">("loading");
 
   useEffect(() => {
-    const email   = params.get("email");
-    const wa      = params.get("wa") ?? "";
-    const locale  = params.get("locale") ?? "en";
-    const done    = params.get("done");
-    const tosDone = params.get("tos_done") ?? "";
+    const email      = params.get("email");
+    const wa         = params.get("wa") ?? "";
+    const locale     = params.get("locale") ?? "en";
+    const done       = params.get("done");
+    const tosDone    = params.get("tos_done") ?? "";
+    const customerId = params.get("customer_id") ?? "";
 
     if (done) return; // returned from Persona — bot sends the confirmation via WhatsApp
 
     if (!email) { setStatus("missing"); return; }
 
-    const qs = new URLSearchParams({ email, wa, locale, ...(tosDone ? { tos_done: tosDone } : {}) });
+    // customer_id (cuando el bot de WhatsApp ya resolvió/creó el cliente momentos antes)
+    // evita que este endpoint tenga que volver a buscarlo por correo — la búsqueda de
+    // Bridge es eventualmente consistente, así que para un cliente recién creado esa
+    // segunda búsqueda puede tardar varios segundos en encontrarlo (reintentos con espera)
+    // o incluso agotar el tiempo de la función, dejando esta pantalla en "Cargando…" para
+    // siempre. Con el ID de por medio, /api/whatsapp/kyc-link lo busca directo, sin carrera.
+    const qs = new URLSearchParams({
+      email, wa, locale,
+      ...(tosDone ? { tos_done: tosDone } : {}),
+      ...(customerId ? { customer_id: customerId } : {}),
+    });
     fetch(`/api/whatsapp/kyc-link?${qs}`)
       .then(async (res) => {
         if (!res.ok) { setStatus("error"); return; }
         const data = await res.json() as { needs_tos: boolean; needs_kyc: boolean; tos_url?: string | null; kyc_url?: string | null };
         if (!data.needs_kyc) {
           // Already verified — nothing to do here, bot will message with next steps.
+          setStatus("done");
           return;
         }
         // ToS primero para clientes nuevos en producción (Bridge lo exige antes del KYC,
@@ -54,6 +66,7 @@ function KycInner() {
       {status === "loading" && <p className="text-slate-500 text-xs mt-6 animate-pulse">{t("loading")}</p>}
       {status === "error" && <p className="text-red-400 text-xs mt-6">{t("error")}</p>}
       {status === "missing" && <p className="text-red-400 text-xs mt-6">{t("missing_params")}</p>}
+      {status === "done" && <p className="text-emerald-400 text-xs mt-6">✓</p>}
       {params.get("done") && <p className="text-emerald-400 text-xs mt-6">✓</p>}
     </main>
   );

@@ -192,11 +192,11 @@ async function startKycOrCollection(
   // deposits_restricted (puede seguir enviando, Bridge solo bloquea depósitos entrantes) ni
   // paused/offboarded (bloqueado de verdad) — reenviaba a un cliente restringido a hacer
   // KYC de nuevo en vez de dejarlo pasar, y a uno bloqueado igual, en vez de avisarle.
-  const { needsKyc, accountBlocked } = await getOrCreateCustomer({
+  const { customer, needsKyc, accountBlocked } = await getOrCreateCustomer({
     type: "individual", email,
     first_name: "OmniPay", last_name: "WhatsApp", country: "USA",
     endorsements: ["base", "sepa", "spei", "pix", "faster_payments", "cop"],
-  }).catch(() => ({ needsKyc: true, accountBlocked: false }));
+  }).catch(() => ({ customer: null, needsKyc: true, accountBlocked: false }));
 
   if (accountBlocked) {
     await sendWhatsAppMessage(waId, t("deposit_error"));
@@ -205,7 +205,12 @@ async function startKycOrCollection(
   }
 
   if (needsKyc) {
-    const kycLink = `${APP_URL}/kyc?email=${encodeURIComponent(email)}&wa=${hashPhone(waId)}&locale=${locale}`;
+    // Pasamos el customer_id ya resuelto — evita que /kyc tenga que volver a buscarlo por
+    // correo (app/api/whatsapp/kyc-link/route.ts), que para un cliente recién creado aquí
+    // mismo puede chocar con el retraso de indexado de Bridge (su búsqueda es eventualmente
+    // consistente) y quedarse "Cargando verificación…" varios segundos o de más.
+    const customerIdParam = customer?.id ? `&customer_id=${encodeURIComponent(customer.id)}` : "";
+    const kycLink = `${APP_URL}/kyc?email=${encodeURIComponent(email)}&wa=${hashPhone(waId)}&locale=${locale}${customerIdParam}`;
     await setPendingTransfer(email, { waId, locale, amount, currency, country });
     await sendWhatsAppMessage(waId, t("kyc_needed", { link: kycLink }));
     await clearSession(waId);

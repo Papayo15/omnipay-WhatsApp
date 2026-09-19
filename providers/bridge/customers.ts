@@ -218,6 +218,31 @@ export async function getCustomer(id: string): Promise<BridgeCustomer> {
   return bridgeRequest<BridgeCustomer>("GET", `/customers/${id}`);
 }
 
+// Un solo lugar para decidir "¿ya está aprobado?" — antes esta misma lógica estaba
+// triplicada dentro de getOrCreateCustomer (customer existente / embebido en el error de
+// "ya existe" / recuperado por reintento) y ADEMÁS reimplementada aparte en el bot de
+// WhatsApp (ver app/api/whatsapp/webhook/route.ts), lo cual causó una discrepancia real
+// entre web y WhatsApp para el mismo cliente. Ahora hay un solo lugar.
+function evaluateKycStatus(customer: BridgeCustomer, type: "individual" | "business"): {
+  isNew: boolean; needsKyc: boolean; depositsRestricted: boolean; accountBlocked: boolean;
+} {
+  // deposits_restricted: inbound blocked, outbound allowed. Treat as approved for sender flows.
+  // paused/offboarded: fully blocked — surface as needsKyc so caller shows an error.
+  const isRestricted = customer.status === "deposits_restricted";
+  const isBlocked    = customer.status === "paused" || customer.status === "offboarded";
+  // Bridge API returns "approved" per spec; "granted" observed in production dashboard.
+  const isKycOk = (s?: string) => s === "approved" || s === "granted";
+  const kycApproved = !isBlocked && (
+    type === "business"
+      ? isKycOk(customer.kyb_status)
+      : customer.status === "active" || customer.status === "approved" || isRestricted || isKycOk(customer.kyc_status)
+  );
+  // incomplete/not_started = customer record exists in Bridge but never went through ToS+KYC.
+  // Treat as isNew so the checkout shows the ToS popup before the KYC link.
+  const neverStarted = customer.status === "incomplete" || customer.status === "not_started";
+  return { isNew: neverStarted, needsKyc: !kycApproved, depositsRestricted: isRestricted, accountBlocked: isBlocked };
+}
+
 // Get or create a customer — returns { customer, isNew, needsKyc }
 export async function getOrCreateCustomer(params: {
   type:           "individual" | "business";
@@ -236,21 +261,7 @@ export async function getOrCreateCustomer(params: {
     if (existing.type === "individual") {
       try { await ensureEndorsements(existing.id, ["base","sepa","spei","pix","faster_payments","cop"]); } catch { /* best-effort */ }
     }
-    // deposits_restricted: inbound blocked, outbound allowed. Treat as approved for sender flows.
-    // paused/offboarded: fully blocked — surface as needsKyc so caller shows an error.
-    const isRestricted = existing.status === "deposits_restricted";
-    const isBlocked    = existing.status === "paused" || existing.status === "offboarded";
-    // Bridge API returns "approved" per spec; "granted" observed in production dashboard.
-    const isKycOk = (s?: string) => s === "approved" || s === "granted";
-    const kycApproved  = !isBlocked && (
-      params.type === "business"
-        ? isKycOk(existing.kyb_status)
-        : existing.status === "active" || existing.status === "approved" || isRestricted || isKycOk(existing.kyc_status)
-    );
-    // incomplete/not_started = customer record exists in Bridge but never went through ToS+KYC.
-    // Treat as isNew so the checkout shows the ToS popup before the KYC link.
-    const neverStarted = existing.status === "incomplete" || existing.status === "not_started";
-    return { customer: existing, isNew: neverStarted, needsKyc: !kycApproved, depositsRestricted: isRestricted, accountBlocked: isBlocked };
+    return { customer: existing, ...evaluateKycStatus(existing, params.type) };
   }
 
   try {
@@ -273,15 +284,7 @@ export async function getOrCreateCustomer(params: {
       ) as BridgeCustomer | undefined;
 
       if (embedded?.id) {
-        const isRestricted = embedded.status === "deposits_restricted";
-        const isBlocked    = embedded.status === "paused" || embedded.status === "offboarded";
-        const isKycOk2 = (s?: string) => s === "approved" || s === "granted";
-        const kycApproved  = !isBlocked && (
-          params.type === "business"
-            ? isKycOk2(embedded.kyb_status)
-            : embedded.status === "active" || embedded.status === "approved" || isRestricted || isKycOk2(embedded.kyc_status)
-        );
-        return { customer: embedded, isNew: false, needsKyc: !kycApproved, depositsRestricted: isRestricted, accountBlocked: isBlocked };
+        return { customer: embedded, ...evaluateKycStatus(embedded, params.type) };
       }
 
       // Bridge search is eventually consistent — retry up to 3 times with increasing delay.
@@ -290,20 +293,23 @@ export async function getOrCreateCustomer(params: {
         await wait(delay);
         const recovered = await findCustomerByEmail(params.email);
         if (recovered) {
-          const isRestricted = recovered.status === "deposits_restricted";
-          const isBlocked    = recovered.status === "paused" || recovered.status === "offboarded";
-          const isKycOk3 = (s?: string) => s === "approved" || s === "granted";
-          const kycApproved  = !isBlocked && (
-            params.type === "business"
-              ? isKycOk3(recovered.kyb_status)
-              : recovered.status === "active" || recovered.status === "approved" || isRestricted || isKycOk3(recovered.kyc_status)
-          );
-          return { customer: recovered, isNew: false, needsKyc: !kycApproved, depositsRestricted: isRestricted, accountBlocked: isBlocked };
+          return { customer: recovered, ...evaluateKycStatus(recovered, params.type) };
         }
       }
     }
     throw err;
   }
+}
+
+// Evalúa a un cliente que YA se conoce por ID (sin buscar por correo) — usado cuando el
+// llamador ya resolvió/creó el cliente momentos antes (ej. el bot de WhatsApp) y pasarlo
+// de nuevo evita la carrera con el indexado eventualmente consistente de Bridge (ver
+// getOrCreateCustomer arriba, rama de reintentos).
+export async function evaluateCustomerById(
+  customerId: string, type: "individual" | "business" = "individual",
+): Promise<{ customer: BridgeCustomer; isNew: boolean; needsKyc: boolean; depositsRestricted: boolean; accountBlocked: boolean }> {
+  const customer = await getCustomer(customerId);
+  return { customer, ...evaluateKycStatus(customer, type) };
 }
 
 // Maps Bridge payment rail → endorsement type required
