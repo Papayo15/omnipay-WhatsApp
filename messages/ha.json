@@ -1223,7 +1223,8 @@
     "compare_reply": "🔎 Kwatance don aika {amount} {currency} zuwa {country_name} ({country_code}):\n\n⚡ Da OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Kamfanin canja wurin kuɗi na gargajiya (ƙiyasi): {competitor_amount} {recipient_currency}\n\n💰 Mai karɓarka yana samun +{savings} {recipient_currency} ƙari tare da mu.\n\n----------------------------------\nMe kake son yi yanzu?\n👉 Amsa da *I* don aika wannan {amount} {currency} yanzu.\n👉 Ko rubuta wani kwatance (misali: comparar 500 USD Colombia) ko \"1\" don menu.",
     "compare_hint": "🔎 Kana son kwatanta kawai kafin ka yanke shawara? Rubuta: *comparar 200 USD Mexico*",
     "compare_cta": "Kana son aika wannan yanzu?\n👉 Amsa da *I* don ci gaba.",
-    "menu_option_send_prompt": "Madalla 👍 Rubuta adadi, kuɗin da kake aikawa, ƙasar mai karɓarka, da imel ɗinka (na wanda ke aikawa) tare. Misali: *200 USD Mexico juan@email.com* (kana aika USD 200, mai karɓarka yana Mexico)."
+    "menu_option_send_prompt": "Madalla 👍 Rubuta adadi, kuɗin da kake aikawa, ƙasar mai karɓarka, da imel ɗinka (na wanda ke aikawa) tare. Misali: *200 USD Mexico juan@email.com* (kana aika USD 200, mai karɓarka yana Mexico).",
+    "referral_share_prompt": "🎁 Ka san wani wanda kuma yake aika kuɗi zuwa ƙasashen waje? Raba wannan hanyar haɗi — da zarar ya kammala canja wurinsa na farko, canja wurin ka na gaba zai kasance ba tare da kuɗin sabis ba:\n\n{link}"
   },
   "kyc": {
     "title": "Tabbatar da ainihin ka",

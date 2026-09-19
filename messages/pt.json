@@ -1223,7 +1223,8 @@
     "compare_reply": "🔎 Comparativo para enviar {amount} {currency} para {country_name} ({country_code}):\n\n⚡ Com a OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Remessa tradicional (estimativa): {competitor_amount} {recipient_currency}\n\n💰 Seu destinatário recebe +{savings} {recipient_currency} a mais com a gente.\n\n----------------------------------\nO que você quer fazer agora?\n👉 Responda *SIM* para enviar esses {amount} {currency} agora.\n👉 Ou escreva outra cotação (ex: comparar 500 USD Colômbia) ou \"1\" para o menu.",
     "compare_hint": "🔎 Só quer comparar antes de decidir? Escreva: *comparar 200 USD México*",
     "compare_cta": "Quer fazer esse envio agora?\n👉 Responda *SIM* para continuar.",
-    "menu_option_send_prompt": "Perfeito 👍 Escreva o valor, a moeda que você envia, o país do seu destinatário e o seu e-mail (o do remetente) — tudo junto. Ex.: *200 USD México juan@email.com* (você envia 200 USD, seu destinatário está no México)."
+    "menu_option_send_prompt": "Perfeito 👍 Escreva o valor, a moeda que você envia, o país do seu destinatário e o seu e-mail (o do remetente) — tudo junto. Ex.: *200 USD México juan@email.com* (você envia 200 USD, seu destinatário está no México).",
+    "referral_share_prompt": "🎁 Conhece alguém que também envia dinheiro para o exterior? Compartilhe este link — quando essa pessoa concluir o primeiro envio, você ganha seu próximo envio sem taxa de serviço:\n\n{link}"
   },
   "kyc": {
     "title": "Verifique sua identidade",

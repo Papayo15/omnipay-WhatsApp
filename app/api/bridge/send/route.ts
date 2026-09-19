@@ -316,12 +316,15 @@ export async function POST(req: NextRequest): Promise<Response> {
 
     // 7. Build fee quote — Módulo 3: a valid referral code waives OmniPay's 0.6% service
     // fee for this one transaction (first-transaction incentive for the referred sender).
+    // Gated on isSenderNew — NOT just "a referral_code is present" — otherwise a user could
+    // keep the code in localStorage (lib/referral.ts, 30-day TTL) or re-add ?ref= to the URL
+    // and get the discount on every send instead of only their genuine first transfer.
     const quote = await buildDynamicQuote({
       amount:  amountUSD,
       country,
       email:   sender_email.toLowerCase(),
       type:    "p2p",
-      waiveServiceFee: !!referral_code,
+      waiveServiceFee: !!referral_code && isSenderNew,
       channel: channel === "whatsapp" ? "whatsapp" : "web",
     });
 

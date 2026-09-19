@@ -1224,7 +1224,8 @@
     "compare_reply": "🔎 {amount} {currency} を {country_name}（{country_code}）に送る場合の比較：\n\n⚡ OmniPayの場合：{omnipay_amount} {recipient_currency}\n🐌 従来の送金会社（概算）：{competitor_amount} {recipient_currency}\n\n💰 当社なら受取人は +{savings} {recipient_currency} 多く受け取れます。\n\n----------------------------------\n次にどうしますか？\n👉 この {amount} {currency} を今すぐ送るには「はい」と返信してください。\n👉 または他の比較を書く（例：comparar 500 USD コロンビア）か、メニューに戻るには「1」と書いてください。",
     "compare_hint": "🔎 決める前にまず比較したいだけですか？ 書いてください: *comparar 200 USD メキシコ*",
     "compare_cta": "今すぐ送金しますか？\n👉 続けるには「はい」と返信してください。",
-    "menu_option_send_prompt": "了解です 👍 金額、送金する通貨、受取人の国、そしてあなた（送金者）のメールアドレスを一緒に書いてください。例：*200 USD メキシコ juan@email.com*（200 USDを送金し、受取人はメキシコにいます）。"
+    "menu_option_send_prompt": "了解です 👍 金額、送金する通貨、受取人の国、そしてあなた（送金者）のメールアドレスを一緒に書いてください。例：*200 USD メキシコ juan@email.com*（200 USDを送金し、受取人はメキシコにいます）。",
+    "referral_share_prompt": "🎁 海外送金する知り合いはいますか？このリンクをシェアしてください — その方が初めての送金を完了すると、あなたの次回の送金は手数料無料になります：\n\n{link}"
   },
   "kyc": {
     "title": "本人確認を行ってください",

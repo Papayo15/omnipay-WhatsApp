@@ -1224,7 +1224,8 @@
     "compare_reply": "🔎 汇出 {amount} {currency} 到 {country_name}（{country_code}）的比较：\n\n⚡ 使用OmniPay：{omnipay_amount} {recipient_currency}\n🐌 传统汇款公司（估算）：{competitor_amount} {recipient_currency}\n\n💰 通过我们，收款人多收到 +{savings} {recipient_currency}。\n\n----------------------------------\n您现在想做什么？\n👉 回复\"是\"立即汇出这 {amount} {currency}。\n👉 或者输入另一个报价（例如：comparar 500 USD 哥伦比亚）或输入\"1\"返回菜单。",
     "compare_hint": "🔎 只是想在决定前比较一下？请输入：*comparar 200 USD 墨西哥*",
     "compare_cta": "现在就汇款吗？\n👉 回复\"是\"继续。",
-    "menu_option_send_prompt": "好的 👍 请把金额、您汇出的货币、收款人所在国家，以及您（汇款人）的邮箱一起写给我。例如：*200 USD 墨西哥 juan@email.com*（您汇出200美元，收款人在墨西哥）。"
+    "menu_option_send_prompt": "好的 👍 请把金额、您汇出的货币、收款人所在国家，以及您（汇款人）的邮箱一起写给我。例如：*200 USD 墨西哥 juan@email.com*（您汇出200美元，收款人在墨西哥）。",
+    "referral_share_prompt": "🎁 认识也需要往国外汇款的朋友吗？分享这个链接——对方完成第一次汇款后，你的下一次汇款将免服务费：\n\n{link}"
   },
   "kyc": {
     "title": "验证您的身份",

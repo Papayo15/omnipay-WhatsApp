@@ -382,6 +382,14 @@ export async function POST(req: NextRequest): Promise<Response> {
           }),
         ];
         await sendWhatsAppMessage(waId, lines.join("\n"));
+        // Módulo 3 — le damos a Juan su propio link para invitar amigos justo aquí, en el
+        // mismo mensaje del envío. Siempre texto libre: como acaba de escribirnos "SI" hace
+        // segundos, está garantizado que sigue dentro de su ventana de 24h — nunca necesita
+        // plantilla. El código de referido ES su propio waId (lib/referral.ts) — mismo
+        // diseño ya usado para notificar la recompensa, sin tabla de referidos.
+        await sendWhatsAppMessage(waId, t("referral_share_prompt", {
+          link: `${APP_URL}/enviar?ref=${waId}`,
+        }));
       } else {
         // /api/bridge/send falló (Bridge caído, needs_kyc/needs_tos inesperado, etc.) —
         // sin link de respaldo: se le pide reintentar el SI en vez de mandarlo a la web.

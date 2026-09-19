@@ -1224,7 +1224,8 @@
     "compare_reply": "🔎 Perbandingan untuk mengirim {amount} {currency} ke {country_name} ({country_code}):\n\n⚡ Dengan OmniPay: {omnipay_amount} {recipient_currency}\n🐌 Perusahaan pengiriman uang tradisional (perkiraan): {competitor_amount} {recipient_currency}\n\n💰 Penerima Anda mendapat +{savings} {recipient_currency} ekstra bersama kami.\n\n----------------------------------\nApa yang ingin Anda lakukan sekarang?\n👉 Balas *YA* untuk mengirim {amount} {currency} ini sekarang.\n👉 Atau tulis perbandingan lain (mis: comparar 500 USD Kolombia) atau \"1\" untuk menu.",
     "compare_hint": "🔎 Cuma mau membandingkan dulu sebelum memutuskan? Tulis: *comparar 200 USD Meksiko*",
     "compare_cta": "Mau kirim sekarang?\n👉 Balas *YA* untuk lanjut.",
-    "menu_option_send_prompt": "Bagus 👍 Tulis jumlah, mata uang yang Anda kirim, negara penerima Anda, dan email Anda (pengirim) — semua sekaligus. Mis.: *200 USD Meksiko juan@email.com* (Anda mengirim 200 USD, penerima Anda di Meksiko)."
+    "menu_option_send_prompt": "Bagus 👍 Tulis jumlah, mata uang yang Anda kirim, negara penerima Anda, dan email Anda (pengirim) — semua sekaligus. Mis.: *200 USD Meksiko juan@email.com* (Anda mengirim 200 USD, penerima Anda di Meksiko).",
+    "referral_share_prompt": "🎁 Kenal seseorang yang juga mengirim uang ke luar negeri? Bagikan tautan ini — begitu mereka menyelesaikan transfer pertama, transfer berikutnya Anda gratis biaya layanan:\n\n{link}"
   },
   "kyc": {
     "title": "Verifikasi identitas Anda",
