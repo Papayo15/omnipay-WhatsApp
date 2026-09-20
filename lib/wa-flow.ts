@@ -212,7 +212,9 @@ export async function beginRecipientCollection(
 
   if (quote) {
     await sendWhatsAppMessage(waId, t("quote_ready_precheck", {
-      recipient_amount:   quote.recipientGets.toLocaleString("en-US"),
+      // .toFixed(2), no toLocaleString — la coma de miles corta a la mitad el resaltado
+      // automático de números de WhatsApp/Android para montos ≥ 1000.
+      recipient_amount:   quote.recipientGets.toFixed(2),
       recipient_currency: quote.recipientCurrency,
       rate:                quote.rate,
       from_currency:       currency,

@@ -1196,7 +1196,7 @@
     "ask_account_number": "Stuur nu het Account Number.",
     "ask_bic": "Stuur nu de BIC/SWIFT-code (Bridge vereist dit samen met de IBAN).",
     "country_not_available_yet": "We ondersteunen {country} nog niet — we werken eraan. Probeer voorlopig de VS, Mexico, Brazilië, Colombia, het VK of Europa.",
-    "confirmed_deposit_intro": "✅ Helemaal klaar. Maak precies {amount} {currency} over via {rail} naar deze rekening:",
+    "confirmed_deposit_intro": "✅ Helemaal klaar. Maak via je mobiele bankapp precies {amount} {currency} over via {rail} naar deze rekening:",
     "label_bank": "Bank",
     "label_beneficiary": "Begunstigde",
     "label_routing": "Routingnummer",
@@ -1234,7 +1234,8 @@
     "otp_invalid": "Die code klopt niet. Controleer je e-mail en probeer opnieuw.",
     "otp_expired": "De code is verlopen. Stuur je bedrag en e-mail opnieuw, dan sturen we een nieuwe.",
     "otp_too_many_attempts": "Te veel mislukte pogingen. Stuur je bedrag en e-mail opnieuw om een nieuwe code aan te vragen.",
-    "kyc_needed_tip": "💡 Tik aan het einde op \"Doorgaan\" op het verificatiescherm en dan op \"Terug naar WhatsApp\". Sluit het venster zichzelf? Geen probleem — kom terug naar deze chat, we gaan gewoon verder waar we gebleven waren."
+    "kyc_needed_tip": "💡 Tik aan het einde op \"Doorgaan\" op het verificatiescherm en dan op \"Terug naar WhatsApp\". Sluit het venster zichzelf? Geen probleem — kom terug naar deze chat, we gaan gewoon verder waar we gebleven waren.",
+    "confirmed_deposit_lead": "*Deze rekening is van jou — gebruik hem elke keer als je geld wilt sturen naar {recipient_name} in {country_name}. Bewaar hem!*\n\nJe kunt hem zo vaak hergebruiken als je wilt, open gewoon je bank-app en wijzig het bedrag, zonder ons hier opnieuw te hoeven schrijven. (Voor een ander land is een nieuwe aanvraag hier nodig.)"
   },
   "kyc": {
     "title": "Verifieer je identiteit",

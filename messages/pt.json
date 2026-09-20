@@ -1195,7 +1195,7 @@
     "ask_account_number": "Agora envie o Account Number.",
     "ask_bic": "Agora envie o código BIC/SWIFT (a Bridge exige junto com o IBAN).",
     "country_not_available_yet": "Ainda não oferecemos suporte para {country} — estamos trabalhando nisso. Por enquanto, tente EUA, México, Brasil, Colômbia, Reino Unido ou Europa.",
-    "confirmed_deposit_intro": "✅ Tudo pronto. Deposite exatamente {amount} {currency} via {rail} nesta conta:",
+    "confirmed_deposit_intro": "✅ Tudo pronto. No seu app do banco, transfira exatamente {amount} {currency} via {rail} para esta conta:",
     "label_bank": "Banco",
     "label_beneficiary": "Beneficiário",
     "label_routing": "Routing Number",
@@ -1233,7 +1233,8 @@
     "otp_invalid": "Esse código não está certo. Confira seu e-mail e tente de novo.",
     "otp_expired": "O código expirou. Envie seu valor e e-mail de novo para receber um novo.",
     "otp_too_many_attempts": "Muitas tentativas erradas. Envie seu valor e e-mail de novo para pedir um novo código.",
-    "kyc_needed_tip": "💡 No final, toque em \"Continuar\" na tela de verificação e depois em \"Voltar ao WhatsApp\". Se a janela se fechar sozinha, sem problema — volte para este chat e continuamos de onde paramos."
+    "kyc_needed_tip": "💡 No final, toque em \"Continuar\" na tela de verificação e depois em \"Voltar ao WhatsApp\". Se a janela se fechar sozinha, sem problema — volte para este chat e continuamos de onde paramos.",
+    "confirmed_deposit_lead": "*Esta conta é sua — use sempre que quiser enviar dinheiro para {recipient_name} em {country_name}. Guarde-a!*\n\nVocê pode reutilizá-la quantas vezes quiser, é só abrir seu app do banco e mudar o valor, sem precisar nos escrever aqui de novo. (Para outro país, será preciso iniciar um novo envio aqui.)"
   },
   "kyc": {
     "title": "Verifique sua identidade",

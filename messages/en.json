@@ -1194,7 +1194,7 @@
     "ask_account_number": "Now send me the Account Number.",
     "ask_bic": "Now send me the BIC/SWIFT code (Bridge requires it along with the IBAN).",
     "country_not_available_yet": "We don't support {country} yet — we're working on it. Try US, Mexico, Brazil, Colombia, UK, or Europe for now.",
-    "confirmed_deposit_intro": "✅ All set. Deposit exactly {amount} {currency} via {rail} to this account:",
+    "confirmed_deposit_intro": "✅ All set. From your mobile banking app, transfer exactly {amount} {currency} via {rail} to this account:",
     "label_bank": "Bank",
     "label_beneficiary": "Beneficiary",
     "label_routing": "Routing Number",
@@ -1232,7 +1232,8 @@
     "otp_invalid": "That code isn't right. Check your email and try again.",
     "otp_expired": "That code expired. Send your amount and email again and we'll text you a new one.",
     "otp_too_many_attempts": "Too many failed attempts. Send your amount and email again to request a new code.",
-    "kyc_needed_tip": "💡 When you finish, tap \"Continue\" on the verification screen, then \"Back to WhatsApp\". If the window closes on its own, no problem — come back to this chat and we'll pick up right where we left off."
+    "kyc_needed_tip": "💡 When you finish, tap \"Continue\" on the verification screen, then \"Back to WhatsApp\". If the window closes on its own, no problem — come back to this chat and we'll pick up right where we left off.",
+    "confirmed_deposit_lead": "*This account is yours — use it anytime you want to send money to {recipient_name} in {country_name}. Save it!*\n\nYou can reuse it as many times as you want, just open your bank app and change the amount, no need to message us here again. (Sending to a different country will need a new setup here.)"
   },
   "kyc": {
     "title": "Verify your identity",

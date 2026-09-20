@@ -1196,7 +1196,7 @@
     "ask_account_number": "Envoyez maintenant l'Account Number.",
     "ask_bic": "Envoyez maintenant le code BIC/SWIFT (Bridge l'exige avec l'IBAN).",
     "country_not_available_yet": "Nous ne prenons pas encore en charge {country} — on y travaille. Essayez plutôt les États-Unis, le Mexique, le Brésil, la Colombie, le Royaume-Uni ou l'Europe.",
-    "confirmed_deposit_intro": "✅ C'est prêt. Dépose exactement {amount} {currency} via {rail} sur ce compte :",
+    "confirmed_deposit_intro": "✅ C'est prêt. Depuis ton appli bancaire mobile, transfère exactement {amount} {currency} via {rail} sur ce compte :",
     "label_bank": "Banque",
     "label_beneficiary": "Bénéficiaire",
     "label_routing": "Numéro de routage (Routing Number)",
@@ -1234,7 +1234,8 @@
     "otp_invalid": "Ce code n'est pas correct. Vérifie ton e-mail et réessaie.",
     "otp_expired": "Le code a expiré. Renvoie ton montant et ton e-mail pour qu'on t'en envoie un nouveau.",
     "otp_too_many_attempts": "Trop de tentatives échouées. Renvoie ton montant et ton e-mail pour demander un nouveau code.",
-    "kyc_needed_tip": "💡 À la fin, appuie sur \"Continuer\" sur l'écran de vérification, puis sur \"Retour à WhatsApp\". Si la fenêtre se ferme toute seule, pas de souci — reviens dans cette conversation, on reprend là où on en était."
+    "kyc_needed_tip": "💡 À la fin, appuie sur \"Continuer\" sur l'écran de vérification, puis sur \"Retour à WhatsApp\". Si la fenêtre se ferme toute seule, pas de souci — reviens dans cette conversation, on reprend là où on en était.",
+    "confirmed_deposit_lead": "*Ce compte est le tien — utilise-le à chaque fois que tu veux envoyer de l'argent à {recipient_name} en/au {country_name}. Enregistre-le !*\n\nTu peux le réutiliser autant de fois que tu veux, ouvre juste ton appli bancaire et change le montant, pas besoin de nous réécrire ici. (Pour un autre pays, il faudra un nouvel envoi ici.)"
   },
   "kyc": {
     "title": "Vérifiez votre identité",

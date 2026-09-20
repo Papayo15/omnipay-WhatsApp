@@ -1196,7 +1196,7 @@
     "ask_account_number": "Sasa tuma Account Number.",
     "ask_bic": "Sasa tuma msimbo wa BIC/SWIFT (Bridge inahitaji hii pamoja na IBAN).",
     "country_not_available_yet": "Bado hatujaunga mkono {country} — tunaifanyia kazi. Kwa sasa jaribu Marekani, Mexico, Brazil, Colombia, Uingereza au Ulaya.",
-    "confirmed_deposit_intro": "✅ Tayari. Weka {amount} {currency} kamili kupitia {rail} kwenye akaunti hii:",
+    "confirmed_deposit_intro": "✅ Tayari. Kutoka programu yako ya benki ya simu, tuma kamili {amount} {currency} kupitia {rail} kwenye akaunti hii:",
     "label_bank": "Benki",
     "label_beneficiary": "Mpokeaji",
     "label_routing": "Routing Number",
@@ -1234,7 +1234,8 @@
     "otp_invalid": "Msimbo huo si sahihi. Angalia barua pepe yako na ujaribu tena.",
     "otp_expired": "Msimbo umeisha muda wake. Tuma tena kiasi na barua pepe yako ili tukutumie mpya.",
     "otp_too_many_attempts": "Majaribio mengi yameshindwa. Tuma tena kiasi na barua pepe yako kuomba msimbo mpya.",
-    "kyc_needed_tip": "💡 ukimaliza, gusa \"Endelea\" kwenye skrini ya uthibitisho, kisha \"Rudi WhatsApp\". Ikiwa dirisha litajifunga lenyewe, si tatizo — rudi kwenye mazungumzo haya, tutaendelea pale tulipoishia."
+    "kyc_needed_tip": "💡 ukimaliza, gusa \"Endelea\" kwenye skrini ya uthibitisho, kisha \"Rudi WhatsApp\". Ikiwa dirisha litajifunga lenyewe, si tatizo — rudi kwenye mazungumzo haya, tutaendelea pale tulipoishia.",
+    "confirmed_deposit_lead": "*Akaunti hii ni yako — itumie wakati wowote unapotaka kutuma pesa kwa {recipient_name} nchini {country_name}. Ihifadhi!*\n\nUnaweza kuitumia tena mara nyingi upendavyo, fungua tu programu yako ya benki na ubadilishe kiasi, bila kuhitaji kutuandikia hapa tena. (Ukituma kwa nchi nyingine, utahitaji kuanzisha utumaji mpya hapa.)"
   },
   "kyc": {
     "title": "Thibitisha utambulisho wako",

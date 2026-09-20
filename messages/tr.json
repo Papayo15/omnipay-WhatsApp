@@ -1196,7 +1196,7 @@
     "ask_account_number": "Şimdi Account Number'ı gönderin.",
     "ask_bic": "Şimdi BIC/SWIFT kodunu gönderin (Bridge, IBAN ile birlikte bunu gerektirir).",
     "country_not_available_yet": "Henüz {country} desteklemiyoruz — üzerinde çalışıyoruz. Şimdilik ABD, Meksika, Brezilya, Kolombiya, İngiltere veya Avrupa'yı deneyin.",
-    "confirmed_deposit_intro": "✅ Her şey hazır. {rail} üzerinden bu hesaba tam olarak {amount} {currency} yatır:",
+    "confirmed_deposit_intro": "✅ Her şey hazır. Mobil bankacılık uygulamandan {rail} üzerinden bu hesaba tam olarak {amount} {currency} transfer et:",
     "label_bank": "Banka",
     "label_beneficiary": "Alıcı",
     "label_routing": "Routing Numarası",
@@ -1234,7 +1234,8 @@
     "otp_invalid": "Bu kod doğru değil. E-postanı kontrol et ve tekrar dene.",
     "otp_expired": "Kodun süresi doldu. Tutarını ve e-postanı tekrar yaz, sana yeni bir kod gönderelim.",
     "otp_too_many_attempts": "Çok fazla başarısız deneme. Yeni bir kod istemek için tutarını ve e-postanı tekrar yaz.",
-    "kyc_needed_tip": "💡 Bitince doğrulama ekranında \"Devam\"a, sonra \"WhatsApp'a Dön\"e dokun. Pencere kendi kendine kapanırsa sorun değil — bu sohbete geri dön, kaldığımız yerden devam ederiz."
+    "kyc_needed_tip": "💡 Bitince doğrulama ekranında \"Devam\"a, sonra \"WhatsApp'a Dön\"e dokun. Pencere kendi kendine kapanırsa sorun değil — bu sohbete geri dön, kaldığımız yerden devam ederiz.",
+    "confirmed_deposit_lead": "*Bu hesap senin — {country_name}'deki {recipient_name}'e ne zaman para göndermek istersen kullan. Kaydet!*\n\nİstediğin kadar tekrar kullanabilirsin, sadece bankacılık uygulamanı aç ve tutarı değiştir, buraya tekrar yazmana gerek yok. (Başka bir ülkeye göndermek için burada yeni bir işlem başlatman gerekecek.)"
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",

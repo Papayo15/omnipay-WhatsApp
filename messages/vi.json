@@ -1196,7 +1196,7 @@
     "ask_account_number": "Bây giờ gửi Account Number.",
     "ask_bic": "Bây giờ gửi mã BIC/SWIFT (Bridge yêu cầu mã này cùng với IBAN).",
     "country_not_available_yet": "Chúng tôi chưa hỗ trợ {country} — chúng tôi đang nỗ lực để hỗ trợ. Hiện tại hãy thử Hoa Kỳ, Mexico, Brazil, Colombia, Anh hoặc Châu Âu.",
-    "confirmed_deposit_intro": "✅ Xong rồi. Chuyển chính xác {amount} {currency} qua {rail} vào tài khoản này:",
+    "confirmed_deposit_intro": "✅ Xong rồi. Từ ứng dụng ngân hàng di động, chuyển chính xác {amount} {currency} qua {rail} vào tài khoản này:",
     "label_bank": "Ngân hàng",
     "label_beneficiary": "Người thụ hưởng",
     "label_routing": "Routing Number",
@@ -1234,7 +1234,8 @@
     "otp_invalid": "Mã đó không đúng. Kiểm tra email của bạn và thử lại.",
     "otp_expired": "Mã đã hết hạn. Gửi lại số tiền và email để nhận mã mới.",
     "otp_too_many_attempts": "Quá nhiều lần thử sai. Gửi lại số tiền và email để yêu cầu mã mới.",
-    "kyc_needed_tip": "💡 Khi xong, nhấn \"Tiếp tục\" trên màn hình xác minh, rồi \"Quay lại WhatsApp\". Nếu cửa sổ tự đóng cũng không sao — quay lại cuộc trò chuyện này, chúng ta sẽ tiếp tục từ chỗ đã dừng."
+    "kyc_needed_tip": "💡 Khi xong, nhấn \"Tiếp tục\" trên màn hình xác minh, rồi \"Quay lại WhatsApp\". Nếu cửa sổ tự đóng cũng không sao — quay lại cuộc trò chuyện này, chúng ta sẽ tiếp tục từ chỗ đã dừng.",
+    "confirmed_deposit_lead": "*Tài khoản này là của bạn — dùng bất cứ khi nào bạn muốn gửi tiền cho {recipient_name} tại {country_name}. Hãy lưu lại!*\n\nBạn có thể dùng lại nhiều lần tùy thích, chỉ cần mở ứng dụng ngân hàng và đổi số tiền, không cần nhắn lại ở đây. (Nếu gửi sang nước khác, bạn sẽ cần bắt đầu một lượt gửi mới ở đây.)"
   },
   "kyc": {
     "title": "Xác minh danh tính của bạn",

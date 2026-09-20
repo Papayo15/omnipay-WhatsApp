@@ -465,9 +465,11 @@ export async function POST(req: NextRequest): Promise<Response> {
     await sendWhatsAppMessage(waId, t("compare_reply", {
       amount: String(amount), currency: currency.toUpperCase(),
       country_name: getCountry(countryCc)?.name ?? countryCc, country_code: countryCc,
-      omnipay_amount:    cq.recipientGets.toLocaleString("en-US"),
-      competitor_amount: competitorGets.toLocaleString("en-US"),
-      savings:           savings.toLocaleString("en-US"),
+      // .toFixed(2), no toLocaleString — la coma de miles corta a la mitad el resaltado
+      // automático de números de WhatsApp/Android para montos ≥ 1000.
+      omnipay_amount:    cq.recipientGets.toFixed(2),
+      competitor_amount: competitorGets.toFixed(2),
+      savings:           savings.toFixed(2),
       recipient_currency: cq.recipientCurrency,
     }));
     // Puente directo al envío: guardamos el monto/moneda/país ya parseados (step 2) para
@@ -517,6 +519,14 @@ export async function POST(req: NextRequest): Promise<Response> {
         await setLastOrder(waId, di.orderId);
         if (pendingReferralCode) await clearPendingReferralCode(waId);
         const lines = [
+          // Lo más importante primero, en negritas: esta cuenta es del destinatario y sirve
+          // para siempre, no solo para este envío — feedback en vivo: antes esto quedaba
+          // hasta el final de un mensaje largo y se perdía.
+          t("confirmed_deposit_lead", {
+            recipient_name: session.recipientName,
+            country_name: getCountry(session.country)?.name ?? session.country,
+          }),
+          "",
           t("confirmed_deposit_intro", { amount: di.amount_to_deposit, currency: di.currency, rail: di.rail }),
           "",
           ...(di.bank_name        ? [`${t("label_bank")}: ${di.bank_name}`] : []),
@@ -531,17 +541,13 @@ export async function POST(req: NextRequest): Promise<Response> {
           "",
           t("confirmed_deposit_footer", {
             recipient_name: session.recipientName,
-            recipient_amount: (session.recipientGets ?? session.amount).toLocaleString("en-US"),
+            // .toFixed(2), NUNCA toLocaleString — la coma de "9,842.75" corta el
+            // reconocimiento automático de números de WhatsApp/Android a la mitad
+            // (confirmado en vivo: solo "842.75" quedaba resaltado, el "9," se veía
+            // suelto). amount_to_deposit (arriba) ya usaba .toFixed(2) y por eso ese sí
+            // se resaltaba completo — misma cantidad, dos formatos distintos era el bug.
+            recipient_amount: (session.recipientGets ?? session.amount).toFixed(2),
             recipient_currency: session.recipientCurrency ?? session.currency,
-          }),
-          "",
-          // Bridge no genera una ficha nueva cada vez — esta MISMA cuenta es estable para
-          // este destinatario (reutiliza la misma liquidation address/VA). El usuario no
-          // necesita volver a pasar por WhatsApp para sus próximos envíos a la misma
-          // persona: puede guardarla en su banca en línea y solo cambiar el monto ahí.
-          t("confirmed_deposit_reusable", {
-            recipient_name: session.recipientName,
-            country_name: getCountry(session.country)?.name ?? session.country,
           }),
         ];
         await sendWhatsAppMessage(waId, lines.join("\n"));
@@ -589,7 +595,7 @@ export async function POST(req: NextRequest): Promise<Response> {
     await sendWhatsAppMessage(waId, t("confirm_summary", {
       name:     session.recipientName,
       account:  summary,
-      amount:   (session.recipientGets ?? session.amount).toLocaleString("en-US"),
+      amount:   (session.recipientGets ?? session.amount).toFixed(2),
       currency: session.recipientCurrency ?? session.currency,
     }));
     return NextResponse.json({ ok: true });
@@ -619,7 +625,7 @@ export async function POST(req: NextRequest): Promise<Response> {
     await sendWhatsAppMessage(waId, t("confirm_summary", {
       name:     session.recipientName,
       account:  summary,
-      amount:   (session.recipientGets ?? session.amount).toLocaleString("en-US"),
+      amount:   (session.recipientGets ?? session.amount).toFixed(2),
       currency: session.recipientCurrency ?? session.currency,
     }));
     return NextResponse.json({ ok: true });
