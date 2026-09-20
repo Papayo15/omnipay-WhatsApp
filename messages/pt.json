@@ -1228,7 +1228,11 @@
     "referral_invite_message": "Olá! Um amigo me recomendou a OmniPay 🌍 REF:{ref}",
     "change_email_prompt": "Seu e-mail atual é: {old_email}\n\nQual é o seu novo e-mail?",
     "change_email_confirmed": "✅ Pronto — seu e-mail agora é {email}. Seu próximo envio vai usá-lo.",
-    "change_email_none": "(nenhum salvo ainda)"
+    "change_email_none": "(nenhum salvo ainda)",
+    "otp_sent": "🔐 Por segurança, enviamos um código de 6 dígitos para {masked_email}. Digite-o aqui para confirmar que este e-mail é seu (expira em 10 min).",
+    "otp_invalid": "Esse código não está certo. Confira seu e-mail e tente de novo.",
+    "otp_expired": "O código expirou. Envie seu valor e e-mail de novo para receber um novo.",
+    "otp_too_many_attempts": "Muitas tentativas erradas. Envie seu valor e e-mail de novo para pedir um novo código."
   },
   "kyc": {
     "title": "Verifique sua identidade",

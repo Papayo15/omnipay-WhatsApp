@@ -44,8 +44,12 @@ import {
   setAwaitingEmailChange, isAwaitingEmailChange, clearAwaitingEmailChange,
   setLastOrder, getLastOrder, hasSharedReferralLink, markReferralLinkShared,
   setPendingReferralCode, getPendingReferralCode, clearPendingReferralCode,
+  setPendingEmailOtp, getPendingEmailOtp, clearPendingEmailOtp, incrementEmailOtpAttempts,
+  EMAIL_OTP_MAX_ATTEMPTS,
 } from "@/lib/wa-identity";
 import { getOrCreateCustomer }       from "@/providers/bridge/customers";
+import { sendEmailNotification }     from "@/lib/notify";
+import { emailStrings }              from "@/lib/email-i18n";
 import {
   validateAccountDetails, parseAccountField, mergeSecondAccountField, secondAccountPromptKey,
   accountPromptKey, fullAccountSummary,
@@ -190,6 +194,37 @@ function extractEmail(text: string): string | null {
   return m ? m[0] : null;
 }
 
+// "correo@ejemplo.com" → "co***o@ejemplo.com" — para mostrar el correo al que mandamos el
+// código sin repetirlo completo en el chat (por si alguien más ve la pantalla).
+function maskEmail(email: string): string {
+  const [local, domain] = email.split("@");
+  if (!domain) return email;
+  if (local.length <= 3) return `${local[0] ?? ""}***@${domain}`;
+  return `${local.slice(0, 2)}***${local.slice(-1)}@${domain}`;
+}
+
+// ── Verificación de dueño del correo (anti-suplantación) ──────────────────────────
+// Se llama SOLO la primera vez que un teléfono presenta un correo (ver los dos call sites
+// más abajo) — un teléfono que ya tiene este mismo correo vinculado (getEmailForPhone) nunca
+// pasa por aquí de nuevo. Genera un código de 6 dígitos, lo manda por correo (Resend, mismo
+// canal que ya usamos para recibos), y deja al usuario en espera de que lo escriba de vuelta
+// — ver el gate correspondiente en el handler principal más abajo.
+async function requestEmailOtp(
+  waId: string, locale: WaLocale, t: Awaited<ReturnType<typeof getWaTranslator>>,
+  email: string, purpose: "send" | "change_email",
+  amount?: number, currency?: string, country?: string,
+): Promise<void> {
+  const code = String(Math.floor(100000 + Math.random() * 900000));
+  await setPendingEmailOtp(waId, { email, code, purpose, amount, currency, country, locale, attempts: 0 });
+  const eT = emailStrings(locale);
+  await sendEmailNotification(email, eT.otp_subject, `
+    <div style="font-family:sans-serif;max-width:480px;margin:auto;padding:24px">
+      <h2 style="color:#16a34a;margin:0 0 16px">${eT.otp_h2}</h2>
+      <p>${eT.otp_body(code)}</p>
+    </div>`);
+  await sendWhatsAppMessage(waId, t("otp_sent", { masked_email: maskEmail(email) }));
+}
+
 // ── KYC gate — pide email/verifica Bridge, arranca la recolección de destinatario ──
 async function startKycOrCollection(
   waId: string, locale: WaLocale, t: Awaited<ReturnType<typeof getWaTranslator>>,
@@ -327,15 +362,41 @@ export async function POST(req: NextRequest): Promise<Response> {
   }
 
   // ── Esperando el correo nuevo tras "cambiar correo" ────────────────────────────
+  // También pasa por el código de 6 dígitos — sin esto, "cambiar correo" sería un atajo
+  // para saltarse la verificación de dueño del correo por completo.
   if (await isAwaitingEmailChange(waId)) {
     if (!isValidEmail(text)) {
       await sendWhatsAppMessage(waId, t("invalid_email"));
       return NextResponse.json({ ok: true });
     }
     const newEmail = text.trim().toLowerCase();
-    await setEmailForPhone(waId, newEmail, locale);
     await clearAwaitingEmailChange(waId);
-    await sendWhatsAppMessage(waId, t("change_email_confirmed", { email: newEmail }));
+    await requestEmailOtp(waId, locale, t, newEmail, "change_email");
+    return NextResponse.json({ ok: true });
+  }
+
+  // ── Esperando el código de 6 dígitos (verificación de dueño del correo) ────────
+  if (/^\d{6}$/.test(trimmed)) {
+    const pending = await getPendingEmailOtp(waId);
+    if (pending) {
+      if (trimmed === pending.code) {
+        await clearPendingEmailOtp(waId);
+        await setEmailForPhone(waId, pending.email, pending.locale);
+        const pendingLocale = (pending.locale as WaLocale) ?? locale;
+        const pendingT = await getWaTranslator(pendingLocale);
+        if (pending.purpose === "change_email") {
+          await sendWhatsAppMessage(waId, pendingT("change_email_confirmed", { email: pending.email }));
+        } else if (pending.amount && pending.currency && pending.country) {
+          await startKycOrCollection(waId, pendingLocale, pendingT, pending.amount, pending.currency, pending.country, pending.email);
+        }
+        return NextResponse.json({ ok: true });
+      }
+      const attempts = await incrementEmailOtpAttempts(waId, pending);
+      await sendWhatsAppMessage(waId, attempts >= EMAIL_OTP_MAX_ATTEMPTS ? t("otp_too_many_attempts") : t("otp_invalid"));
+      return NextResponse.json({ ok: true });
+    }
+    // Parece un código (6 dígitos) pero ya no hay ninguno pendiente — venció o nunca hubo.
+    await sendWhatsAppMessage(waId, t("otp_expired"));
     return NextResponse.json({ ok: true });
   }
 
@@ -583,8 +644,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       return NextResponse.json({ ok: true });
     }
     const email = text.trim().toLowerCase();
-    await setEmailForPhone(waId, email, locale);
-    await startKycOrCollection(waId, locale, t, session.amount, session.currency, session.country, email);
+    await requestEmailOtp(waId, locale, t, email, "send", session.amount, session.currency, session.country);
     return NextResponse.json({ ok: true });
   }
 
@@ -625,8 +685,7 @@ export async function POST(req: NextRequest): Promise<Response> {
   const email = extractEmail(text);
   if (email && isValidEmail(email)) {
     const cleanEmail = email.trim().toLowerCase();
-    await setEmailForPhone(waId, cleanEmail, locale);
-    await startKycOrCollection(waId, locale, t, amount, currency, country, cleanEmail);
+    await requestEmailOtp(waId, locale, t, cleanEmail, "send", amount, currency, country);
     return NextResponse.json({ ok: true });
   }
 

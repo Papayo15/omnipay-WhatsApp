@@ -1229,7 +1229,11 @@
     "referral_invite_message": "Merhaba! Bir arkadaşım bana OmniPay'i önerdi 🌍 REF:{ref}",
     "change_email_prompt": "Mevcut e-postan: {old_email}\n\nYeni e-postan ne?",
     "change_email_confirmed": "✅ Tamam — e-postan artık {email}. Bir sonraki transferin bunu kullanacak.",
-    "change_email_none": "(henüz kayıtlı yok)"
+    "change_email_none": "(henüz kayıtlı yok)",
+    "otp_sent": "🔐 Güvenliğin için {masked_email} adresine 6 haneli bir kod gönderdik. Bu e-postanın sana ait olduğunu onaylamak için buraya yaz (10 dakika içinde sona erer).",
+    "otp_invalid": "Bu kod doğru değil. E-postanı kontrol et ve tekrar dene.",
+    "otp_expired": "Kodun süresi doldu. Tutarını ve e-postanı tekrar yaz, sana yeni bir kod gönderelim.",
+    "otp_too_many_attempts": "Çok fazla başarısız deneme. Yeni bir kod istemek için tutarını ve e-postanı tekrar yaz."
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",

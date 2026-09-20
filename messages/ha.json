@@ -1228,7 +1228,11 @@
     "referral_invite_message": "Sannu! Wani aboki ya ba ni shawarar OmniPay 🌍 REF:{ref}",
     "change_email_prompt": "Imel ɗinka na yanzu shine: {old_email}\n\nMenene sabon imel ɗinka?",
     "change_email_confirmed": "✅ An gama — imel ɗinka yanzu shine {email}. Canja wurin ka na gaba zai yi amfani da shi.",
-    "change_email_none": "(babu wanda aka ajiye tukuna)"
+    "change_email_none": "(babu wanda aka ajiye tukuna)",
+    "otp_sent": "🔐 Don tsaronka, mun aika lambar lamba 6 zuwa {masked_email}. Shigar da ita anan don tabbatar da wannan imel naka ne (za ta ƙare cikin minti 10).",
+    "otp_invalid": "Wannan lambar ba daidai ba ce. Duba imel ɗinka ka sake gwadawa.",
+    "otp_expired": "Lambar ta ƙare. Sake tura adadin kuɗinka da imel don mu turo maka sabuwa.",
+    "otp_too_many_attempts": "Yawan gwaje-gwajen da suka gaza ya yi yawa. Sake tura adadin kuɗinka da imel don neman sabuwar lamba."
   },
   "kyc": {
     "title": "Tabbatar da ainihin ka",

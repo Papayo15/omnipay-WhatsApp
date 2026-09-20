@@ -26,6 +26,9 @@ export type WaStep = 1 | 2 | 3 | 5 | 6 | 65 | 7 | 8;
 // with the already-parsed amount/currency/country · 3 = need email · 5 = need recipient
 // name · 6 = need account field #1 · 65 = need account field #2 · 7 = awaiting SI/CANCELAR
 // · 8 = awaiting new email after "cambiar correo"
+// (Email-ownership OTP verification is a separate Redis pointer, wa:emailotp:* in
+// lib/wa-identity.ts — same pattern as "cambiar correo" above — not a session step, so it
+// can be checked independently of whatever step the generic 10-min session is in.)
 
 export interface WaSession {
   step:      WaStep;

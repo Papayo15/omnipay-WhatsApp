@@ -1229,7 +1229,11 @@
     "referral_invite_message": "Xin chào! Một người bạn đã giới thiệu OmniPay cho tôi 🌍 REF:{ref}",
     "change_email_prompt": "Email hiện tại của bạn là: {old_email}\n\nEmail mới của bạn là gì?",
     "change_email_confirmed": "✅ Xong — email của bạn bây giờ là {email}. Lần chuyển tiền tiếp theo sẽ dùng email này.",
-    "change_email_none": "(chưa lưu email nào)"
+    "change_email_none": "(chưa lưu email nào)",
+    "otp_sent": "🔐 Để bảo mật, chúng tôi đã gửi mã 6 chữ số đến {masked_email}. Nhập mã tại đây để xác nhận email này là của bạn (hết hạn sau 10 phút).",
+    "otp_invalid": "Mã đó không đúng. Kiểm tra email của bạn và thử lại.",
+    "otp_expired": "Mã đã hết hạn. Gửi lại số tiền và email để nhận mã mới.",
+    "otp_too_many_attempts": "Quá nhiều lần thử sai. Gửi lại số tiền và email để yêu cầu mã mới."
   },
   "kyc": {
     "title": "Xác minh danh tính của bạn",

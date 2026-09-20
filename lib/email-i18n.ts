@@ -15,6 +15,9 @@ interface EmailStrings {
   footer_thanks:      string;
   footer_auto:        string;
   ref:                string;
+  otp_subject:        string;
+  otp_h2:             string;
+  otp_body:           (code: string) => string;
 }
 
 const T: Record<string, EmailStrings> = {
@@ -32,6 +35,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "¡Gracias por usar OmniPay! Hasta la próxima. 👋",
     footer_auto:        "Este email fue generado automáticamente por OmniPay.",
     ref:                "Ref:",
+    otp_subject:        "Tu código de verificación OmniPay",
+    otp_h2:             "🔐 Verifica tu correo",
+    otp_body:           (code: string) => `Tu código de verificación es <strong>${code}</strong>. Escríbelo en WhatsApp para confirmar que este correo es tuyo. Vence en 10 minutos.`,
   },
   en: {
     deposit_subject:    "OmniPay: deposit received ✅",
@@ -47,6 +53,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "Thanks for using OmniPay! See you next time. 👋",
     footer_auto:        "This email was generated automatically by OmniPay.",
     ref:                "Ref:",
+    otp_subject:        "Your OmniPay verification code",
+    otp_h2:             "🔐 Verify your email",
+    otp_body:           (code: string) => `Your verification code is <strong>${code}</strong>. Enter it in WhatsApp to confirm this email is yours. Expires in 10 minutes.`,
   },
   fr: {
     deposit_subject:    "OmniPay: dépôt reçu ✅",
@@ -62,6 +71,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "Merci d'utiliser OmniPay ! À bientôt. 👋",
     footer_auto:        "Cet email a été généré automatiquement par OmniPay.",
     ref:                "Réf :",
+    otp_subject:        "Votre code de vérification OmniPay",
+    otp_h2:             "🔐 Vérifiez votre e-mail",
+    otp_body:           (code: string) => `Votre code de vérification est <strong>${code}</strong>. Saisissez-le sur WhatsApp pour confirmer que cet e-mail est le vôtre. Expire dans 10 minutes.`,
   },
   de: {
     deposit_subject:    "OmniPay: Einzahlung erhalten ✅",
@@ -77,6 +89,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "Danke für die Nutzung von OmniPay! Bis bald. 👋",
     footer_auto:        "Diese E-Mail wurde automatisch von OmniPay generiert.",
     ref:                "Ref:",
+    otp_subject:        "Dein OmniPay-Bestätigungscode",
+    otp_h2:             "🔐 Bestätige deine E-Mail",
+    otp_body:           (code: string) => `Dein Bestätigungscode lautet <strong>${code}</strong>. Gib ihn in WhatsApp ein, um zu bestätigen, dass diese E-Mail dir gehört. Läuft in 10 Minuten ab.`,
   },
   pt: {
     deposit_subject:    "OmniPay: depósito recebido ✅",
@@ -92,6 +107,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "Obrigado por usar o OmniPay! Até a próxima. 👋",
     footer_auto:        "Este email foi gerado automaticamente pelo OmniPay.",
     ref:                "Ref:",
+    otp_subject:        "Seu código de verificação OmniPay",
+    otp_h2:             "🔐 Verifique seu e-mail",
+    otp_body:           (code: string) => `Seu código de verificação é <strong>${code}</strong>. Digite-o no WhatsApp para confirmar que este e-mail é seu. Expira em 10 minutos.`,
   },
   it: {
     deposit_subject:    "OmniPay: deposito ricevuto ✅",
@@ -107,6 +125,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "Grazie per usare OmniPay! A presto. 👋",
     footer_auto:        "Questa email è stata generata automaticamente da OmniPay.",
     ref:                "Ref:",
+    otp_subject:        "Il tuo codice di verifica OmniPay",
+    otp_h2:             "🔐 Verifica la tua email",
+    otp_body:           (code: string) => `Il tuo codice di verifica è <strong>${code}</strong>. Inseriscilo su WhatsApp per confermare che questa email è tua. Scade tra 10 minuti.`,
   },
   nl: {
     deposit_subject:    "OmniPay: storting ontvangen ✅",
@@ -122,6 +143,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "Bedankt voor het gebruik van OmniPay! Tot de volgende keer. 👋",
     footer_auto:        "Deze e-mail is automatisch gegenereerd door OmniPay.",
     ref:                "Ref:",
+    otp_subject:        "Je OmniPay-verificatiecode",
+    otp_h2:             "🔐 Bevestig je e-mail",
+    otp_body:           (code: string) => `Je verificatiecode is <strong>${code}</strong>. Voer deze in op WhatsApp om te bevestigen dat dit jouw e-mail is. Verloopt over 10 minuten.`,
   },
   ar: {
     deposit_subject:    "OmniPay: تم استلام الإيداع ✅",
@@ -137,6 +161,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "شكراً لاستخدامك OmniPay! إلى اللقاء. 👋",
     footer_auto:        "تم إنشاء هذا البريد الإلكتروني تلقائياً بواسطة OmniPay.",
     ref:                "المرجع:",
+    otp_subject:        "رمز التحقق الخاص بك في OmniPay",
+    otp_h2:             "🔐 تحقق من بريدك الإلكتروني",
+    otp_body:           (code: string) => `رمز التحقق الخاص بك هو <strong>${code}</strong>. أدخله في WhatsApp لتأكيد أن هذا البريد الإلكتروني ملكك. تنتهي صلاحيته خلال 10 دقائق.`,
   },
   zh: {
     deposit_subject:    "OmniPay: 已收到存款 ✅",
@@ -152,6 +179,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "感谢使用 OmniPay！下次见。 👋",
     footer_auto:        "此邮件由 OmniPay 自动生成。",
     ref:                "Ref:",
+    otp_subject:        "您的OmniPay验证码",
+    otp_h2:             "🔐 验证您的邮箱",
+    otp_body:           (code: string) => `您的验证码是<strong>${code}</strong>。请在WhatsApp中输入以确认此邮箱是您的。10分钟后过期。`,
   },
   ja: {
     deposit_subject:    "OmniPay: 入金が確認されました ✅",
@@ -167,6 +197,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "OmniPay をご利用いただきありがとうございます！またのご利用をお待ちしています。 👋",
     footer_auto:        "このメールは OmniPay により自動生成されました。",
     ref:                "Ref:",
+    otp_subject:        "OmniPay認証コード",
+    otp_h2:             "🔐 メールを確認",
+    otp_body:           (code: string) => `認証コードは<strong>${code}</strong>です。WhatsAppに入力して、このメールがあなたのものであることを確認してください。10分で失効します。`,
   },
   ko: {
     deposit_subject:    "OmniPay: 입금 수령됨 ✅",
@@ -182,6 +215,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "OmniPay를 이용해 주셔서 감사합니다! 다음에 또 만나요. 👋",
     footer_auto:        "이 이메일은 OmniPay에 의해 자동 생성되었습니다.",
     ref:                "Ref:",
+    otp_subject:        "OmniPay 인증 코드",
+    otp_h2:             "🔐 이메일 확인",
+    otp_body:           (code: string) => `인증 코드는 <strong>${code}</strong>입니다. WhatsApp에 입력하여 이 이메일이 본인 것임을 확인하세요. 10분 후 만료됩니다.`,
   },
   ru: {
     deposit_subject:    "OmniPay: депозит получен ✅",
@@ -197,6 +233,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "Спасибо за использование OmniPay! До следующего раза. 👋",
     footer_auto:        "Это письмо было создано автоматически системой OmniPay.",
     ref:                "Ref:",
+    otp_subject:        "Ваш код подтверждения OmniPay",
+    otp_h2:             "🔐 Подтвердите вашу почту",
+    otp_body:           (code: string) => `Ваш код подтверждения: <strong>${code}</strong>. Введите его в WhatsApp, чтобы подтвердить, что эта почта ваша. Истекает через 10 минут.`,
   },
   hi: {
     deposit_subject:    "OmniPay: जमा प्राप्त हुई ✅",
@@ -212,6 +251,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "OmniPay का उपयोग करने के लिए धन्यवाद! फिर मिलेंगे। 👋",
     footer_auto:        "यह ईमेल OmniPay द्वारा स्वचालित रूप से उत्पन्न किया गया था।",
     ref:                "Ref:",
+    otp_subject:        "आपका OmniPay सत्यापन कोड",
+    otp_h2:             "🔐 अपना ईमेल सत्यापित करें",
+    otp_body:           (code: string) => `आपका सत्यापन कोड <strong>${code}</strong> है। यह पुष्टि करने के लिए कि यह ईमेल आपका है, इसे WhatsApp में दर्ज करें। 10 मिनट में समाप्त हो जाएगा।`,
   },
   id: {
     deposit_subject:    "OmniPay: setoran diterima ✅",
@@ -227,6 +269,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "Terima kasih telah menggunakan OmniPay! Sampai jumpa. 👋",
     footer_auto:        "Email ini dibuat secara otomatis oleh OmniPay.",
     ref:                "Ref:",
+    otp_subject:        "Kode verifikasi OmniPay Anda",
+    otp_h2:             "🔐 Verifikasi email Anda",
+    otp_body:           (code: string) => `Kode verifikasi Anda adalah <strong>${code}</strong>. Masukkan di WhatsApp untuk mengonfirmasi bahwa email ini milik Anda. Kedaluwarsa dalam 10 menit.`,
   },
   tr: {
     deposit_subject:    "OmniPay: yatırma alındı ✅",
@@ -242,6 +287,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "OmniPay'i kullandığınız için teşekkürler! Görüşürüz. 👋",
     footer_auto:        "Bu e-posta OmniPay tarafından otomatik olarak oluşturuldu.",
     ref:                "Ref:",
+    otp_subject:        "OmniPay doğrulama kodunuz",
+    otp_h2:             "🔐 E-postanı doğrula",
+    otp_body:           (code: string) => `Doğrulama kodun <strong>${code}</strong>. Bu e-postanın sana ait olduğunu onaylamak için WhatsApp'a gir. 10 dakika içinde sona erer.`,
   },
   vi: {
     deposit_subject:    "OmniPay: đã nhận tiền nạp ✅",
@@ -257,6 +305,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "Cảm ơn bạn đã sử dụng OmniPay! Hẹn gặp lại. 👋",
     footer_auto:        "Email này được tạo tự động bởi OmniPay.",
     ref:                "Ref:",
+    otp_subject:        "Mã xác minh OmniPay của bạn",
+    otp_h2:             "🔐 Xác minh email của bạn",
+    otp_body:           (code: string) => `Mã xác minh của bạn là <strong>${code}</strong>. Nhập vào WhatsApp để xác nhận đây là email của bạn. Hết hạn sau 10 phút.`,
   },
   sw: {
     deposit_subject:    "OmniPay: amana imepokelewa ✅",
@@ -272,6 +323,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "Asante kwa kutumia OmniPay! Tutaonana tena. 👋",
     footer_auto:        "Barua pepe hii ilitengenezwa kiotomatiki na OmniPay.",
     ref:                "Ref:",
+    otp_subject:        "Msimbo wako wa uthibitisho wa OmniPay",
+    otp_h2:             "🔐 Thibitisha barua pepe yako",
+    otp_body:           (code: string) => `Msimbo wako wa uthibitisho ni <strong>${code}</strong>. Uandike kwenye WhatsApp kuthibitisha barua pepe hii ni yako. Utaisha baada ya dakika 10.`,
   },
   ha: {
     deposit_subject:    "OmniPay: an karɓi ajiya ✅",
@@ -287,6 +341,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "Mun gode da amfani da OmniPay! Sai an jima. 👋",
     footer_auto:        "An ƙirƙiri wannan imel ta atomatik ta OmniPay.",
     ref:                "Ref:",
+    otp_subject:        "Lambar tabbatarwa ta OmniPay",
+    otp_h2:             "🔐 Tabbatar da imel ɗinka",
+    otp_body:           (code: string) => `Lambar tabbatarwarka ita ce <strong>${code}</strong>. Shigar da ita a WhatsApp don tabbatar wannan imel naka ne. Za ta ƙare a cikin minti 10.`,
   },
   am: {
     deposit_subject:    "OmniPay: ተቀማጭ ተቀብሏል ✅",
@@ -302,6 +359,9 @@ const T: Record<string, EmailStrings> = {
     footer_thanks:      "OmniPay ስለተጠቀሙ እናመሰግናለን! እስከሚቀጥለው ጊዜ ድረስ። 👋",
     footer_auto:        "ይህ ኢሜይል በ OmniPay በራስ-ሰር ተፈጥሯል።",
     ref:                "Ref:",
+    otp_subject:        "የOmniPay ማረጋገጫ ኮድዎ",
+    otp_h2:             "🔐 ኢሜይልዎን ያረጋግጡ",
+    otp_body:           (code: string) => `የማረጋገጫ ኮድዎ <strong>${code}</strong> ነው። ይህ ኢሜይል የእርስዎ መሆኑን ለማረጋገጥ በWhatsApp ውስጥ ያስገቡት። በ10 ደቂቃ ውስጥ ያበቃል።`,
   },
 };
 

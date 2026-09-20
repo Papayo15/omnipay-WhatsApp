@@ -1229,7 +1229,11 @@
     "referral_invite_message": "Hoi! Een vriend heeft me OmniPay aangeraden 🌍 REF:{ref}",
     "change_email_prompt": "Je huidige e-mail is: {old_email}\n\nWat is je nieuwe e-mailadres?",
     "change_email_confirmed": "✅ Gedaan — je e-mail is nu {email}. Je volgende overboeking gebruikt deze.",
-    "change_email_none": "(nog geen opgeslagen)"
+    "change_email_none": "(nog geen opgeslagen)",
+    "otp_sent": "🔐 Voor je veiligheid hebben we een 6-cijferige code gestuurd naar {masked_email}. Voer die hier in om te bevestigen dat dit jouw e-mail is (verloopt over 10 min).",
+    "otp_invalid": "Die code klopt niet. Controleer je e-mail en probeer opnieuw.",
+    "otp_expired": "De code is verlopen. Stuur je bedrag en e-mail opnieuw, dan sturen we een nieuwe.",
+    "otp_too_many_attempts": "Te veel mislukte pogingen. Stuur je bedrag en e-mail opnieuw om een nieuwe code aan te vragen."
   },
   "kyc": {
     "title": "Verifieer je identiteit",

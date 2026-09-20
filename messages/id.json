@@ -1229,7 +1229,11 @@
     "referral_invite_message": "Hai! Seorang teman merekomendasikan OmniPay kepada saya 🌍 REF:{ref}",
     "change_email_prompt": "Email Anda saat ini: {old_email}\n\nApa email baru Anda?",
     "change_email_confirmed": "✅ Selesai — email Anda sekarang {email}. Transfer berikutnya akan menggunakannya.",
-    "change_email_none": "(belum ada yang tersimpan)"
+    "change_email_none": "(belum ada yang tersimpan)",
+    "otp_sent": "🔐 Demi keamanan, kami mengirim kode 6 digit ke {masked_email}. Masukkan di sini untuk mengonfirmasi email ini milik Anda (kedaluwarsa dalam 10 menit).",
+    "otp_invalid": "Kode itu salah. Periksa email Anda dan coba lagi.",
+    "otp_expired": "Kode sudah kedaluwarsa. Kirim ulang jumlah dan email Anda untuk mendapatkan kode baru.",
+    "otp_too_many_attempts": "Terlalu banyak percobaan gagal. Kirim ulang jumlah dan email Anda untuk meminta kode baru."
   },
   "kyc": {
     "title": "Verifikasi identitas Anda",

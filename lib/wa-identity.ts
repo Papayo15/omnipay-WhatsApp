@@ -272,6 +272,73 @@ export async function clearAwaitingEmailChange(waId: string): Promise<void> {
   } catch { /* non-critical */ }
 }
 
+// ── Verificación de dueño del correo (OTP por email) — anti-suplantación ─────────────
+// Bridge identifica clientes por correo, no por teléfono — sin esto, cualquiera que sepa o
+// adivine un correo ya aprobado en Bridge (el de otra persona, uno filtrado, uno de pruebas
+// viejas) puede escribirle al bot con ese correo y moverse como si fuera esa persona: el bot
+// nunca comprobaba que quien escribe es el dueño real del correo. Confirmado en vivo: un
+// correo de pruebas de hace un mes, ya aprobado en Bridge, dejó pasar a un número de
+// WhatsApp nuevo sin pedir ninguna verificación. Mismo patrón que usa la competencia
+// (Félix Pago, Remitly, etc.): la PRIMERA vez que un teléfono presenta un correo, se manda
+// un código de 6 dígitos a ese correo y se exige de vuelta en el chat antes de continuar.
+// Una vez verificado, el puntero normal (wa:id2email, arriba) recuerda esa relación para
+// siempre — no se repite el código en envíos futuros desde el mismo teléfono.
+const EMAIL_OTP_TTL_SECONDS = 10 * 60;
+const EMAIL_OTP_MAX_ATTEMPTS = 5;
+
+export interface PendingEmailOtp {
+  email:    string;
+  code:     string;
+  // "send": viene de un envío en curso, retoma startKycOrCollection con estos datos tras
+  // verificar. "change_email": viene de "cambiar correo", solo actualiza el puntero — no
+  // hay envío en curso, así que amount/currency/country quedan vacíos.
+  purpose:  "send" | "change_email";
+  amount?:   number;
+  currency?: string;
+  country?:  string;
+  locale:   string;
+  attempts: number;
+}
+
+export async function setPendingEmailOtp(waId: string, p: PendingEmailOtp): Promise<void> {
+  try {
+    const redis = await getRedis();
+    await redis.set(`wa:emailotp:${hashPhone(waId)}`, JSON.stringify(p), { EX: EMAIL_OTP_TTL_SECONDS });
+  } catch { /* non-critical */ }
+}
+
+export async function getPendingEmailOtp(waId: string): Promise<PendingEmailOtp | null> {
+  try {
+    const redis = await getRedis();
+    const raw = await redis.get(`wa:emailotp:${hashPhone(waId)}`);
+    return raw ? (JSON.parse(raw) as PendingEmailOtp) : null;
+  } catch {
+    return null;
+  }
+}
+
+// Registra un intento fallido — no consume el código, solo cuenta. El llamador decide
+// cuándo tirar todo (EMAIL_OTP_MAX_ATTEMPTS) para forzar pedir un código nuevo en vez de
+// dejar intentos ilimitados contra un código de 6 dígitos (1 millón de combinaciones).
+export async function incrementEmailOtpAttempts(waId: string, current: PendingEmailOtp): Promise<number> {
+  const attempts = current.attempts + 1;
+  if (attempts < EMAIL_OTP_MAX_ATTEMPTS) {
+    await setPendingEmailOtp(waId, { ...current, attempts });
+  } else {
+    await clearPendingEmailOtp(waId);
+  }
+  return attempts;
+}
+
+export { EMAIL_OTP_MAX_ATTEMPTS };
+
+export async function clearPendingEmailOtp(waId: string): Promise<void> {
+  try {
+    const redis = await getRedis();
+    await redis.del(`wa:emailotp:${hashPhone(waId)}`);
+  } catch { /* non-critical */ }
+}
+
 // ── Último order_id del usuario — para el comando "Estado" del bot ───────────
 // Puntero corto (no PII: solo el order_id que /api/bridge/send ya generó), mismo TTL
 // que lib/order-state.ts (48h) — no tiene caso recordarlo más tiempo que el propio pedido.

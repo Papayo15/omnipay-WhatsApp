@@ -1227,7 +1227,11 @@
     "referral_invite_message": "Hi! A friend recommended OmniPay to me 🌍 REF:{ref}",
     "change_email_prompt": "Your current email is: {old_email}\n\nWhat's your new email?",
     "change_email_confirmed": "✅ Done — your email is now {email}. Your next transfer will use it.",
-    "change_email_none": "(none saved yet)"
+    "change_email_none": "(none saved yet)",
+    "otp_sent": "🔐 For your security, we sent a 6-digit code to {masked_email}. Enter it here to confirm this email is yours (expires in 10 min).",
+    "otp_invalid": "That code isn't right. Check your email and try again.",
+    "otp_expired": "That code expired. Send your amount and email again and we'll text you a new one.",
+    "otp_too_many_attempts": "Too many failed attempts. Send your amount and email again to request a new code."
   },
   "kyc": {
     "title": "Verify your identity",
