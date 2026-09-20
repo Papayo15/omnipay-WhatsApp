@@ -1232,7 +1232,8 @@
     "otp_sent": "🔐 Don tsaronka, mun aika lambar lamba 6 zuwa {masked_email}. Shigar da ita anan don tabbatar da wannan imel naka ne (za ta ƙare cikin minti 10).",
     "otp_invalid": "Wannan lambar ba daidai ba ce. Duba imel ɗinka ka sake gwadawa.",
     "otp_expired": "Lambar ta ƙare. Sake tura adadin kuɗinka da imel don mu turo maka sabuwa.",
-    "otp_too_many_attempts": "Yawan gwaje-gwajen da suka gaza ya yi yawa. Sake tura adadin kuɗinka da imel don neman sabuwar lamba."
+    "otp_too_many_attempts": "Yawan gwaje-gwajen da suka gaza ya yi yawa. Sake tura adadin kuɗinka da imel don neman sabuwar lamba.",
+    "kyc_needed_tip": "💡 Idan ka gama, danna \"Ci gaba\" a allon tabbatarwa, sannan \"Koma WhatsApp\". Idan taga ta rufe da kanta, babu matsala — koma wannan hira, za mu ci gaba daga inda muka tsaya."
   },
   "kyc": {
     "title": "Tabbatar da ainihin ka",

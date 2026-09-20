@@ -264,7 +264,7 @@ async function startKycOrCollection(
     const customerIdParam = customer?.id ? `&customer_id=${encodeURIComponent(customer.id)}` : "";
     const kycLink = `${APP_URL}/kyc?email=${encodeURIComponent(email)}&wa=${hashPhone(waId)}&locale=${locale}${customerIdParam}`;
     await setPendingTransfer(email, { waId, locale, amount, currency, country });
-    await sendWhatsAppMessage(waId, t("kyc_needed", { link: kycLink }));
+    await sendWhatsAppMessage(waId, `${t("kyc_needed", { link: kycLink })}\n\n${t("kyc_needed_tip")}`);
     await clearSession(waId);
     return;
   }

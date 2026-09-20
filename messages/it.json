@@ -1233,7 +1233,8 @@
     "otp_sent": "🔐 Per sicurezza, abbiamo inviato un codice a 6 cifre a {masked_email}. Scrivilo qui per confermare che questa email è tua (scade tra 10 min).",
     "otp_invalid": "Quel codice non è corretto. Controlla la tua email e riprova.",
     "otp_expired": "Il codice è scaduto. Scrivi di nuovo il tuo importo ed email e te ne mandiamo uno nuovo.",
-    "otp_too_many_attempts": "Troppi tentativi falliti. Scrivi di nuovo il tuo importo ed email per richiedere un nuovo codice."
+    "otp_too_many_attempts": "Troppi tentativi falliti. Scrivi di nuovo il tuo importo ed email per richiedere un nuovo codice.",
+    "kyc_needed_tip": "💡 Alla fine, tocca \"Continua\" nella schermata di verifica, poi \"Torna a WhatsApp\". Se la finestra si chiude da sola, nessun problema — torna in questa chat e riprendiamo da dove eravamo rimasti."
   },
   "kyc": {
     "title": "Verifica la tua identità",

@@ -1233,7 +1233,8 @@
     "otp_sent": "🔐 Güvenliğin için {masked_email} adresine 6 haneli bir kod gönderdik. Bu e-postanın sana ait olduğunu onaylamak için buraya yaz (10 dakika içinde sona erer).",
     "otp_invalid": "Bu kod doğru değil. E-postanı kontrol et ve tekrar dene.",
     "otp_expired": "Kodun süresi doldu. Tutarını ve e-postanı tekrar yaz, sana yeni bir kod gönderelim.",
-    "otp_too_many_attempts": "Çok fazla başarısız deneme. Yeni bir kod istemek için tutarını ve e-postanı tekrar yaz."
+    "otp_too_many_attempts": "Çok fazla başarısız deneme. Yeni bir kod istemek için tutarını ve e-postanı tekrar yaz.",
+    "kyc_needed_tip": "💡 Bitince doğrulama ekranında \"Devam\"a, sonra \"WhatsApp'a Dön\"e dokun. Pencere kendi kendine kapanırsa sorun değil — bu sohbete geri dön, kaldığımız yerden devam ederiz."
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",

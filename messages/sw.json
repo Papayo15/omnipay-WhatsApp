@@ -1233,7 +1233,8 @@
     "otp_sent": "🔐 Kwa usalama wako, tumetuma msimbo wa tarakimu 6 kwa {masked_email}. Uandike hapa kuthibitisha barua pepe hii ni yako (utaisha baada ya dakika 10).",
     "otp_invalid": "Msimbo huo si sahihi. Angalia barua pepe yako na ujaribu tena.",
     "otp_expired": "Msimbo umeisha muda wake. Tuma tena kiasi na barua pepe yako ili tukutumie mpya.",
-    "otp_too_many_attempts": "Majaribio mengi yameshindwa. Tuma tena kiasi na barua pepe yako kuomba msimbo mpya."
+    "otp_too_many_attempts": "Majaribio mengi yameshindwa. Tuma tena kiasi na barua pepe yako kuomba msimbo mpya.",
+    "kyc_needed_tip": "💡 ukimaliza, gusa \"Endelea\" kwenye skrini ya uthibitisho, kisha \"Rudi WhatsApp\". Ikiwa dirisha litajifunga lenyewe, si tatizo — rudi kwenye mazungumzo haya, tutaendelea pale tulipoishia."
   },
   "kyc": {
     "title": "Thibitisha utambulisho wako",

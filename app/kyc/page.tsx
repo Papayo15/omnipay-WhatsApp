@@ -6,7 +6,7 @@
 // already does for its own KYC step (Bridge manages KYC via its Persona widget — no
 // direct document-upload API exists, so we never build our own upload UI).
 
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, useCallback, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -20,10 +20,44 @@ import { buildWhatsAppLink } from "@/lib/messaging";
 const APPROVAL_POLL_INTERVAL_MS = 3000;
 const APPROVAL_POLL_MAX_ATTEMPTS = 40; // ~2 minutos
 
+type Status = "loading" | "verifying" | "error" | "missing" | "done" | "pending";
+
 function KycInner() {
   const t = useTranslations("kyc");
   const params = useSearchParams();
-  const [status, setStatus] = useState<"loading" | "verifying" | "error" | "missing" | "done" | "pending">("loading");
+  const [status, setStatus] = useState<Status>("loading");
+  const pollCancelledRef = useRef(false);
+
+  // Sondea /api/whatsapp/kyc-link hasta que needs_kyc:false (aprobado de verdad) o se agoten
+  // los intentos (~2 min) — usado tanto cuando Persona SÍ redirige de vuelta aquí (done=1)
+  // como, ahora, cuando abrimos Persona en una pestaña aparte y esta pestaña se queda viva
+  // sondeando por su cuenta (ver más abajo) — Persona a veces solo redirige si el usuario
+  // toca su propio botón "Continuar", y en el navegador integrado de WhatsApp esa pestaña
+  // puede cerrarse sola antes de eso. Con esto, esta pantalla se actualiza sola sin depender
+  // de que Persona dispare nada.
+  const pollApproval = useCallback((email: string, wa: string, locale: string) => {
+    pollCancelledRef.current = false;
+    let attempts = 0;
+    queueMicrotask(() => setStatus("verifying"));
+
+    const poll = async () => {
+      if (pollCancelledRef.current) return;
+      attempts += 1;
+      try {
+        const qs = new URLSearchParams({ email, wa, locale });
+        const res = await fetch(`/api/whatsapp/kyc-link?${qs}`);
+        if (res.ok) {
+          const data = await res.json() as { needs_kyc: boolean };
+          if (!data.needs_kyc) { if (!pollCancelledRef.current) setStatus("done"); return; }
+        }
+      } catch { /* red intermitente — seguimos intentando hasta agotar los intentos */ }
+
+      if (pollCancelledRef.current) return;
+      if (attempts >= APPROVAL_POLL_MAX_ATTEMPTS) { setStatus("pending"); return; }
+      setTimeout(poll, APPROVAL_POLL_INTERVAL_MS);
+    };
+    poll();
+  }, []);
 
   useEffect(() => {
     const email      = params.get("email");
@@ -34,39 +68,16 @@ function KycInner() {
     const customerId = params.get("customer_id") ?? "";
 
     if (done) {
-      // Regresó de Persona — eso solo confirma que TERMINÓ de subir sus datos, no que
-      // Bridge ya lo aprobó (esa revisión puede tardar más). Sin correo (links viejos, sin
-      // el parámetro) no hay forma de confirmar — mostramos la pantalla de una vez, como
-      // antes. Con correo, sondeamos /api/whatsapp/kyc-link hasta ver needs_kyc:false antes
-      // de activar el botón de verdad.
-      if (!email) { setStatus("done"); return; }
-
-      let cancelled = false;
-      let attempts = 0;
-      setStatus("verifying");
-
-      const poll = async () => {
-        if (cancelled) return;
-        attempts += 1;
-        try {
-          const qs = new URLSearchParams({ email, wa, locale });
-          const res = await fetch(`/api/whatsapp/kyc-link?${qs}`);
-          if (res.ok) {
-            const data = await res.json() as { needs_kyc: boolean };
-            if (!data.needs_kyc) { if (!cancelled) setStatus("done"); return; }
-          }
-        } catch { /* red intermitente — seguimos intentando hasta agotar los intentos */ }
-
-        if (cancelled) return;
-        if (attempts >= APPROVAL_POLL_MAX_ATTEMPTS) { setStatus("pending"); return; }
-        setTimeout(poll, APPROVAL_POLL_INTERVAL_MS);
-      };
-      poll();
-
-      return () => { cancelled = true; };
+      // Regresó de Persona (o el usuario volvió solo a esta pestaña) — eso solo confirma que
+      // Persona TERMINÓ de procesar, no que Bridge ya aprobó (esa revisión puede tardar más).
+      // Sin correo (links viejos, sin el parámetro) no hay forma de confirmar — mostramos la
+      // pantalla de una vez, como antes.
+      if (!email) { queueMicrotask(() => setStatus("done")); return; }
+      pollApproval(email, wa, locale);
+      return () => { pollCancelledRef.current = true; };
     }
 
-    if (!email) { setStatus("missing"); return; }
+    if (!email) { queueMicrotask(() => setStatus("missing")); return; }
 
     // customer_id (cuando el bot de WhatsApp ya resolvió/creó el cliente momentos antes)
     // evita que este endpoint tenga que volver a buscarlo por correo — la búsqueda de
@@ -92,11 +103,27 @@ function KycInner() {
         // ver providers/bridge/customers.ts) — el link de ToS ya trae ?tos_done=1 para
         // volver aquí y seguir directo a KYC.
         const nextUrl = data.needs_tos ? data.tos_url : data.kyc_url;
-        if (nextUrl) window.location.replace(nextUrl);
-        else setStatus("error");
+        if (!nextUrl) { setStatus("error"); return; }
+
+        // Abrimos Persona/ToS en una pestaña APARTE en vez de navegar esta misma pestaña —
+        // así, si Persona nunca dispara su propio redirect de vuelta (pasa seguido: solo
+        // redirige si el usuario toca su botón "Continuar", y el navegador integrado de
+        // WhatsApp a veces cierra esa ventana solo antes de eso), esta pestaña se queda viva
+        // y puede sondear la aprobación por su cuenta (pollApproval arriba) — el usuario ve
+        // el botón "Volver a WhatsApp" aparecer solo, sin depender de nada de Persona.
+        // El navegador integrado de WhatsApp suele bloquear window.open — si eso pasa
+        // (devuelve null/undefined), caemos al comportamiento de siempre: navegar esta misma
+        // pestaña, confiando en que Persona sí redirija a ?done=1.
+        const opened = window.open(nextUrl, "_blank");
+        if (opened) {
+          pollApproval(email, wa, locale);
+        } else {
+          window.location.replace(nextUrl);
+        }
       })
       .catch(() => setStatus("error"));
-  }, [params]);
+    return () => { pollCancelledRef.current = true; };
+  }, [params, pollApproval]);
 
   const botNumber = process.env.NEXT_PUBLIC_WHATSAPP_BOT_NUMBER ?? "";
   const whatsAppLink = buildWhatsAppLink(t("done_prefill"), botNumber);

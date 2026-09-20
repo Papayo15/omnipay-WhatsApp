@@ -1233,7 +1233,8 @@
     "otp_sent": "🔐 Demi keamanan, kami mengirim kode 6 digit ke {masked_email}. Masukkan di sini untuk mengonfirmasi email ini milik Anda (kedaluwarsa dalam 10 menit).",
     "otp_invalid": "Kode itu salah. Periksa email Anda dan coba lagi.",
     "otp_expired": "Kode sudah kedaluwarsa. Kirim ulang jumlah dan email Anda untuk mendapatkan kode baru.",
-    "otp_too_many_attempts": "Terlalu banyak percobaan gagal. Kirim ulang jumlah dan email Anda untuk meminta kode baru."
+    "otp_too_many_attempts": "Terlalu banyak percobaan gagal. Kirim ulang jumlah dan email Anda untuk meminta kode baru.",
+    "kyc_needed_tip": "💡 Setelah selesai, ketuk \"Lanjutkan\" di layar verifikasi, lalu \"Kembali ke WhatsApp\". Jika jendela tertutup sendiri, tidak masalah — kembali ke chat ini, kita lanjutkan dari sana."
   },
   "kyc": {
     "title": "Verifikasi identitas Anda",

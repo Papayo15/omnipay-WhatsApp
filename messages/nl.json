@@ -1233,7 +1233,8 @@
     "otp_sent": "🔐 Voor je veiligheid hebben we een 6-cijferige code gestuurd naar {masked_email}. Voer die hier in om te bevestigen dat dit jouw e-mail is (verloopt over 10 min).",
     "otp_invalid": "Die code klopt niet. Controleer je e-mail en probeer opnieuw.",
     "otp_expired": "De code is verlopen. Stuur je bedrag en e-mail opnieuw, dan sturen we een nieuwe.",
-    "otp_too_many_attempts": "Te veel mislukte pogingen. Stuur je bedrag en e-mail opnieuw om een nieuwe code aan te vragen."
+    "otp_too_many_attempts": "Te veel mislukte pogingen. Stuur je bedrag en e-mail opnieuw om een nieuwe code aan te vragen.",
+    "kyc_needed_tip": "💡 Tik aan het einde op \"Doorgaan\" op het verificatiescherm en dan op \"Terug naar WhatsApp\". Sluit het venster zichzelf? Geen probleem — kom terug naar deze chat, we gaan gewoon verder waar we gebleven waren."
   },
   "kyc": {
     "title": "Verifieer je identiteit",

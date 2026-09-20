@@ -1233,7 +1233,8 @@
     "otp_sent": "🔐 Để bảo mật, chúng tôi đã gửi mã 6 chữ số đến {masked_email}. Nhập mã tại đây để xác nhận email này là của bạn (hết hạn sau 10 phút).",
     "otp_invalid": "Mã đó không đúng. Kiểm tra email của bạn và thử lại.",
     "otp_expired": "Mã đã hết hạn. Gửi lại số tiền và email để nhận mã mới.",
-    "otp_too_many_attempts": "Quá nhiều lần thử sai. Gửi lại số tiền và email để yêu cầu mã mới."
+    "otp_too_many_attempts": "Quá nhiều lần thử sai. Gửi lại số tiền và email để yêu cầu mã mới.",
+    "kyc_needed_tip": "💡 Khi xong, nhấn \"Tiếp tục\" trên màn hình xác minh, rồi \"Quay lại WhatsApp\". Nếu cửa sổ tự đóng cũng không sao — quay lại cuộc trò chuyện này, chúng ta sẽ tiếp tục từ chỗ đã dừng."
   },
   "kyc": {
     "title": "Xác minh danh tính của bạn",
