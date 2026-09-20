@@ -22,7 +22,6 @@ import { emailStrings }                         from "@/lib/email-i18n";
 import { sendWhatsAppMessage, sendWhatsAppTemplate, templateLanguageCode } from "@/lib/whatsapp";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
 import { takePendingTransfer, isWithinMessageWindow }        from "@/lib/wa-identity";
-import { simulateKycApproval }                  from "@/providers/bridge/customers";
 import { beginRecipientCollection }             from "@/lib/wa-flow";
 import { getCountry }                           from "@/constants/countries";
 
@@ -249,20 +248,9 @@ export async function POST(req: NextRequest): Promise<Response> {
         `Cuenta permanentemente cerrada.`,
       );
     } else if ((status === "active" || status === "approved") && email) {
-      // SANDBOX ÚNICAMENTE — Bridge sandbox aprueba el endorsement "base" (identidad) casi
-      // al instante cuando Persona termina (su propio entorno de prueba), pero los
-      // endorsements por riel/país (spei/pix/cop) se quedan en "incomplete" indefinidamente
-      // — atorados en un requisito "account_processing" que nunca avanza solo. Confirmado en
-      // vivo: un cliente real que sí completó Persona se quedó con spei "incomplete" varias
-      // horas después, y el envío falló con "missing_required_endorsements" al intentar
-      // depositar a México. simulate_kyc_approval (endpoint sandbox-only de Bridge) sí los
-      // desatora — confirmado directo contra la API. NUNCA se llama en producción: ahí la
-      // aprobación de endorsements es el proceso de cumplimiento real de Bridge, no algo que
-      // debamos simular.
-      if ((process.env.BRIDGE_API_BASE ?? "").includes("sandbox")) {
-        try { await simulateKycApproval(customerId); }
-        catch (e) { console.error("[bridge/webhook] simulateKycApproval failed:", (e as Error).message); }
-      }
+      // (El "spei/pix/cop se quedan en incomplete" ya se resuelve en app/api/bridge/send —
+      // mismo simulate_kyc_approval que YA usaban checkout/pay/b2b/invite, justo antes de
+      // mover el dinero. No repetido aquí — no vale la pena un segundo camino para lo mismo.)
       // Módulo 2 — proactive WhatsApp confirmation once Bridge approves a customer that
       // came from the WhatsApp bot's KYC link. Only fires if we have a pending transfer
       // for this email (set in app/api/whatsapp/webhook/route.ts when the kyc_needed

@@ -16,7 +16,7 @@ import { NextRequest, NextResponse }        from "next/server";
 import {
   getOrCreateCustomer, getCustomer,
   patchCustomerAddress, ensureEndorsements, getKycLink, createKycLink,
-  createTosLink, ALPHA2_TO_ALPHA3, RAIL_ENDORSEMENT,
+  createTosLink, ALPHA2_TO_ALPHA3, RAIL_ENDORSEMENT, simulateKycApproval,
 } from "@/providers/bridge/customers";
 import { createLiquidationAddress, ensureExternalAccount, NATIVE_RAILS } from "@/providers/bridge/liquidation";
 import type { CreateLiquidationParams } from "@/providers/bridge/liquidation";
@@ -267,6 +267,18 @@ export async function POST(req: NextRequest): Promise<Response> {
       ? [...ENDORSEMENTS, railEndorsement]
       : ENDORSEMENTS;
     try { await ensureEndorsements(senderCustomer.id, fullEndorsements); } catch { /* best-effort */ }
+
+    // SANDBOX ÚNICAMENTE — mismo patrón que ya usa app/api/bridge/pay/route.ts (y checkout/
+    // b2b/invite). Bridge sandbox aprueba el endorsement "base" (identidad) casi al instante
+    // cuando Persona termina, pero los endorsements por riel/país (spei/pix/cop) se quedan
+    // en "incomplete" — atorados en un requisito "account_processing" que nunca avanza solo.
+    // Este endpoint (usado por el bot de WhatsApp) era el único de todos los que mueven
+    // dinero que no llamaba simulate_kyc_approval — confirmado en vivo: un remitente que sí
+    // completó Persona de verdad seguía recibiendo 403 missing_required_endorsements al
+    // intentar depositar por SPEI. Nunca corre en producción.
+    if (isSandbox) {
+      try { await simulateKycApproval(senderCustomer.id); } catch { /* best-effort, may already be approved */ }
+    }
 
     // 6. Create External Account + Liquidation Address under SENDER's customer.
     //    ownerName = recipient_name — this is the bank transfer beneficiary name on the payout.
