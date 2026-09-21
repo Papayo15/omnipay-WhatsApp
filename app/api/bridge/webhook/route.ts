@@ -16,9 +16,8 @@ import { getRedis }                             from "@/lib/redis";
 import { verifyBridgeWebhook, parseWebhookEvent } from "@/providers/bridge/webhooks";
 import { mapTransferStatus }                    from "@/providers/bridge/transfers";
 import { updateOrder, getOrderAsync, createOrder } from "@/lib/order-state";
-import { sendAdminWhatsApp, sendEmailNotification } from "@/lib/notify";
+import { sendAdminWhatsApp }                    from "@/lib/notify";
 import { buildReceiptURL }                      from "@/lib/link";
-import { emailStrings }                         from "@/lib/email-i18n";
 import { sendWhatsAppMessage, sendWhatsAppTemplate, templateLanguageCode } from "@/lib/whatsapp";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
 import { takePendingTransfer, isWithinMessageWindow }        from "@/lib/wa-identity";
@@ -150,27 +149,15 @@ export async function POST(req: NextRequest): Promise<Response> {
     const vaId      = String(data.virtual_account_id ?? data.id ?? "");
     const reference = String(data.developer_reference ?? "");
 
-    // Case 1: active OP- order exists → first-time deposit, advance state + email sender
+    // Case 1: active OP- order exists → first-time deposit, advance state.
+    // No email aquí — Bridge ya le manda su propio correo de confirmación de depósito al
+    // remitente directamente. Mandar el nuestro además era correo duplicado y gastaba cupo
+    // de Resend en algo que Bridge ya cubre; Resend queda solo para el código OTP de
+    // verificación de correo (app/api/whatsapp/webhook/route.ts, requestEmailOtp).
     if (reference.startsWith("OP-")) {
       const order = await getOrderAsync(reference);
       if (order && order.status === "PENDING_PAYIN") {
         updateOrder(reference, { status: "LIQUIDATING_FIAT" });
-        if (order.senderEmail) {
-          const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
-          const eT = emailStrings(order.senderLocale);
-          await sendEmailNotification(
-            order.senderEmail,
-            eT.deposit_subject,
-            `<div style="font-family:sans-serif;max-width:480px;margin:auto;padding:24px">
-              <h2 style="color:#16a34a;margin:0 0 16px">${eT.deposit_h2}</h2>
-              <p>${eT.deposit_body(order.recipientName)}</p>
-              <p><a href="${order.trackUrl ?? appUrl}" style="display:inline-block;background:#2563eb;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:8px">${eT.deposit_cta}</a></p>
-              <hr style="border:none;border-top:1px solid #e5e7eb;margin:20px 0">
-              <p style="color:#6b7280;font-size:13px;text-align:center">${eT.footer_thanks}</p>
-              <p style="color:#9ca3af;font-size:11px;margin-top:4px">OmniPay · ${eT.footer_auto}</p>
-            </div>`,
-          );
-        }
       }
     }
 
@@ -344,27 +331,10 @@ export async function handleCompletion(orderId: string, data: Record<string, unk
     `Comprobante: ${receiptUrl}`,
   );
 
-  const buildCompletionHtml = (eTx: ReturnType<typeof emailStrings>, role: "sender" | "recipient") => `
-    <div style="font-family:sans-serif;max-width:480px;margin:auto;padding:24px">
-      <h2 style="color:#16a34a;margin:0 0 16px">${eTx.completed_h2}</h2>
-      ${role === "sender"
-        ? `<p>${eTx.completed_sender(order?.recipientName ?? "")}</p>`
-        : `<p>${eTx.completed_receiver}</p>`}
-      ${destAmount ? `<p>${eTx.amount_received(destAmount, (destCurrency ?? "").toUpperCase())}</p>` : ""}
-      <p><a href="${receiptUrl}" style="display:inline-block;background:#16a34a;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold">${eTx.receipt_cta}</a></p>
-      <hr style="border:none;border-top:1px solid #e5e7eb;margin:20px 0">
-      <p style="color:#6b7280;font-size:13px;text-align:center">${eTx.footer_thanks}</p>
-      <p style="color:#9ca3af;font-size:11px;margin-top:8px">OmniPay · ${eTx.ref} ${orderId}</p>
-    </div>`;
-
-  if (order?.senderEmail) {
-    const eTsender = emailStrings(order.senderLocale);
-    await sendEmailNotification(order.senderEmail, eTsender.completed_subject, buildCompletionHtml(eTsender, "sender"));
-  }
-  if (order?.recipientEmail && order.recipientEmail !== order.senderEmail) {
-    const eTrecipient = emailStrings(order.recipientLocale);
-    await sendEmailNotification(order.recipientEmail, eTrecipient.completed_subject, buildCompletionHtml(eTrecipient, "recipient"));
-  }
+  // Sin correo de "pago completado" aquí — Bridge ya le manda al cliente su propio
+  // comprobante de la transferencia directamente. El nuestro era correo duplicado sobre
+  // algo que Bridge ya cubre; Resend queda solo para el código OTP de verificación de
+  // correo (app/api/whatsapp/webhook/route.ts, requestEmailOtp).
 
   // Módulo 3 — referral code IS the referrer's waId (see lib/referral.ts) — direct lookup,
   // no referral table. Fires once, when the REFERRED sender's transfer completes.

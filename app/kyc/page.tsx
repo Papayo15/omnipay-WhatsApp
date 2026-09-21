@@ -105,21 +105,17 @@ function KycInner() {
         const nextUrl = data.needs_tos ? data.tos_url : data.kyc_url;
         if (!nextUrl) { setStatus("error"); return; }
 
-        // Abrimos Persona/ToS en una pestaña APARTE en vez de navegar esta misma pestaña —
-        // así, si Persona nunca dispara su propio redirect de vuelta (pasa seguido: solo
-        // redirige si el usuario toca su botón "Continuar", y el navegador integrado de
-        // WhatsApp a veces cierra esa ventana solo antes de eso), esta pestaña se queda viva
-        // y puede sondear la aprobación por su cuenta (pollApproval arriba) — el usuario ve
-        // el botón "Volver a WhatsApp" aparecer solo, sin depender de nada de Persona.
-        // El navegador integrado de WhatsApp suele bloquear window.open — si eso pasa
-        // (devuelve null/undefined), caemos al comportamiento de siempre: navegar esta misma
-        // pestaña, confiando en que Persona sí redirija a ?done=1.
-        const opened = window.open(nextUrl, "_blank");
-        if (opened) {
-          pollApproval(email, wa, locale);
-        } else {
-          window.location.replace(nextUrl);
-        }
+        // Navegación directa en la MISMA pestaña — nunca "bloqueable" por el navegador (a
+        // diferencia de window.open, que probamos y falló en vivo: la mayoría de navegadores
+        // móviles bloquean una ventana emergente que no viene de un clic directo, ya que esta
+        // se abre desde una respuesta de fetch. Cuando el navegador la bloqueaba, a veces
+        // window.open igual devolvía una referencia "válida" y el código creía que sí había
+        // abierto, dejando a la usuaria atascada en esta pantalla sin ver Persona ni el aviso
+        // de bloqueo. Confirmado en vivo — no vale la pena el riesgo por la mejora de UX).
+        // Si Persona no redirige de vuelta solo (pasa seguido), el "mensaje escudo" ya
+        // enviado por WhatsApp le dice qué esperar, y el webhook de Bridge retoma la
+        // conversación de todos modos sin depender de esta pantalla.
+        window.location.replace(nextUrl);
       })
       .catch(() => setStatus("error"));
     return () => { pollCancelledRef.current = true; };
