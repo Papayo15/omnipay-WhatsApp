@@ -1,5 +1,23 @@
-// Route utilities — Bridge-only architecture.
+// Route utilities.
 // getTargetCurrency() is used across API routes and providers.
+
+import { NATIVE_RAILS } from "@/providers/bridge/liquidation";
+import { CONDUIT_RAIL_MAP } from "@/lib/conduit/rails";
+
+export type PaymentProvider = "bridge" | "conduit" | "unsupported";
+
+// Fuente única de verdad de qué proveedor mueve el dinero para cada país destino. Antes
+// vivía duplicada a mano en dos lugares que no se importaban entre sí — NATIVE_RAILS
+// (providers/bridge/liquidation.ts) y un Set re-tecleado a mano dentro de
+// app/api/whatsapp/webhook/route.ts (BRIDGE_NATIVE_COUNTRIES) — sin nada que forzara que
+// se mantuvieran sincronizados. Bridge tiene prioridad si un país estuviera (no debería)
+// en los dos mapas a la vez.
+export function getProviderForCountry(country: string): PaymentProvider {
+  const cc = country.toUpperCase();
+  if (NATIVE_RAILS[cc]) return "bridge";
+  if (CONDUIT_RAIL_MAP[cc]) return "conduit";
+  return "unsupported";
+}
 
 // Returns the local fiat currency for a given 2-letter country code.
 export function getTargetCurrency(targetCountry: string): string {

@@ -15,6 +15,7 @@ import { verifyConduitWebhook, parseConduitWebhookEvent } from "@/lib/conduit/we
 import { sendAdminWhatsApp, sendEmailNotification }       from "@/lib/notify";
 import { buildReceiptURL }                                from "@/lib/link";
 import { emailStrings }                                   from "@/lib/email-i18n";
+import { updateOrder, getOrderAsync }                     from "@/lib/order-state";
 
 export const runtime = "nodejs";
 
@@ -127,6 +128,9 @@ export async function POST(req: NextRequest): Promise<Response> {
   if (type === "payout.failed") {
     const orderId    = String((data as { clientReferenceId?: unknown }).clientReferenceId ?? "");
     const reasonCode = String((data as { failureCode?: unknown }).failureCode ?? "unknown");
+    if (orderId.startsWith("OPC-")) {
+      updateOrder(orderId, { status: "FAILED", errorMessage: reasonCode });
+    }
     await sendAdminWhatsApp(
       `🚨 OmniPay Conduit — Pago FALLIDO\n` +
       (orderId ? `Orden: ${orderId}\n` : "") +
@@ -149,6 +153,9 @@ async function handleConduitCompletion(
   const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
   const secret = process.env.LINK_SECRET ?? "";
 
+  updateOrder(orderId, { status: "COMPLETED", completedAt: Date.now() });
+  const order = await getOrderAsync(orderId);
+
   let receiptUrl = `${appUrl}/resultado?order_id=${orderId}`;
   try {
     receiptUrl = await buildReceiptURL(
@@ -156,7 +163,7 @@ async function handleConduitCompletion(
         id:  orderId,
         a:   Number((data as { assetAmount?: { amount?: unknown } }).assetAmount?.amount ?? 0),
         c:   String((data as { assetAmount?: { code?: unknown } }).assetAmount?.code ?? "USD").toUpperCase(),
-        n:   "OmniPay Transfer",
+        n:   order?.recipientName ?? "OmniPay Transfer",
         ts:  Date.now(),
         tt:  "conduit",
       },
@@ -171,16 +178,22 @@ async function handleConduitCompletion(
     `✅ OmniPay Conduit — Pago COMPLETADO\n` +
     `Orden: ${orderId}\n` +
     `Fecha: ${fechaHora}\n` +
+    (order?.destinationCountry ? `País: ${order.destinationCountry}\n` : "") +
     `Comprobante: ${receiptUrl}`,
   );
 
-  const senderEmail = String((data as { senderEmail?: unknown }).senderEmail ?? "");
+  // Conduit no tiene un correo propio que mandarle al remitente — a diferencia de Bridge, el
+  // remitente NUNCA es un customer real de Conduit (modelo de cliente único de plataforma),
+  // así que este es el ÚNICO canal de confirmación que puede recibir. No quitar este correo
+  // (distinto al caso de Bridge, donde sí se quitó el equivalente por duplicar el aviso que
+  // Bridge ya manda directo — ver app/api/bridge/webhook/route.ts).
+  const senderEmail = order?.senderEmail ?? String((data as { senderEmail?: unknown }).senderEmail ?? "");
   if (senderEmail) {
-    const eT  = emailStrings("es");
+    const eT  = emailStrings(order?.senderLocale ?? "es");
     const html = `
       <div style="font-family:sans-serif;max-width:480px;margin:auto;padding:24px">
         <h2 style="color:#16a34a;margin:0 0 16px">${eT.completed_h2}</h2>
-        <p>${eT.completed_sender("el destinatario")}</p>
+        <p>${eT.completed_sender(order?.recipientName ?? "el destinatario")}</p>
         <p><a href="${receiptUrl}" style="display:inline-block;background:#16a34a;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold">${eT.receipt_cta}</a></p>
         <hr style="border:none;border-top:1px solid #e5e7eb;margin:20px 0">
         <p style="color:#9ca3af;font-size:11px">OmniPay · ${eT.ref} ${orderId}</p>

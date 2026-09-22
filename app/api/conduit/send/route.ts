@@ -16,9 +16,11 @@ import { createConduitVA }                       from "@/lib/conduit/virtual-acc
 import { createConduitPayout }                   from "@/lib/conduit/payouts";
 import type { ConduitRecipient }                 from "@/lib/conduit/payouts";
 import { isConduitSandbox }                      from "@/lib/conduit/client";
+import { CONDUIT_RAIL_MAP as RAIL_MAP }          from "@/lib/conduit/rails";
 import { calcStaticQuote }                       from "@/lib/bridge-fees";
 import { getRate }                               from "@/lib/fx-server";
 import { getTargetCurrency }                     from "@/lib/routing";
+import { createOrder }                           from "@/lib/order-state";
 
 export const runtime = "nodejs"; // setTimeout for VA polling
 
@@ -38,22 +40,6 @@ interface SendBody {
   sort_code?:        string;   // FPS — UK
   amount_target:     number;
 }
-
-// Country → rail mapping
-// TODO: Confirm SPEI support with Conduit before activating Mexico corridor
-const RAIL_MAP: Record<string, { rail: string; currency: string }> = {
-  MX: { rail: "spei",  currency: "MXN" },
-  US: { rail: "ach",   currency: "USD" },
-  BR: { rail: "pix",   currency: "BRL" },
-  GB: { rail: "fps",   currency: "GBP" },
-  DE: { rail: "sepa",  currency: "EUR" },
-  FR: { rail: "sepa",  currency: "EUR" },
-  ES: { rail: "sepa",  currency: "EUR" },
-  IT: { rail: "sepa",  currency: "EUR" },
-  NL: { rail: "sepa",  currency: "EUR" },
-  PT: { rail: "sepa",  currency: "EUR" },
-  CO: { rail: "local", currency: "COP" },
-};
 
 function buildRecipient(body: SendBody, country: string): ConduitRecipient {
   const rail = RAIL_MAP[country]?.rail;
@@ -137,6 +123,24 @@ export async function POST(req: NextRequest): Promise<Response> {
       recipient,
       purpose:           "personal_transfer",
       clientReferenceId: orderId,  // OPC- ID for webhook correlation
+    });
+
+    // Registro de seguimiento — antes esta ruta no llamaba a lib/order-state.ts en absoluto,
+    // así que /resultado y el panel de admin no veían nada de un envío por Conduit. Mismo
+    // patrón que ya usa app/api/bridge/send/route.ts.
+    const senderLocale = req.cookies.get("OMNIPAY_LOCALE")?.value ?? "es";
+    createOrder(orderId, {
+      orderType:          "p2p",
+      destinationCountry: country,
+      targetCurrency,
+      recipientName:      recipient_name,
+      recipientAccount:   activeVA.id,
+      payInProvider:       "conduit-va",
+      payOutProvider:      "conduit-payout",
+      amount:              amountUSD,
+      senderEmail:         sender_email.toLowerCase(),
+      trackUrl:            `${appUrl}/resultado?order_id=${orderId}`,
+      senderLocale,
     });
 
     // 4. Convert deposit amount to source currency for display

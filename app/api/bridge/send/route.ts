@@ -25,7 +25,7 @@ import { buildDynamicQuote }                from "@/lib/bridge-fees";
 import { createOrder }                      from "@/lib/order-state";
 import { getRedis }                         from "@/lib/redis";
 import { getRate }                          from "@/lib/fx-server";
-import { getTargetCurrency }                from "@/lib/routing";
+import { getTargetCurrency, getProviderForCountry } from "@/lib/routing";
 
 export const runtime = "nodejs"; // needs setTimeout for sandbox poll + Redis
 
@@ -104,15 +104,31 @@ export async function POST(req: NextRequest): Promise<Response> {
     );
   }
 
-  const country = recipient_country.toUpperCase();
+  const country  = recipient_country.toUpperCase();
+  const appUrl   = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
+
   if (!NATIVE_RAILS[country]) {
+    // País fuera de los rieles nativos de Bridge — puede seguir siendo válido vía Conduit
+    // (riel "swift"/genérico), apagado por completo hasta CONDUIT_MODULE_ENABLED="true"
+    // (nunca en producción todavía — ver lib/conduit/rails.ts para qué falta confirmar antes
+    // de activarlo de verdad). El bot de WhatsApp y /enviar siguen llamando siempre a este
+    // mismo endpoint sin saber nada de Conduit — la decisión de a quién reenviar vive aquí,
+    // en un solo lugar, en vez de duplicar esta lógica en cada punto de entrada.
+    if (getProviderForCountry(country) === "conduit" && process.env.CONDUIT_MODULE_ENABLED === "true") {
+      const conduitRes = await fetch(`${appUrl}/api/conduit/send`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const conduitData = await conduitRes.json();
+      return NextResponse.json(conduitData, { status: conduitRes.status });
+    }
     return NextResponse.json(
       { error: "País del receptor no soportado. Disponibles: MX, US, BR, CO, GB y zona SEPA." },
       { status: 400 },
     );
   }
 
-  const appUrl    = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
   const isSandbox = (process.env.BRIDGE_API_BASE ?? "").includes("sandbox");
 
   try {

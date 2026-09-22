@@ -60,6 +60,7 @@ import {
 } from "@/lib/wa-flow";
 import { computeCompetitorGets } from "@/lib/competitor-compare";
 import { getCountry } from "@/constants/countries";
+import { getProviderForCountry } from "@/lib/routing";
 
 const APP_URL  = process.env.NEXT_PUBLIC_APP_URL ?? "https://omnipay.solutions";
 
@@ -80,18 +81,14 @@ function isTwoFieldCountry(country: string): boolean {
   return !SINGLE_FIELD_COUNTRIES.has(country.toUpperCase());
 }
 
-// Países que Bridge ya soporta de forma nativa hoy (ver providers/bridge/liquidation.ts
-// → NATIVE_RAILS) — el resto del mundo depende del riel "swift" de Conduit, que solo se
-// activa cuando CONDUIT_MODULE_ENABLED="true" (mismo patrón que SERVICES_MODULE_ENABLED
-// del Módulo 4) — es decir, hasta que Conduit nos autorice, no antes.
-const BRIDGE_NATIVE_COUNTRIES = new Set([
-  "US", "MX", "BR", "CO", "GB",
-  "DE","FR","ES","IT","NL","PT","BE","AT","IE","FI","GR","CY","EE","LV","LT","LU","MT","SK","SI","HR",
-  "SE","DK","NO","PL","CZ","HU","RO","BG","CH","IS","LI",
-  "AD","MC","SM","XK","VA",
-]);
+// Países que Bridge soporta de forma nativa vs. el resto del mundo (riel "swift" de
+// Conduit) — antes esto era un Set re-tecleado a mano aquí mismo, sin relación con
+// providers/bridge/liquidation.ts (NATIVE_RAILS), con riesgo real de desincronizarse.
+// Ahora usa la misma fuente de verdad que app/api/bridge/send/route.ts (lib/routing.ts).
+// Solo se activa cuando CONDUIT_MODULE_ENABLED="true" (mismo patrón que
+// SERVICES_MODULE_ENABLED del Módulo 4) — es decir, hasta que Conduit nos autorice, no antes.
 function isConduitOnlyCountry(country: string): boolean {
-  return !BRIDGE_NATIVE_COUNTRIES.has(country.toUpperCase());
+  return getProviderForCountry(country) !== "bridge";
 }
 const CONDUIT_MODULE_ENABLED = process.env.CONDUIT_MODULE_ENABLED === "true";
 
