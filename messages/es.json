@@ -1219,7 +1219,8 @@
     "otp_too_many_attempts": "Demasiados intentos fallidos. Escribe tu monto y correo de nuevo para pedir un código nuevo.",
     "kyc_needed_tip": "💡 Al terminar, toca \"Continuar\" en la pantalla de verificación y luego \"Volver a WhatsApp\". Si la ventana se cierra sola, no pasa nada — vuelve a este chat y seguimos donde quedamos.",
     "confirmed_deposit_lead": "*Esta cuenta es tuya — te sirve siempre que quieras enviarle dinero a {recipient_name} en {country_name}. ¡Guárdala!*\n\nPuedes reutilizarla las veces que quieras, solo entra a tu banco y cambia el monto, sin necesidad de escribirnos aquí de nuevo. (Si le envías a otro país, sí necesitarás iniciar un nuevo envío aquí.)",
-    "confirmed_deposit_ach_tip": "💡 Tip para tu banco en EE. UU.: usa \"Send Money\" / \"Pay a Person or Business\" o una transferencia Wire. ⚠️ No uses \"Link External Account\" ni \"Transfer to My Own Accounts\" — eso activa una verificación de depósitos de centavos que tarda días."
+    "confirmed_deposit_ach_tip": "💡 Tip para tu banca móvil: usa \"Send Money\", \"Pay a Person or Business\" o \"Bill Pay\". ⚠️ No uses \"Link External Account\" ni \"Transfer to My Own Accounts\" (eso activa depósitos de prueba de centavos que tardan días). Si tu banco te pide la dirección de {bank_name}, usa: {bank_address}.",
+    "confirmed_deposit_ach_tip_auto": "💡 Tip para tu banca móvil: usa \"Send Money\", \"Pay a Person or Business\" o \"Bill Pay\". ⚠️ No uses \"Link External Account\" ni \"Transfer to My Own Accounts\". Si tu banco te pide una dirección postal para registrar el pago a {bank_name}, puedes ingresar tu propia dirección física en EE. UU."
   },
   "kyc": {
     "title": "Verifica tu identidad",

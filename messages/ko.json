@@ -1236,7 +1236,8 @@
     "otp_too_many_attempts": "실패 시도가 너무 많습니다. 새 코드를 요청하려면 금액과 이메일을 다시 보내세요.",
     "kyc_needed_tip": "💡 완료되면 인증 화면에서 \"계속\"을 누른 다음 \"WhatsApp으로 돌아가기\"를 누르세요. 창이 저절로 닫혀도 괜찮습니다 — 이 채팅으로 돌아오면 이어서 진행됩니다.",
     "confirmed_deposit_lead": "*이 계좌는 당신 것입니다 — {country_name}의 {recipient_name}님에게 돈을 보내고 싶을 때 언제든 사용하세요. 저장해두세요!*\n\n몇 번이든 다시 사용할 수 있으며, 은행 앱을 열어 금액만 바꾸면 됩니다. 여기에 다시 메시지를 보낼 필요는 없어요. (다른 국가로 보내려면 여기서 새로 시작해야 합니다.)",
-    "confirmed_deposit_ach_tip": "💡 미국 은행 앱 팁: \"Send Money\" / \"Pay a Person or Business\" 또는 Wire 송금을 사용하세요. ⚠️ \"Link External Account\"나 \"Transfer to My Own Accounts\"는 사용하지 마세요 — 며칠이 걸리는 소액 입금 확인이 시작됩니다."
+    "confirmed_deposit_ach_tip": "💡 모바일 뱅킹 팁: \"Send Money\", \"Pay a Person or Business\" 또는 \"Bill Pay\"를 사용하세요. ⚠️ \"Link External Account\"나 \"Transfer to My Own Accounts\"는 사용하지 마세요 (며칠이 걸리는 소액 입금 확인이 시작됩니다). 은행에서 {bank_name}의 주소를 요구하면 이걸 사용하세요: {bank_address}.",
+    "confirmed_deposit_ach_tip_auto": "💡 모바일 뱅킹 팁: \"Send Money\", \"Pay a Person or Business\" 또는 \"Bill Pay\"를 사용하세요. ⚠️ \"Link External Account\"나 \"Transfer to My Own Accounts\"는 사용하지 마세요. 은행이 {bank_name}에 대한 결제 등록을 위해 우편 주소를 요구하면 본인의 미국 주소를 입력하면 됩니다."
   },
   "kyc": {
     "title": "신원을 확인하세요",

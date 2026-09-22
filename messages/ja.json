@@ -1236,7 +1236,8 @@
     "otp_too_many_attempts": "失敗が多すぎます。金額とメールをもう一度送信して新しいコードをリクエストしてください。",
     "kyc_needed_tip": "💡 終わったら、確認画面で「続ける」をタップし、次に「WhatsAppに戻る」をタップしてください。ウィンドウが自動的に閉じても問題ありません — このチャットに戻れば、続きから再開します。",
     "confirmed_deposit_lead": "*この口座はあなたのものです — {country_name}の{recipient_name}さんに送金したいときはいつでも使えます。保存しておいてください！*\n\n何度でも再利用でき、銀行アプリを開いて金額を変えるだけで、ここに再度書き込む必要はありません。（別の国へ送る場合は、ここで新しく手続きが必要です。）",
-    "confirmed_deposit_ach_tip": "💡 米国の銀行アプリでのヒント：「Send Money」/「Pay a Person or Business」または電信送金（Wire）を使ってください。⚠️「Link External Account」や「Transfer to My Own Accounts」は使わないでください — 数日かかる少額入金確認が発生します。"
+    "confirmed_deposit_ach_tip": "💡 モバイルバンキングでのヒント：「Send Money」「Pay a Person or Business」「Bill Pay」のいずれかを使ってください。⚠️「Link External Account」や「Transfer to My Own Accounts」は使わないでください（数日かかる少額入金確認が発生します）。銀行が{bank_name}の住所を求める場合はこちらを使ってください：{bank_address}。",
+    "confirmed_deposit_ach_tip_auto": "💡 モバイルバンキングでのヒント：「Send Money」「Pay a Person or Business」「Bill Pay」のいずれかを使ってください。⚠️「Link External Account」や「Transfer to My Own Accounts」は使わないでください。銀行が{bank_name}への支払い登録のために郵送先住所を求める場合は、ご自身の米国の住所を入力できます。"
   },
   "kyc": {
     "title": "本人確認を行ってください",

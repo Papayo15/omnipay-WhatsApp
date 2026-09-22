@@ -124,6 +124,7 @@ export interface DepositInstructions {
   orderId: string;
   rail: string; currency: string;
   bank_name?: string | null; beneficiary_name?: string | null;
+  bank_address?: string | null;
   routing_number?: string | null; account_number?: string | null;
   iban?: string | null; bic?: string | null; sort_code?: string | null;
   clabe?: string | null; br_code?: string | null;
@@ -183,6 +184,7 @@ export async function requestDepositInstructions(params: {
       orderId: data.order_id,
       rail: String(di.rail ?? ""), currency: String(di.currency ?? sc.toUpperCase()),
       bank_name: (di.bank_name as string) ?? null, beneficiary_name: (di.beneficiary_name as string) ?? null,
+      bank_address: (di.bank_address as string) ?? null,
       routing_number: (di.routing_number as string) ?? null, account_number: (di.account_number as string) ?? null,
       iban: (di.iban as string) ?? null, bic: (di.bic as string) ?? null, sort_code: (di.sort_code as string) ?? null,
       clabe: (di.clabe as string) ?? null, br_code: (di.br_code as string) ?? null,

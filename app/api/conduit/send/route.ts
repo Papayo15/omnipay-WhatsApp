@@ -171,6 +171,7 @@ export async function POST(req: NextRequest): Promise<Response> {
         account_number:    usDomestic?.accountNumber,
         beneficiary_name:  usDomestic?.beneficiaryName ?? swift?.beneficiaryName,
         bank_name:         usDomestic?.bankName ?? swift?.bankName,
+        bank_address:      usDomestic?.bankAddress ?? swift?.bankAddress,
         iban:              sepa?.iban ?? swift?.iban,
         bic:               sepa?.bic  ?? swift?.bic,
         payment_reference: di.find(i => i.paymentReferenceRequired)?.paymentReference,

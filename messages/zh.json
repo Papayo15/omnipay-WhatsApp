@@ -1236,7 +1236,8 @@
     "otp_too_many_attempts": "失败次数过多。请重新发送金额和邮箱以请求新验证码。",
     "kyc_needed_tip": "💡 完成后，请在验证界面点击\"继续\"，然后点击\"返回WhatsApp\"。如果窗口自动关闭也没关系——回到这个聊天，我们会从刚才的地方继续。",
     "confirmed_deposit_lead": "*这个账户是您的——只要您想给{country_name}的{recipient_name}汇款，随时可以使用。请保存好！*\n\n您可以多次重复使用，只需打开您的银行应用并更改金额，无需再次在此给我们发消息。（汇往其他国家需要在此重新发起一次汇款。）",
-    "confirmed_deposit_ach_tip": "💡 美国银行小提示：请使用\"Send Money\"/\"Pay a Person or Business\"或Wire电汇。⚠️ 请勿使用\"Link External Account\"或\"Transfer to My Own Accounts\"——那会触发需要数天的小额存款验证。"
+    "confirmed_deposit_ach_tip": "💡 手机银行小提示：请使用\"Send Money\"、\"Pay a Person or Business\"或\"Bill Pay\"。⚠️ 请勿使用\"Link External Account\"或\"Transfer to My Own Accounts\"（那会触发需要数天的小额存款验证）。如果您的银行要求{bank_name}的地址，请使用：{bank_address}。",
+    "confirmed_deposit_ach_tip_auto": "💡 手机银行小提示：请使用\"Send Money\"、\"Pay a Person or Business\"或\"Bill Pay\"。⚠️ 请勿使用\"Link External Account\"或\"Transfer to My Own Accounts\"。如果您的银行要求提供邮寄地址以登记向{bank_name}的付款，您可以填写自己在美国的地址。"
   },
   "kyc": {
     "title": "验证您的身份",

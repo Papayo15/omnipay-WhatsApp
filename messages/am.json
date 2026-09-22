@@ -1236,7 +1236,8 @@
     "otp_too_many_attempts": "በጣም ብዙ ያልተሳኩ ሙከራዎች። አዲስ ኮድ ለመጠየቅ መጠንዎን እና ኢሜይልዎን እንደገና ይላኩ።",
     "kyc_needed_tip": "💡 ሲጨርሱ፣ በማረጋገጫ ስክሪኑ ላይ \"ቀጥል\" የሚለውን ይንኩ፣ ከዚያ \"ወደ WhatsApp ተመለስ\" የሚለውን ይንኩ። መስኮቱ በራሱ ቢዘጋ ችግር የለውም — ወደዚህ ውይይት ይመለሱ፣ ካቆምንበት እንቀጥላለን።",
     "confirmed_deposit_lead": "*ይህ አካውንት የእርስዎ ነው — ለ{country_name} ውስጥ ላለው {recipient_name} ገንዘብ መላክ በፈለጉ ጊዜ ሁሉ ይጠቀሙበት። ያስቀምጡት!*\n\nበፈለጉት ጊዜ ደጋግመው መጠቀም ይችላሉ፣ የባንክ መተግበሪያዎን ከፍተው መጠኑን ብቻ ይቀይሩ፣ እዚህ እንደገና መጻፍ አያስፈልግም። (ለሌላ ሀገር ለመላክ እዚህ አዲስ ማስተላለፍ መጀመር ያስፈልጋል።)",
-    "confirmed_deposit_ach_tip": "💡 ለአሜሪካ ባንክዎ ምክር: \"Send Money\" / \"Pay a Person or Business\" ወይም የWire ዝውውር ይጠቀሙ። ⚠️ \"Link External Account\" ወይም \"Transfer to My Own Accounts\" አይጠቀሙ — ይህ ቀናት የሚወስድ የሳንቲም ተቀማጭ ማረጋገጫ ያስነሳል።"
+    "confirmed_deposit_ach_tip": "💡 ለሞባይል ባንክዎ ምክር: \"Send Money\"፣ \"Pay a Person or Business\" ወይም \"Bill Pay\" ይጠቀሙ። ⚠️ \"Link External Account\" ወይም \"Transfer to My Own Accounts\" አይጠቀሙ (ይህ ቀናት የሚወስድ የሳንቲም ተቀማጭ ማረጋገጫ ያስነሳል)። ባንክዎ የ{bank_name}ን አድራሻ ከጠየቀ፣ ይህን ይጠቀሙ፦ {bank_address}።",
+    "confirmed_deposit_ach_tip_auto": "💡 ለሞባይል ባንክዎ ምክር: \"Send Money\"፣ \"Pay a Person or Business\" ወይም \"Bill Pay\" ይጠቀሙ። ⚠️ \"Link External Account\" ወይም \"Transfer to My Own Accounts\" አይጠቀሙ። ባንክዎ ለ{bank_name} ክፍያ ለመመዝገብ የፖስታ አድራሻ ከጠየቀ፣ የራስዎን የአሜሪካ አድራሻ ማስገባት ይችላሉ።"
   },
   "kyc": {
     "title": "ማንነትዎን ያረጋግጡ",

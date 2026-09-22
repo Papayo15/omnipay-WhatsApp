@@ -543,7 +543,17 @@ export async function POST(req: NextRequest): Promise<Response> {
           // recepción, esa verificación nunca puede completarse). Verificado que SEPA/SPEI/
           // PIX/Faster Payments no tienen este mismo riesgo — son pago directo a un tercero
           // desde el primer paso, sin un flujo de "¿es tu propia cuenta?" que confundir.
-          ...(di.rail === "ACH / Wire" ? [t("confirmed_deposit_ach_tip"), ""] : []),
+          // Si Bridge nos dio la dirección física del banco receptor (di.bank_address —
+          // dato real y dinámico de Bridge, no un mapa a mano: sirve para cualquier banco
+          // socio que use, sin mantenimiento), la incluimos — algunos bancos de EE. UU.
+          // piden esa dirección para completar un Bill Pay. Si no la dio, mensaje genérico
+          // que le dice al usuario que puede usar su propia dirección postal como respaldo.
+          ...(di.rail === "ACH / Wire"
+            ? [di.bank_address
+                ? t("confirmed_deposit_ach_tip", { bank_name: di.bank_name ?? "tu banco", bank_address: di.bank_address })
+                : t("confirmed_deposit_ach_tip_auto", { bank_name: di.bank_name ?? "tu banco" }),
+              ""]
+            : []),
           t("confirmed_deposit_footer", {
             recipient_name: session.recipientName,
             // .toFixed(2), NUNCA toLocaleString — la coma de "9,842.75" corta el

@@ -1236,7 +1236,8 @@
     "otp_too_many_attempts": "Te veel mislukte pogingen. Stuur je bedrag en e-mail opnieuw om een nieuwe code aan te vragen.",
     "kyc_needed_tip": "💡 Tik aan het einde op \"Doorgaan\" op het verificatiescherm en dan op \"Terug naar WhatsApp\". Sluit het venster zichzelf? Geen probleem — kom terug naar deze chat, we gaan gewoon verder waar we gebleven waren.",
     "confirmed_deposit_lead": "*Deze rekening is van jou — gebruik hem elke keer als je geld wilt sturen naar {recipient_name} in {country_name}. Bewaar hem!*\n\nJe kunt hem zo vaak hergebruiken als je wilt, open gewoon je bank-app en wijzig het bedrag, zonder ons hier opnieuw te hoeven schrijven. (Voor een ander land is een nieuwe aanvraag hier nodig.)",
-    "confirmed_deposit_ach_tip": "💡 Tip voor je Amerikaanse bank: gebruik \"Send Money\" / \"Pay a Person or Business\" of een Wire-overschrijving. ⚠️ Gebruik NIET \"Link External Account\" of \"Transfer to My Own Accounts\" — dat activeert een centenbedrag-verificatie die dagen duurt."
+    "confirmed_deposit_ach_tip": "💡 Tip voor je mobiel bankieren: gebruik \"Send Money\", \"Pay a Person or Business\" of \"Bill Pay\". ⚠️ Gebruik NIET \"Link External Account\" of \"Transfer to My Own Accounts\" (dat activeert een centenbedrag-verificatie die dagen duurt). Vraagt je bank om het adres van {bank_name}? Gebruik: {bank_address}.",
+    "confirmed_deposit_ach_tip_auto": "💡 Tip voor je mobiel bankieren: gebruik \"Send Money\", \"Pay a Person or Business\" of \"Bill Pay\". ⚠️ Gebruik NIET \"Link External Account\" of \"Transfer to My Own Accounts\". Vraagt je bank om een postadres voor de betaling aan {bank_name}? Dan kun je je eigen Amerikaanse adres invullen."
   },
   "kyc": {
     "title": "Verifieer je identiteit",

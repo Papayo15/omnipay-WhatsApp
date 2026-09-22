@@ -1236,7 +1236,8 @@
     "otp_too_many_attempts": "Çok fazla başarısız deneme. Yeni bir kod istemek için tutarını ve e-postanı tekrar yaz.",
     "kyc_needed_tip": "💡 Bitince doğrulama ekranında \"Devam\"a, sonra \"WhatsApp'a Dön\"e dokun. Pencere kendi kendine kapanırsa sorun değil — bu sohbete geri dön, kaldığımız yerden devam ederiz.",
     "confirmed_deposit_lead": "*Bu hesap senin — {country_name}'deki {recipient_name}'e ne zaman para göndermek istersen kullan. Kaydet!*\n\nİstediğin kadar tekrar kullanabilirsin, sadece bankacılık uygulamanı aç ve tutarı değiştir, buraya tekrar yazmana gerek yok. (Başka bir ülkeye göndermek için burada yeni bir işlem başlatman gerekecek.)",
-    "confirmed_deposit_ach_tip": "💡 ABD'deki bankan için ipucu: \"Send Money\" / \"Pay a Person or Business\" ya da Wire transferi kullan. ⚠️ \"Link External Account\" veya \"Transfer to My Own Accounts\" KULLANMA — bu, günler süren küçük tutarlı doğrulama işlemini tetikler."
+    "confirmed_deposit_ach_tip": "💡 Mobil bankacılığın için ipucu: \"Send Money\", \"Pay a Person or Business\" ya da \"Bill Pay\" kullan. ⚠️ \"Link External Account\" veya \"Transfer to My Own Accounts\" KULLANMA (günler süren küçük tutarlı doğrulamayı tetikler). Bankan {bank_name} adresini isterse şunu kullan: {bank_address}.",
+    "confirmed_deposit_ach_tip_auto": "💡 Mobil bankacılığın için ipucu: \"Send Money\", \"Pay a Person or Business\" ya da \"Bill Pay\" kullan. ⚠️ \"Link External Account\" veya \"Transfer to My Own Accounts\" KULLANMA. Bankan {bank_name}'e ödemeyi kaydetmek için posta adresi isterse, kendi ABD adresini girebilirsin."
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",
