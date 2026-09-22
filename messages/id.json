@@ -1235,7 +1235,8 @@
     "otp_expired": "Kode sudah kedaluwarsa. Kirim ulang jumlah dan email Anda untuk mendapatkan kode baru.",
     "otp_too_many_attempts": "Terlalu banyak percobaan gagal. Kirim ulang jumlah dan email Anda untuk meminta kode baru.",
     "kyc_needed_tip": "💡 Setelah selesai, ketuk \"Lanjutkan\" di layar verifikasi, lalu \"Kembali ke WhatsApp\". Jika jendela tertutup sendiri, tidak masalah — kembali ke chat ini, kita lanjutkan dari sana.",
-    "confirmed_deposit_lead": "*Rekening ini milik Anda — gunakan kapan saja Anda ingin mengirim uang ke {recipient_name} di {country_name}. Simpan ini!*\n\nAnda bisa menggunakannya lagi kapan saja, cukup buka aplikasi bank Anda dan ubah jumlahnya, tanpa perlu menghubungi kami lagi di sini. (Untuk negara lain, Anda perlu memulai pengiriman baru di sini.)"
+    "confirmed_deposit_lead": "*Rekening ini milik Anda — gunakan kapan saja Anda ingin mengirim uang ke {recipient_name} di {country_name}. Simpan ini!*\n\nAnda bisa menggunakannya lagi kapan saja, cukup buka aplikasi bank Anda dan ubah jumlahnya, tanpa perlu menghubungi kami lagi di sini. (Untuk negara lain, Anda perlu memulai pengiriman baru di sini.)",
+    "confirmed_deposit_ach_tip": "💡 Tips untuk bank AS Anda: gunakan \"Send Money\" / \"Pay a Person or Business\" atau transfer Wire. ⚠️ JANGAN gunakan \"Link External Account\" atau \"Transfer to My Own Accounts\" — itu memicu verifikasi setoran receh yang memakan waktu berhari-hari."
   },
   "kyc": {
     "title": "Verifikasi identitas Anda",

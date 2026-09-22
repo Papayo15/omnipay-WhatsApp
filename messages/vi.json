@@ -1235,7 +1235,8 @@
     "otp_expired": "Mã đã hết hạn. Gửi lại số tiền và email để nhận mã mới.",
     "otp_too_many_attempts": "Quá nhiều lần thử sai. Gửi lại số tiền và email để yêu cầu mã mới.",
     "kyc_needed_tip": "💡 Khi xong, nhấn \"Tiếp tục\" trên màn hình xác minh, rồi \"Quay lại WhatsApp\". Nếu cửa sổ tự đóng cũng không sao — quay lại cuộc trò chuyện này, chúng ta sẽ tiếp tục từ chỗ đã dừng.",
-    "confirmed_deposit_lead": "*Tài khoản này là của bạn — dùng bất cứ khi nào bạn muốn gửi tiền cho {recipient_name} tại {country_name}. Hãy lưu lại!*\n\nBạn có thể dùng lại nhiều lần tùy thích, chỉ cần mở ứng dụng ngân hàng và đổi số tiền, không cần nhắn lại ở đây. (Nếu gửi sang nước khác, bạn sẽ cần bắt đầu một lượt gửi mới ở đây.)"
+    "confirmed_deposit_lead": "*Tài khoản này là của bạn — dùng bất cứ khi nào bạn muốn gửi tiền cho {recipient_name} tại {country_name}. Hãy lưu lại!*\n\nBạn có thể dùng lại nhiều lần tùy thích, chỉ cần mở ứng dụng ngân hàng và đổi số tiền, không cần nhắn lại ở đây. (Nếu gửi sang nước khác, bạn sẽ cần bắt đầu một lượt gửi mới ở đây.)",
+    "confirmed_deposit_ach_tip": "💡 Mẹo cho ngân hàng của bạn ở Mỹ: dùng \"Send Money\" / \"Pay a Person or Business\" hoặc chuyển khoản Wire. ⚠️ ĐỪNG dùng \"Link External Account\" hay \"Transfer to My Own Accounts\" — việc đó sẽ kích hoạt xác minh bằng khoản tiền vài xu mất nhiều ngày."
   },
   "kyc": {
     "title": "Xác minh danh tính của bạn",

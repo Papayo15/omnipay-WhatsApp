@@ -539,6 +539,14 @@ export async function POST(req: NextRequest): Promise<Response> {
           ...(di.account_number   ? [`${t("label_account")}: ${di.account_number}`] : []),
           ...(di.br_code          ? [`${t("label_pix")}: ${di.br_code}`] : []),
           "",
+          // Solo para remitentes en EE. UU. (riel ACH/Wire) — confirmado en vivo: un banco
+          // de EE. UU. (Wells Fargo) puede tratar esta cuenta como "cuenta propia externa" si
+          // el usuario la agrega por el camino equivocado en su app, disparando una
+          // verificación por depósitos de centavos que tarda días (esta cuenta es de solo
+          // recepción, esa verificación nunca puede completarse). Verificado que SEPA/SPEI/
+          // PIX/Faster Payments no tienen este mismo riesgo — son pago directo a un tercero
+          // desde el primer paso, sin un flujo de "¿es tu propia cuenta?" que confundir.
+          ...(di.rail === "ACH / Wire" ? [t("confirmed_deposit_ach_tip"), ""] : []),
           t("confirmed_deposit_footer", {
             recipient_name: session.recipientName,
             // .toFixed(2), NUNCA toLocaleString — la coma de "9,842.75" corta el

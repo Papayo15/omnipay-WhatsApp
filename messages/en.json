@@ -1233,7 +1233,8 @@
     "otp_expired": "That code expired. Send your amount and email again and we'll text you a new one.",
     "otp_too_many_attempts": "Too many failed attempts. Send your amount and email again to request a new code.",
     "kyc_needed_tip": "💡 When you finish, tap \"Continue\" on the verification screen, then \"Back to WhatsApp\". If the window closes on its own, no problem — come back to this chat and we'll pick up right where we left off.",
-    "confirmed_deposit_lead": "*This account is yours — use it anytime you want to send money to {recipient_name} in {country_name}. Save it!*\n\nYou can reuse it as many times as you want, just open your bank app and change the amount, no need to message us here again. (Sending to a different country will need a new setup here.)"
+    "confirmed_deposit_lead": "*This account is yours — use it anytime you want to send money to {recipient_name} in {country_name}. Save it!*\n\nYou can reuse it as many times as you want, just open your bank app and change the amount, no need to message us here again. (Sending to a different country will need a new setup here.)",
+    "confirmed_deposit_ach_tip": "💡 Tip for your US bank: use \"Send Money\" / \"Pay a Person or Business\" or a Wire transfer. ⚠️ Don't use \"Link External Account\" or \"Transfer to My Own Accounts\" — that triggers a cent-deposit verification that takes days."
   },
   "kyc": {
     "title": "Verify your identity",

@@ -1234,7 +1234,8 @@
     "otp_expired": "Lambar ta ƙare. Sake tura adadin kuɗinka da imel don mu turo maka sabuwa.",
     "otp_too_many_attempts": "Yawan gwaje-gwajen da suka gaza ya yi yawa. Sake tura adadin kuɗinka da imel don neman sabuwar lamba.",
     "kyc_needed_tip": "💡 Idan ka gama, danna \"Ci gaba\" a allon tabbatarwa, sannan \"Koma WhatsApp\". Idan taga ta rufe da kanta, babu matsala — koma wannan hira, za mu ci gaba daga inda muka tsaya.",
-    "confirmed_deposit_lead": "*Wannan asusun naka ne — yi amfani da shi duk lokacin da kake son aika kuɗi ga {recipient_name} a {country_name}. Ajiye shi!*\n\nZaka iya sake amfani da shi sau da yawa, kawai buɗe aikace-aikacen bankinka ka canza adadin, ba tare da bukatar sake rubuto mana anan ba. (Idan za ka aika zuwa wata ƙasa, za ka buƙaci fara sabon aikawa anan.)"
+    "confirmed_deposit_lead": "*Wannan asusun naka ne — yi amfani da shi duk lokacin da kake son aika kuɗi ga {recipient_name} a {country_name}. Ajiye shi!*\n\nZaka iya sake amfani da shi sau da yawa, kawai buɗe aikace-aikacen bankinka ka canza adadin, ba tare da bukatar sake rubuto mana anan ba. (Idan za ka aika zuwa wata ƙasa, za ka buƙaci fara sabon aikawa anan.)",
+    "confirmed_deposit_ach_tip": "💡 Shawara don bankinka na Amurka: yi amfani da \"Send Money\" / \"Pay a Person or Business\" ko canja wurin Wire. ⚠️ KADA ka yi amfani da \"Link External Account\" ko \"Transfer to My Own Accounts\" — hakan yana kunna tabbatarwar ajiyar kudi kadan wanda yake ɗaukar kwanaki."
   },
   "kyc": {
     "title": "Tabbatar da ainihin ka",
