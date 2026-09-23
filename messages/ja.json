@@ -1236,8 +1236,8 @@
     "otp_too_many_attempts": "失敗が多すぎます。金額とメールをもう一度送信して新しいコードをリクエストしてください。",
     "kyc_needed_tip": "💡 終わったら、確認画面で「続ける」をタップし、次に「WhatsAppに戻る」をタップしてください。ウィンドウが自動的に閉じても問題ありません — このチャットに戻れば、続きから再開します。",
     "confirmed_deposit_lead": "*この口座はあなたのものです — {country_name}の{recipient_name}さんに送金したいときはいつでも使えます。保存しておいてください！*\n\n何度でも再利用でき、銀行アプリを開いて金額を変えるだけで、ここに再度書き込む必要はありません。（別の国へ送る場合は、ここで新しく手続きが必要です。）",
-    "confirmed_deposit_ach_tip": "💡 モバイルバンキングで「Send Money」または「Pay a Person or Business」を使ってください — 無料で、1〜3営業日で届きます。⚠️「Link External Account」や「Transfer to My Own Accounts」は使わないでください（数日かかる少額入金確認が発生します）。銀行が{bank_name}の住所を求める場合はこちらを使ってください：{bank_address}。最後の手段として「Bill Pay」も無料ですが、5〜7日かかることがあります。",
-    "confirmed_deposit_ach_tip_auto": "💡 モバイルバンキングで「Send Money」または「Pay a Person or Business」を使ってください — 無料で、1〜3営業日で届きます。⚠️「Link External Account」や「Transfer to My Own Accounts」は使わないでください。銀行が{bank_name}への支払い登録のために郵送先住所を求める場合は、ご自身の米国の住所を入力できます。最後の手段として「Bill Pay」も無料ですが、5〜7日かかることがあります。",
+    "confirmed_deposit_ach_tip": "💡 モバイルバンキングで「Send Money」または「Pay a Person or Business」を使ってください — 無料で、1〜2営業日で届きます。⚠️「Link External Account」や「Transfer to My Own Accounts」は使わないでください（数日かかる少額入金確認が発生します）。銀行が{bank_name}の住所を求める場合はこちらを使ってください：{bank_address}。最後の手段として「Bill Pay」も無料ですが、5〜7日かかることがあります。",
+    "confirmed_deposit_ach_tip_auto": "💡 モバイルバンキングで「Send Money」または「Pay a Person or Business」を使ってください — 無料で、1〜2営業日で届きます。⚠️「Link External Account」や「Transfer to My Own Accounts」は使わないでください。銀行が{bank_name}への支払い登録のために郵送先住所を求める場合は、ご自身の米国の住所を入力できます。最後の手段として「Bill Pay」も無料ですが、5〜7日かかることがあります。",
     "confirmed_deposit_fednow_tip": "⚡ あなたの銀行が「Instant」や「FedNow」送金に対応している場合、それが最も早い方法です — 通常は数分で到着し、追加費用もかかりません。",
     "confirmed_deposit_cop_tip": "💡 銀行から「名前が完全に一致しません」という警告（「Confirmation of Payee」）が表示されることがありますが、これはこのような金融機関の口座では普通のことで、問題があるという意味ではありません。安心してお支払いを続けてください。"
   },
