@@ -232,7 +232,15 @@ function evaluateKycStatus(customer: BridgeCustomer, type: "individual" | "busin
   const isBlocked    = customer.status === "paused" || customer.status === "offboarded";
   // Bridge API returns "approved" per spec; "granted" observed in production dashboard.
   const isKycOk = (s?: string) => s === "approved" || s === "granted";
-  const kycApproved = !isBlocked && (
+  // has_accepted_terms_of_service es obligatorio aparte del status/kyc_status — confirmado en
+  // vivo (producción): un cliente real completó Persona (identidad) pero Bridge seguía
+  // reportando has_accepted_terms_of_service:false y varios campos de endorsement como
+  // "missing" (terms_of_service, date_of_birth, tax_identification_number), mientras este
+  // chequeo solo miraba status/kyc_status y podía decir "aprobado" antes de tiempo. Seguro
+  // para sandbox: los clientes de sandbox ya traen has_accepted_terms_of_service:true desde
+  // su creación (signed_agreement_id), confirmado con una consulta real esta noche.
+  const tosAccepted = customer.has_accepted_terms_of_service === true;
+  const kycApproved = !isBlocked && tosAccepted && (
     type === "business"
       ? isKycOk(customer.kyb_status)
       : customer.status === "active" || customer.status === "approved" || isRestricted || isKycOk(customer.kyc_status)

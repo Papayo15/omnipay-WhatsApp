@@ -89,6 +89,16 @@ export async function POST(req: NextRequest): Promise<Response> {
     }
   }
 
+  // ── KYC link events — sin manejar hasta ahora ─────────────────────────────
+  // Nuestra suscripción de webhook SÍ incluye la categoría "kyc_link" (confirmado en la
+  // suscripción real), pero nunca logueábamos nada de estos eventos — cero visibilidad de
+  // qué manda Bridge cuando Persona termina. Solo log por ahora: confirmado con Bridge que
+  // la sincronización Persona→customer record es automática (no requiere que nosotros
+  // reenviemos nada), así que esto es observabilidad, no una acción pendiente.
+  if (type.startsWith("kyc_link.")) {
+    console.log(`[bridge/webhook] kyc_link event: ${JSON.stringify(data).slice(0, 1000)}`);
+  }
+
   // ── Liquidation address drain completed ───────────────────────────────────
 
   if (type === "liquidation_address.drain_completed") {
