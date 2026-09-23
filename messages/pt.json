@@ -1236,7 +1236,9 @@
     "kyc_needed_tip": "💡 No final, toque em \"Continuar\" na tela de verificação e depois em \"Voltar ao WhatsApp\". Se a janela se fechar sozinha, sem problema — volte para este chat e continuamos de onde paramos.",
     "confirmed_deposit_lead": "*Esta conta é sua — use sempre que quiser enviar dinheiro para {recipient_name} em {country_name}. Guarde-a!*\n\nVocê pode reutilizá-la quantas vezes quiser, é só abrir seu app do banco e mudar o valor, sem precisar nos escrever aqui de novo. (Para outro país, será preciso iniciar um novo envio aqui.)",
     "confirmed_deposit_ach_tip": "💡 Dica para seu banco no celular: use \"Send Money\", \"Pay a Person or Business\" ou \"Bill Pay\". ⚠️ NÃO use \"Link External Account\" nem \"Transfer to My Own Accounts\" (ativa uma verificação por depósitos de centavos que demora dias). Se seu banco pedir o endereço de {bank_name}, use: {bank_address}.",
-    "confirmed_deposit_ach_tip_auto": "💡 Dica para seu banco no celular: use \"Send Money\", \"Pay a Person or Business\" ou \"Bill Pay\". ⚠️ NÃO use \"Link External Account\" nem \"Transfer to My Own Accounts\". Se seu banco pedir um endereço postal para registrar o pagamento a {bank_name}, você pode usar seu próprio endereço nos EUA."
+    "confirmed_deposit_ach_tip_auto": "💡 Dica para seu banco no celular: use \"Send Money\", \"Pay a Person or Business\" ou \"Bill Pay\". ⚠️ NÃO use \"Link External Account\" nem \"Transfer to My Own Accounts\". Se seu banco pedir um endereço postal para registrar o pagamento a {bank_name}, você pode usar seu próprio endereço nos EUA.",
+    "confirmed_deposit_fednow_tip": "⚡ Se seu banco oferecer transferência \"Instant\" ou \"FedNow\", essa é a opção mais rápida — geralmente chega em minutos e sem custo extra.",
+    "confirmed_deposit_cop_tip": "💡 Seu banco pode mostrar um aviso de que o nome não corresponde exatamente (\"Confirmation of Payee\") — isso é normal para contas de instituições financeiras como esta, não significa que algo está errado. Você pode continuar com o pagamento com confiança."
   },
   "kyc": {
     "title": "Verifique sua identidade",

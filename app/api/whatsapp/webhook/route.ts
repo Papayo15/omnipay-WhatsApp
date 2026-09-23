@@ -541,19 +541,32 @@ export async function POST(req: NextRequest): Promise<Response> {
           // el usuario la agrega por el camino equivocado en su app, disparando una
           // verificación por depósitos de centavos que tarda días (esta cuenta es de solo
           // recepción, esa verificación nunca puede completarse). Verificado que SEPA/SPEI/
-          // PIX/Faster Payments no tienen este mismo riesgo — son pago directo a un tercero
-          // desde el primer paso, sin un flujo de "¿es tu propia cuenta?" que confundir.
+          // PIX no tienen este mismo riesgo — son pago directo a un tercero desde el primer
+          // paso, sin un flujo de "¿es tu propia cuenta?" que confundir (Faster Payments/UK
+          // sí tiene SU PROPIO riesgo distinto — ver el bloque de Confirmation of Payee más
+          // abajo).
           // Si Bridge nos dio la dirección física del banco receptor (di.bank_address —
           // dato real y dinámico de Bridge, no un mapa a mano: sirve para cualquier banco
           // socio que use, sin mantenimiento), la incluimos — algunos bancos de EE. UU.
           // piden esa dirección para completar un Bill Pay. Si no la dio, mensaje genérico
           // que le dice al usuario que puede usar su propia dirección postal como respaldo.
+          // FedNow para recibir ya está activo automático del lado de Bridge (sin nada que
+          // activar de nuestra parte, confirmado contra su changelog) — si el remitente lo
+          // tiene disponible en su banco, es gratis y llega en minutos.
           ...(di.rail === "ACH / Wire"
             ? [di.bank_address
                 ? t("confirmed_deposit_ach_tip", { bank_name: di.bank_name ?? "tu banco", bank_address: di.bank_address })
                 : t("confirmed_deposit_ach_tip_auto", { bank_name: di.bank_name ?? "tu banco" }),
+              t("confirmed_deposit_fednow_tip"),
               ""]
             : []),
+          // Reino Unido — "Confirmation of Payee" es obligatorio desde 2020 en todo Faster
+          // Payments/CHAPS: el banco del remitente compara el nombre escrito contra el
+          // nombre real de la cuenta destino y avisa si no coincide exacto. Como esta cuenta
+          // es de una institución (socio de Bridge), casi seguro no calza con lo que le
+          // dijimos al usuario que esperara como "beneficiario" — mismo tipo de susto que
+          // Wells Fargo, verificado contra la regulación real de UK Finance/PSR, no asumido.
+          ...(di.rail === "Faster Payments" ? [t("confirmed_deposit_cop_tip"), ""] : []),
           t("confirmed_deposit_footer", {
             recipient_name: session.recipientName,
             // .toFixed(2), NUNCA toLocaleString — la coma de "9,842.75" corta el

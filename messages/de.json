@@ -1237,7 +1237,9 @@
     "kyc_needed_tip": "💡 Tippe am Ende auf \"Weiter\" im Verifizierungsbildschirm und dann auf \"Zurück zu WhatsApp\". Falls sich das Fenster von selbst schließt, kein Problem — komm einfach zu diesem Chat zurück, wir machen genau dort weiter.",
     "confirmed_deposit_lead": "*Dieses Konto gehört dir — nutze es immer, wenn du Geld an {recipient_name} in {country_name} senden möchtest. Speichere es dir!*\n\nDu kannst es beliebig oft wiederverwenden, öffne einfach deine Banking-App und ändere den Betrag, ohne uns hier erneut zu schreiben. (Für ein anderes Land brauchst du einen neuen Vorgang hier.)",
     "confirmed_deposit_ach_tip": "💡 Tipp für dein Mobile Banking: nutze \"Send Money\", \"Pay a Person or Business\" oder \"Bill Pay\". ⚠️ Nutze NICHT \"Link External Account\" oder \"Transfer to My Own Accounts\" (löst eine tagelange Cent-Betrag-Verifizierung aus). Falls deine Bank die Adresse von {bank_name} verlangt, nutze: {bank_address}.",
-    "confirmed_deposit_ach_tip_auto": "💡 Tipp für dein Mobile Banking: nutze \"Send Money\", \"Pay a Person or Business\" oder \"Bill Pay\". ⚠️ Nutze NICHT \"Link External Account\" oder \"Transfer to My Own Accounts\". Falls deine Bank eine Postanschrift für die Zahlung an {bank_name} verlangt, kannst du deine eigene US-Adresse angeben."
+    "confirmed_deposit_ach_tip_auto": "💡 Tipp für dein Mobile Banking: nutze \"Send Money\", \"Pay a Person or Business\" oder \"Bill Pay\". ⚠️ Nutze NICHT \"Link External Account\" oder \"Transfer to My Own Accounts\". Falls deine Bank eine Postanschrift für die Zahlung an {bank_name} verlangt, kannst du deine eigene US-Adresse angeben.",
+    "confirmed_deposit_fednow_tip": "⚡ Falls deine Bank \"Instant\" oder \"FedNow\" anbietet, ist das die schnellste Option — kommt meist in Minuten an, ohne Zusatzkosten.",
+    "confirmed_deposit_cop_tip": "💡 Deine Bank zeigt dir eventuell eine \"Name stimmt nicht überein\"-Warnung (\"Confirmation of Payee\") — das ist normal bei Konten von Finanzinstituten wie diesem und bedeutet nicht, dass etwas falsch ist. Du kannst die Zahlung bedenkenlos fortsetzen."
   },
   "kyc": {
     "title": "Verifizieren Sie Ihre Identität",

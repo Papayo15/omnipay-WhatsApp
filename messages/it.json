@@ -1237,7 +1237,9 @@
     "kyc_needed_tip": "💡 Alla fine, tocca \"Continua\" nella schermata di verifica, poi \"Torna a WhatsApp\". Se la finestra si chiude da sola, nessun problema — torna in questa chat e riprendiamo da dove eravamo rimasti.",
     "confirmed_deposit_lead": "*Questo conto è tuo — usalo ogni volta che vuoi inviare denaro a {recipient_name} in {country_name}. Salvalo!*\n\nPuoi riutilizzarlo tutte le volte che vuoi, apri solo la tua app bancaria e cambia l'importo, senza doverci riscrivere qui. (Per un altro paese servirà un nuovo invio qui.)",
     "confirmed_deposit_ach_tip": "💡 Suggerimento per la tua banca mobile: usa \"Send Money\", \"Pay a Person or Business\" o \"Bill Pay\". ⚠️ NON usare \"Link External Account\" né \"Transfer to My Own Accounts\" (attiva una verifica con depositi di pochi centesimi che richiede giorni). Se la tua banca chiede l'indirizzo di {bank_name}, usa: {bank_address}.",
-    "confirmed_deposit_ach_tip_auto": "💡 Suggerimento per la tua banca mobile: usa \"Send Money\", \"Pay a Person or Business\" o \"Bill Pay\". ⚠️ NON usare \"Link External Account\" né \"Transfer to My Own Accounts\". Se la tua banca chiede un indirizzo postale per registrare il pagamento a {bank_name}, puoi inserire il tuo indirizzo negli USA."
+    "confirmed_deposit_ach_tip_auto": "💡 Suggerimento per la tua banca mobile: usa \"Send Money\", \"Pay a Person or Business\" o \"Bill Pay\". ⚠️ NON usare \"Link External Account\" né \"Transfer to My Own Accounts\". Se la tua banca chiede un indirizzo postale per registrare il pagamento a {bank_name}, puoi inserire il tuo indirizzo negli USA.",
+    "confirmed_deposit_fednow_tip": "⚡ Se la tua banca offre il trasferimento \"Instant\" o \"FedNow\", è l'opzione più veloce — di solito arriva in pochi minuti, senza costi extra.",
+    "confirmed_deposit_cop_tip": "💡 La tua banca potrebbe mostrarti un avviso che il nome non corrisponde esattamente (\"Confirmation of Payee\") — è normale per conti di istituzioni finanziarie come questo, non significa che ci sia un problema. Puoi continuare con il pagamento con fiducia."
   },
   "kyc": {
     "title": "Verifica la tua identità",
