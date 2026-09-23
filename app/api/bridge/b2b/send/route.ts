@@ -343,7 +343,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       : source_currency === "brl" ? "PIX"
       : source_currency === "gbp" ? "Faster Payments"
       : source_currency === "cop" ? "COP"
-      : "ACH / Wire";
+      : "ACH";
 
     // Convert deposit amount from USD to source currency
     const usdToSource = source_currency === "usd"

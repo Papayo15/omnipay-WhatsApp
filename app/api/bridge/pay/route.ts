@@ -313,7 +313,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       : source_currency === "mxn" ? "SPEI"
       : source_currency === "brl" ? "PIX"
       : source_currency === "gbp" ? "Faster Payments"
-      : "ACH / Wire";
+      : "ACH";
 
     return NextResponse.json({
       order_id:       orderId,

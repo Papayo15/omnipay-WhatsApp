@@ -158,7 +158,7 @@ export async function POST(req: NextRequest): Promise<Response> {
     const railLabel = source_currency.toLowerCase() === "eur" ? "SEPA"
       : source_currency.toLowerCase() === "gbp" ? "Faster Payments"
       : source_currency.toLowerCase() === "mxn" ? "SPEI"
-      : "ACH / Wire";
+      : "ACH";
 
     return NextResponse.json({
       order_id: orderId,
