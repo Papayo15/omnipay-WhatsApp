@@ -552,12 +552,15 @@ export async function POST(req: NextRequest): Promise<Response> {
           // que le dice al usuario que puede usar su propia dirección postal como respaldo.
           // FedNow para recibir ya está activo automático del lado de Bridge (sin nada que
           // activar de nuestra parte, confirmado contra su changelog) — si el remitente lo
-          // tiene disponible en su banco, es gratis y llega en minutos.
+          // tiene disponible en su banco, es gratis y llega en minutos. Va PRIMERO: es la
+          // mejor opción (gratis + rápida) cuando está disponible — nunca mencionamos Wire
+          // como alternativa recomendada aquí (tiene comisión real, $25-35 USD, que no
+          // controlamos) — por diseño no aparece en ningún tip, solo como nombre del riel.
           ...(di.rail === "ACH / Wire"
-            ? [di.bank_address
+            ? [t("confirmed_deposit_fednow_tip"),
+              di.bank_address
                 ? t("confirmed_deposit_ach_tip", { bank_name: di.bank_name ?? "tu banco", bank_address: di.bank_address })
                 : t("confirmed_deposit_ach_tip_auto", { bank_name: di.bank_name ?? "tu banco" }),
-              t("confirmed_deposit_fednow_tip"),
               ""]
             : []),
           // Reino Unido — "Confirmation of Payee" es obligatorio desde 2020 en todo Faster
