@@ -145,8 +145,11 @@ const PROVIDER_COLORS: Record<string, string> = {
   "OmniPay":    "text-emerald-400",
 };
 
+// Código de moneda explícito, no el símbolo de Intl ("$" solo) — ambiguo cuando esta
+// pantalla muestra USD y MXN (u otra moneda destino) al mismo tiempo (mismo problema
+// confirmado en vivo en components/currency-calculator.tsx).
 function fmt(n: number, currency = "USD"): string {
-  return new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 2 }).format(n);
+  return `${new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(n)} ${currency}`;
 }
 
 interface CalcProps {
@@ -313,7 +316,7 @@ export default function Calculator({ visibleChannels, rateNotes }: CalcProps = {
             {quote.recipientAmount && channel !== "b2b" && (
               <div className="flex justify-between text-xs text-slate-400 pt-1">
                 <span>Receptor recibe (aprox.)</span>
-                <span className="font-mono">{fmt(quote.recipientAmount, destCurrency)} {destCurrency}</span>
+                <span className="font-mono">{fmt(quote.recipientAmount, destCurrency)}</span>
               </div>
             )}
             {rateNotes?.[channel] && (

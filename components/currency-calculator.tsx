@@ -100,8 +100,11 @@ export function CurrencyCalculator() {
     ? parseFloat(((savings / quote.fx_rate) * 12).toFixed(0))
     : null;
 
+  // Código de moneda explícito, no el símbolo de Intl ("$" solo) — ambiguo cuando el
+  // widget muestra USD y MXN al mismo tiempo (confirmado en vivo: un usuario no podía
+  // distinguir si "+$175.41" era pesos o dólares).
   const fmt = (n: number, currency: string) =>
-    new Intl.NumberFormat("es-MX", { style: "currency", currency }).format(n);
+    `${new Intl.NumberFormat("es-MX", { maximumFractionDigits: 2 }).format(n)} ${currency}`;
 
   return (
     <section className="w-full max-w-md mx-auto bg-[#111827] border border-[#1f2937] rounded-2xl p-5">
