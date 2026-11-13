@@ -1238,7 +1238,8 @@
     "confirmed_deposit_ach_tip": "💡 Yi amfani da \"Send Money\" ko \"Pay a Person or Business\" a bankin ka na wayarka — kyauta, yakan isa cikin kwanaki 1-2 na aiki. ⚠️ KADA ka yi amfani da \"Link External Account\" ko \"Transfer to My Own Accounts\" (hakan yana kunna tabbatarwar ajiyar kudi kadan wanda yake ɗaukar kwanaki). Idan bankinka ya nemi adireshin {bank_name}, yi amfani da: {bank_address}. A matsayin zaɓi na ƙarshe, \"Bill Pay\" ma kyauta ne amma zai iya ɗaukar kwanaki 5-7.",
     "confirmed_deposit_ach_tip_auto": "💡 Yi amfani da \"Send Money\" ko \"Pay a Person or Business\" a bankin ka na wayarka — kyauta, yakan isa cikin kwanaki 1-2 na aiki. ⚠️ KADA ka yi amfani da \"Link External Account\" ko \"Transfer to My Own Accounts\". Idan bankinka ya nemi adireshin gidan waya don rijistar biyan kuɗi ga {bank_name}, za ka iya shigar da adireshinka na Amurka. A matsayin zaɓi na ƙarshe, \"Bill Pay\" ma kyauta ne amma zai iya ɗaukar kwanaki 5-7.",
     "confirmed_deposit_fednow_tip": "⚡ Idan bankinka yana ba da canja wurin \"Instant\" ko \"FedNow\", wannan shine mafi sauri — yawanci yakan isa cikin mintuna kaɗan ba tare da ƙarin kuɗi ba.",
-    "confirmed_deposit_cop_tip": "💡 Bankinka na iya nuna maka gargaɗin cewa suna bai dace daidai ba (\"Confirmation of Payee\") — wannan al'ada ce ga asusun cibiyoyin kudi kamar wannan, ba yana nufin akwai matsala ba. Za ka iya ci gaba da biyan kuɗin cikin natsuwa."
+    "confirmed_deposit_cop_tip": "💡 Bankinka na iya nuna maka gargaɗin cewa suna bai dace daidai ba (\"Confirmation of Payee\") — wannan al'ada ce ga asusun cibiyoyin kudi kamar wannan, ba yana nufin akwai matsala ba. Za ka iya ci gaba da biyan kuɗin cikin natsuwa.",
+    "rfi_pending_notice": "🔎 Bridge yana bukatar wata ƙarin bayani don kammala tabbatar da asusunka. Za mu tuntube ka ba da daɗewa ba da cikakkun bayanai — a yanzu babu abin da za ka yi."
   },
   "kyc": {
     "title": "Tabbatar da ainihin ka",

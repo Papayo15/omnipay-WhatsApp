@@ -1239,7 +1239,8 @@
     "confirmed_deposit_ach_tip": "💡 Dùng \"Send Money\" hoặc \"Pay a Person or Business\" trong ngân hàng di động — miễn phí, đến trong 1-2 ngày làm việc. ⚠️ ĐỪNG dùng \"Link External Account\" hay \"Transfer to My Own Accounts\" (kích hoạt xác minh khoản tiền vài xu mất nhiều ngày). Nếu ngân hàng hỏi địa chỉ của {bank_name}, dùng: {bank_address}. Lựa chọn cuối cùng, \"Bill Pay\" cũng miễn phí nhưng có thể mất 5-7 ngày.",
     "confirmed_deposit_ach_tip_auto": "💡 Dùng \"Send Money\" hoặc \"Pay a Person or Business\" trong ngân hàng di động — miễn phí, đến trong 1-2 ngày làm việc. ⚠️ ĐỪNG dùng \"Link External Account\" hay \"Transfer to My Own Accounts\". Nếu ngân hàng hỏi địa chỉ bưu điện để đăng ký thanh toán cho {bank_name}, bạn có thể dùng địa chỉ của mình tại Mỹ. Lựa chọn cuối cùng, \"Bill Pay\" cũng miễn phí nhưng có thể mất 5-7 ngày.",
     "confirmed_deposit_fednow_tip": "⚡ Nếu ngân hàng của bạn có chuyển khoản \"Instant\" hoặc \"FedNow\", đó là lựa chọn nhanh nhất — thường đến trong vài phút và không mất phí thêm.",
-    "confirmed_deposit_cop_tip": "💡 Ngân hàng của bạn có thể hiển thị cảnh báo tên không khớp chính xác (\"Confirmation of Payee\") — điều này bình thường đối với tài khoản của các tổ chức tài chính như thế này, không có nghĩa là có gì sai. Bạn có thể tiếp tục thanh toán một cách yên tâm."
+    "confirmed_deposit_cop_tip": "💡 Ngân hàng của bạn có thể hiển thị cảnh báo tên không khớp chính xác (\"Confirmation of Payee\") — điều này bình thường đối với tài khoản của các tổ chức tài chính như thế này, không có nghĩa là có gì sai. Bạn có thể tiếp tục thanh toán một cách yên tâm.",
+    "rfi_pending_notice": "🔎 Bridge cần thêm một thông tin để hoàn tất việc xác minh tài khoản của bạn. Chúng tôi sẽ liên hệ sớm với chi tiết — hiện tại bạn không cần làm gì cả."
   },
   "kyc": {
     "title": "Xác minh danh tính của bạn",

@@ -1239,7 +1239,8 @@
     "confirmed_deposit_ach_tip": "💡 Utilise \"Send Money\" ou \"Pay a Person or Business\" dans ta banque mobile — gratuit, arrive en 1-2 jours ouvrés. ⚠️ N'utilise PAS \"Link External Account\" ni \"Transfer to My Own Accounts\" (déclenche une vérification par petits dépôts qui prend plusieurs jours). Si ta banque demande l'adresse de {bank_name}, utilise : {bank_address}. En dernier recours, \"Bill Pay\" est aussi gratuit mais peut prendre 5-7 jours.",
     "confirmed_deposit_ach_tip_auto": "💡 Utilise \"Send Money\" ou \"Pay a Person or Business\" dans ta banque mobile — gratuit, arrive en 1-2 jours ouvrés. ⚠️ N'utilise PAS \"Link External Account\" ni \"Transfer to My Own Accounts\". Si ta banque demande une adresse postale pour le paiement à {bank_name}, tu peux indiquer ta propre adresse aux États-Unis. En dernier recours, \"Bill Pay\" est aussi gratuit mais peut prendre 5-7 jours.",
     "confirmed_deposit_fednow_tip": "⚡ Si ta banque propose un virement \"Instant\" ou \"FedNow\", c'est l'option la plus rapide — arrive généralement en quelques minutes, sans frais supplémentaires.",
-    "confirmed_deposit_cop_tip": "💡 Ta banque peut t'afficher une alerte \"le nom ne correspond pas\" (\"Confirmation of Payee\") — c'est normal pour des comptes d'institutions financières comme celui-ci, ça ne veut pas dire qu'il y a un problème. Tu peux continuer le paiement en toute confiance."
+    "confirmed_deposit_cop_tip": "💡 Ta banque peut t'afficher une alerte \"le nom ne correspond pas\" (\"Confirmation of Payee\") — c'est normal pour des comptes d'institutions financières comme celui-ci, ça ne veut pas dire qu'il y a un problème. Tu peux continuer le paiement en toute confiance.",
+    "rfi_pending_notice": "🔎 Bridge a besoin d'une information supplémentaire pour terminer la vérification de ton compte. On te recontacte bientôt avec les détails — rien à faire de ton côté pour l'instant."
   },
   "kyc": {
     "title": "Vérifiez votre identité",

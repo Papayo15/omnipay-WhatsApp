@@ -1237,7 +1237,8 @@
     "confirmed_deposit_ach_tip": "💡 Use \"Send Money\" or \"Pay a Person or Business\" in your mobile banking — free, arrives in 1-2 business days. ⚠️ Don't use \"Link External Account\" or \"Transfer to My Own Accounts\" (that triggers cent-deposit verification that takes days). If your bank asks for {bank_name}'s address, use: {bank_address}. As a last resort, \"Bill Pay\" is also free but can take 5-7 days.",
     "confirmed_deposit_ach_tip_auto": "💡 Use \"Send Money\" or \"Pay a Person or Business\" in your mobile banking — free, arrives in 1-2 business days. ⚠️ Don't use \"Link External Account\" or \"Transfer to My Own Accounts\". If your bank asks for a mailing address to register the payment to {bank_name}, you can enter your own US mailing address. As a last resort, \"Bill Pay\" is also free but can take 5-7 days.",
     "confirmed_deposit_fednow_tip": "⚡ If your bank offers \"Instant\" or \"FedNow\" transfer, that's the fastest option — usually arrives in minutes with no extra cost.",
-    "confirmed_deposit_cop_tip": "💡 Your bank may show you a \"name doesn't match\" alert (\"Confirmation of Payee\") — that's normal for accounts belonging to financial institutions like this one, it doesn't mean anything is wrong. You can continue with the payment with confidence."
+    "confirmed_deposit_cop_tip": "💡 Your bank may show you a \"name doesn't match\" alert (\"Confirmation of Payee\") — that's normal for accounts belonging to financial institutions like this one, it doesn't mean anything is wrong. You can continue with the payment with confidence.",
+    "rfi_pending_notice": "🔎 Bridge needs one more piece of information to finish verifying your account. We'll reach out shortly with the details — no action needed from you right now."
   },
   "kyc": {
     "title": "Verify your identity",

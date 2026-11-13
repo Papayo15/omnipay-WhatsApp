@@ -1239,7 +1239,8 @@
     "confirmed_deposit_ach_tip": "💡 Gebruik \"Send Money\" of \"Pay a Person or Business\" in je mobiel bankieren — gratis, komt binnen 1-2 werkdagen aan. ⚠️ Gebruik NIET \"Link External Account\" of \"Transfer to My Own Accounts\" (dat activeert een centenbedrag-verificatie die dagen duurt). Vraagt je bank om het adres van {bank_name}? Gebruik: {bank_address}. Als laatste optie is \"Bill Pay\" ook gratis maar kan 5-7 dagen duren.",
     "confirmed_deposit_ach_tip_auto": "💡 Gebruik \"Send Money\" of \"Pay a Person or Business\" in je mobiel bankieren — gratis, komt binnen 1-2 werkdagen aan. ⚠️ Gebruik NIET \"Link External Account\" of \"Transfer to My Own Accounts\". Vraagt je bank om een postadres voor de betaling aan {bank_name}? Dan kun je je eigen Amerikaanse adres invullen. Als laatste optie is \"Bill Pay\" ook gratis maar kan 5-7 dagen duren.",
     "confirmed_deposit_fednow_tip": "⚡ Als je bank \"Instant\" of \"FedNow\" overschrijving aanbiedt, is dat de snelste optie — komt meestal binnen enkele minuten aan, zonder extra kosten.",
-    "confirmed_deposit_cop_tip": "💡 Je bank kan een melding tonen dat de naam niet exact overeenkomt (\"Confirmation of Payee\") — dat is normaal voor rekeningen van financiële instellingen zoals deze, het betekent niet dat er iets mis is. Je kunt de betaling met vertrouwen voortzetten."
+    "confirmed_deposit_cop_tip": "💡 Je bank kan een melding tonen dat de naam niet exact overeenkomt (\"Confirmation of Payee\") — dat is normaal voor rekeningen van financiële instellingen zoals deze, het betekent niet dat er iets mis is. Je kunt de betaling met vertrouwen voortzetten.",
+    "rfi_pending_notice": "🔎 Bridge heeft nog één gegeven nodig om je account te verifiëren. We nemen binnenkort contact op met de details — voorlopig hoef je niets te doen."
   },
   "kyc": {
     "title": "Verifieer je identiteit",

@@ -1239,7 +1239,8 @@
     "confirmed_deposit_ach_tip": "💡 Tumia \"Send Money\" au \"Pay a Person or Business\" kwenye benki yako ya simu — bure, hufika kwa siku 1-2 za kazi. ⚠️ USITUMIE \"Link External Account\" au \"Transfer to My Own Accounts\" (huwasha uthibitisho wa amana ndogo unaochukua siku kadhaa). Ikiwa benki yako inaomba anwani ya {bank_name}, tumia: {bank_address}. Kama chaguo la mwisho, \"Bill Pay\" pia ni bure lakini inaweza kuchukua siku 5-7.",
     "confirmed_deposit_ach_tip_auto": "💡 Tumia \"Send Money\" au \"Pay a Person or Business\" kwenye benki yako ya simu — bure, hufika kwa siku 1-2 za kazi. ⚠️ USITUMIE \"Link External Account\" au \"Transfer to My Own Accounts\". Ikiwa benki yako inaomba anwani ya posta kusajili malipo kwa {bank_name}, unaweza kutumia anwani yako mwenyewe ya Marekani. Kama chaguo la mwisho, \"Bill Pay\" pia ni bure lakini inaweza kuchukua siku 5-7.",
     "confirmed_deposit_fednow_tip": "⚡ Ikiwa benki yako inatoa uhamisho wa \"Instant\" au \"FedNow\", hiyo ndiyo chaguo la haraka zaidi — kwa kawaida hufika kwa dakika chache bila gharama za ziada.",
-    "confirmed_deposit_cop_tip": "💡 Benki yako inaweza kukuonyesha onyo kwamba jina halifanani kikamilifu (\"Confirmation of Payee\") — hii ni kawaida kwa akaunti za taasisi za kifedha kama hii, haimaanishi kuna tatizo. Unaweza kuendelea na malipo kwa uhakika."
+    "confirmed_deposit_cop_tip": "💡 Benki yako inaweza kukuonyesha onyo kwamba jina halifanani kikamilifu (\"Confirmation of Payee\") — hii ni kawaida kwa akaunti za taasisi za kifedha kama hii, haimaanishi kuna tatizo. Unaweza kuendelea na malipo kwa uhakika.",
+    "rfi_pending_notice": "🔎 Bridge inahitaji taarifa moja zaidi ili kumaliza kuthibitisha akaunti yako. Tutawasiliana nawe hivi karibuni na maelezo — kwa sasa huhitaji kufanya lolote."
   },
   "kyc": {
     "title": "Thibitisha utambulisho wako",

@@ -20,9 +20,10 @@ import { sendAdminWhatsApp }                    from "@/lib/notify";
 import { buildReceiptURL }                      from "@/lib/link";
 import { sendWhatsAppMessage, sendWhatsAppTemplate, templateLanguageCode } from "@/lib/whatsapp";
 import { getWaTranslator, localeFromPhone, type WaLocale } from "@/lib/wa-i18n";
-import { takePendingTransfer, isWithinMessageWindow }        from "@/lib/wa-identity";
+import { takePendingTransfer, isWithinMessageWindow, getPhoneForEmail } from "@/lib/wa-identity";
 import { beginRecipientCollection }             from "@/lib/wa-flow";
 import { getCountry }                           from "@/constants/countries";
+import { getCustomer }                          from "@/providers/bridge/customers";
 
 // Node.js runtime required — redis package uses Node TCP sockets (incompatible with Edge)
 export const runtime = "nodejs";
@@ -97,6 +98,54 @@ export async function POST(req: NextRequest): Promise<Response> {
   // reenviemos nada), así que esto es observabilidad, no una acción pendiente.
   if (type.startsWith("kyc_link.")) {
     console.log(`[bridge/webhook] kyc_link event: ${JSON.stringify(data).slice(0, 1000)}`);
+  }
+
+  // ── RFI (Request For Information) — Bridge pide un dato más para aprobar ───
+  // Antes esto solo llegaba por correo/Slack/dashboard de Bridge, sin que nos enteráramos
+  // en el momento — exactamente el tipo de cosa que dejó atorado al cliente de producción
+  // que encontramos hace semanas (le faltaba fecha de nacimiento/tax ID y nadie se enteró).
+  // state: "on_developer" = Bridge espera que NOSOTROS le demos algo (lo que de verdad
+  // necesita acción); "on_bridge" = ya se lo dimos y lo están revisando; "closed" = resuelto.
+  // Por ahora: alerta inmediata al admin (para resolverlo en el dashboard de Bridge, igual
+  // que ya hacíamos por correo, pero al instante) + aviso genérico al cliente por WhatsApp
+  // si lo podemos ubicar — pedirle el dato exacto en el chat y mandarlo de vuelta a Bridge
+  // via POST /rfis/{id}/responses es un paso futuro, no esta tanda.
+  if (type.startsWith("rfi.")) {
+    const rfiId       = String(data.id ?? "");
+    const state        = String(data.state ?? "");
+    const category     = String(data.category ?? "");
+    const customerId   = String(data.customer_id ?? "");
+    const deadline      = String(data.deadline ?? "");
+    const items = (data.requested_items as Array<{ content?: string }> | undefined) ?? [];
+    const itemsSummary  = items.map(i => i.content).filter(Boolean).join(" | ").slice(0, 300);
+
+    console.log(`[bridge/webhook] rfi event type=${type} id=${rfiId} state=${state} customer=${customerId}`);
+
+    if (state === "on_developer") {
+      await sendAdminWhatsApp(
+        `⚠️ OmniPay — Bridge pide más información (RFI)\n` +
+        `Categoría: ${category}\n` +
+        `Cliente: ${customerId}\n` +
+        (deadline ? `Fecha límite: ${deadline}\n` : "") +
+        (itemsSummary ? `Piden: ${itemsSummary}\n` : "") +
+        `Resuelve en el dashboard de Bridge → Support → RFIs.`,
+      );
+
+      // Mejor esfuerzo: avisarle al cliente real que algo falta, sin pedirle el dato
+      // específico todavía (eso requeriría parsear cada tipo de requested_item y mandar
+      // la respuesta de vuelta a Bridge — pendiente para una próxima vuelta).
+      try {
+        const customer = await getCustomer(customerId);
+        const waId = customer.email ? await getPhoneForEmail(customer.email) : null;
+        if (waId && await isWithinMessageWindow(waId)) {
+          const locale = localeFromPhone(waId);
+          const t = await getWaTranslator(locale);
+          await sendWhatsAppMessage(waId, t("rfi_pending_notice"));
+        }
+      } catch (e) {
+        console.error("[bridge/webhook] rfi customer lookup failed:", (e as Error).message);
+      }
+    }
   }
 
   // ── Liquidation address drain completed ───────────────────────────────────

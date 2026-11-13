@@ -1239,7 +1239,8 @@
     "confirmed_deposit_ach_tip": "💡 በሞባይል ባንክዎ \"Send Money\" ወይም \"Pay a Person or Business\" ይጠቀሙ — ነፃ ነው፣ በ1-2 የስራ ቀናት ውስጥ ይደርሳል። ⚠️ \"Link External Account\" ወይም \"Transfer to My Own Accounts\" አይጠቀሙ (ይህ ቀናት የሚወስድ የሳንቲም ተቀማጭ ማረጋገጫ ያስነሳል)። ባንክዎ የ{bank_name}ን አድራሻ ከጠየቀ፣ ይህን ይጠቀሙ፦ {bank_address}። እንደ መጨረሻ አማራጭ፣ \"Bill Pay\" ደግሞ ነፃ ነው ግን 5-7 ቀናት ሊወስድ ይችላል።",
     "confirmed_deposit_ach_tip_auto": "💡 በሞባይል ባንክዎ \"Send Money\" ወይም \"Pay a Person or Business\" ይጠቀሙ — ነፃ ነው፣ በ1-2 የስራ ቀናት ውስጥ ይደርሳል። ⚠️ \"Link External Account\" ወይም \"Transfer to My Own Accounts\" አይጠቀሙ። ባንክዎ ለ{bank_name} ክፍያ ለመመዝገብ የፖስታ አድራሻ ከጠየቀ፣ የራስዎን የአሜሪካ አድራሻ ማስገባት ይችላሉ። እንደ መጨረሻ አማራጭ፣ \"Bill Pay\" ደግሞ ነፃ ነው ግን 5-7 ቀናት ሊወስድ ይችላል።",
     "confirmed_deposit_fednow_tip": "⚡ ባንክዎ \"Instant\" ወይም \"FedNow\" ዝውውር የሚያቀርብ ከሆነ፣ ያ በጣም ፈጣኑ አማራጭ ነው — በተለምዶ በደቂቃዎች ውስጥ ይደርሳል፣ ያለ ተጨማሪ ክፍያ።",
-    "confirmed_deposit_cop_tip": "💡 ባንክዎ ስሙ በትክክል እንደማይዛመድ የሚያሳይ ማንቂያ ሊያሳይ ይችላል (\"Confirmation of Payee\") — ይህ እንደዚህ ላሉ የፋይናንስ ተቋማት አካውንቶች የተለመደ ነው፣ የሆነ ችግር አለ ማለት አይደለም። ክፍያውን በልበ ሙሉነት መቀጠል ይችላሉ።"
+    "confirmed_deposit_cop_tip": "💡 ባንክዎ ስሙ በትክክል እንደማይዛመድ የሚያሳይ ማንቂያ ሊያሳይ ይችላል (\"Confirmation of Payee\") — ይህ እንደዚህ ላሉ የፋይናንስ ተቋማት አካውንቶች የተለመደ ነው፣ የሆነ ችግር አለ ማለት አይደለም። ክፍያውን በልበ ሙሉነት መቀጠል ይችላሉ።",
+    "rfi_pending_notice": "🔎 መለያዎን ለማረጋገጥ Bridge ተጨማሪ መረጃ ያስፈልገዋል። በቅርቡ ዝርዝሩን ይዘን እናገኝዎታለን — አሁን የሚያደርጉት ነገር የለም።"
   },
   "kyc": {
     "title": "ማንነትዎን ያረጋግጡ",

@@ -1239,7 +1239,8 @@
     "confirmed_deposit_ach_tip": "💡 Nutze \"Send Money\" oder \"Pay a Person or Business\" in deinem Mobile Banking — kostenlos, kommt in 1-2 Werktagen an. ⚠️ Nutze NICHT \"Link External Account\" oder \"Transfer to My Own Accounts\" (löst eine tagelange Cent-Betrag-Verifizierung aus). Falls deine Bank die Adresse von {bank_name} verlangt, nutze: {bank_address}. Als letzte Option ist auch \"Bill Pay\" kostenlos, kann aber 5-7 Tage dauern.",
     "confirmed_deposit_ach_tip_auto": "💡 Nutze \"Send Money\" oder \"Pay a Person or Business\" in deinem Mobile Banking — kostenlos, kommt in 1-2 Werktagen an. ⚠️ Nutze NICHT \"Link External Account\" oder \"Transfer to My Own Accounts\". Falls deine Bank eine Postanschrift für die Zahlung an {bank_name} verlangt, kannst du deine eigene US-Adresse angeben. Als letzte Option ist auch \"Bill Pay\" kostenlos, kann aber 5-7 Tage dauern.",
     "confirmed_deposit_fednow_tip": "⚡ Falls deine Bank \"Instant\" oder \"FedNow\" anbietet, ist das die schnellste Option — kommt meist in Minuten an, ohne Zusatzkosten.",
-    "confirmed_deposit_cop_tip": "💡 Deine Bank zeigt dir eventuell eine \"Name stimmt nicht überein\"-Warnung (\"Confirmation of Payee\") — das ist normal bei Konten von Finanzinstituten wie diesem und bedeutet nicht, dass etwas falsch ist. Du kannst die Zahlung bedenkenlos fortsetzen."
+    "confirmed_deposit_cop_tip": "💡 Deine Bank zeigt dir eventuell eine \"Name stimmt nicht überein\"-Warnung (\"Confirmation of Payee\") — das ist normal bei Konten von Finanzinstituten wie diesem und bedeutet nicht, dass etwas falsch ist. Du kannst die Zahlung bedenkenlos fortsetzen.",
+    "rfi_pending_notice": "🔎 Bridge benötigt noch eine Information, um dein Konto zu verifizieren. Wir melden uns in Kürze mit den Details — im Moment musst du nichts tun."
   },
   "kyc": {
     "title": "Verifizieren Sie Ihre Identität",

@@ -1239,7 +1239,8 @@
     "confirmed_deposit_ach_tip": "💡 Mobil bankacılığında \"Send Money\" ya da \"Pay a Person or Business\" kullan — ücretsiz, 1-2 iş gününde ulaşır. ⚠️ \"Link External Account\" veya \"Transfer to My Own Accounts\" KULLANMA (günler süren küçük tutarlı doğrulamayı tetikler). Bankan {bank_name} adresini isterse şunu kullan: {bank_address}. Son çare olarak \"Bill Pay\" de ücretsizdir ama 5-7 gün sürebilir.",
     "confirmed_deposit_ach_tip_auto": "💡 Mobil bankacılığında \"Send Money\" ya da \"Pay a Person or Business\" kullan — ücretsiz, 1-2 iş gününde ulaşır. ⚠️ \"Link External Account\" veya \"Transfer to My Own Accounts\" KULLANMA. Bankan {bank_name}'e ödemeyi kaydetmek için posta adresi isterse, kendi ABD adresini girebilirsin. Son çare olarak \"Bill Pay\" de ücretsizdir ama 5-7 gün sürebilir.",
     "confirmed_deposit_fednow_tip": "⚡ Bankan \"Instant\" ya da \"FedNow\" transferi sunuyorsa, en hızlı seçenek bu — genelde dakikalar içinde ulaşır ve ekstra ücret yoktur.",
-    "confirmed_deposit_cop_tip": "💡 Bankan \"isim tam eşleşmiyor\" uyarısı gösterebilir (\"Confirmation of Payee\") — bu, bu tür finans kurumlarına ait hesaplar için normaldir, bir sorun olduğu anlamına gelmez. Ödemeye güvenle devam edebilirsin."
+    "confirmed_deposit_cop_tip": "💡 Bankan \"isim tam eşleşmiyor\" uyarısı gösterebilir (\"Confirmation of Payee\") — bu, bu tür finans kurumlarına ait hesaplar için normaldir, bir sorun olduğu anlamına gelmez. Ödemeye güvenle devam edebilirsin.",
+    "rfi_pending_notice": "🔎 Bridge, hesabını doğrulamayı tamamlamak için bir bilgi daha istiyor. Kısa süre içinde detaylarla sana ulaşacağız — şu an senin yapman gereken bir şey yok."
   },
   "kyc": {
     "title": "Kimliğinizi doğrulayın",

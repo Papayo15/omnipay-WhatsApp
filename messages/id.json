@@ -1239,7 +1239,8 @@
     "confirmed_deposit_ach_tip": "💡 Gunakan \"Send Money\" atau \"Pay a Person or Business\" di mobile banking Anda — gratis, sampai dalam 1-2 hari kerja. ⚠️ JANGAN gunakan \"Link External Account\" atau \"Transfer to My Own Accounts\" (memicu verifikasi setoran receh yang memakan waktu berhari-hari). Jika bank meminta alamat {bank_name}, gunakan: {bank_address}. Sebagai pilihan terakhir, \"Bill Pay\" juga gratis tapi bisa memakan waktu 5-7 hari.",
     "confirmed_deposit_ach_tip_auto": "💡 Gunakan \"Send Money\" atau \"Pay a Person or Business\" di mobile banking Anda — gratis, sampai dalam 1-2 hari kerja. ⚠️ JANGAN gunakan \"Link External Account\" atau \"Transfer to My Own Accounts\". Jika bank meminta alamat pos untuk mendaftarkan pembayaran ke {bank_name}, Anda bisa memakai alamat Anda sendiri di AS. Sebagai pilihan terakhir, \"Bill Pay\" juga gratis tapi bisa memakan waktu 5-7 hari.",
     "confirmed_deposit_fednow_tip": "⚡ Jika bank Anda menawarkan transfer \"Instant\" atau \"FedNow\", itu opsi tercepat — biasanya sampai dalam hitungan menit tanpa biaya tambahan.",
-    "confirmed_deposit_cop_tip": "💡 Bank Anda mungkin menampilkan peringatan bahwa nama tidak cocok persis (\"Confirmation of Payee\") — ini normal untuk rekening milik institusi keuangan seperti ini, bukan berarti ada yang salah. Anda bisa melanjutkan pembayaran dengan tenang."
+    "confirmed_deposit_cop_tip": "💡 Bank Anda mungkin menampilkan peringatan bahwa nama tidak cocok persis (\"Confirmation of Payee\") — ini normal untuk rekening milik institusi keuangan seperti ini, bukan berarti ada yang salah. Anda bisa melanjutkan pembayaran dengan tenang.",
+    "rfi_pending_notice": "🔎 Bridge memerlukan satu informasi lagi untuk menyelesaikan verifikasi akun Anda. Kami akan segera menghubungi Anda dengan detailnya — untuk saat ini Anda tidak perlu melakukan apa pun."
   },
   "kyc": {
     "title": "Verifikasi identitas Anda",
